@@ -1,33 +1,30 @@
-# draft-ietf-ccamp-mw-topo-yang
+# A YANG Data Model for Microwave Topology
+
+This is the working area for the IETF [CCAMP Working Group](https://datatracker.ietf.org/wg/ccamp/documents/) Internet-Draft, "A YANG Data Model for Microwave Topology".
+
+* [Editor's Copy](https://ietf-ccamp-wg.github.io/draft-ietf-ccamp-mw-topo-yang/#go.draft-ietf-ccamp-mw-topo-yang.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-ccamp-mw-topo-yang)
+* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-mw-topo-yang)
+* [Compare Editor's Copy to Working Group Draft](https://ietf-ccamp-wg.github.io/draft-ietf-ccamp-mw-topo-yang/#go.draft-ietf-ccamp-mw-topo-yang.diff)
+
 
 ## Contributing
 
-This repository relates to activities in the Internet Engineering Task Force
-([IETF](https://www.ietf.org/)). All material in this repository is considered
-Contributions to the IETF Standards Process, as defined in the intellectual
-property policies of IETF currently designated as
-[BCP 78](https://www.rfc-editor.org/info/bcp78),
-[BCP 79](https://www.rfc-editor.org/info/bcp79) and the
-[IETF Trust Legal Provisions (TLP) Relating to IETF Documents](http://trustee.ietf.org/trust-legal-provisions.html).
+See the
+[guidelines for contributions](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/blob/main/CONTRIBUTING.md).
 
-Any edit, commit, pull request, issue, comment or other change made to this
-repository constitutes Contributions to the IETF Standards Process
-(https://www.ietf.org/).
-
-You agree to comply with all applicable IETF policies and procedures, including,
-BCP 78, 79, the TLP, and the TLP rules regarding code components (e.g. being
-subject to a Simplified BSD License) in Contributions.
+Contributions can be made by creating pull requests.
+The GitHub interface supports creating pull requests using the Edit (✏) button.
 
 
-### Other Resources
+## Command Line Usage
 
-Discussion of this work occurs on the
-[CCAMP working group mailing list](https://mailarchive.ietf.org/arch/browse/ccamp/)
-([subscribe](https://www.ietf.org/mailman/listinfo/ccamp)).  In addition to
-contributions in GitHub, you are encouraged to participate in discussions there.
+Formatted text and HTML versions of the draft can be built using `make`.
 
-**Note**: Some working groups adopt a policy whereby substantive discussion of
-technical issues needs to occur on the mailing list.
+```sh
+$ make
+```
 
-You might also like to familiarize yourself with other
-[working group documents](https://datatracker.ietf.org/wg/ccamp/documents/).
+Command line usage requires that you have the necessary software installed.  See
+[the instructions](https://github.com/martinthomson/i-d-template/blob/main/doc/SETUP.md).
+
