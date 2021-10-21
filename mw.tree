@@ -1,0 +1,30 @@
+module: ietf-microwave-topology
+
+  augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
+    +--rw mw-topology!
+  augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
+    +--rw mw-tp-choice
+       +--rw (mw-tp-option)?
+          +--:(microwave-rltp)
+          |  +--rw microwave-rltp!
+          +--:(microwave-ctp)
+             +--rw microwave-ctp!
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
+    +--rw mw-link-choice
+       +--rw (mw-link-option)?
+          +--:(microwave-radio-link)
+          |  +--rw microwave-radio-link!
+          |     +--rw mode?   identityref
+          +--:(microwave-carrier)
+             +--rw microwave-carrier!
+                +--rw tx-frequency?               uint32
+                +--rw rx-frequency?               uint32
+                +--rw channel-separation?         uint32
+                +--ro actual-tx-cm?               identityref
+                +--ro actual-snir?                decimal64
+                +--ro actual-transmitted-level?   power
+  augment /nw:networks/nw:network/nt:link/tet:te/
+           tet:te-link-attributes/tet:max-link-bandwidth/
+           tet:te-bandwidth/tet:technology:
+    +--:(microwave)
+       +--ro mw-bandwidth?   uint64
