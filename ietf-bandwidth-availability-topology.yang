@@ -1,7 +1,7 @@
 module ietf-bandwidth-availability-topology {
    yang-version "1.1";
    namespace
-    "urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology";
+  "urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology";
    prefix "bwatopo";
 
    import ietf-yang-types {

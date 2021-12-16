@@ -1,7 +1,7 @@
 module ietf-tp-interface-reference-topology {
   yang-version "1.1";
    namespace
-    "urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology";
+  "urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology";
 
    prefix "ifref";
 

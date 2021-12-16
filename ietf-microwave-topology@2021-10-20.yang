@@ -1,6 +1,7 @@
  module ietf-microwave-topology {
    yang-version "1.1";
-   namespace "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
+   namespace
+   "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
 
    prefix "mwtopo";
 

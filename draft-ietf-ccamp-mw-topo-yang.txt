@@ -5,14 +5,14 @@
 ccamp                                                         J. Ahlberg
 Internet-Draft                                              S. Mansfield
 Intended status: Standards Track                                Ericsson
-Expires: 24 April 2022                                             M. Ye
+Expires: 19 June 2022                                              M. Ye
                                                                  I. Busi
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         21 October 2021
+                                                        16 December 2021
 
 
                 A YANG Data Model for Microwave Topology
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 April 2022.
+   This Internet-Draft will expire on 19 June 2022.
 
 Copyright Notice
 
@@ -189,36 +189,37 @@ Table of Contents
 
 3.1.  YANG Tree
 
-module: ietf-microwave-topology
+   module: ietf-microwave-topology
 
-  augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
-    +--rw mw-topology!
-  augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
-    +--rw mw-tp-choice
-       +--rw (mw-tp-option)?
-          +--:(microwave-rltp)
-          |  +--rw microwave-rltp!
-          +--:(microwave-ctp)
-             +--rw microwave-ctp!
-  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
-    +--rw mw-link-choice
-       +--rw (mw-link-option)?
-          +--:(microwave-radio-link)
-          |  +--rw microwave-radio-link!
-          |     +--rw mode?   identityref
-          +--:(microwave-carrier)
-             +--rw microwave-carrier!
-                +--rw tx-frequency?               uint32
-                +--rw rx-frequency?               uint32
-                +--rw channel-separation?         uint32
-                +--ro actual-tx-cm?               identityref
-                +--ro actual-snir?                decimal64
-                +--ro actual-transmitted-level?   power
-  augment /nw:networks/nw:network/nt:link/tet:te/
-           tet:te-link-attributes/tet:max-link-bandwidth/
-           tet:te-bandwidth/tet:technology:
-    +--:(microwave)
-       +--ro mw-bandwidth?   uint64
+   augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
+     +--rw mw-topology!
+   augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
+     +--rw mw-tp-choice
+        +--rw (mw-tp-option)?
+           +--:(microwave-rltp)
+           |  +--rw microwave-rltp!
+           +--:(microwave-ctp)
+              +--rw microwave-ctp!
+   augment
+    /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
+     +--rw mw-link-choice
+        +--rw (mw-link-option)?
+           +--:(microwave-radio-link)
+           |  +--rw microwave-radio-link!
+           |     +--rw mode?   identityref
+           +--:(microwave-carrier)
+              +--rw microwave-carrier!
+                 +--rw tx-frequency?               uint32
+                 +--rw rx-frequency?               uint32
+                 +--rw channel-separation?         uint32
+                 +--ro actual-tx-cm?               identityref
+                 +--ro actual-snir?                decimal64
+                 +--ro actual-transmitted-level?   power
+   augment /nw:networks/nw:network/nt:link/tet:te/
+            tet:te-link-attributes/tet:max-link-bandwidth/
+            tet:te-bandwidth/tet:technology:
+     +--:(microwave)
+        +--ro mw-bandwidth?   uint64
 
 3.2.  Relationship between radio links and carriers
 
@@ -272,10 +273,12 @@ module: ietf-microwave-topology
 
 3.6.  Microwave Topology YANG Module
 
-   <CODE BEGINS>file "ietf-microwave-topology@2021-10-20.yang"
+   <CODE BEGINS>
+   file "ietf-microwave-topology@2021-10-20.yang"
     module ietf-microwave-topology {
       yang-version "1.1";
-      namespace "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
+      namespace
+      "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
 
       prefix "mwtopo";
 
@@ -595,23 +598,26 @@ module: ietf-microwave-topology
 
 4.1.  YANG Tree
 
-   <CODE BEGINS>file "bw.tree"
+   <CODE BEGINS>
+   file "bw.tree"
    module: ietf-bandwidth-availability-topology
 
-     augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
-       +--rw link-availability* [availability]
-       |  +--rw availability      decimal64
-       |  +--rw link-bandwidth?   uint64
-       +--ro actual-bandwidth?    yang:gauge64
+   augment
+    /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
+     +--rw link-availability* [availability]
+     |  +--rw availability      decimal64
+     |  +--rw link-bandwidth?   uint64
+     +--ro actual-bandwidth?    yang:gauge64
    <CODE ENDS>
 
 4.2.  Bandwidth Availability Topology YANG Data Module
 
-   <CODE BEGINS>file "ietf-bandwidth-availability-topology.yang"
+   <CODE BEGINS>
+   file "ietf-bandwidth-availability-topology.yang"
    module ietf-bandwidth-availability-topology {
       yang-version "1.1";
       namespace
-       "urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology";
+     "urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology";
       prefix "bwatopo";
 
       import ietf-yang-types {
@@ -746,20 +752,22 @@ module: ietf-microwave-topology
 
 5.1.  YANG Tree
 
-   <CODE BEGINS>file "if.tree"
+   <CODE BEGINS>
+   file "if.tree"
    module: ietf-tp-interface-reference-topology
 
-     augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
-       +--rw tp-to-interface-path?   -> /if:interfaces/interface/name
+   augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
+     +--rw tp-to-interface-path?   -> /if:interfaces/interface/name
    <CODE ENDS>
 
 5.2.  Termination Point to Interface Reference YANG Data Module
 
-   <CODE BEGINS>file "ietf-tp-interface-reference-topology.yang"
+   <CODE BEGINS>
+   file "ietf-tp-interface-reference-topology.yang"
    module ietf-tp-interface-reference-topology {
      yang-version "1.1";
       namespace
-       "urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology";
+     "urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology";
 
       prefix "ifref";
 
@@ -1040,7 +1048,8 @@ A.1.  A tree for a complete Microwave Topology Model
    [RFC8345], Traffic Engineering (TE) Topologies model defined in
    [RFC8795] and the associated Bandwidth Availability Model.
 
-   <CODE BEGINS>file "full.tree"
+   <CODE BEGINS>
+   file "full.tree"
 
    module: ietf-network
      +--rw networks
@@ -1200,7 +1209,10 @@ A.2.  A topology with single microwave radio link
       the reference to the associated interface management
       information, is encoded in JSON as follows:
 
-   <CODE BEGINS>file "example.json"
+   <CODE BEGINS>
+   file "example-fold.json"
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    {
      "ietf-network:networks": {
        "network": [
@@ -1310,7 +1322,8 @@ A.2.  A topology with single microwave radio link
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-rltp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-1"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"RLT-1"
                    }
                  },
                  {
@@ -1320,7 +1333,8 @@ A.2.  A topology with single microwave radio link
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-ctp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-1"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"CT-1"
                    }
                  },
                  {
@@ -1330,7 +1344,8 @@ A.2.  A topology with single microwave radio link
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-ctp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-3"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"CT-3"
                    }
                  }
                ]
@@ -1357,7 +1372,8 @@ A.2.  A topology with single microwave radio link
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-rltp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-2"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"RLT-2"
                    }
                  },
                  {
@@ -1367,7 +1383,8 @@ A.2.  A topology with single microwave radio link
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-ctp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-2"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"CT-2"
                    }
                  },
                  {
@@ -1377,7 +1394,8 @@ A.2.  A topology with single microwave radio link
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-ctp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-4"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"CT-4"
                    }
                  }
                ]
@@ -1410,7 +1428,8 @@ A.2.  A topology with single microwave radio link
                    ]
                  },
                  "te-link-attributes": {
-                   "ietf-bandwidth-availability-topology:link-availability": [
+                   "ietf-bandwidth-availability-topology:link-availabil\
+   ity": [
                      {
                        "availability": "0.999",
                        "link-bandwidth": "1572864"
@@ -1440,7 +1459,8 @@ A.2.  A topology with single microwave radio link
                },
                "ietf-te-topology:te": {
                  "te-link-attributes": {
-                   "ietf-bandwidth-availability-topology:link-availability": [
+                   "ietf-bandwidth-availability-topology:link-availabil\
+   ity": [
                      {
                        "availability": "0.99",
                        "link-bandwidth": "1048576"
@@ -1468,7 +1488,8 @@ A.2.  A topology with single microwave radio link
                },
                "ietf-te-topology:te": {
                  "te-link-attributes": {
-                   "ietf-bandwidth-availability-topology:link-availability": [
+                   "ietf-bandwidth-availability-topology:link-availabil\
+   ity": [
                      {
                        "availability": "0.99",
                        "link-bandwidth": "1048576"

@@ -8,8 +8,8 @@ area: Routing
 workgroup: ccamp
 keyword: Internet-Draft
 stand_alone: yes
-smart_quotes: no
 pi: [toc, sortrefs, symrefs]
+consensus: true
 
 author:
  -
@@ -44,18 +44,15 @@ author:
    email: daniela.spreafico@nokia.com
 
 normative:
-   RFC2119:
    RFC3688:
    RFC6020:
    RFC6241:
    RFC6242:
    RFC8040:
-   RFC8174:
    RFC8341:
    RFC8343:
    RFC8345:
    RFC8446:
-   RFC8795:
 
 informative:
    RFC8330:
@@ -73,7 +70,7 @@ TODO
 
 # Introduction
 
-This document defines three YANG data models to describe topologies of microwave/millimeter wave (hereafter microwave is used to simplify the text).  The first YANG data model describes radio links, supporting carrier(s) and the associated termination points. A carrier is a description of a link providing transport capacity over the air by a single carrier. It is typically defined by its transmitting and receiving frequencies. A radio link is a link providing the aggregated transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and TDM. A second YANG data model describes bandwidth availability for a link.  It is an important characteristic of a microwave radio link, but it could also be applicable for other types of links.  A third YANG data model introduces a way to reference the information in a YANG data model for interface management {{RFC8343}} from a termination point, which is useful for microwave termination points, but which could also be useful for other types of termination points.  All three models augment "YANG Data Model for Traffic Engineering (TE) Topologies" defined in {{RFC8795}}, which is based on "A YANG Data Model for Network Topologies" defined in {{RFC8345}}.
+This document defines three YANG data models to describe topologies of microwave/millimeter wave (hereafter microwave is used to simplify the text).  The first YANG data model describes radio links, supporting carrier(s) and the associated termination points. A carrier is a description of a link providing transport capacity over the air by a single carrier. It is typically defined by its transmitting and receiving frequencies. A radio link is a link providing the aggregated transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and TDM. A second YANG data model describes bandwidth availability for a link.  It is an important characteristic of a microwave radio link, but it could also be applicable for other types of links.  A third YANG data model introduces a way to reference the information in a YANG data model for interface management {{RFC8343}} from a termination point, which is useful for microwave termination points, but which could also be useful for other types of termination points.  All three models augment "YANG Data Model for Traffic Engineering (TE) Topologies" defined in {{!RFC8795}}, which is based on "A YANG Data Model for Network Topologies" defined in {{RFC8345}}.
 
 The microwave point-to-point radio technology provides connectivity on L0/L1 over a radio link between two termination points, using one or several supporting carriers in aggregated or protected configurations. That application of microwave technology cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links. Instead, a payload of traffic on higher topology layers, normally L2 Ethernet, is carried over the microwave radio link and when the microwave radio link is terminated at the endpoints, cross-connection and switching can be performed on that higher layer creating connectivity across multiple supporting microwave radio links.
 
@@ -97,7 +94,7 @@ MDSC Multi Domain Service Coordinator
 A simplified graphical representation of the data models is used in chapters 3.1, 4.1, and 5.1 of this document.  The meaning of the symbols in these diagrams is defined in {{RFC8340}}.
 
 # Requirements Language
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{RFC2119}} {{RFC8174}} when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{!RFC2119}} {{!RFC8174}} when, and only when, they appear in all capitals, as shown here.
 
 # Microwave Topology YANG Data Model
 
@@ -107,7 +104,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ~~~~
 
 ## Relationship between radio links and carriers
-A microwave radio link is always an aggregate of one or multiple carries, in various configurations/modes.  The supporting carriers are identified by its termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the leaf mode (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes an JSON example of how such a relationship can be modelled.
+A microwave radio link is always an aggregate of one or multiple carries, in various configurations/modes.  The supporting carriers are identified by its termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{!RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the leaf mode (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes an JSON example of how such a relationship can be modelled.
 
 ## Relationship with client topology model
 A microwave radio link carries a payload of traffic on higher topology layers, normally L2 Ethernet.  The leafs supporting-network, supporting-node, supporting-link, and supporting-termination-point in the generic YANG module for Network Topologies {{RFC8345}} are expected to be used to model a relationship/dependency from higher topology layers to a supporting microwave radio link topology layer.  Appendix A includes an JSON example of an L2 Ethernet link transported over one supporting microwave link.
@@ -210,13 +207,13 @@ TBD
    IANA is asked to assign a new URI from the "IETF XML Registry" {{RFC3688}} as follows:
 
 ~~~~~~~~~~
-   URI: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
-   Registrant Contact: The IESG
-   XML: N/A; the requested URI is an XML namespace.
+URI: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
+Registrant Contact: The IESG
+XML: N/A; the requested URI is an XML namespace.
 
-   URI: urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology
-   Registrant Contact: The IESG
-   XML: N/A; the requested URI is an XML namespace.
+URI: urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology
+Registrant Contact: The IESG
+XML: N/A; the requested URI is an XML namespace.
 ~~~~~~~~~~
 
    It is proposed that IANA should record YANG module names in the "YANG
@@ -252,7 +249,7 @@ TBD
    The tree below shows the leafs for a complete Microwave Topology
    Model including the augmented Network Topology Model defined in
    {{RFC8345}}, Traffic Engineering (TE) Topologies model defined in
-   {{RFC8795}} and the associated Bandwidth Availability Model.
+   {{!RFC8795}} and the associated Bandwidth Availability Model.
 
 ~~~~
    <CODE BEGINS>file "full.tree"
@@ -329,8 +326,8 @@ TBD
 ~~~~~~~~~~
 
 ~~~~
-   <CODE BEGINS>file "example.json"
-{::include ./example.json}
+   <CODE BEGINS>file "example-fold.json"
+{::include ./example-fold.json}
    <CODE ENDS>
 ~~~~
 
