@@ -1,3 +1,5 @@
+
+
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
 {
@@ -221,6 +223,10 @@ ity": [
                     "availability": "0.999",
                     "link-bandwidth": "1048576"
                   },
+                  {
+                    "availability": "0.95",
+                    "link-bandwidth": "998423"
+                  }
                 ],
                 "ietf-microwave-topology:mw-link-choice": {
                   "microwave-radio-link": {
@@ -247,6 +253,10 @@ ity": [
                   {
                     "availability": "0.99",
                     "link-bandwidth": "1048576"
+                  },
+                  {
+                    "availability": "0.95",
+                    "link-bandwidth": "998423"
                   }
                 ],
                 "ietf-microwave-topology:mw-link-choice": {
@@ -276,6 +286,10 @@ ity": [
                   {
                     "availability": "0.99",
                     "link-bandwidth": "1048576"
+                  },
+                  {
+                    "availability": "0.95",
+                    "link-bandwidth": "998423"
                   }
                 ],
                 "ietf-microwave-topology:mw-link-choice": {
@@ -336,8 +350,9 @@ ity": [
         "ietf-microwave-radio-link:rtpc": {
           "maximum-nominal-power": "20.0"
         },
-        "ietf-microwave-radio-link:single": {
-          "selected-cm": "ietf-microwave-types:qam-512"
+        "ietf-microwave-radio-link:adaptive": {
+          "selected-min-acm": "ietf-microwave-types:qam-256",
+          "selected-max-acm": "ietf-microwave-types:qam-512"
         }
       },
       {
@@ -350,8 +365,9 @@ ity": [
         "ietf-microwave-radio-link:rtpc": {
           "maximum-nominal-power": "20.0"
         },
-        "ietf-microwave-radio-link:single": {
-          "selected-cm": "ietf-microwave-types:qam-512"
+        "ietf-microwave-radio-link:adaptive": {
+          "selected-min-acm": "ietf-microwave-types:qam-256",
+          "selected-max-acm": "ietf-microwave-types:qam-512"
         }
       },
       {
@@ -364,8 +380,9 @@ ity": [
         "ietf-microwave-radio-link:rtpc": {
           "maximum-nominal-power": "20.0"
         },
-        "ietf-microwave-radio-link:single": {
-          "selected-cm": "ietf-microwave-types:qam-512"
+        "ietf-microwave-radio-link:adaptive": {
+          "selected-min-acm": "ietf-microwave-types:qam-256",
+          "selected-max-acm": "ietf-microwave-types:qam-512"
         }
       },
       {
@@ -378,8 +395,9 @@ ity": [
         "ietf-microwave-radio-link:rtpc": {
           "maximum-nominal-power": "20.0"
         },
-        "ietf-microwave-radio-link:single": {
-          "selected-cm": "ietf-microwave-types:qam-512"
+        "ietf-microwave-radio-link:adaptive": {
+          "selected-min-acm": "ietf-microwave-types:qam-256",
+          "selected-max-acm": "ietf-microwave-types:qam-512"
         }
       }
     ]
