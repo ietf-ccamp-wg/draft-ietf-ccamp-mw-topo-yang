@@ -1,0 +1,21 @@
+CCAMP MW Minutes 2022-03-03
+
+Attendees Jonas Ahlberg, Italo Busi, Daniela Spreafico, Amy Ye
+
+Apologies Scott Mansfield, Sergio Belotti, Xi Li, Dragos Dosan
+
+Notes
+
+Review of Action Items (https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues)
+
+Issue 12 - https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/12
+Assigned to JonasA
+
+Issue 9 - https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/9
+Supporting network can pobably not be removed if we would like to keep the reference between RLT & CT termination points.
+Check with Scott ad possibly also with authors of 8345.
+
+Issue 6 - https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/6
+Discussion about the bandwidth & availability values in the new Json example. Daniela to make a new updated version based on that discussion.
+
+/JonasA
