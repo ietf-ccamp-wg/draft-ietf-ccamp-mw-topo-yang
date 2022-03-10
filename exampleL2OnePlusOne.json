@@ -221,11 +221,11 @@ ace-path":"CT-4"
 ity": [
                   {
                     "availability": "0.999",
-                    "link-bandwidth": "1048576"
+                    "link-bandwidth": "998423"
                   },
                   {
-                    "availability": "0.95",
-                    "link-bandwidth": "998423"
+                    "availability": "0.99",
+                    "link-bandwidth": "1048576"
                   }
                 ],
                 "ietf-microwave-topology:mw-link-choice": {
@@ -252,11 +252,11 @@ ity": [
 ity": [
                   {
                     "availability": "0.99",
-                    "link-bandwidth": "1048576"
+                    "link-bandwidth": "998423"
                   },
                   {
                     "availability": "0.95",
-                    "link-bandwidth": "998423"
+                    "link-bandwidth": "1048576"
                   }
                 ],
                 "ietf-microwave-topology:mw-link-choice": {
@@ -285,11 +285,11 @@ ity": [
 ity": [
                   {
                     "availability": "0.99",
-                    "link-bandwidth": "1048576"
+                    "link-bandwidth": "998423"
                   },
                   {
                     "availability": "0.95",
-                    "link-bandwidth": "998423"
+                    "link-bandwidth": "1048576"
                   }
                 ],
                 "ietf-microwave-topology:mw-link-choice": {
