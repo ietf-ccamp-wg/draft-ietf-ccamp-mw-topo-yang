@@ -4,7 +4,9 @@
       {
         "network-id": "L2-network",
         "network-types": {
-          "ietf-l2-topology:l2-topology": {
+          "ietf-te-topology:te-topology": {
+            "ietf-eth-te-topology:eth-tran-topology": {
+            }
           }
         },
         "supporting-network": [
