@@ -316,6 +316,11 @@ XML: N/A; the requested URI is an XML namespace.
 {::include ./example-fold.json}
    <CODE ENDS>
 ~~~~
+~~~~
+   <CODE BEGINS>file "exampleOnePlusOne-fold.json"
+{::include ./example1p1-fold.json}
+   <CODE ENDS>
+~~~~
 
- Note that the example above just shows one particular link
+ Note that the examples above show one particular link
  (unidirectional) and not a complete network topology.
