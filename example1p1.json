@@ -178,9 +178,20 @@
             "ietf-microwave-topology:mw-topology": {}
           }
         },
+        "supporting-network": [
+          {
+            "network-ref": "mw-network"
+          }
+        ],
         "node": [
           {
             "node-id": "mw-N1",
+            "supporting-node": [
+              {
+                "network-ref": "mw-network",
+                "node-ref": "mw-N1"
+              }
+            ],
             "ietf-network-topology:termination-point": [
               {
                 "tp-id": "mw-N1-RLTP1",
@@ -228,6 +239,12 @@
           },
           {
             "node-id": "mw-N2",
+            "supporting-node": [
+              {
+                "network-ref": "mw-network",
+                "node-ref": "mw-N2"
+              }
+            ],
             "ietf-network-topology:termination-point": [
               {
                 "tp-id": "mw-N2-RLTP2",
