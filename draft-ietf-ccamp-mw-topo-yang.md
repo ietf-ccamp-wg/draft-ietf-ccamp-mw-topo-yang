@@ -85,9 +85,11 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 # Microwave Topology YANG Data Model
 
 ## YANG Tree
-~~~~
+~~~~ ascii-art
 {::include ./mw.tree}
 ~~~~
+{: artwork-name="mw.tree"}
+
 
 ## Relationship between radio links and carriers
 A microwave radio link is always an aggregate of one or multiple carries, in various configurations/modes.  The supporting carriers are identified by its termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{!RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the leaf mode (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes an JSON example of how such a relationship can be modelled.
@@ -104,43 +106,39 @@ More specifically, admin-status and oper-status are recommended to be reported f
 TBD
 
 ## Microwave Topology YANG Module
-~~~~
-   <CODE BEGINS>file "ietf-microwave-topology@2021-10-20.yang"
+~~~~ yang
 {::include ./ietf-microwave-topology@2021-10-20.yang}
-   <CODE ENDS>
 ~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology@2021-10-20.yang"}
+
 
 #Bandwidth Availability Topology YANG Data Model
 
 ## YANG Tree
-~~~~
-   <CODE BEGINS>file "bw.tree"
+~~~~ ascii-art
 {::include ./bw.tree}
-   <CODE ENDS>
 ~~~~
+{: artwork-name="bw.tree"}
 
 ## Bandwidth Availability Topology YANG Data Module
-~~~~
-   <CODE BEGINS>file "ietf-bandwidth-availability-topology.yang"
+~~~~ yang
 {::include ./ietf-bandwidth-availability-topology.yang}
-   <CODE ENDS>
 ~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-bandwidth-availability-topology.yang"}
 
 # Termination Point to Interface Reference YANG Data Model
 
 ## YANG Tree
-~~~~
-   <CODE BEGINS>file "if.tree"
+~~~~ ascii-art
 {::include ./if.tree}
-   <CODE ENDS>
 ~~~~
+{: artwork-name="if.tree"}
 
 ## Termination Point to Interface Reference YANG Data Module
-~~~~
-   <CODE BEGINS>file "ietf-tp-interface-reference-topology.yang"
+~~~~ yang
 {::include ./ietf-tp-interface-reference-topology.yang}
-   <CODE ENDS>
 ~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-tp-interface-reference-topology.yang"}
 
 # Security Considerations
 
@@ -237,11 +235,10 @@ XML: N/A; the requested URI is an XML namespace.
    {{!RFC8345}}, Traffic Engineering (TE) Topologies model defined in
    {{!RFC8795}} and the associated Bandwidth Availability Model.
 
-~~~~
-   <CODE BEGINS>file "full.tree"
+~~~~ ascii-art
 {::include ./full.tree}
-   <CODE ENDS>
 ~~~~
+{: artwork-name="full.tree"}
 
 ## A topology with single microwave radio link
 
@@ -311,16 +308,15 @@ XML: N/A; the requested URI is an XML namespace.
 
 ~~~~~~~~~~
 
+~~~~ ascii-art
+{::include ./example.txt}
 ~~~~
-   <CODE BEGINS>file "example-fold.json"
-{::include ./example-fold.json}
-   <CODE ENDS>
+{: artwork-name="example.txt"}
+
+~~~~ ascii-art
+{::include ./example1p1.txt}
 ~~~~
-~~~~
-   <CODE BEGINS>file "exampleOnePlusOne-fold.json"
-{::include ./example1p1-fold.json}
-   <CODE ENDS>
-~~~~
+{: artwork-name="example1p1.txt"}
 
  Note that the examples above show one particular link
  (unidirectional) and not a complete network topology.
