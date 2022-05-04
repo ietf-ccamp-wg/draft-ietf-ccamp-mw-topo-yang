@@ -120,8 +120,7 @@
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interface-p
-ath":"RLT-1"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-1"
                 }
               },
               {
@@ -131,8 +130,7 @@ ath":"RLT-1"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interface-p
-ath":"CT-1"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-1"
                 }
               },
               {
@@ -142,8 +140,7 @@ ath":"CT-1"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interface-p
-ath":"CT-3"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-3"
                 }
               }
             ]
@@ -176,8 +173,7 @@ ath":"CT-3"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interface-p
-ath":"RLT-2"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-2"
                 }
               },
               {
@@ -187,8 +183,7 @@ ath":"RLT-2"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interface-p
-ath":"CT-2"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-2"
                 }
               },
               {
@@ -198,8 +193,7 @@ ath":"CT-2"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interface-p
-ath":"CT-4"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-4"
                 }
               }
             ]
@@ -330,7 +324,7 @@ ath":"CT-4"
         "description": "'Radio Link Terminal 1'",
         "type": "iana-if-type:microwaveRadioLinkTerminal",
         "ietf-microwave-radio-link:mode":
-        "ietf-microwave-types:one-plus-zero",
+        "ietf-microwave-types:two-plus-zero",
         "ietf-microwave-radio-link:carrier-terminations": [
           "CT-1",
           "CT-3"
@@ -341,7 +335,7 @@ ath":"CT-4"
         "description": "'Radio Link Terminal 2'",
         "type": "iana-if-type:microwaveRadioLinkTerminal",
         "ietf-microwave-radio-link:mode":
-        "ietf-microwave-types:one-plus-zero",
+        "ietf-microwave-types:two-plus-zero",
         "ietf-microwave-radio-link:carrier-terminations": [
           "CT-2",
           "CT-4"
@@ -365,7 +359,7 @@ ath":"CT-4"
         "name": "CT-3",
         "description": "'Carrier Termination 3'",
         "type": "iana-if-type:microwaveCarrierTermination",
-        "ietf-microwave-radio-link:tx-frequency": 10728000,
+        "ietf-microwave-radio-link:tx-frequency": 10528000,
         "ietf-microwave-radio-link:duplex-distance": 644000,
         "ietf-microwave-radio-link:channel-separation": 28000,
         "ietf-microwave-radio-link:rtpc": {
@@ -379,7 +373,7 @@ ath":"CT-4"
         "name": "CT-2",
         "description": "'Carrier Termination 2'",
         "type": "iana-if-type:microwaveCarrierTermination",
-        "ietf-microwave-radio-link:tx-frequency": 10728000,
+        "ietf-microwave-radio-link:tx-frequency": 10615000,
         "ietf-microwave-radio-link:duplex-distance": 644000,
         "ietf-microwave-radio-link:channel-separation": 28000,
         "ietf-microwave-radio-link:rtpc": {
@@ -393,7 +387,7 @@ ath":"CT-4"
         "name": "CT-4",
         "description": "'Carrier Termination 4'",
         "type": "iana-if-type:microwaveCarrierTermination",
-        "ietf-microwave-radio-link:tx-frequency": 10728000,
+        "ietf-microwave-radio-link:tx-frequency": 10415000,
         "ietf-microwave-radio-link:duplex-distance": 644000,
         "ietf-microwave-radio-link:channel-separation": 28000,
         "ietf-microwave-radio-link:rtpc": {

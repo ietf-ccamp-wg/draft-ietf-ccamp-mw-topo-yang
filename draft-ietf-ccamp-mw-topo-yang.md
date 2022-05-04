@@ -96,7 +96,7 @@ A microwave radio link is always an aggregate of one or multiple carries, in var
 A microwave radio link carries a payload of traffic on higher topology layers, normally L2 Ethernet.  The leafs supporting-network, supporting-node, supporting-link, and supporting-termination-point in the generic YANG module for Network Topologies {{!RFC8345}} are expected to be used to model a relationship/dependency from higher topology layers to a supporting microwave radio link topology layer.  Appendix A includes an JSON example of an L2 Ethernet link transported over one supporting microwave link.
 
 ## Applicability of the Data Model for Traffic Engineering (TE) Topologies
-Since microwave is a point-to-point radio technology providing connectivity on L0/L1 over a radio link between two termination points and cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links, a majority of the leafs in the Data Model for Traffic Engineering (TE) Topologies augmented by the microwave topology model are not applicable.  An example of which leafs are considered applicable can be found in appendix "Examples of the application of the Topology Models" in this document. //Add a proper reference to the appendix
+Since microwave is a point-to-point radio technology providing connectivity on L0/L1 over a radio link between two termination points and cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links, a majority of the leafs in the Data Model for Traffic Engineering (TE) Topologies augmented by the microwave topology model are not applicable.  An example of which leafs are considered applicable can be found in appendix "Examples of the application of the Topology Models" in this document. {{examples}}
 
 More specifically, admin-status and oper-status are recommended to be reported for links only.  Status for termination points can be used when links are inter-domain and when the status of only one side of link is known, but since microwave is a point-to-point technology where both ends normally belong to the same domain it is not expected to be applicable in normal cases.  Furthermore, admin-status is not applicable for microwave radio links.  Enable and disable of a radio link is instead done in the constituent carriers.
 
@@ -192,7 +192,7 @@ TBD
 
    IANA is asked to assign a new URI from the "IETF XML Registry" {{!RFC3688}} as follows:
 
-~~~~~~~~~~
+~~~~
 URI: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
 Registrant Contact: The IESG
 XML: N/A; the requested URI is an XML namespace.
@@ -200,12 +200,12 @@ XML: N/A; the requested URI is an XML namespace.
 URI: urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology
 Registrant Contact: The IESG
 XML: N/A; the requested URI is an XML namespace.
-~~~~~~~~~~
+~~~~
 
    It is proposed that IANA should record YANG module names in the "YANG
    Module Names" registry {{!RFC6020}} as follows:
 
-~~~~~~~~~~
+~~~~
     Name: ietf-microwave-topology
     Maintained by IANA?: N
     Namespace: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
@@ -218,11 +218,11 @@ XML: N/A; the requested URI is an XML namespace.
     urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology
     Prefix: bwavtopo
     Reference: RFC XXXX
-~~~~~~~~~~
+~~~~
 
 --- back
 
-# Examples of the application of the Topology Models
+# Examples of the application of the Topology Models {#examples}
 
    This appendix provides some examples and illustrations of how the
    Microwave Topology Model and the Bandwidth Availability Topology Model
@@ -255,7 +255,7 @@ XML: N/A; the requested URI is an XML namespace.
    topology model {{?RFC8944}} and the Microwave Interface Management Model
    {{?RFC8561}}.
 
-~~~~~~~~~~
+~~~~
      Node N1                          Node N2
 +--------------+                 +--------------+
 | +----------+ |                 | +----------+ | L2-network
@@ -268,15 +268,15 @@ XML: N/A; the requested URI is an XML namespace.
 | |mw-N1-    | |   mwrl-N1-N2    | |    mw-N2-| | MW-network
 | |RLTP1     o---------------------o    RLTP2 | | -MW topology
 | +----------+ |        *        | +----------+ |
-|         ::   | *************** |   ::         |
+|         : :  | ******* ******* |  : :         |
 |         ::   |**             **|   ::         | Supporting
 | +-------:--+ * *             * * +--:-------+ | : TPs
-| |mw-N1- :  |*| * mwc-N1-N2-A * |*|  : mw-N1-| | * carriers as
+| |mw-N1- :  * | * mwc-N1-N2-A * | *  : mw-N2-| | * carriers as
 | |CTP1   :  o---------------------o  : CTP2  | |   bundled links
 | +-------:--+ | *             * | +--:-------+ |
 |         :    |*               *|    :         |
 | +----------+ *                 * +----------+ |
-| |mw-N1-    |*|   mwc-N1-N2-B   |*|    mw-N1-| |
+| |mw-N1-    * |   mwc-N1-N2-B   | *    mw-N2-| |
 | |CTP3      o---------------------o    CTP4  | |
 | +----------+ |                 | +----------+ |
 +--------------+                 +--------------+
@@ -300,8 +300,29 @@ XML: N/A; the requested URI is an XML namespace.
 | |mw-N1-CTP3 |************************|    CT-3    | |
 | +-----------+ |                    | +------------+ |
 +---------------+                    +----------------+
- Figure 4: References from the topology model information to
- the associated interface management model information
+ Figure 4: Topology model information to the associated
+ interface management model information for Node N1
+
+     Node N2                            Interfaces
++---------------+                    +----------------+
+| +-----------+ |tp-to-interface-path| +------------+ |
+| | L2-N2-TP2 |************************|L2Interface2| |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-RLTP2|************************|   RLT-2    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-CTP2 |************************|    CT-2    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-CTP4 |************************|    CT-4    | |
+| +-----------+ |                    | +------------+ |
++---------------+                    +----------------+
+ Figure 5: Topology model information to the associated
+ interface management model information for Node N2
 
    The example above, a L2 network with a supporting microwave
    network, including microwave-topology (MW) and
@@ -309,17 +330,18 @@ XML: N/A; the requested URI is an XML namespace.
    the reference to the associated interface management
    information, is encoded in JSON as follows:
 
-~~~~~~~~~~
+~~~~
+
+This example shows a 2+0 mode for a bonded configuration.
 
 ~~~~
-   <CODE BEGINS>file "example-fold.json"
 {::include ./example-fold.json}
-   <CODE ENDS>
 ~~~~
+
+This example shows a 1+1 mode for protection.
+
 ~~~~
-   <CODE BEGINS>file "exampleOnePlusOne-fold.json"
 {::include ./example1p1-fold.json}
-   <CODE ENDS>
 ~~~~
 
  Note that the examples above show one particular link
