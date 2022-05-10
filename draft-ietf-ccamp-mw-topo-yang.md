@@ -85,9 +85,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 # Microwave Topology YANG Data Model
 
 ## YANG Tree
-~~~~
+~~~~ ascii-art
 {::include ./mw.tree}
 ~~~~
+{: artwork-name="mw.tree"}
 
 ## Relationship between radio links and carriers
 A microwave radio link is always an aggregate of one or multiple carries, in various configurations/modes.  The supporting carriers are identified by its termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{!RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the leaf mode (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes an JSON example of how such a relationship can be modelled.
@@ -104,43 +105,38 @@ More specifically, admin-status and oper-status are recommended to be reported f
 TBD
 
 ## Microwave Topology YANG Module
-~~~~
-   <CODE BEGINS>file "ietf-microwave-topology@2021-10-20.yang"
+~~~~ yang
 {::include ./ietf-microwave-topology@2021-10-20.yang}
-   <CODE ENDS>
 ~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology@2021-10-20.yang"}
 
 #Bandwidth Availability Topology YANG Data Model
 
 ## YANG Tree
-~~~~
-   <CODE BEGINS>file "bw.tree"
+~~~~ ascii-art
 {::include ./bw.tree}
-   <CODE ENDS>
 ~~~~
+{: artwork-name="bw.tree"}
 
 ## Bandwidth Availability Topology YANG Data Module
-~~~~
-   <CODE BEGINS>file "ietf-bandwidth-availability-topology.yang"
+~~~~ yang
 {::include ./ietf-bandwidth-availability-topology.yang}
-   <CODE ENDS>
 ~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-bandwidth-availability-topology.yang"}
 
 # Termination Point to Interface Reference YANG Data Model
 
 ## YANG Tree
-~~~~
-   <CODE BEGINS>file "if.tree"
+~~~~ ascii-art
 {::include ./if.tree}
-   <CODE ENDS>
 ~~~~
+{: artwork-name="if.tree"}
 
 ## Termination Point to Interface Reference YANG Data Module
-~~~~
-   <CODE BEGINS>file "ietf-tp-interface-reference-topology.yang"
+~~~~ yang
 {::include ./ietf-tp-interface-reference-topology.yang}
-   <CODE ENDS>
 ~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-tp-interface-reference-topology.yang"}
 
 # Security Considerations
 
@@ -237,112 +233,41 @@ XML: N/A; the requested URI is an XML namespace.
    {{!RFC8345}}, Traffic Engineering (TE) Topologies model defined in
    {{!RFC8795}} and the associated Bandwidth Availability Model.
 
-~~~~
-   <CODE BEGINS>file "full.tree"
+~~~~ ascii-art
 {::include ./full.tree}
-   <CODE ENDS>
 ~~~~
+{: artwork-name="full.tree"}
 
 ## A topology with single microwave radio link
 
    Microwave is a transport technology which can be used to transport
    client services, such as L2 Ethernet links.  When an L2 link is
    transported over a single supporting microwave radio link, the
-   topologies could be as shown in Figure 3 below.  Note that the figure
+   topologies could be as shown below.  Note that the figure
    just shows an example, there might be other possibilities to
    demonstrate such a topology.  The example of the instantiation encoded
    in JSON is using only a selected subset of the leafs from the L2
    topology model {{?RFC8944}} and the Microwave Interface Management Model
    {{?RFC8561}}.
 
+~~~~ ascii-art
+{::include ./example.txt}
 ~~~~
-     Node N1                          Node N2
-+--------------+                 +--------------+
-| +----------+ |                 | +----------+ | L2-network
-| | L2-N1-   | |    L2-N1-N2     | |    L2-N2-| | -L2 topology
-| | TP1      o---------------------o    TP2   | |
-| +----------+ |        '        | +----------+ | Supporting
-|          :   |        '        |   :          | ' mw link
-|          :   |        '        |   :          | : TPs
-| +----------+ |        '        | +----------+ |
-| |mw-N1-    | |   mwrl-N1-N2    | |    mw-N2-| | MW-network
-| |RLTP1     o---------------------o    RLTP2 | | -MW topology
-| +----------+ |        *        | +----------+ |
-|         : :  | ******* ******* |  : :         |
-|         ::   |**             **|   ::         | Supporting
-| +-------:--+ * *             * * +--:-------+ | : TPs
-| |mw-N1- :  * | * mwc-N1-N2-A * | *  : mw-N2-| | * carriers as
-| |CTP1   :  o---------------------o  : CTP2  | |   bundled links
-| +-------:--+ | *             * | +--:-------+ |
-|         :    |*               *|    :         |
-| +----------+ *                 * +----------+ |
-| |mw-N1-    * |   mwc-N1-N2-B   | *    mw-N2-| |
-| |CTP3      o---------------------o    CTP4  | |
-| +----------+ |                 | +----------+ |
-+--------------+                 +--------------+
- Figure 3: L2 transported over a (2+0) microwave radio link
-
-     Node N1                            Interfaces
-+---------------+                    +----------------+
-| +-----------+ |tp-to-interface-path| +------------+ |
-| | L2-N1-TP1 |************************|L2Interface1| |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N1-RLTP1|************************|   RLT-1    | |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N1-CTP1 |************************|    CT-1    | |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N1-CTP3 |************************|    CT-3    | |
-| +-----------+ |                    | +------------+ |
-+---------------+                    +----------------+
- Figure 4: Topology model information to the associated
- interface management model information for Node N1
-
-     Node N2                            Interfaces
-+---------------+                    +----------------+
-| +-----------+ |tp-to-interface-path| +------------+ |
-| | L2-N2-TP2 |************************|L2Interface2| |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N2-RLTP2|************************|   RLT-2    | |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N2-CTP2 |************************|    CT-2    | |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N2-CTP4 |************************|    CT-4    | |
-| +-----------+ |                    | +------------+ |
-+---------------+                    +----------------+
- Figure 5: Topology model information to the associated
- interface management model information for Node N2
-
-   The example above, a L2 network with a supporting microwave
-   network, including microwave-topology (MW) and
-   bandwidth-availability-topology (BWA) models as well as
-   the reference to the associated interface management
-   information, is encoded in JSON as follows:
-
-~~~~
+{: artwork-name="example.txt"}
 
 This example shows a 2+0 mode for a bonded configuration.
 
+~~~~ ascii-art
+{::include ./example2plus0-f.json}
 ~~~~
-{::include ./example-fold.json}
-~~~~
+{: artwork-name="example2plus0-f.json"}
 
 This example shows a 1+1 mode for protection.
 
 ~~~~
-{::include ./example1p1-fold.json}
+{::include ./example1plus1-f.json}
 ~~~~
+{: artwork-name="example1plus1-f.json"}
 
  Note that the examples above show one particular link
  (unidirectional) and not a complete network topology.
