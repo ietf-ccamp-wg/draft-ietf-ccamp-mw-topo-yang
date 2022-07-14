@@ -5,14 +5,14 @@
 ccamp                                                         J. Ahlberg
 Internet-Draft                                              S. Mansfield
 Intended status: Standards Track                                Ericsson
-Expires: 11 November 2022                                          M. Ye
+Expires: 15 January 2023                                           M. Ye
                                                                  I. Busi
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                             10 May 2022
+                                                            14 July 2022
 
 
                 A YANG Data Model for Microwave Topology
@@ -24,8 +24,6 @@ Abstract
    of microwave/millimeter radio links and bandwidth availability for a
    link in general, as well as to reference interface management
    information from a termination point.
-
-   TODO
 
 Discussion Venues
 
@@ -49,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 November 2022.
+   This Internet-Draft will expire on 15 January 2023.
 
 Copyright Notice
 
@@ -61,9 +59,9 @@ Copyright Notice
    license-info) in effect on the date of publication of this document.
    Please review these documents carefully, as they describe your rights
    and restrictions with respect to this document.  Code Components
-   extracted from this document must include Simplified BSD License text
-   as described in Section 4.e of the Trust Legal Provisions and are
-   provided without warranty as described in the Simplified BSD License.
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
 
 Table of Contents
 
@@ -944,57 +942,57 @@ Table of Contents
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://datatracker.ietf.org/doc/html/rfc2119>.
+              <https://www.rfc-editor.org/rfc/rfc2119>.
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
-              <https://datatracker.ietf.org/doc/html/rfc3688>.
+              <https://www.rfc-editor.org/rfc/rfc3688>.
 
    [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
-              <https://datatracker.ietf.org/doc/html/rfc6020>.
+              <https://www.rfc-editor.org/rfc/rfc6020>.
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
-              <https://datatracker.ietf.org/doc/html/rfc6241>.
+              <https://www.rfc-editor.org/rfc/rfc6241>.
 
    [RFC6242]  Wasserman, M., "Using the NETCONF Protocol over Secure
               Shell (SSH)", RFC 6242, DOI 10.17487/RFC6242, June 2011,
-              <https://datatracker.ietf.org/doc/html/rfc6242>.
+              <https://www.rfc-editor.org/rfc/rfc6242>.
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8040>.
+              <https://www.rfc-editor.org/rfc/rfc8040>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
               Access Control Model", STD 91, RFC 8341,
               DOI 10.17487/RFC8341, March 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8341>.
+              <https://www.rfc-editor.org/rfc/rfc8341>.
 
    [RFC8343]  Bjorklund, M., "A YANG Data Model for Interface
               Management", RFC 8343, DOI 10.17487/RFC8343, March 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8343>.
+              <https://www.rfc-editor.org/rfc/rfc8343>.
 
    [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
               Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
               Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
-              2018, <https://datatracker.ietf.org/doc/html/rfc8345>.
+              2018, <https://www.rfc-editor.org/rfc/rfc8345>.
 
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8446>.
+              <https://www.rfc-editor.org/rfc/rfc8446>.
 
    [RFC8795]  Liu, X., Bryskin, I., Beeram, V., Saad, T., Shah, H., and
               O. Gonzalez de Dios, "YANG Data Model for Traffic
               Engineering (TE) Topologies", RFC 8795,
               DOI 10.17487/RFC8795, August 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8795>.
+              <https://www.rfc-editor.org/rfc/rfc8795>.
 
 8.2.  Informative References
 
@@ -1002,26 +1000,26 @@ Table of Contents
               Shah, "OSPF Traffic Engineering (OSPF-TE) Link
               Availability Extension for Links with Variable Discrete
               Bandwidth", RFC 8330, DOI 10.17487/RFC8330, February 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8330>.
+              <https://www.rfc-editor.org/rfc/rfc8330>.
 
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8340>.
+              <https://www.rfc-editor.org/rfc/rfc8340>.
 
    [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
               Abstraction and Control of TE Networks (ACTN)", RFC 8453,
               DOI 10.17487/RFC8453, August 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8453>.
+              <https://www.rfc-editor.org/rfc/rfc8453>.
 
    [RFC8561]  Ahlberg, J., Ye, M., Li, X., Spreafico, D., and M.
               Vaupotic, "A YANG Data Model for Microwave Radio Link",
               RFC 8561, DOI 10.17487/RFC8561, June 2019,
-              <https://datatracker.ietf.org/doc/html/rfc8561>.
+              <https://www.rfc-editor.org/rfc/rfc8561>.
 
    [RFC8944]  Dong, J., Wei, X., Wu, Q., Boucadair, M., and A. Liu, "A
               YANG Data Model for Layer 2 Network Topologies", RFC 8944,
               DOI 10.17487/RFC8944, November 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8944>.
+              <https://www.rfc-editor.org/rfc/rfc8944>.
 
 Appendix A.  Examples of the application of the Topology Models
 
@@ -1038,101 +1036,101 @@ A.1.  A tree for a complete Microwave Topology Model
    [RFC8345], Traffic Engineering (TE) Topologies model defined in
    [RFC8795] and the associated Bandwidth Availability Model.
 
-  module: ietf-network
-    +--rw networks
-    +--rw network* [network-id]
-       +--rw network-id            network-id
-       +--rw network-types
-       |  +--rw tet:te-topology!
-       |     +--rw mwtopo:mw-topology!
-       +--rw supporting-network* [network-ref]
-       |  +--rw network-ref    -> /networks/network/network-id
-       +--rw node* [node-id]
-       |  +--rw node-id                 node-id
-       |  +--rw supporting-node* [network-ref node-ref]
-       |  |  +--rw network-ref
-       |  |  |           -> ../../../supporting-network/network-ref
-       |  |  +--rw node-ref       -> /networks/network/node/node-id
-       |  +--rw nt:termination-point* [tp-id]
-       |     +--rw nt:tp-id                           tp-id
-       |     +--rw nt:supporting-termination-point*
-       |     |  |                     [network-ref node-ref tp-ref]
-       |     |  +--rw nt:network-ref
-       |     |  |        -> ../../../nw:supporting-node/network-ref
-       |     |  +--rw nt:node-ref
-       |     |  |           -> ../../../nw:supporting-node/node-ref
-       |     |  +--rw nt:tp-ref
-       |     |        -> /nw:networks/network[nw:network-id=current()
-       |     |           /../network-ref]/node[nw:node-id=current()
-       |     |           /../node-ref]/termination-point/tp-id
-       |     +--rw tet:te!
-       |        +--rw tet:admin-status?  te-types:te-admin-status
-       |        +--rw tet:name?          string
-       |        +--ro tet:oper-status?   te-types:te-oper-status
-       |        +--ro tet:geolocation
-       |        |  +--ro tet:altitude?   int64
-       |        |  +--ro tet:latitude?   geographic-coordinate-degree
-       |        |  +--ro tet:longitude?  geographic-coordinate-degree
-       |        +--rw ifref:tp-to-interface-path?
-       |        |       -> /if:interfaces/if:interface/if:name
-       |        +--rw mwtopo:mw-tp-choice
-       |           +--rw (mwtopo:mw-tp-option)?
-       |              +--:(mwtopo:microwave-rltp)
-       |              |  +--rw mwtopo:microwave-rltp!
-       |              +--:(mwtopo:microwave-ctp)
-       |                 +--rw mwtopo:microwave-ctp!
-       +--rw nt:link* [link-id]
-          +--rw nt:link-id                link-id
-          +--rw nt:source
-          |  +--rw nt:source-node?   -> ../../../nw:node/node-id
-          |  +--rw nt:source-tp?
-          |         -> ../../../nw:node[nw:node-id=current()
-          |           /../source-node]/termination-point/tp-id
-          +--rw nt:destination
-          |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
-          |  +--rw nt:dest-tp?
-          |        -> ../../../nw:node[nw:node-id=current()
-          |          /../dest-node]/termination-point/tp-id
-          +--rw tet:te!
-             +--rw (tet:bundle-stack-level)?
-             |  +--:(tet:bundle)
-             |     +--rw tet:bundled-links
-             |        +--rw tet:bundled-link* [sequence]
-             |           +--rw tet:sequence      uint32
-             |           +--rw tet:src-tp-ref?   -> ../../../../../
-             |           |     nw:node[nw:node-id current()/../../..
-             |           |     /../nt:source/source-node]/
-             |           |     termination-point/tp-id
-             |           +--rw tet:des-tp-ref?   -> ../../../../../
-             |                 nw:node[nw:node-id = current()/../../
-             |                 ../../nt:destination/dest-node]/
-             |                 termination-point/tp-id
-             +--rw tet:te-link-attributes
-             |  +--rw tet:name?            string
-             |  +--rw tet:admin-status?    te-types:te-admin-status
-             |  +--rw tet:max-link-bandwidth
-             |  |  +--rw tet:te-bandwidth
-             |  |     +--rw (tet:technology)?
-             |  |        +--:(mwtopo:microwave)
-             |  |           +--ro mwtopo:mw-bandwidth? uint64
-             |  +--rw mwtopo:mw-link-choice
-             |  |   +--rw (mwtopo:mw-link-option)?
-             |  |     +--:(mwtopo:microwave-radio-link)
-             |  |     |  +--rw mwtopo:microwave-radio-link!
-             |  |     |     +--rw mwtopo:mode?   identityref
-             |  |     +--:(mwtopo:microwave-carrier)
-             |  |        +--rw mwtopo:microwave-carrier!
-             |  |           +--rw mwtopo:tx-frequency?       uint32
-             |  |           +--rw mwtopo:rx-frequency?       uint32
-             |  |           +--rw mwtopo:channel-separation? uint32
-             |  |           +--rw mwtopo:actual-tx-cm?       identityref
-             |  |           +--rw mwtopo:actual-snir?        decimal64
-             |  |           +--rw mwtopo:actual-transmitted-level? power
-             |  +--rw bwatopo:link-availability* [availability]
-             |  |  +--rw bwatopo:availability      decimal64
-             |  |  +--rw bwatopo:link-bandwidth?   uint64
-             |  +--rw bwatopo:actual-bandwidth?    yang:gauge64
-             +--ro tet:oper-status?         te-types:te-oper-status
+   module: ietf-network
+     +--rw networks
+     +--rw network* [network-id]
+        +--rw network-id            network-id
+        +--rw network-types
+        |  +--rw tet:te-topology!
+        |     +--rw mwtopo:mw-topology!
+        +--rw supporting-network* [network-ref]
+        |  +--rw network-ref    -> /networks/network/network-id
+        +--rw node* [node-id]
+        |  +--rw node-id                 node-id
+        |  +--rw supporting-node* [network-ref node-ref]
+        |  |  +--rw network-ref
+        |  |  |           -> ../../../supporting-network/network-ref
+        |  |  +--rw node-ref       -> /networks/network/node/node-id
+        |  +--rw nt:termination-point* [tp-id]
+        |     +--rw nt:tp-id                           tp-id
+        |     +--rw nt:supporting-termination-point*
+        |     |  |                     [network-ref node-ref tp-ref]
+        |     |  +--rw nt:network-ref
+        |     |  |        -> ../../../nw:supporting-node/network-ref
+        |     |  +--rw nt:node-ref
+        |     |  |           -> ../../../nw:supporting-node/node-ref
+        |     |  +--rw nt:tp-ref
+        |     |        -> /nw:networks/network[nw:network-id=current()
+        |     |           /../network-ref]/node[nw:node-id=current()
+        |     |           /../node-ref]/termination-point/tp-id
+        |     +--rw tet:te!
+        |        +--rw tet:admin-status?  te-types:te-admin-status
+        |        +--rw tet:name?          string
+        |        +--ro tet:oper-status?   te-types:te-oper-status
+        |        +--ro tet:geolocation
+        |        |  +--ro tet:altitude?   int64
+        |        |  +--ro tet:latitude?   geographic-coordinate-degree
+        |        |  +--ro tet:longitude?  geographic-coordinate-degree
+        |        +--rw ifref:tp-to-interface-path?
+        |        |       -> /if:interfaces/if:interface/if:name
+        |        +--rw mwtopo:mw-tp-choice
+        |           +--rw (mwtopo:mw-tp-option)?
+        |              +--:(mwtopo:microwave-rltp)
+        |              |  +--rw mwtopo:microwave-rltp!
+        |              +--:(mwtopo:microwave-ctp)
+        |                 +--rw mwtopo:microwave-ctp!
+        +--rw nt:link* [link-id]
+           +--rw nt:link-id                link-id
+           +--rw nt:source
+           |  +--rw nt:source-node?   -> ../../../nw:node/node-id
+           |  +--rw nt:source-tp?
+           |         -> ../../../nw:node[nw:node-id=current()
+           |           /../source-node]/termination-point/tp-id
+           +--rw nt:destination
+           |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
+           |  +--rw nt:dest-tp?
+           |        -> ../../../nw:node[nw:node-id=current()
+           |          /../dest-node]/termination-point/tp-id
+           +--rw tet:te!
+              +--rw (tet:bundle-stack-level)?
+              |  +--:(tet:bundle)
+              |     +--rw tet:bundled-links
+              |        +--rw tet:bundled-link* [sequence]
+              |           +--rw tet:sequence      uint32
+              |           +--rw tet:src-tp-ref?   -> ../../../../../
+              |           |     nw:node[nw:node-id current()/../../..
+              |           |     /../nt:source/source-node]/
+              |           |     termination-point/tp-id
+              |           +--rw tet:des-tp-ref?   -> ../../../../../
+              |                 nw:node[nw:node-id = current()/../../
+              |                 ../../nt:destination/dest-node]/
+              |                 termination-point/tp-id
+              +--rw tet:te-link-attributes
+              |  +--rw tet:name?            string
+              |  +--rw tet:admin-status?    te-types:te-admin-status
+              |  +--rw tet:max-link-bandwidth
+              |  |  +--rw tet:te-bandwidth
+              |  |     +--rw (tet:technology)?
+              |  |        +--:(mwtopo:microwave)
+              |  |           +--ro mwtopo:mw-bandwidth? uint64
+              |  +--rw mwtopo:mw-link-choice
+              |  |   +--rw (mwtopo:mw-link-option)?
+              |  |     +--:(mwtopo:microwave-radio-link)
+              |  |     |  +--rw mwtopo:microwave-radio-link!
+              |  |     |     +--rw mwtopo:mode?   identityref
+              |  |     +--:(mwtopo:microwave-carrier)
+              |  |        +--rw mwtopo:microwave-carrier!
+              |  |          +--rw mwtopo:tx-frequency?       uint32
+              |  |          +--rw mwtopo:rx-frequency?       uint32
+              |  |          +--rw mwtopo:channel-separation? uint32
+              |  |          +--rw mwtopo:actual-tx-cm?       identityref
+              |  |          +--rw mwtopo:actual-snir?        decimal64
+              |  |          +--rw mwtopo:actual-transmitted-level? power
+              |  +--rw bwatopo:link-availability* [availability]
+              |  |  +--rw bwatopo:availability      decimal64
+              |  |  +--rw bwatopo:link-bandwidth?   uint64
+              |  +--rw bwatopo:actual-bandwidth?    yang:gauge64
+              +--ro tet:oper-status?         te-types:te-oper-status
 
 A.2.  A topology with single microwave radio link
 
@@ -1221,6 +1219,7 @@ A.2.  A topology with single microwave radio link
 
    This example shows a 2+0 mode for a bonded configuration.
 
+   <CODE BEGINS> file "example2plus0-f.json"
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
    {
@@ -1634,9 +1633,11 @@ A.2.  A topology with single microwave radio link
        ]
      }
    }
+   <CODE ENDS>
 
    This example shows a 1+1 mode for protection.
 
+   <CODE BEGINS> file "example1plus1-f.json"
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
    {
@@ -2063,6 +2064,7 @@ A.2.  A topology with single microwave radio link
        ]
      }
    }
+   <CODE ENDS>
 
    Note that the examples above show one particular link
    (unidirectional) and not a complete network topology.
@@ -2071,35 +2073,29 @@ Authors' Addresses
 
    Jonas Ahlberg
    Ericsson
-
    Email: jonas.ahlberg@ericsson.com
 
 
    Scott Mansfield
    Ericsson
-
    Email: scott.mansfield@ericsson.com
 
 
    Min Ye
    Huawei Technologies
-
    Email: amy.yemin@huawei.com
 
 
    Italo Busi
    Huawei Technologies
-
    Email: italo.busi@huawei.com
 
 
    Xi Li
    NEC Laboratories Europe
-
    Email: xi.li@neclab.eu
 
 
    Daniela Spreafico
    Nokia - IT
-
    Email: daniela.spreafico@nokia.com
