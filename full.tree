@@ -83,12 +83,12 @@ module: ietf-network
            |  |     |     +--rw mwtopo:mode?   identityref
            |  |     +--:(mwtopo:microwave-carrier)
            |  |        +--rw mwtopo:microwave-carrier!
-           |  |           +--rw mwtopo:tx-frequency?       uint32
-           |  |           +--rw mwtopo:rx-frequency?       uint32
-           |  |           +--rw mwtopo:channel-separation? uint32
-           |  |           +--rw mwtopo:actual-tx-cm?       identityref
-           |  |           +--rw mwtopo:actual-snir?        decimal64
-           |  |           +--rw mwtopo:actual-transmitted-level? power
+           |  |          +--rw mwtopo:tx-frequency?       uint32
+           |  |          +--rw mwtopo:rx-frequency?       uint32
+           |  |          +--rw mwtopo:channel-separation? uint32
+           |  |          +--rw mwtopo:actual-tx-cm?       identityref
+           |  |          +--rw mwtopo:actual-snir?        decimal64
+           |  |          +--rw mwtopo:actual-transmitted-level? power
            |  +--rw bwatopo:link-availability* [availability]
            |  |  +--rw bwatopo:availability      decimal64
            |  |  +--rw bwatopo:link-bandwidth?   uint64

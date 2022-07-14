@@ -13,7 +13,6 @@
 <meta content="Daniela Spreafico" name="author">
 <meta content="
        This document defines three YANG data models to describe topologies of microwave/millimeter radio links and bandwidth availability for a link in general, as well as to reference interface management information from a termination point. 
-       TODO 
     " name="description">
 <meta content="xml2rfc 3.8.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
@@ -1023,11 +1022,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Microwave Topology YANG Model</td>
-<td class="right">May 2022</td>
+<td class="right">July 2022</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ahlberg, et al.</td>
-<td class="center">Expires 11 November 2022</td>
+<td class="center">Expires 10 January 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1040,12 +1039,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-ccamp-mw-topo-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-05-10" class="published">10 May 2022</time>
+<time datetime="2022-07-09" class="published">9 July 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-11-11">11 November 2022</time></dd>
+<dd class="expires"><time datetime="2023-01-10">10 January 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1079,7 +1078,6 @@ address div.right {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document defines three YANG data models to describe topologies of microwave/millimeter radio links and bandwidth availability for a link in general, as well as to reference interface management information from a termination point.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">TODO<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1108,7 +1106,7 @@ address div.right {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 November 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 January 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1136,95 +1134,95 @@ address div.right {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="compact ulEmpty toc">
-<li class="compact ulEmpty toc" id="section-toc.1-1.1">
+<nav class="toc"><ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.1.2.1">
                 <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-terminology-and-definitions" class="xref">Terminology and Definitions</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.1.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.1.2.2">
                 <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-tree-structure" class="xref">Tree Structure</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.2">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-requirements-language" class="xref">Requirements Language</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.3">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-microwave-topology-yang-dat" class="xref">Microwave Topology YANG Data Model</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.3.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-yang-tree" class="xref">YANG Tree</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-relationship-between-radio-" class="xref">Relationship between radio links and carriers</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.3">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.3">
                 <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-relationship-with-client-to" class="xref">Relationship with client topology model</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.4">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.4">
                 <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-applicability-of-the-data-m" class="xref">Applicability of the Data Model for Traffic Engineering (TE) Topologies</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.5">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.5">
                 <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="xref">3.5</a>.  <a href="#name-model-applicability-to-othe" class="xref">Model applicability to other technology</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.6">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.6">
                 <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="xref">3.6</a>.  <a href="#name-microwave-topology-yang-mod" class="xref">Microwave Topology YANG Module</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.4">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-bandwidth-availability-topo" class="xref">Bandwidth Availability Topology YANG Data Model</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-yang-tree-2" class="xref">YANG Tree</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-bandwidth-availability-topol" class="xref">Bandwidth Availability Topology YANG Data Module</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.5">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-termination-point-to-interf" class="xref">Termination Point to Interface Reference YANG Data Model</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.5.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.5.2.1">
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-yang-tree-3" class="xref">YANG Tree</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.5.2.2">
                 <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-termination-point-to-interfa" class="xref">Termination Point to Interface Reference YANG Data Module</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.6">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.7">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.8">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-references" class="xref">References</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.8.2.1">
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.9">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-examples-of-the-application" class="xref">Examples of the application of the Topology Models</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.9.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.9.2.1">
                 <p id="section-toc.1-1.9.2.1.1"><a href="#section-a.1" class="xref">A.1</a>.  <a href="#name-a-tree-for-a-complete-micro" class="xref">A tree for a complete Microwave Topology Model</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.9.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.2">
                 <p id="section-toc.1-1.9.2.2.1"><a href="#section-a.2" class="xref">A.2</a>.  <a href="#name-a-topology-with-single-micr" class="xref">A topology with single microwave radio link</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.10">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
@@ -1288,8 +1286,8 @@ address div.right {
         <h3 id="name-yang-tree">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-yang-tree" class="section-name selfRef">YANG Tree</a>
         </h3>
-<div class="artwork art-text alignLeft art-ascii-art" id="section-3.1-1">
-<pre>
+<div id="section-3.1-1">
+<pre class="sourcecode lang-yangtree">
 module: ietf-microwave-topology
 
 augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
@@ -1700,8 +1698,8 @@ augment /nw:networks/nw:network/nt:link/tet:te/
         <h3 id="name-yang-tree-2">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-yang-tree-2" class="section-name selfRef">YANG Tree</a>
         </h3>
-<div class="artwork art-text alignLeft art-ascii-art" id="section-4.1-1">
-<pre>
+<div id="section-4.1-1">
+<pre class="sourcecode lang-yangtree">
 module: ietf-bandwidth-availability-topology
 
 augment
@@ -1871,8 +1869,8 @@ module ietf-bandwidth-availability-topology {
         <h3 id="name-yang-tree-3">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-yang-tree-3" class="section-name selfRef">YANG Tree</a>
         </h3>
-<div class="artwork art-text alignLeft art-ascii-art" id="section-5.1-1">
-<pre>
+<div id="section-5.1-1">
+<pre class="sourcecode lang-yangtree">
 module: ietf-tp-interface-reference-topology
 
 augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
@@ -2194,8 +2192,8 @@ XML: N/A; the requested URI is an XML namespace.
    Model including the augmented Network Topology Model defined in
    <span>[<a href="#RFC8345" class="xref">RFC8345</a>]</span>, Traffic Engineering (TE) Topologies model defined in
    <span>[<a href="#RFC8795" class="xref">RFC8795</a>]</span> and the associated Bandwidth Availability Model.<a href="#section-a.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft art-ascii-art" id="section-a.1-2">
-<pre>
+<div id="section-a.1-2">
+<pre class="sourcecode lang-yangtree">
 module: ietf-network
   +--rw networks
   +--rw network* [network-id]
@@ -2280,12 +2278,12 @@ module: ietf-network
            |  |     |     +--rw mwtopo:mode?   identityref
            |  |     +--:(mwtopo:microwave-carrier)
            |  |        +--rw mwtopo:microwave-carrier!
-           |  |           +--rw mwtopo:tx-frequency?       uint32
-           |  |           +--rw mwtopo:rx-frequency?       uint32
-           |  |           +--rw mwtopo:channel-separation? uint32
-           |  |           +--rw mwtopo:actual-tx-cm?       identityref
-           |  |           +--rw mwtopo:actual-snir?        decimal64
-           |  |           +--rw mwtopo:actual-transmitted-level? power
+           |  |          +--rw mwtopo:tx-frequency?       uint32
+           |  |          +--rw mwtopo:rx-frequency?       uint32
+           |  |          +--rw mwtopo:channel-separation? uint32
+           |  |          +--rw mwtopo:actual-tx-cm?       identityref
+           |  |          +--rw mwtopo:actual-snir?        decimal64
+           |  |          +--rw mwtopo:actual-transmitted-level? power
            |  +--rw bwatopo:link-availability* [availability]
            |  |  +--rw bwatopo:availability      decimal64
            |  |  +--rw bwatopo:link-bandwidth?   uint64
@@ -2309,222 +2307,88 @@ module: ietf-network
    in JSON is using only a selected subset of the leafs from the L2
    topology model <span>[<a href="#RFC8944" class="xref">RFC8944</a>]</span> and the Microwave Interface Management Model
    <span>[<a href="#RFC8561" class="xref">RFC8561</a>]</span>.<a href="#section-a.2-1" class="pilcrow">¶</a></p>
-<div id="drawing-example">
-<div id="section-a.2-2">
-          <div class="artwork art-svg alignLeft" id="section-a.2-2.1">
-<svg xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" width="11in" height="8.5in" viewBox="0 0 279.4 215.9" version="1.1" id="svg1061" inkscape:version="1.1.2 (b8e25be8, 2022-02-05)" sodipodi:docname="drawing-for-example.svg" inkscape:export-filename="/Users/scottmansfield/Dropbox/wsl/svg/drawing-for-example.png" inkscape:export-xdpi="96" inkscape:export-ydpi="96">
-              <sodipodi:namedview id="namedview1063" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:document-units="mm" showgrid="false" inkscape:zoom="0.55678311" inkscape:cx="352.92019" inkscape:cy="544.19754" inkscape:window-width="1312" inkscape:window-height="796" inkscape:window-x="128" inkscape:window-y="925" inkscape:window-maximized="0" inkscape:current-layer="layer1" inkscape:object-nodes="false" units="in"></sodipodi:namedview>
-              <defs id="defs1058">
-                <marker style="overflow:visible" id="DotL" refX="0.0" refY="0.0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="scale(0.8) translate(7.4, 1)" style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt" d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z " id="path12197"></path>
-                </marker>
-                <marker style="overflow:visible;" id="Arrow1Lend" refX="0.0" refY="0.0" orient="auto" inkscape:stockid="Arrow1Lend" inkscape:isstock="true">
-                  <path transform="scale(0.8) rotate(180) translate(12.5,0)" style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;" d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z " id="path12139"></path>
-                </marker>
-                <marker style="overflow:visible" id="Arrow1Lstart" refX="0.0" refY="0.0" orient="auto" inkscape:stockid="Arrow1Lstart" inkscape:isstock="true">
-                  <path transform="scale(0.8) translate(12.5,0)" style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt" d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z " id="path12136"></path>
-                </marker>
-                <inkscape:path-effect effect="bspline" id="path-effect34958" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <inkscape:path-effect effect="skeletal" id="path-effect34850" is_visible="true" lpeversion="1" pattern="M 0,4.9921382 C 0,2.2364779 2.2364779,0 4.9921382,0 c 2.7556604,0 4.9921383,2.2364779 4.9921383,4.9921382 0,2.7556604 -2.2364779,4.9921383 -4.9921383,4.9921383 C 2.2364779,9.9842765 0,7.7477986 0,4.9921382 Z" copytype="single_stretched" prop_scale="1" scale_y_rel="false" spacing="0" normal_offset="0" tang_offset="0" prop_units="false" vertical_pattern="false" hide_knot="false" fuse_tolerance="0"></inkscape:path-effect>
-                <inkscape:path-effect effect="bspline" id="path-effect34958-4" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <inkscape:path-effect effect="bspline" id="path-effect34958-5" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <inkscape:path-effect effect="bspline" id="path-effect34958-5-8" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <marker style="overflow:visible" id="DotL-1" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path12197-7"></path>
-                </marker>
-                <marker style="overflow:visible" id="marker12453" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path12451"></path>
-                </marker>
-                <marker style="overflow:visible" id="DotL-1-3" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path12197-7-9"></path>
-                </marker>
-                <marker style="overflow:visible" id="marker16856" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path16854"></path>
-                </marker>
-                <marker style="overflow:visible" id="DotL-1-36" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path12197-7-3"></path>
-                </marker>
-                <marker style="overflow:visible" id="marker16856-0" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path16854-8"></path>
-                </marker>
-                <marker style="overflow:visible" id="DotL-1-6" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path12197-7-4"></path>
-                </marker>
-                <marker style="overflow:visible" id="marker16856-6" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path16854-4"></path>
-                </marker>
-                <inkscape:path-effect effect="bspline" id="path-effect34958-4-5" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <inkscape:path-effect effect="bspline" id="path-effect34958-7" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <inkscape:path-effect effect="bspline" id="path-effect34958-5-3" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <inkscape:path-effect effect="bspline" id="path-effect34958-5-8-7" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <inkscape:path-effect effect="bspline" id="path-effect34958-4-50" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false"></inkscape:path-effect>
-                <marker style="overflow:visible" id="DotL-1-3-2" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path12197-7-9-1"></path>
-                </marker>
-                <marker style="overflow:visible" id="marker19711" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path19709"></path>
-                </marker>
-                <marker style="overflow:visible" id="DotL-1-36-8" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path12197-7-3-7"></path>
-                </marker>
-                <marker style="overflow:visible" id="marker19717" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path19715"></path>
-                </marker>
-                <marker style="overflow:visible" id="DotL-1-6-1" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path12197-7-4-5"></path>
-                </marker>
-                <marker style="overflow:visible" id="marker19723" refX="0" refY="0" orient="auto" inkscape:stockid="DotL" inkscape:isstock="true">
-                  <path transform="matrix(0.8,0,0,0.8,5.92,0.8)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" id="path19721"></path>
-                </marker>
-              </defs>
-              <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1">
-                <rect style="fill:none;stroke:#000000;stroke-width:1.23082;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087" width="57.43338" height="155.79977" x="53.598675" y="13.630803"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.451167;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4" width="50.134632" height="23.981539" x="57.366848" y="23.457771"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.451167;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8" width="50.134632" height="23.981539" x="57.366852" y="60.687477"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.451167;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-8" width="50.134632" height="23.981539" x="167.38869" y="61.007118"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.451167;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-3" width="50.134632" height="23.981539" x="57.366852" y="97.917191"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:1.22579;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-8" width="56.963203" height="155.80521" x="164.07965" y="13.86589"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.451167;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-9" width="50.134632" height="23.981539" x="57.366852" y="135.14703"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.449036;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-0" width="49.661564" height="23.981915" x="167.62154" y="23.446007"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.317076;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-5" width="45.041523" height="13.184274" x="3.8709185" y="28.296719"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.317076;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-5-6" width="45.041523" height="13.184274" x="4.0904384" y="65.455353"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.449036;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-3-2" width="49.661564" height="23.981915" x="167.62154" y="97.906593"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.449036;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-9-2" width="49.661564" height="23.981915" x="167.62154" y="135.13702"></rect>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.565, 4.52;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#DotL);marker-end:url(#DotL)" d="m 107.26339,35.932293 h 60.35057" id="path2020"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.52, 1.13, 0.565, 1.13;stroke-dashoffset:0;stroke-opacity:1" d="M 135.79943,61.11712 135.53974,39.259462" id="path2020-5" sodipodi:nodetypes="cc"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.43296;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3.46368, 0.865921, 0.43296, 0.865921;stroke-dashoffset:0;stroke-opacity:1" d="m 100.74232,47.812393 1.7e-4,12.830201" id="path2020-5-6" sodipodi:nodetypes="cc"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.43296;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3.46368, 0.865921, 0.43296, 0.865921;stroke-dashoffset:0;stroke-opacity:1" d="m 102.16791,84.165192 1.7e-4,12.830156" id="path2020-5-6-2" sodipodi:nodetypes="cc"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.52, 1.13, 0.565, 1.13;stroke-dashoffset:0;stroke-opacity:1" d="m 95.99031,84.163643 1.7e-4,50.849237" id="path2020-5-6-2-8" sodipodi:nodetypes="cc"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.43296;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3.46368, 0.865921, 0.43296, 0.865921;stroke-dashoffset:0;stroke-opacity:1" d="m 211.73454,47.930423 1.7e-4,12.8302" id="path2020-5-6-9" sodipodi:nodetypes="cc"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.43296;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3.46368, 0.865921, 0.43296, 0.865921;stroke-dashoffset:0;stroke-opacity:1" d="m 213.16013,84.283213 1.7e-4,12.830165" id="path2020-5-6-2-0" sodipodi:nodetypes="cc"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.52, 1.13, 0.565, 1.13;stroke-dashoffset:0;stroke-opacity:1" d="m 206.98252,84.281673 1.7e-4,50.849237" id="path2020-5-6-2-8-2" sodipodi:nodetypes="cc"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.695, 1.695;stroke-dashoffset:0;stroke-opacity:1" d="m 48.70791,35.457093 h 9.02897" id="path2020-9"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.819783;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.45935, 2.45935;stroke-dashoffset:0;stroke-opacity:1" d="M 99.952993,189.8424 H 118.96115" id="path2020-9-4"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.695, 1.695;stroke-dashoffset:0;stroke-opacity:1" d="m 49.658315,72.997893 h 9.02897" id="path2020-9-3"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.695, 1.695;stroke-dashoffset:0;stroke-opacity:1" d="m 49.658315,111.01383 h 9.02897" id="path2020-9-0"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.695, 1.695;stroke-dashoffset:0;stroke-opacity:1" d="m 48.70791,147.12903 h 9.02897" id="path2020-9-6"></path>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="64.486099" y="38.244045" id="text4106">
-                  <tspan sodipodi:role="line" id="tspan4104" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="64.486099" y="38.244045">L2-N1-TP1</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="173.5005" y="37.768845" id="text4106-2">
-                  <tspan sodipodi:role="line" id="tspan4104-0" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="173.5005" y="37.768845">L2-N2-TP2</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="119.17712" y="32.586334" id="text4106-2-5">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="119.17712" y="32.586334">L2-N1-N2</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="116.87622" y="68.701538" id="text4106-2-5-7">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0-4" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="116.87622" y="68.701538">mwrl-N1-N2</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="115.62072" y="108.19896" id="text4106-2-5-7-8">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0-4-6" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="115.62072" y="108.19896">mwc-N1-N2-A</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="114.67031" y="144.78949" id="text4106-2-5-7-8-7">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0-4-6-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="114.67031" y="144.78949">mwc-N1-N2-B</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="64.660965" y="7.6422238" id="text4106-3">
-                  <tspan sodipodi:role="line" id="tspan4104-6" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="64.660965" y="7.6422238">Node N1</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="10.105021" y="168.97664" id="text4106-3-1">
-                  <tspan sodipodi:role="line" id="tspan4104-6-87" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="10.105021" y="168.97664">Interfaces</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="232.84454" y="166.61615" id="text4106-3-1-8">
-                  <tspan sodipodi:role="line" id="tspan4104-6-87-2" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="232.84454" y="166.61615">Interfaces</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="6.7786169" y="37.346088" id="text4106-3-2">
-                  <tspan sodipodi:role="line" id="tspan4104-6-7" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="6.7786169" y="37.346088">L2Interface1</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="14.961383" y="74.427193" id="text4106-3-2-8">
-                  <tspan sodipodi:role="line" id="tspan4104-6-7-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="14.961383" y="74.427193">RLT-1</tspan>
-                </text>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.317076;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-5-6-4" width="45.041523" height="13.184274" x="4.0904393" y="103.47138"></rect>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="14.961382" y="112.44324" id="text4106-3-2-8-8">
-                  <tspan sodipodi:role="line" id="tspan4104-6-7-1-0" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="14.961382" y="112.44324">CT-1</tspan>
-                </text>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.317076;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-5-6-46" width="45.041523" height="13.184274" x="4.0904384" y="140.06192"></rect>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="14.961383" y="149.03375" id="text4106-3-2-8-0">
-                  <tspan sodipodi:role="line" id="tspan4104-6-7-1-3" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="14.961383" y="149.03375">CT-3</tspan>
-                </text>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.317076;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-5-1" width="45.041523" height="13.184274" x="226.2124" y="27.630444"></rect>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.317076;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-5-6-5" width="45.041523" height="13.184274" x="226.43192" y="64.78907"></rect>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="229.1201" y="36.679813" id="text4106-3-2-3">
-                  <tspan sodipodi:role="line" id="tspan4104-6-7-5" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="229.1201" y="36.679813">L2Interface2</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="237.30287" y="73.760902" id="text4106-3-2-8-4">
-                  <tspan sodipodi:role="line" id="tspan4104-6-7-1-36" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="237.30287" y="73.760902">RLT-2</tspan>
-                </text>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.317076;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-5-6-4-5" width="45.041523" height="13.184274" x="226.43192" y="102.80509"></rect>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="237.30286" y="111.77696" id="text4106-3-2-8-8-9">
-                  <tspan sodipodi:role="line" id="tspan4104-6-7-1-0-5" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="237.30286" y="111.77696">CT-2</tspan>
-                </text>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.317076;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect1087-4-8-5-6-46-4" width="45.041523" height="13.184274" x="226.43192" y="139.39563"></rect>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="237.30287" y="148.36746" id="text4106-3-2-8-0-9">
-                  <tspan sodipodi:role="line" id="tspan4104-6-7-1-3-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="237.30287" y="148.36746">CT-4</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="180.09427" y="7.6422238" id="text4106-3-5">
-                  <tspan sodipodi:role="line" id="tspan4104-6-8" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="180.09427" y="7.6422238">Node N2</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="58.483364" y="75.128418" id="text4106-5">
-                  <tspan sodipodi:role="line" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="58.483364" y="75.128418" id="tspan23524">MW-N1-RLTP1</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="169.87376" y="74.849861" id="text4106-5-6">
-                  <tspan sodipodi:role="line" id="tspan4104-8-3" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="169.87376" y="74.849861">MW-N2-RLTP2</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="60.139076" y="148.97018" id="text4106-5-4">
-                  <tspan sodipodi:role="line" id="tspan4104-8-0" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="60.139076" y="148.97018">MW-N1-CTP3</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="171.62871" y="108.56264" id="text4106-5-46">
-                  <tspan sodipodi:role="line" id="tspan4104-8-4" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="171.62871" y="108.56264">MW-N2-</tspan>
-                  <tspan sodipodi:role="line" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="171.62871" y="116.50014" id="tspan3249">CTP2</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="172.05119" y="149.44539" id="text4106-5-64">
-                  <tspan sodipodi:role="line" id="tspan4104-8-38" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="172.05119" y="149.44539">MW-N2-CTP4</tspan>
-                </text>
-                <path style="fill:none;stroke:#000000;stroke-width:0.244527px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 135.78028,73.003536 c -0.16115,3.857017 -0.3223,7.713823 -5.07608,13.099983 -4.75379,5.386159 -14.09991,12.301644 -23.4463,19.217331" id="path34956" inkscape:path-effect="#path-effect34958" inkscape:original-d="m 135.78028,73.003536 c -0.16087,3.857029 -0.32201,7.713835 -0.48343,11.57042 -9.34623,6.916005 -18.69236,13.831476 -28.03895,20.746894"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.356607px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 135.75856,72.970274 c -0.16079,8.221756 -0.32156,16.443034 -5.06468,27.924486 -4.74311,11.48145 -14.06807,26.22276 -23.39308,40.96416" id="path34956-6" inkscape:path-effect="#path-effect34958-5" inkscape:original-d="m 135.75856,72.970274 c -0.16051,8.221761 -0.32129,16.443039 -0.48233,24.663821 -9.32506,14.742365 -18.65002,29.483675 -27.97543,44.224825"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.377714px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 135.78698,73.004378 c 0.17675,8.390846 0.35349,16.781216 5.56741,28.498782 5.21393,11.71758 15.46451,26.76207 25.71516,41.80667" id="path34956-6-5" inkscape:path-effect="#path-effect34958-5-8" inkscape:original-d="m 135.78698,73.004378 c 0.17645,8.390852 0.3532,16.781222 0.53022,25.171074 10.2507,15.045568 20.50128,30.090058 30.75235,45.134378"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.26021px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 135.78241,73.008587 c 0.18254,3.855965 0.36507,7.711723 5.74961,13.096409 5.38454,5.384685 15.97077,12.298296 26.55734,19.212124" id="path34956-0" inkscape:path-effect="#path-effect34958-4" inkscape:original-d="m 135.78241,73.008587 c 0.18223,3.85598 0.36476,7.711738 0.54759,11.567274 10.58636,6.91412 21.17261,13.827711 31.75936,20.741259"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.695, 1.695;stroke-dashoffset:0;stroke-opacity:1" d="m 216.92872,146.17863 h 9.02897" id="path2020-9-2"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.695, 1.695;stroke-dashoffset:0;stroke-opacity:1" d="m 217.40391,110.06343 h 9.02897" id="path2020-9-25"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.695, 1.695;stroke-dashoffset:0;stroke-opacity:1" d="m 217.40391,72.522693 h 9.02897" id="path2020-9-22"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.695, 1.695;stroke-dashoffset:0;stroke-opacity:1" d="m 216.92871,35.457093 h 9.02897" id="path2020-9-1"></path>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583" x="59.763096" y="109.19418" id="text4106-5-0">
-                  <tspan sodipodi:role="line" id="tspan4104-8-8" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583" x="59.763096" y="109.19418">MW-N1-</tspan>
-                  <tspan sodipodi:role="line" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583" x="59.763096" y="117.13168" id="tspan1519">CTP1</tspan>
-                </text>
-                <path style="fill:none;stroke:#000000;stroke-width:0.449438;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.449438, 3.59549;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#DotL-1);marker-end:url(#DotL-1)" d="m 102.0264,180.53806 h 38.18762" id="path2020-55"></path>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="5.1107078" y="183.3696" id="text4106-2-5-4">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="5.1107078" y="183.3696">link</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="184.64815" y="195.65359" id="text4106-2-5-4-8">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0-1-8" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="184.64815" y="195.65359">bundled-links</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="5.498281" y="192.2634" id="text4106-2-5-4-9">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0-1-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="5.498281" y="192.2634">tp-to-interface-path</tspan>
-                </text>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="5.349453" y="202.1076" id="text4106-2-5-4-9-1">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0-1-1-5" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="5.349453" y="202.1076">supporting-termination-point</tspan>
-                </text>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.565, 4.52;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#DotL-1-3);marker-end:url(#DotL-1-3)" d="m 107.20271,73.473093 h 60.35057" id="path2020-55-0"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.565, 4.52;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#DotL-1-36);marker-end:url(#DotL-1-36)" d="m 107.20271,111.48903 h 60.35057" id="path2020-55-4"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.565, 4.52;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#DotL-1-6);marker-end:url(#DotL-1-6)" d="m 107.20272,149.50503 h 60.35056" id="path2020-55-3"></path>
-                <rect style="fill:none;stroke:#000000;stroke-width:0.622876;stroke-miterlimit:4;stroke-dasharray:none" id="rect2992" width="273.1821" height="39.858921" x="3.5172386" y="174.01654"></rect>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.52, 1.13, 0.565, 1.13;stroke-dashoffset:0;stroke-opacity:1" d="m 121.80988,207.77522 -21.856887,0.31821" id="path2020-5-3" sodipodi:nodetypes="cc"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.52, 1.13, 0.565, 1.13;stroke-dashoffset:0;stroke-opacity:1" d="m 99.956724,199.72207 21.857296,-0.28875" id="path2020-5-3-2" sodipodi:nodetypes="cc"></path>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="5.349453" y="209.53699" id="text4106-2-5-4-9-1-0">
-                  <tspan sodipodi:role="line" id="tspan4104-0-0-1-1-5-4" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583" x="5.349453" y="209.53699">supporting-link</tspan>
-                </text>
-                <path style="fill:none;stroke:#000000;stroke-width:0.120934px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 250.42699,179.14044 c -0.0896,1.69724 -0.17915,3.39438 -2.82152,5.76449 -2.64238,2.37011 -7.83742,5.4132 -13.03263,8.45638" id="path34956-7" inkscape:path-effect="#path-effect34958-7" inkscape:original-d="m 250.42699,179.14044 c -0.0894,1.69725 -0.17899,3.39439 -0.26872,5.09143 -5.1951,3.0433 -10.39014,6.0864 -15.58543,9.12944"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.176366px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 250.41492,179.12581 c -0.0894,3.61789 -0.17875,7.23557 -2.8152,12.28782 -2.63644,5.05226 -7.81972,11.53901 -13.00305,18.02584" id="path34956-6-9" inkscape:path-effect="#path-effect34958-5-3" inkscape:original-d="m 250.41492,179.12581 c -0.0892,3.61789 -0.1786,7.23557 -0.26812,10.85302 -5.18332,6.48722 -10.3666,12.97397 -15.55013,19.46064"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.186805px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 250.4307,179.14081 c 0.0983,3.6923 0.1965,7.38438 3.09464,12.54054 2.89815,5.15616 8.59593,11.77633 14.29379,18.39657" id="path34956-6-5-4" inkscape:path-effect="#path-effect34958-5-8-7" inkscape:original-d="m 250.4307,179.14081 c 0.0981,3.6923 0.19633,7.38438 0.29474,11.07624 5.69784,6.62064 11.39563,13.2408 17.09369,19.86087"></path>
-                <path style="fill:none;stroke:#000000;stroke-width:0.12869px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 250.42817,179.14268 c 0.10146,1.69676 0.20292,3.39343 3.1959,5.7629 2.99298,2.36946 8.87735,5.41173 14.76192,8.45409" id="path34956-0-1" inkscape:path-effect="#path-effect34958-4-50" inkscape:original-d="m 250.42817,179.14268 c 0.10129,1.69677 0.20275,3.39344 0.30438,5.09003 5.88443,3.04247 11.7688,6.08474 17.65344,9.12696"></path>
-              </g>
-            </svg><a href="#section-a.2-2.1" class="pilcrow">¶</a>
-</div>
-</div>
+<div class="artwork art-text alignLeft art-ascii-art" id="section-a.2-2">
+<pre>
+     Node N1                          Node N2
++--------------+                 +--------------+
+| +----------+ |                 | +----------+ | L2-network
+| | L2-N1-   | |    L2-N1-N2     | |    L2-N2-| | -L2 topology
+| | TP1      o---------------------o    TP2   | |
+| +----------+ |        '        | +----------+ | Supporting
+|          :   |        '        |   :          | ' mw link
+|          :   |        '        |   :          | : TPs
+| +----------+ |        '        | +----------+ |
+| |mw-N1-    | |   mwrl-N1-N2    | |    mw-N2-| | MW-network
+| |RLTP1     o---------------------o    RLTP2 | | -MW topology
+| +----------+ |        *        | +----------+ |
+|         : :  | ******* ******* |  : :         |
+|         ::   |**             **|   ::         | Supporting
+| +-------:--+ * *             * * +--:-------+ | : TPs
+| |mw-N1- :  * | * mwc-N1-N2-A * | *  : mw-N2-| | * carriers as
+| |CTP1   :  o---------------------o  : CTP2  | |   bundled links
+| +-------:--+ | *             * | +--:-------+ |
+|         :    |*               *|    :         |
+| +----------+ *                 * +----------+ |
+| |mw-N1-    * |   mwc-N1-N2-B   | *    mw-N2-| |
+| |CTP3      o---------------------o    CTP4  | |
+| +----------+ |                 | +----------+ |
++--------------+                 +--------------+
+ L2 transported over a (2+0) microwave radio link
+
+     Node N1                            Interfaces
++---------------+                    +----------------+
+| +-----------+ |tp-to-interface-path| +------------+ |
+| | L2-N1-TP1 |************************|L2Interface1| |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N1-RLTP1|************************|   RLT-1    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N1-CTP1 |************************|    CT-1    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N1-CTP3 |************************|    CT-3    | |
+| +-----------+ |                    | +------------+ |
++---------------+                    +----------------+
+ Topology model information to the associated interface
+ management model information for Node N1
+
+     Node N2                            Interfaces
++---------------+                    +----------------+
+| +-----------+ |tp-to-interface-path| +------------+ |
+| | L2-N2-TP2 |************************|L2Interface2| |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-RLTP2|************************|   RLT-2    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-CTP2 |************************|    CT-2    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-CTP4 |************************|    CT-4    | |
+| +-----------+ |                    | +------------+ |
++---------------+                    +----------------+
+ Topology model information to the associated interface
+ management model information for Node N2
+
+   The example above, a L2 network with a supporting microwave
+   network, including microwave-topology (MW) and
+   bandwidth-availability-topology (BWA) models as well as
+   the reference to the associated interface management
+   information, is encoded in JSON as follows:
+
+</pre><a href="#section-a.2-2" class="pilcrow">¶</a>
 </div>
 <p id="section-a.2-3">This example shows a 2+0 mode for a bonded configuration.<a href="#section-a.2-3" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft art-ascii-art" id="section-a.2-4">
-<pre>
+<div id="section-a.2-4">
+<pre class="sourcecode lang-json">&lt;CODE BEGINS&gt; file "example2plus0-f.json"
+
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
 {
@@ -2938,11 +2802,13 @@ ity":
     ]
   }
 }
-</pre><a href="#section-a.2-4" class="pilcrow">¶</a>
+
+&lt;CODE ENDS&gt;</pre><a href="#section-a.2-4" class="pilcrow">¶</a>
 </div>
 <p id="section-a.2-5">This example shows a 1+1 mode for protection.<a href="#section-a.2-5" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-a.2-6">
-<pre>
+<div id="section-a.2-6">
+<pre class="sourcecode lang-json">&lt;CODE BEGINS&gt; file "example1plus1-f.json"
+
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
 {
@@ -3370,7 +3236,8 @@ ity":
   }
 }
 
-</pre><a href="#section-a.2-6" class="pilcrow">¶</a>
+
+&lt;CODE ENDS&gt;</pre><a href="#section-a.2-6" class="pilcrow">¶</a>
 </div>
 <p id="section-a.2-7">Note that the examples above show one particular link
  (unidirectional) and not a complete network topology.<a href="#section-a.2-7" class="pilcrow">¶</a></p>

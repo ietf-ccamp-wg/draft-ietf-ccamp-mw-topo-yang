@@ -50,8 +50,6 @@ informative:
 --- abstract
 This document defines three YANG data models to describe topologies of microwave/millimeter radio links and bandwidth availability for a link in general, as well as to reference interface management information from a termination point.
 
-TODO
-
 --- middle
 
 # Introduction
@@ -85,7 +83,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 # Microwave Topology YANG Data Model
 
 ## YANG Tree
-~~~~ ascii-art
+~~~~ yangtree
 {::include ./mw.tree}
 ~~~~
 {: artwork-name="mw.tree"}
@@ -113,7 +111,7 @@ TBD
 #Bandwidth Availability Topology YANG Data Model
 
 ## YANG Tree
-~~~~ ascii-art
+~~~~ yangtree
 {::include ./bw.tree}
 ~~~~
 {: artwork-name="bw.tree"}
@@ -127,7 +125,7 @@ TBD
 # Termination Point to Interface Reference YANG Data Model
 
 ## YANG Tree
-~~~~ ascii-art
+~~~~ yangtree
 {::include ./if.tree}
 ~~~~
 {: artwork-name="if.tree"}
@@ -233,7 +231,7 @@ XML: N/A; the requested URI is an XML namespace.
    {{!RFC8345}}, Traffic Engineering (TE) Topologies model defined in
    {{!RFC8795}} and the associated Bandwidth Availability Model.
 
-~~~~ ascii-art
+~~~~ yangtree
 {::include ./full.tree}
 ~~~~
 {: artwork-name="full.tree"}
@@ -257,17 +255,19 @@ XML: N/A; the requested URI is an XML namespace.
 
 This example shows a 2+0 mode for a bonded configuration.
 
-~~~~ ascii-art
+~~~~ json
 {::include ./example2plus0-f.json}
 ~~~~
 {: artwork-name="example2plus0-f.json"}
+{: sourcecode-markers="true" sourcecode-name="example2plus0-f.json"}
 
 This example shows a 1+1 mode for protection.
 
-~~~~
+~~~~ json
 {::include ./example1plus1-f.json}
 ~~~~
 {: artwork-name="example1plus1-f.json"}
+{: sourcecode-markers="true" sourcecode-name="example1plus1-f.json"}
 
  Note that the examples above show one particular link
  (unidirectional) and not a complete network topology.
