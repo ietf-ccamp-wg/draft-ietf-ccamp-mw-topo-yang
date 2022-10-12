@@ -29,7 +29,8 @@
    organization
      "Internet Engineering Task Force (IETF) CCAMP WG";
    contact
-     "WG List: <mailto:ccamp@ietf.org>
+    "WG Web: <https://datatracker.ietf.org/wg/ccamp/>
+     WG List: <mailto:ccamp@ietf.org>
 
 //[JonasA] Who would like to be on the list of editors/contributors?
       Editor: Jonas Ahlberg
@@ -51,19 +52,20 @@
    description
      "This is a module for microwave topology.
 
-     Copyright (c) 2019 IETF Trust and the persons identified as
-     authors of the code.  All rights reserved.
-     Redistribution and use in source and binary forms, with or
-     without modification, is permitted pursuant to, and subject to
-     the license terms contained in, the Simplified BSD License set
-     forth in Section 4.c of the IETF Trust's Legal Provisions
-     Relating to IETF Documents
-     (http://trustee.ietf.org/license-info).
-     This version of this YANG module is part of RFC XXXX
-     (https://tools.ietf.org/html/rfcXXXX); see the RFC itself for
-     full legal notices.";
+     Copyright (c) 2022 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
 
-   revision 2021-10-20   {
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.";
+
+   revision 2022-10-12   {
      description
      "Draft to be used as a basis for the continued microwave
       team discussions";
@@ -86,6 +88,26 @@
    /*
     * Groupings
     */
+
+   grouping rlt-mode {
+     description
+       "This grouping provides a flexible definition of number
+       of bonded carriers and protecting carriers of a radio
+       link.";
+     leaf num-bonded-carriers {
+       type uint32;
+       mandatory true;
+       description
+         "Number of bonded carriers.";
+     }
+     leaf num-protecting-carriers {
+       type uint32;
+       mandatory true;
+       description
+         "Number of protecting carriers.";
+     }
+   }
+
    grouping microwave-rltp-attributes {
      description "Grouping used for attributes describing a microwave
                   radio link termination point.";
@@ -103,18 +125,12 @@
    grouping microwave-radio-link-attributes {
      description "Grouping used for attributes describing a microwave
                   radio link.";
-     leaf mode {
-       type identityref {
-         base mw-types:rlt-mode;
-       }
+     container rlt-mode {
        description
-         "A description of the mode in which the radio link
-          is configured.  The format is X plus Y.
-          X represents the number of bonded carriers.
-          Y represents the number of protecting carriers.
-          Related to the data node rlt-mode in RFC 8561.";
-       reference
-         "RFC 8561: A YANG Data Model for Microwave Radio Link";
+         "This grouping provides a flexible definition of number
+         of bonded carriers and protecting carriers of a radio
+         link.";
+       uses mw-types:rlt-mode;
      }
  // Any other attributes to be included?
    }
