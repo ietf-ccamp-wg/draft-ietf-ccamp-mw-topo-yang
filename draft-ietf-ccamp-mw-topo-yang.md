@@ -104,9 +104,9 @@ TBD
 
 ## Microwave Topology YANG Module
 ~~~~ yang
-{::include ./ietf-microwave-topology@2021-10-20.yang}
+{::include ./ietf-microwave-topology.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology@2021-10-20.yang"}
+{: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology.yang"}
 
 #Bandwidth Availability Topology YANG Data Model
 
