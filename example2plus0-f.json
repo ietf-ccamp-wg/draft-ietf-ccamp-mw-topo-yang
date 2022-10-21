@@ -248,7 +248,10 @@ ity":
                 ],
                 "ietf-microwave-topology:mw-link-choice": {
                   "microwave-radio-link": {
-                    "mode": "ietf-microwave-types:two-plus-zero"
+                    "rlt-mode": {
+                       "num-bonded-carriers": 2,
+                       "num-protecting-carriers": 0
+                    }
                   }
                 }
               }

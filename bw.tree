@@ -1,8 +1,5 @@
 module: ietf-bandwidth-availability-topology
 
-augment
- /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
-  +--rw link-availability* [availability]
-  |  +--rw availability      decimal64
-  |  +--rw link-bandwidth?   uint64
-  +--ro actual-bandwidth?    yang:gauge64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes:
+    +---u link-bw-availability-table

@@ -130,7 +130,7 @@
          "This grouping provides a flexible definition of number
          of bonded carriers and protecting carriers of a radio
          link.";
-       uses mw-types:rlt-mode;
+       uses rlt-mode;
      }
  // Any other attributes to be included?
    }

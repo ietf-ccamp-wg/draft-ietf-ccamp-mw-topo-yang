@@ -5,18 +5,18 @@
 ccamp                                                         J. Ahlberg
 Internet-Draft                                              S. Mansfield
 Intended status: Standards Track                                Ericsson
-Expires: 23 April 2023                                             M. Ye
+Expires: 24 April 2023                                             M. Ye
                                                                  I. Busi
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         20 October 2022
+                                                         21 October 2022
 
 
                 A YANG Data Model for Microwave Topology
-                  draft-ietf-ccamp-mw-topo-yang-latest
+                  draft-ietf-ccamp-mw-topo-yang-04
 
 Abstract
 
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 April 2023.
+   This Internet-Draft will expire on 24 April 2023.
 
 Copyright Notice
 
@@ -197,30 +197,25 @@ Table of Contents
           +--rw (mw-tp-option)?
              +--:(microwave-rltp)
              |  +--rw microwave-rltp!
+             |     +---u microwave-rltp-attributes
              +--:(microwave-ctp)
                 +--rw microwave-ctp!
+                   +---u microwave-ctp-attributes
      augment /nw:networks/nw:network/nt:link/tet:te
                /tet:te-link-attributes:
        +--rw mw-link-choice
           +--rw (mw-link-option)?
              +--:(microwave-radio-link)
              |  +--rw microwave-radio-link!
-             |     +--rw rlt-mode
-             |        +--rw num-bonded-carriers        uint32
-             |        +--rw num-protecting-carriers    uint32
+             |     +---u microwave-radio-link-attributes
              +--:(microwave-carrier)
                 +--rw microwave-carrier!
-                   +--rw tx-frequency?               uint32
-                   +--rw rx-frequency?               uint32
-                   +--rw channel-separation?         uint32
-                   +--ro actual-tx-cm?               identityref
-                   +--ro actual-snir?                decimal64
-                   +--ro actual-transmitted-level?   power
+                   +---u microwave-carrier-attributes
      augment /nw:networks/nw:network/nt:link/tet:te
                /tet:te-link-attributes/tet:max-link-bandwidth
                /tet:te-bandwidth/tet:technology:
        +--:(microwave)
-          +--ro mw-bandwidth?   uint64
+          +---u microwave-bandwidth
 
 3.2.  Relationship between radio links and carriers
 
@@ -230,8 +225,8 @@ Table of Contents
    container bundled-links as part of the te-link-config in the YANG
    Data Model for Traffic Engineering (TE) Topologies [RFC8795] for a
    radio-link.  The exact configuration of the included carriers is
-   further specified in the leaf mode (1+0, 2+0, 1+1, etc.) for the
-   radio-link.  Appendix A includes an JSON example of how such a
+   further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for
+   the radio-link.  Appendix A includes a JSON example of how such a
    relationship can be modelled.
 
 3.3.  Relationship with client topology model
@@ -242,8 +237,8 @@ Table of Contents
    the generic YANG module for Network Topologies [RFC8345] are expected
    to be used to model a relationship/dependency from higher topology
    layers to a supporting microwave radio link topology layer.
-   Appendix A includes an JSON example of an L2 Ethernet link
-   transported over one supporting microwave link.
+   Appendix A includes a JSON example of an L2 Ethernet link transported
+   over one supporting microwave link.
 
 3.4.  Applicability of the Data Model for Traffic Engineering (TE)
       Topologies
@@ -406,7 +401,7 @@ Table of Contents
             "This grouping provides a flexible definition of number
             of bonded carriers and protecting carriers of a radio
             link.";
-          uses mw-types:rlt-mode;
+          uses rlt-mode;
         }
     // Any other attributes to be included?
       }
@@ -615,12 +610,9 @@ Table of Contents
 
    module: ietf-bandwidth-availability-topology
 
-   augment
-    /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
-     +--rw link-availability* [availability]
-     |  +--rw availability      decimal64
-     |  +--rw link-bandwidth?   uint64
-     +--ro actual-bandwidth?    yang:gauge64
+     augment /nw:networks/nw:network/nt:link/tet:te
+               /tet:te-link-attributes:
+       +---u link-bw-availability-table
 
 4.2.  Bandwidth Availability Topology YANG Data Module
 
@@ -1489,7 +1481,10 @@ A.2.  A topology with single microwave radio link
                    ],
                    "ietf-microwave-topology:mw-link-choice": {
                      "microwave-radio-link": {
-                       "mode": "ietf-microwave-types:two-plus-zero"
+                       "rlt-mode": {
+                          "num-bonded-carriers": 2,
+                          "num-protecting-carriers": 0
+                       }
                      }
                    }
                  }
@@ -1907,7 +1902,10 @@ A.2.  A topology with single microwave radio link
                    ],
                    "ietf-microwave-topology:mw-link-choice": {
                      "microwave-radio-link": {
-                       "mode": "ietf-microwave-types:one-plus-one"
+                       "rlt-mode": {
+                          "num-bonded-carriers": 1,
+                          "num-protecting-carriers": 1
+                       }
                      }
                    }
                  }
@@ -2013,7 +2011,7 @@ A.2.  A topology with single microwave radio link
            "description": "'Radio Link Terminal 2'",
            "type": "iana-if-type:microwaveRadioLinkTerminal",
            "ietf-microwave-radio-link:mode":
-         "ietf-microwave-types:one-plus-one",
+      "ietf-microwave-types:one-plus-one",
            "ietf-microwave-radio-link:carrier-terminations": [
              "CT-2",
              "CT-4"

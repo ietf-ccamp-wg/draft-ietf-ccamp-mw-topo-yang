@@ -8,27 +8,22 @@ module: ietf-microwave-topology
        +--rw (mw-tp-option)?
           +--:(microwave-rltp)
           |  +--rw microwave-rltp!
+          |     +---u microwave-rltp-attributes
           +--:(microwave-ctp)
              +--rw microwave-ctp!
+                +---u microwave-ctp-attributes
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes:
     +--rw mw-link-choice
        +--rw (mw-link-option)?
           +--:(microwave-radio-link)
           |  +--rw microwave-radio-link!
-          |     +--rw rlt-mode
-          |        +--rw num-bonded-carriers        uint32
-          |        +--rw num-protecting-carriers    uint32
+          |     +---u microwave-radio-link-attributes
           +--:(microwave-carrier)
              +--rw microwave-carrier!
-                +--rw tx-frequency?               uint32
-                +--rw rx-frequency?               uint32
-                +--rw channel-separation?         uint32
-                +--ro actual-tx-cm?               identityref
-                +--ro actual-snir?                decimal64
-                +--ro actual-transmitted-level?   power
+                +---u microwave-carrier-attributes
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:max-link-bandwidth
             /tet:te-bandwidth/tet:technology:
     +--:(microwave)
-       +--ro mw-bandwidth?   uint64
+       +---u microwave-bandwidth
