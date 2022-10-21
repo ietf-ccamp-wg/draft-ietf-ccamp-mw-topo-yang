@@ -16,7 +16,7 @@ Expires: 24 April 2023                                             M. Ye
 
 
                 A YANG Data Model for Microwave Topology
-                  draft-ietf-ccamp-mw-topo-yang-04
+                  draft-ietf-ccamp-mw-topo-yang-latest
 
 Abstract
 
