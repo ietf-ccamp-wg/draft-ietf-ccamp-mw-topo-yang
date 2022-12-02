@@ -48,24 +48,21 @@ normative:
 informative:
 
 --- abstract
-This document defines three YANG data models to describe topologies of microwave/millimeter radio links and bandwidth availability for a link in general, as well as to reference interface management information from a termination point.
+This document defines a YANG data model to describe microwave/millimeter radio links in a network topology.
 
 --- middle
 
 # Introduction
 
-This document defines three YANG data models to describe topologies of microwave/millimeter wave (hereafter microwave is used to simplify the text).  The first YANG data model describes radio links, supporting carrier(s) and the associated termination points. A carrier is a description of a link providing transport capacity over the air by a single carrier. It is typically defined by its transmitting and receiving frequencies. A radio link is a link providing the aggregated transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and TDM. A second YANG data model describes bandwidth availability for a link.  It is an important characteristic of a microwave radio link, but it could also be applicable for other types of links.  A third YANG data model introduces a way to reference the information in a YANG data model for interface management {{!RFC8343}} from a termination point, which is useful for microwave termination points, but which could also be useful for other types of termination points.  All three models augment "YANG Data Model for Traffic Engineering (TE) Topologies" defined in {{!RFC8795}}, which is based on "A YANG Data Model for Network Topologies" defined in {{!RFC8345}}.
+This document defines a YANG data model to describe topologies of microwave/millimeter wave (hereafter microwave is used to simplify the text).  The YANG data model describes radio links, supporting carrier(s) and the associated termination points. A carrier is a description of a link providing transport capacity over the air by a single carrier.  It is typically defined by its transmitting and receiving frequencies.  A radio link is a link providing the aggregated transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and TDM.  The model augments "YANG Data Model for Traffic Engineering (TE) Topologies" defined in {{!RFC8795}}, which is based on "A YANG Data Model for Network Topologies" defined in {{!RFC8345}}.
 
-The microwave point-to-point radio technology provides connectivity on L0/L1 over a radio link between two termination points, using one or several supporting carriers in aggregated or protected configurations. That application of microwave technology cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links. Instead, a payload of traffic on higher topology layers, normally L2 Ethernet, is carried over the microwave radio link and when the microwave radio link is terminated at the endpoints, cross-connection and switching can be performed on that higher layer creating connectivity across multiple supporting microwave radio links.
+The microwave point-to-point radio technology provides connectivity on L0/L1 over a radio link between two termination points, using one or several supporting carriers in aggregated or protected configurations.  That application of microwave technology cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links. Instead, a payload of traffic on higher topology layers, normally L2 Ethernet, is carried over the microwave radio link and when the microwave radio link is terminated at the endpoints, cross-connection and switching can be performed on that higher layer creating connectivity across multiple supporting microwave radio links.
 
 The microwave topology, the bandwidth availability, and the interface reference models are expected to be used between a Provisioning Network Controller (PNC) and a Multi Domain Service Coordinator(MDSC) {{?RFC8453}}. Examples of use cases that can be supported are:
 
 1. Correlation between microwave radio links and the supported links on higher topology layers. e.g. an L2 Ethernet topology.  This information can be used to understand how changes in the performance/status of a microwave radio link affects traffic on higher layers.
 2. Propagation of relevant characteristics of a microwave radio link, such as bandwidth, to higher topology layers, where it e.g. could be used as a criterion when configuring and optimizing a path for a connection/service through the network end to end.
 3. Optimization of the microwave radio link configurations on a network level, e.g. with the purpose to minimize overall interference and/or maximize the overall capacity provided by the links.
-4. A microwave radio link could dynamically adjust its bandwidth according to changes in the signal conditions. {{?RFC8330}} defines a mechanism to report bandwidth-availability information through OSPF-TE, but it could also be useful for a controller to access such bandwidth-availability information as part of the topology model when performing a path/route computation.
-
-Different use cases require access to different attributes and in order not to restrict what use cases can be supported, all attributes supported by the microwave radio link interface management model is accessible from the topology model.
 
 ## Terminology and Definitions
 The following acronyms are used in this document:
@@ -75,7 +72,7 @@ PNC Provisioning Network Controller
 MDSC Multi Domain Service Coordinator
 
 ## Tree Structure
-A simplified graphical representation of the data models is used in chapters 3.1, 4.1, and 5.1 of this document.  The meaning of the symbols in these diagrams is defined in {{?RFC8340}}.
+A simplified graphical representation of the data model is used in chapter 3.1 of this document.  The meaning of the symbols in these diagrams is defined in {{?RFC8340}}.
 
 # Requirements Language
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{!RFC2119}} {{!RFC8174}} when, and only when, they appear in all capitals, as shown here.
@@ -108,34 +105,6 @@ TBD
 ~~~~
 {: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology.yang"}
 
-#Bandwidth Availability Topology YANG Data Model
-
-## YANG Tree
-~~~~ yangtree
-{::include ./bw.tree}
-~~~~
-{: artwork-name="bw.tree"}
-
-## Bandwidth Availability Topology YANG Data Module
-~~~~ yang
-{::include ./ietf-bandwidth-availability-topology.yang}
-~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-bandwidth-availability-topology.yang"}
-
-# Termination Point to Interface Reference YANG Data Model
-
-## YANG Tree
-~~~~ yangtree
-{::include ./if.tree}
-~~~~
-{: artwork-name="if.tree"}
-
-## Termination Point to Interface Reference YANG Data Module
-~~~~ yang
-{::include ./ietf-tp-interface-reference-topology.yang}
-~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-tp-interface-reference-topology.yang"}
-
 # Security Considerations
 
    The YANG modules specified in this document define schemas for data
@@ -151,12 +120,12 @@ TBD
    preconfigured subset of all available NETCONF or RESTCONF protocol
    operations and content.
 
-   The YANG modules specified in this document import and augment the
+   The YANG module specified in this document imports and augments the
    ietf-network and ietf-network-topology models defined in {{!RFC8345}}.
    The security considerations from {{!RFC8345}} are applicable to the
-   modules in this document.
+   module in this document.
 
-   There are a several data nodes defined in these YANG modules that are
+   There are a several data nodes defined in this YANG module that are
    writable/creatable/deletable (i.e., config true, which is the
    default).  These data nodes may be considered sensitive or vulnerable
    in some network environments.  Write operations (e.g., edit-config)
@@ -164,23 +133,14 @@ TBD
    effect on network operations.  These are the subtrees and data nodes
    and their sensitivity/vulnerability:
 
-   In the "ietf-microwave-topology" module:
+  -  rlt-mode: A malicious client could attempt to modify the mode in
+      which the radio link is configured and thereby change the
+	  intended behaviour of the link.
 
-   -  rlt-interface-path: A malicious client could set an arbitrary
-      xpath that could allow a client to retrieve incorrect information.
-      Troubleshooting would be difficult because the bad path would not
-      be detectable until the client tries to use the leaf to identify
-      to radio link terminal.
-
-   In the "ietf-bandwidth-availability-topology" module:
-
-   -  availability: A malicious client could attempt to modify the
-      availability level which could modify the intended behavior.
-
-   -  link-bandwidth: A malicious client could attempt to modify the
-      link bandwidth which could either provide more or less link
-      bandwidth at the indicated availability level, changing the
-      resource allocation in unintended ways.
+   - tx-frequency, rx-frequency and channel-separation: A malicious
+      client could attempt to modify the frequency configuration of
+	  a carrier which could modify the intended behaviour or make
+	  the configurtion invalid and thereby stop the operation of it.
 
 # IANA Considerations
 
@@ -188,10 +148,6 @@ TBD
 
 ~~~~
 URI: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
-Registrant Contact: The IESG
-XML: N/A; the requested URI is an XML namespace.
-
-URI: urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology
 Registrant Contact: The IESG
 XML: N/A; the requested URI is an XML namespace.
 ~~~~
@@ -205,31 +161,24 @@ XML: N/A; the requested URI is an XML namespace.
     Namespace: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
     Prefix: mwtopo
     Reference: RFC XXXX
-
-    Name: ietf-bandwidth-availability-topology
-    Maintained by IANA?: N
-    Namespace:
-    urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology
-    Prefix: bwavtopo
-    Reference: RFC XXXX
 ~~~~
 
 --- back
 
-# Examples of the application of the Topology Models {#examples}
+# Examples of the application of the Microwave Topology Model {#examples}
 
    This appendix provides some examples and illustrations of how the
-   Microwave Topology Model and the Bandwidth Availability Topology Model
-   can be used.  There is one extended tree to illustrate the complete
-   Microwave Topology Model and a JSON based instantiation of the
-   Microwave Topology Model for a small network example.
+   Microwave Topology Model can be used.  There is one extended tree to
+   illustrate the complete Microwave Topology Model and a JSON based
+   instantiation of the Microwave Topology Model for a small network
+   example.
 
 ## A tree for a complete Microwave Topology Model
 
    The tree below shows the leafs for a complete Microwave Topology
    Model including the augmented Network Topology Model defined in
    {{!RFC8345}}, Traffic Engineering (TE) Topologies model defined in
-   {{!RFC8795}} and the associated Bandwidth Availability Model.
+   {{!RFC8795}}.
 
 ~~~~ yangtree
 {::include ./full.tree}
@@ -245,8 +194,7 @@ XML: N/A; the requested URI is an XML namespace.
    just shows an example, there might be other possibilities to
    demonstrate such a topology.  The example of the instantiation encoded
    in JSON is using only a selected subset of the leafs from the L2
-   topology model {{?RFC8944}} and the Microwave Interface Management Model
-   {{?RFC8561}}.
+   topology model {{?RFC8944}}.
 
 ~~~~ ascii-art
 {::include ./example.txt}
