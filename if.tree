@@ -1,4 +1,0 @@
-module: ietf-tp-interface-reference-topology
-
-augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
-  +--rw tp-to-interface-path?   -> /if:interfaces/interface/name
