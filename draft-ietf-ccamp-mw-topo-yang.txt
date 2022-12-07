@@ -5,14 +5,14 @@
 ccamp                                                         J. Ahlberg
 Internet-Draft                                              S. Mansfield
 Intended status: Standards Track                                Ericsson
-Expires: 5 June 2023                                               M. Ye
+Expires: 10 June 2023                                              M. Ye
                                                                  I. Busi
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         2 December 2022
+                                                         7 December 2022
 
 
                 A YANG Data Model for Microwave Topology
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 June 2023.
+   This Internet-Draft will expire on 10 June 2023.
 
 Copyright Notice
 
@@ -114,10 +114,10 @@ Table of Contents
    and switching can be performed on that higher layer creating
    connectivity across multiple supporting microwave radio links.
 
-   The microwave topology, the bandwidth availability, and the interface
-   reference models are expected to be used between a Provisioning
-   Network Controller (PNC) and a Multi Domain Service Coordinator(MDSC)
-   [RFC8453].  Examples of use cases that can be supported are:
+   The microwave topology model is expected to be used between a
+   Provisioning Network Controller (PNC) and a Multi Domain Service
+   Coordinator(MDSC) [RFC8453].  Examples of use cases that can be
+   supported are:
 
    1.  Correlation between microwave radio links and the supported links
        on higher topology layers. e.g. an L2 Ethernet topology.  This
