@@ -122,7 +122,7 @@ Table of Contents
    1.  Correlation between microwave radio links and the supported links
        on higher topology layers. e.g. an L2 Ethernet topology.  This
        information can be used to understand how changes in the
-       performance/status of a microwave radio link affects traffic on
+       performance/status of a microwave radio link affect traffic on
        higher layers.
 
    2.  Propagation of relevant characteristics of a microwave radio
@@ -200,7 +200,7 @@ Table of Contents
    Data Model for Traffic Engineering (TE) Topologies [RFC8795] for a
    radio-link.  The exact configuration of the included carriers is
    further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for
-   the radio-link.  Appendix A includes a JSON example of how such a
+   the radio-link.  Appendix A includes JSON examples of how such a
    relationship can be modelled.
 
 3.3.  Relationship with client topology model
@@ -211,7 +211,7 @@ Table of Contents
    the generic YANG module for Network Topologies [RFC8345] are expected
    to be used to model a relationship/dependency from higher topology
    layers to a supporting microwave radio link topology layer.
-   Appendix A includes a JSON example of an L2 Ethernet link transported
+   Appendix A includes JSON examples of an L2 Ethernet link transported
    over one supporting microwave link.
 
 3.4.  Applicability of the Data Model for Traffic Engineering (TE)
@@ -225,7 +225,7 @@ Table of Contents
    Engineering (TE) Topologies augmented by the microwave topology model
    are not applicable.  An example of which leafs are considered
    applicable can be found in appendix "Examples of the application of
-   the Topology Models" in this document.  Appendix A
+   the Topology Models" in appendix A in this document.
 
    More specifically, admin-status and oper-status are recommended to be
    reported for links only.  Status for termination points can be used
@@ -315,19 +315,6 @@ Table of Contents
         "Draft to be used as a basis for the continued microwave
          team discussions";
         reference "";
-      }
-
-      /*
-       * Typedefs
-       */
-
-      typedef power {
-        type decimal64 {
-          fraction-digits 1;
-        }
-        description
-          "Type used for the power values 'selected' and
-           'measured'.";
       }
 
       /*
@@ -439,8 +426,9 @@ Table of Contents
             "RFC 8561: A YANG Data Model for Microwave Radio Link";
         }
         leaf actual-transmitted-level {
-          type power {
-            range "-99..99";
+          type decimal64 {
+            fraction-digits 1;
+            range "0..99";
           }
           units "dBm";
           config false;
@@ -580,7 +568,7 @@ Table of Contents
 
 4.  Security Considerations
 
-   The YANG modules specified in this document define schemas for data
+   The YANG module specified in this document defines schemas for data
    that is designed to be accessed via network management protocols such
    as NETCONF [RFC6241] or RESTCONF [RFC8040].  The lowest NETCONF layer
    is the secure transport layer, and the mandatory-to-implement secure
@@ -708,16 +696,17 @@ Appendix A.  Examples of the application of the Microwave Topology Model
 
    This appendix provides some examples and illustrations of how the
    Microwave Topology Model can be used.  There is one extended tree to
-   illustrate the complete Microwave Topology Model and a JSON based
-   instantiation of the Microwave Topology Model for a small network
-   example.
+   illustrate an example of a complete Microwave Topology Model including
+   the relevant data nodes from network-topology and te-topology. There
+   are also JSON based instantiations of the Microwave Topology Model for
+   a couple of small network examples.
 
 A.1.  A tree for a complete Microwave Topology Model
 
-   The tree below shows the leafs for a complete Microwave Topology
-   Model including the augmented Network Topology Model defined in
-   [RFC8345], Traffic Engineering (TE) Topologies model defined in
-   [RFC8795].
+   The tree below shows an example of the relevant leafs for a complete
+   Microwave Topology Model including the augmented Network Topology Model
+   defined in [RFC8345], Traffic Engineering (TE) Topologies model defined
+   in [RFC8795].
 
    module: ietf-network
      +--rw networks
