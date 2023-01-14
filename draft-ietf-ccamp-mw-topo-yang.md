@@ -60,7 +60,7 @@ The microwave point-to-point radio technology provides connectivity on L0/L1 ove
 
 The microwave topology model is expected to be used between a Provisioning Network Controller (PNC) and a Multi Domain Service Coordinator(MDSC) {{?RFC8453}}. Examples of use cases that can be supported are:
 
-1. Correlation between microwave radio links and the supported links on higher topology layers. e.g. an L2 Ethernet topology.  This information can be used to understand how changes in the performance/status of a microwave radio link affects traffic on higher layers.
+1. Correlation between microwave radio links and the supported links on higher topology layers. e.g. an L2 Ethernet topology.  This information can be used to understand how changes in the performance/status of a microwave radio link affect traffic on higher layers.
 2. Propagation of relevant characteristics of a microwave radio link, such as bandwidth, to higher topology layers, where it e.g. could be used as a criterion when configuring and optimizing a path for a connection/service through the network end to end.
 3. Optimization of the microwave radio link configurations on a network level, e.g. with the purpose to minimize overall interference and/or maximize the overall capacity provided by the links.
 
@@ -86,13 +86,13 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 {: artwork-name="mw.tree"}
 
 ## Relationship between radio links and carriers
-A microwave radio link is always an aggregate of one or multiple carries, in various configurations/modes.  The supporting carriers are identified by its termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{!RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes a JSON example of how such a relationship can be modelled.
+A microwave radio link is always an aggregate of one or multiple carries, in various configurations/modes.  The supporting carriers are identified by its termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{!RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes JSON examples of how such a relationship can be modelled.
 
 ## Relationship with client topology model
-A microwave radio link carries a payload of traffic on higher topology layers, normally L2 Ethernet.  The leafs supporting-network, supporting-node, supporting-link, and supporting-termination-point in the generic YANG module for Network Topologies {{!RFC8345}} are expected to be used to model a relationship/dependency from higher topology layers to a supporting microwave radio link topology layer.  Appendix A includes a JSON example of an L2 Ethernet link transported over one supporting microwave link.
+A microwave radio link carries a payload of traffic on higher topology layers, normally L2 Ethernet.  The leafs supporting-network, supporting-node, supporting-link, and supporting-termination-point in the generic YANG module for Network Topologies {{!RFC8345}} are expected to be used to model a relationship/dependency from higher topology layers to a supporting microwave radio link topology layer.  Appendix A includes JSON examples of an L2 Ethernet link transported over one supporting microwave link.
 
 ## Applicability of the Data Model for Traffic Engineering (TE) Topologies
-Since microwave is a point-to-point radio technology providing connectivity on L0/L1 over a radio link between two termination points and cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links, a majority of the leafs in the Data Model for Traffic Engineering (TE) Topologies augmented by the microwave topology model are not applicable.  An example of which leafs are considered applicable can be found in appendix "Examples of the application of the Topology Models" in this document. {{examples}}
+Since microwave is a point-to-point radio technology providing connectivity on L0/L1 over a radio link between two termination points and cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links, a majority of the leafs in the Data Model for Traffic Engineering (TE) Topologies augmented by the microwave topology model are not applicable.  An example of which leafs are considered applicable can be found in appendix "Examples of the application of the Topology Models" {{examples}} in this document.
 
 More specifically, admin-status and oper-status are recommended to be reported for links only.  Status for termination points can be used when links are inter-domain and when the status of only one side of link is known, but since microwave is a point-to-point technology where both ends normally belong to the same domain it is not expected to be applicable in normal cases.  Furthermore, admin-status is not applicable for microwave radio links.  Enable and disable of a radio link is instead done in the constituent carriers.
 
@@ -107,7 +107,7 @@ TBD
 
 # Security Considerations
 
-   The YANG modules specified in this document define schemas for data
+   The YANG module specified in this document defines schemas for data
    that is designed to be accessed via network management protocols such
    as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
    is the secure transport layer, and the mandatory-to-implement secure
@@ -167,18 +167,11 @@ XML: N/A; the requested URI is an XML namespace.
 
 # Examples of the application of the Microwave Topology Model {#examples}
 
-   This appendix provides some examples and illustrations of how the
-   Microwave Topology Model can be used.  There is one extended tree to
-   illustrate the complete Microwave Topology Model and a JSON based
-   instantiation of the Microwave Topology Model for a small network
-   example.
+   This appendix provides some examples and illustrations of how the Microwave Topology Model can be used.  There is one extended tree to illustrate an example of a complete Microwave Topology Model including the relevant data nodes from network-topology and te-topology.  There are also JSON based instantiations of the Microwave Topology Model for a couple of small network examples.
 
 ## A tree for a complete Microwave Topology Model
 
-   The tree below shows the leafs for a complete Microwave Topology
-   Model including the augmented Network Topology Model defined in
-   {{!RFC8345}}, Traffic Engineering (TE) Topologies model defined in
-   {{!RFC8795}}.
+   The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including the augmented Network Topology Model defined in {{!RFC8345}} and the Traffic Engineering (TE) Topologies model defined in {{!RFC8795}}.
 
 ~~~~ yangtree
 {::include ./full.tree}
