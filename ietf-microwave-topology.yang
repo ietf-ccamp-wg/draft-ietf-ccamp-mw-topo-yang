@@ -73,19 +73,6 @@
    }
 
    /*
-    * Typedefs
-    */
-
-   typedef power {
-     type decimal64 {
-       fraction-digits 1;
-     }
-     description
-       "Type used for the power values 'selected' and
-        'measured'.";
-   }
-
-   /*
     * Groupings
     */
 
@@ -194,8 +181,9 @@
          "RFC 8561: A YANG Data Model for Microwave Radio Link";
      }
      leaf actual-transmitted-level {
-       type power {
-         range "-99..99";
+       type decimal64 {
+         fraction-digits 1;
+         range "0..99";
        }
        units "dBm";
        config false;
