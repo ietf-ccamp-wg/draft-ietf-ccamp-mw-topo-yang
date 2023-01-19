@@ -32,7 +32,6 @@
     "WG Web: <https://datatracker.ietf.org/wg/ccamp/>
      WG List: <mailto:ccamp@ietf.org>
 
-//[JonasA] Who would like to be on the list of editors/contributors?
       Editor: Jonas Ahlberg
               <mailto:jonas.ahlberg@ericsson.com>
       Editor: Scott Mansfield
@@ -47,8 +46,6 @@
               <mailto:daniela.spreafico@nokia.com>
      ";
 
- // Note to RFC Editor: replace XXXX with actual RFC number and
- // remove this note.
    description
      "This is a module for microwave topology.
 
