@@ -48,7 +48,7 @@
         <email>daniela.spreafico@nokia.com</email>
       </address>
     </author>
-    <date year="2023" month="January" day="18"/>
+    <date year="2023" month="January" day="19"/>
     <area>Routing</area>
     <workgroup>ccamp</workgroup>
     <keyword>Internet-Draft</keyword>
@@ -493,11 +493,11 @@ module: ietf-microwave-topology
       <ul spacing="normal">
         <li>rlt-mode: A malicious client could attempt to modify the mode in
  which the radio link is configured and thereby change the
-     intended behaviour of the link.</li>
+ intended behaviour of the link.</li>
         <li>tx-frequency, rx-frequency and channel-separation: A malicious
  client could attempt to modify the frequency configuration of
-     a carrier which could modify the intended behaviour or make
-     the configurtion invalid and thereby stop the operation of it.</li>
+ a carrier which could modify the intended behaviour or make
+ the configurtion invalid and thereby stop the operation of it.</li>
       </ul>
     </section>
     <section anchor="iana-considerations">
@@ -989,330 +989,8 @@ module: ietf-network
 
 ]]></artwork>
         <t>This example shows a 2+0 mode for a bonded configuration.</t>
-        <sourcecode type="json" name="example2plus0-f.json" markers="true"><![CDATA[
-=============== NOTE: '\' line wrapping per RFC 8792 ================
-
+        <sourcecode type="json" name="example2plus0.json" markers="false"><![CDATA[
 {
-  "ietf-network:networks": {
-    "network": [
-      {
-        "network-id": "L2-network",
-        "network-types": {
-          "ietf-te-topology:te-topology": {
-            "ietf-eth-te-topology:eth-tran-topology": {
-            }
-          }
-        },
-        "supporting-network": [
-          {
-            "network-ref": "mw-network"
-          }
-        ],
-        "node": [
-          {
-            "node-id": "L2-N1",
-            "supporting-node": [
-              {
-                "network-ref": "mw-network",
-                "node-ref": "mw-N1"
-              }
-            ],
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "L2-N1-TP1",
-                "supporting-termination-point": [
-                  {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N1",
-                    "tp-ref": "mw-N1-RLTP1"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "node-id": "L2-N2",
-            "supporting-node": [
-              {
-                "network-ref": "mw-network",
-                "node-ref": "mw-N2"
-              }
-            ],
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "L2-N2-TP2",
-                "supporting-termination-point": [
-                  {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N2",
-                    "tp-ref": "mw-N2-RLTP2"
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "ietf-network-topology:link": [
-          {
-            "link-id": "L2-N1-N2",
-            "source": {
-              "source-node": "L2-N1",
-              "source-tp": "L2-N1-TP1"
-            },
-            "destination": {
-              "dest-node": "L2-N2",
-              "dest-tp": "L2-N2-TP2"
-            },
-            "supporting-link": [
-              {
-                "network-ref": "mw-network",
-                "link-ref": "mwrl-N1-N2"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "network-id": "mw-network",
-        "network-types": {
-          "ietf-te-topology:te-topology": {
-            "ietf-microwave-topology:mw-topology": {
-            }
-          }
-        },
-        "supporting-network": [
-          {
-            "network-ref": "mw-network"
-          }
-        ],
-        "node": [
-          {
-            "node-id": "mw-N1",
-            "supporting-node": [
-              {
-                "network-ref": "mw-network",
-                "node-ref": "mw-N1"
-              }
-            ],
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "mw-N1-RLTP1",
-                "supporting-termination-point": [
-                  {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N1",
-                    "tp-ref": "mw-N1-CTP1"
-                  },
-                  {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N1",
-                    "tp-ref": "mw-N1-CTP3"
-                  }
-                ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
-                "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
-                    "microwave-rltp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"RLT-1"
-                }
-              },
-              {
-                "tp-id": "mw-N1-CTP1",
-                "ietf-te-topology:te-tp-id": 1,
-                "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
-                    "microwave-ctp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-1"
-                }
-              },
-              {
-                "tp-id": "mw-N1-CTP3",
-                "ietf-te-topology:te-tp-id": 2,
-                "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
-                    "microwave-ctp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-3"
-                }
-              }
-            ]
-          },
-          {
-            "node-id": "mw-N2",
-            "supporting-node": [
-              {
-                "network-ref": "mw-network",
-                "node-ref": "mw-N2"
-              }
-            ],
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "mw-N2-RLTP2",
-                "supporting-termination-point": [
-                  {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N2",
-                    "tp-ref": "mw-N2-CTP2"
-                  },
-                  {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N2",
-                    "tp-ref": "mw-N2-CTP4"
-                  }
-                ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
-                "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
-                    "microwave-rltp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"RLT-2"
-                }
-              },
-              {
-                "tp-id": "mw-N2-CTP2",
-                "ietf-te-topology:te-tp-id": 1,
-                "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
-                    "microwave-ctp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-2"
-                }
-              },
-              {
-                "tp-id": "mw-N2-CTP4",
-                "ietf-te-topology:te-tp-id": 2,
-                "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
-                    "microwave-ctp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-4"
-                }
-              }
-            ]
-          }
-        ],
-        "ietf-network-topology:link": [
-          {
-            "link-id": "mwrl-N1-N2",
-            "source": {
-              "source-node": "mw-N1",
-              "source-tp": "mw-N1-RLTP1"
-            },
-            "destination": {
-              "dest-node": "mw-N2",
-              "dest-tp": "mw-N2-RLTP2"
-            },
-            "ietf-te-topology:te": {
-              "bundled-links": {
-                "bundled-link": [
-                  {
-                    "sequence": 1,
-                    "src-tp-ref": "mw-N1-CTP1",
-                    "des-tp-ref": "mw-N2-CTP2"
-                  },
-                  {
-                    "sequence": 2,
-                    "src-tp-ref": "mw-N1-CTP3",
-                    "des-tp-ref": "mw-N2-CTP4"
-                  }
-                ]
-              },
-              "te-link-attributes": {
-                "ietf-bandwidth-availability-topology:link-availabil\
-ity":
- [
-                  {
-                    "availability": "0.999",
-                    "link-bandwidth": "1572864"
-                  },
-                  {
-                    "availability": "0.95",
-                    "link-bandwidth": "2097152"
-                  }
-                ],
-                "ietf-microwave-topology:mw-link-choice": {
-                  "microwave-radio-link": {
-                    "rlt-mode": {
-                       "num-bonded-carriers": 2,
-                       "num-protecting-carriers": 0
-                    }
-                  }
-                }
-              }
-            }
-          },
-          {
-            "link-id": "mwc-N1-N2-A",
-            "source": {
-              "source-node": "mw-N1",
-              "source-tp": "mw-N1-CTP1"
-            },
-            "destination": {
-              "dest-node": "mw-N2",
-              "dest-tp": "mw-N2-CTP2"
-            },
-            "ietf-te-topology:te": {
-              "te-link-attributes": {
-                "ietf-bandwidth-availability-topology:link-availabil\
-ity":
- [
-                  {
-                    "availability": "0.99",
-                    "link-bandwidth": "1048576"
-                  }
-                ],
-                "ietf-microwave-topology:mw-link-choice": {
-                  "microwave-carrier": {
-                    "tx-frequency": 10728000,
-                    "rx-frequency": 10615000,
-                    "channel-separation": 28000
-                  }
-                }
-              }
-            }
-          },
-          {
-            "link-id": "mwc-N1-N2-B",
-            "source": {
-              "source-node": "mw-N1",
-              "source-tp": "mw-N1-CTP3"
-            },
-            "destination": {
-              "dest-node": "mw-N2",
-              "dest-tp": "mw-N2-CTP4"
-            },
-            "ietf-te-topology:te": {
-              "te-link-attributes": {
-                "ietf-bandwidth-availability-topology:link-availabil\
-ity":
- [
-                  {
-                    "availability": "0.99",
-                    "link-bandwidth": "1048576"
-                  }
-                ],
-                "ietf-microwave-topology:mw-link-choice": {
-                  "microwave-carrier": {
-                    "tx-frequency": 10528000,
-                    "rx-frequency": 10415000,
-                    "channel-separation": 28000
-                  }
-                }
-              }
-            }
-          }
-        ]
-      }
-    ]
-  },
   "ietf-interfaces:interfaces": {
     "interface": [
       {
@@ -1330,7 +1008,7 @@ ity":
         "description": "'Radio Link Terminal 1'",
         "type": "iana-if-type:microwaveRadioLinkTerminal",
         "ietf-microwave-radio-link:mode":
-        "ietf-microwave-types:two-plus-zero",
+           "ietf-microwave-types:two-plus-zero",
         "ietf-microwave-radio-link:carrier-terminations": [
           "CT-1",
           "CT-3"
@@ -1341,7 +1019,7 @@ ity":
         "description": "'Radio Link Terminal 2'",
         "type": "iana-if-type:microwaveRadioLinkTerminal",
         "ietf-microwave-radio-link:mode":
-        "ietf-microwave-types:two-plus-zero",
+           "ietf-microwave-types:two-plus-zero",
         "ietf-microwave-radio-link:carrier-terminations": [
           "CT-2",
           "CT-4"
@@ -1404,22 +1082,14 @@ ity":
         }
       }
     ]
-  }
-}
-]]></sourcecode>
-        <t>This example shows a 1+1 mode for protection.</t>
-        <sourcecode type="json" name="example1plus1-f.json" markers="true"><![CDATA[
-=============== NOTE: '\' line wrapping per RFC 8792 ================
-
-{
+  },
   "ietf-network:networks": {
     "network": [
       {
         "network-id": "L2-network",
         "network-types": {
           "ietf-te-topology:te-topology": {
-            "ietf-eth-te-topology:eth-tran-topology": {
-            }
+            "ietf-eth-te-topology:eth-tran-topology": {}
           }
         },
         "supporting-network": [
@@ -1495,8 +1165,7 @@ ity":
         "network-id": "mw-network",
         "network-types": {
           "ietf-te-topology:te-topology": {
-            "ietf-microwave-topology:mw-topology": {
-            }
+            "ietf-microwave-topology:mw-topology": {}
           }
         },
         "supporting-network": [
@@ -1532,9 +1201,7 @@ ity":
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path": "RLT-1"
+                  }
                 }
               },
               {
@@ -1543,9 +1210,7 @@ ace-path": "RLT-1"
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path": "CT-1"
+                  }
                 }
               },
               {
@@ -1554,9 +1219,7 @@ ace-path": "CT-1"
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path": "CT-3"
+                  }
                 }
               }
             ]
@@ -1588,9 +1251,7 @@ ace-path": "CT-3"
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path": "RLT-2"
+                  }
                 }
               },
               {
@@ -1599,9 +1260,7 @@ ace-path": "RLT-2"
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path": "CT-2"
+                  }
                 }
               },
               {
@@ -1610,9 +1269,7 @@ ace-path": "CT-2"
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
-                  },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path": "CT-4"
+                  }
                 }
               }
             ]
@@ -1645,23 +1302,11 @@ ace-path": "CT-4"
                 ]
               },
               "te-link-attributes": {
-                "ietf-bandwidth-availability-topology:link-availabil\
-ity":
- [
-                  {
-                    "availability": "0.999",
-                    "link-bandwidth": "998423"
-                  },
-                  {
-                    "availability": "0.99",
-                    "link-bandwidth": "1048576"
-                  }
-                ],
                 "ietf-microwave-topology:mw-link-choice": {
                   "microwave-radio-link": {
                     "rlt-mode": {
-                       "num-bonded-carriers": 1,
-                       "num-protecting-carriers": 1
+                      "num-bonded-carriers": 2,
+                      "num-protecting-carriers": 0
                     }
                   }
                 }
@@ -1680,18 +1325,6 @@ ity":
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "ietf-bandwidth-availability-topology:link-availabil\
-ity":
- [
-                  {
-                    "availability": "0.99",
-                    "link-bandwidth": "998423"
-                  },
-                  {
-                    "availability": "0.95",
-                    "link-bandwidth": "1048576"
-                  }
-                ],
                 "ietf-microwave-topology:mw-link-choice": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
@@ -1714,22 +1347,10 @@ ity":
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "ietf-bandwidth-availability-topology:link-availabil\
-ity":
- [
-                  {
-                    "availability": "0.99",
-                    "link-bandwidth": "998423"
-                  },
-                  {
-                    "availability": "0.95",
-                    "link-bandwidth": "1048576"
-                  }
-                ],
                 "ietf-microwave-topology:mw-link-choice": {
                   "microwave-carrier": {
-                    "tx-frequency": 10728000,
-                    "rx-frequency": 10615000,
+                    "tx-frequency": 10528000,
+                    "rx-frequency": 10415000,
                     "channel-separation": 28000
                   }
                 }
@@ -1739,8 +1360,13 @@ ity":
         ]
       }
     ]
-  },
-    "ietf-interfaces:interfaces": {
+  }
+}
+]]></sourcecode>
+        <t>This example shows a 1+1 mode for protection.</t>
+        <sourcecode type="json" name="example1plus1.json" markers="false"><![CDATA[
+{
+  "ietf-interfaces:interfaces": {
     "interface": [
       {
         "name": "L2Interface1",
@@ -1757,7 +1383,7 @@ ity":
         "description": "'Radio Link Terminal 1'",
         "type": "iana-if-type:microwaveRadioLinkTerminal",
         "ietf-microwave-radio-link:mode":
-   "ietf-microwave-types:one-plus-one",
+           "ietf-microwave-types:one-plus-one",
         "ietf-microwave-radio-link:carrier-terminations": [
           "CT-1",
           "CT-3"
@@ -1768,7 +1394,7 @@ ity":
         "description": "'Radio Link Terminal 2'",
         "type": "iana-if-type:microwaveRadioLinkTerminal",
         "ietf-microwave-radio-link:mode":
-   "ietf-microwave-types:one-plus-one",
+           "ietf-microwave-types:one-plus-one",
         "ietf-microwave-radio-link:carrier-terminations": [
           "CT-2",
           "CT-4"
@@ -1834,217 +1460,510 @@ ity":
           "selected-max-acm": "ietf-microwave-types:qam-512"
         }
       }
-
+    ]
+  },
+  "ietf-network:networks": {
+    "network": [
+      {
+        "network-id": "L2-network",
+        "network-types": {
+          "ietf-te-topology:te-topology": {
+            "ietf-eth-te-topology:eth-tran-topology": {}
+          }
+        },
+        "supporting-network": [
+          {
+            "network-ref": "mw-network"
+          }
+        ],
+        "node": [
+          {
+            "node-id": "L2-N1",
+            "supporting-node": [
+              {
+                "network-ref": "mw-network",
+                "node-ref": "mw-N1"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "L2-N1-TP1",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "mw-network",
+                    "node-ref": "mw-N1",
+                    "tp-ref": "mw-N1-RLTP1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node-id": "L2-N2",
+            "supporting-node": [
+              {
+                "network-ref": "mw-network",
+                "node-ref": "mw-N2"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "L2-N2-TP2",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "mw-network",
+                    "node-ref": "mw-N2",
+                    "tp-ref": "mw-N2-RLTP2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "L2-N1-N2",
+            "source": {
+              "source-node": "L2-N1",
+              "source-tp": "L2-N1-TP1"
+            },
+            "destination": {
+              "dest-node": "L2-N2",
+              "dest-tp": "L2-N2-TP2"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "mw-network",
+                "link-ref": "mwrl-N1-N2"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "network-id": "mw-network",
+        "network-types": {
+          "ietf-te-topology:te-topology": {
+            "ietf-microwave-topology:mw-topology": {}
+          }
+        },
+        "supporting-network": [
+          {
+            "network-ref": "mw-network"
+          }
+        ],
+        "node": [
+          {
+            "node-id": "mw-N1",
+            "supporting-node": [
+              {
+                "network-ref": "mw-network",
+                "node-ref": "mw-N1"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "mw-N1-RLTP1",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "mw-network",
+                    "node-ref": "mw-N1",
+                    "tp-ref": "mw-N1-CTP1"
+                  },
+                  {
+                    "network-ref": "mw-network",
+                    "node-ref": "mw-N1",
+                    "tp-ref": "mw-N1-CTP3"
+                  }
+                ],
+                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp-choice": {
+                    "microwave-rltp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "mw-N1-CTP1",
+                "ietf-te-topology:te-tp-id": 1,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp-choice": {
+                    "microwave-ctp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "mw-N1-CTP3",
+                "ietf-te-topology:te-tp-id": 2,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp-choice": {
+                    "microwave-ctp": {}
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "node-id": "mw-N2",
+            "supporting-node": [
+              {
+                "network-ref": "mw-network",
+                "node-ref": "mw-N2"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "mw-N2-RLTP2",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "mw-network",
+                    "node-ref": "mw-N2",
+                    "tp-ref": "mw-N2-CTP2"
+                  },
+                  {
+                    "network-ref": "mw-network",
+                    "node-ref": "mw-N2",
+                    "tp-ref": "mw-N2-CTP4"
+                  }
+                ],
+                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp-choice": {
+                    "microwave-rltp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "mw-N2-CTP2",
+                "ietf-te-topology:te-tp-id": 1,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp-choice": {
+                    "microwave-ctp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "mw-N2-CTP4",
+                "ietf-te-topology:te-tp-id": 2,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp-choice": {
+                    "microwave-ctp": {}
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "mwrl-N1-N2",
+            "source": {
+              "source-node": "mw-N1",
+              "source-tp": "mw-N1-RLTP1"
+            },
+            "destination": {
+              "dest-node": "mw-N2",
+              "dest-tp": "mw-N2-RLTP2"
+            },
+            "ietf-te-topology:te": {
+              "bundled-links": {
+                "bundled-link": [
+                  {
+                    "sequence": 1,
+                    "src-tp-ref": "mw-N1-CTP1",
+                    "des-tp-ref": "mw-N2-CTP2"
+                  },
+                  {
+                    "sequence": 2,
+                    "src-tp-ref": "mw-N1-CTP3",
+                    "des-tp-ref": "mw-N2-CTP4"
+                  }
+                ]
+              },
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link-choice": {
+                  "microwave-radio-link": {
+                    "rlt-mode": {
+                      "num-bonded-carriers": 1,
+                      "num-protecting-carriers": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "link-id": "mwc-N1-N2-A",
+            "source": {
+              "source-node": "mw-N1",
+              "source-tp": "mw-N1-CTP1"
+            },
+            "destination": {
+              "dest-node": "mw-N2",
+              "dest-tp": "mw-N2-CTP2"
+            },
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link-choice": {
+                  "microwave-carrier": {
+                    "tx-frequency": 10728000,
+                    "rx-frequency": 10615000,
+                    "channel-separation": 28000
+                  }
+                }
+              }
+            }
+          },
+          {
+            "link-id": "mwc-N1-N2-B",
+            "source": {
+              "source-node": "mw-N1",
+              "source-tp": "mw-N1-CTP3"
+            },
+            "destination": {
+              "dest-node": "mw-N2",
+              "dest-tp": "mw-N2-CTP4"
+            },
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link-choice": {
+                  "microwave-carrier": {
+                    "tx-frequency": 10728000,
+                    "rx-frequency": 10615000,
+                    "channel-separation": 28000
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
     ]
   }
 }
-
 ]]></sourcecode>
         <t>Note that the examples above show one particular link
  (unidirectional) and not a complete network topology.</t>
+        <t>This example provides a json snippet that shows geolocation information.</t>
+        <artwork type="ascii-art" name="geo-example.json"><![CDATA[
+   "node": [
+      {
+         "node-id": "mw-N1",
+
+         ...
+
+         "ietf-te-topology:te" : {
+            "ietf-te-topology:geolocation": {
+               "altitude": "200000",
+               "latitude": "45",
+               "longitude": "90"
+               }
+         },
+         "ietf-network-topology:termination-point": [
+
+         ...
+
+]]></artwork>
       </section>
     </section>
   </back>
   <!-- ##markdown-source:
-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
-JGM+CxIcAkbVP9tkfne48f9Ql81K6d0AAA==
+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
+vhG/K4L8u0b8dpj8ZXuTlWP+o6aQ/1N6k3W4Pdh4k49iIpUqbLzJiqI62HiT
+T7LMt9add13ouwPW8kK/MbX2Pkt9t22zl/qNiZcq2dU0pV06eO1Uh1KT9byS
+PmvtnveyiTlWvTRK1aLwPoZLslh1zLtFrLqixEWsruqPlhmdtuPGcef4LTAE
+1lHlJjPivI660WzoA8KNLdCZ188DN0tdtXec6AWYPSfIh7BUpWTOgri3ZHfM
+KZxPYHjqi/pPYXfqM+2OZudT666+ZLtRcZfWGpVaZ8sqC0qtm7d7P7emPv00
+mrr/WTT14G+iqdWqp1LrmqZWaxxKrT+dphbRX8t+QgUCrdvFJdJdrKPc87HC
+uX3bdM05/XSX455zJw53tXXnQaeoti6u/91UWK/Gz6bC2lEgkyZclgHDH5sC
+669Cspv66r9b/VswCKZ4qXuViKmAwyuwgiVlcN2Hj8qKU0AHb5ZC/+cWaW+U
+7KtWsk2l90bJPrqSfR3l4hsl+8KVrFhS7phl2qbm/EspO9vUnG9qzvGzqTkn
+8E3NubPhpuZ8U3O+qTnf1Jy7EC7h+Gtx/pua88/P7abm3NnfTc35puZ8U3P+
+VUX8m5rzz8/tpubc2d9Nzfmm5nxTc156s6k539Scu+fdIlY3NedW67vXnDco
+CFtUc95xgmxqzgloU3O+qTm3mNjUnG809QvS1CL6a9lPVqo572Bpaef9as7L
+OFqVHwlTjYS8I52K0FmacAZSyaNwFgeZ/LkXtjVLokGUyWL0IKZrz1mS5ixg
+YYooAKu+W938OFilxB1823U0QGJUxs5EEk2nPJfcyPp36+eD7evN3T/sVU3+
+W3rkyvoXb33ft745Jwhz747YrSxeXUrc1j9y3KYKF/zUA6i2/nFjbHTw0NVA
+/3Ixtni8V4upLGWzJ/5aeZ6KZNw6Cd319HXxSpv+Hxj4+X9h0wAA
 
 -->
 

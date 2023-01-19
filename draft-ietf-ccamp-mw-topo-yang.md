@@ -135,12 +135,12 @@ TBD
 
   -  rlt-mode: A malicious client could attempt to modify the mode in
       which the radio link is configured and thereby change the
-	  intended behaviour of the link.
+      intended behaviour of the link.
 
    - tx-frequency, rx-frequency and channel-separation: A malicious
       client could attempt to modify the frequency configuration of
-	  a carrier which could modify the intended behaviour or make
-	  the configurtion invalid and thereby stop the operation of it.
+      a carrier which could modify the intended behaviour or make
+      the configurtion invalid and thereby stop the operation of it.
 
 # IANA Considerations
 
@@ -197,18 +197,25 @@ XML: N/A; the requested URI is an XML namespace.
 This example shows a 2+0 mode for a bonded configuration.
 
 ~~~~ json
-{::include ./example2plus0-f.json}
+{::include ./example2plus0.json}
 ~~~~
-{: artwork-name="example2plus0-f.json"}
-{: sourcecode-markers="true" sourcecode-name="example2plus0-f.json"}
+{: artwork-name="example2plus0.json"}
+{: sourcecode-markers="false" sourcecode-name="example2plus0.json"}
 
 This example shows a 1+1 mode for protection.
 
 ~~~~ json
-{::include ./example1plus1-f.json}
+{::include ./example1plus1.json}
 ~~~~
-{: artwork-name="example1plus1-f.json"}
-{: sourcecode-markers="true" sourcecode-name="example1plus1-f.json"}
+{: artwork-name="example1plus1.json"}
+{: sourcecode-markers="false" sourcecode-name="example1plus1.json"}
 
  Note that the examples above show one particular link
  (unidirectional) and not a complete network topology.
+
+This example provides a json snippet that shows geolocation information.
+
+~~~~ ascii-art
+{::include ./geo-example.json}
+~~~~
+{: artwork-name="geo-example.json"}
