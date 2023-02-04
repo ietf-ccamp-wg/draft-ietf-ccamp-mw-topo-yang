@@ -81,7 +81,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## YANG Tree
 ~~~~ yangtree
-{::include ./mw.tree}
+{::include ./trees/mw.tree}
 ~~~~
 {: artwork-name="mw.tree"}
 
@@ -169,16 +169,42 @@ XML: N/A; the requested URI is an XML namespace.
 
    This appendix provides some examples and illustrations of how the Microwave Topology Model can be used.  There is one extended tree to illustrate an example of a complete Microwave Topology Model including the relevant data nodes from network-topology and te-topology.  There are also JSON based instantiations of the Microwave Topology Model for a couple of small network examples.
 
-## A tree for a complete Microwave Topology Model
+## A tree for the Microwave Topology Model including imports
 
    The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including the augmented Network Topology Model defined in {{!RFC8345}} and the Traffic Engineering (TE) Topologies model defined in {{!RFC8795}}.
 
 ~~~~ yangtree
-{::include ./full.tree}
+{::include ./trees/mw-only.tree}
+~~~~
+{: artwork-name="mw-only.tree"}
+
+The Microwave Topology Model augments the TE Topology Model.
+
+~~~~ ascii-art
+{::include ./art/mw-only-art.txt}
+~~~~
+{: artwork-name="mw-only-art.txt"}
+
+## Instance data example for Microwave Toplogy Model usage
+
+This example shows a 2+0 mode for a bonded configuration.
+
+~~~~ json
+{::include ./json/example2plus0-mw-only.json}
+~~~~
+{: artwork-name="example2plus0-mw-only.json"}
+{: sourcecode-markers="false" sourcecode-name="example2plus0-mw-only.json"}
+
+## A tree for a Microwave Topology Model including related models
+
+   The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including interface reference topology (ifref) and bandwidth-availability-topology (bwa) models.
+
+~~~~ yangtree
+{::include ./trees/full.tree}
 ~~~~
 {: artwork-name="full.tree"}
 
-## A topology with single microwave radio link
+## A topology example with single microwave radio link
 
    Microwave is a transport technology which can be used to transport
    client services, such as L2 Ethernet links.  When an L2 link is
@@ -190,22 +216,28 @@ XML: N/A; the requested URI is an XML namespace.
    topology model {{?RFC8944}}.
 
 ~~~~ ascii-art
-{::include ./example.txt}
+{::include ./art/example.txt}
 ~~~~
 {: artwork-name="example.txt"}
 
+## Instance data for microwave configurations examples
+
+The example above, a L2 network with a supporting microwave network, including microwave-topology (MW) and bandwidth-availability-topology (BWA) models as well as the reference to the associated interface management information, is encoded in JSON as follows:
+
+### Instance data for 2+0 mode
 This example shows a 2+0 mode for a bonded configuration.
 
 ~~~~ json
-{::include ./example2plus0.json}
+{::include ./json/example2plus0.json}
 ~~~~
 {: artwork-name="example2plus0.json"}
 {: sourcecode-markers="false" sourcecode-name="example2plus0.json"}
 
+### Instance data for 1+1 mode
 This example shows a 1+1 mode for protection.
 
 ~~~~ json
-{::include ./example1plus1.json}
+{::include ./json/example1plus1.json}
 ~~~~
 {: artwork-name="example1plus1.json"}
 {: sourcecode-markers="false" sourcecode-name="example1plus1.json"}
@@ -213,9 +245,10 @@ This example shows a 1+1 mode for protection.
  Note that the examples above show one particular link
  (unidirectional) and not a complete network topology.
 
+### Instance data for geolocation information
 This example provides a json snippet that shows geolocation information.
 
 ~~~~ ascii-art
-{::include ./geo-example.json}
+{::include ./json/geo-example.json}
 ~~~~
 {: artwork-name="geo-example.json"}

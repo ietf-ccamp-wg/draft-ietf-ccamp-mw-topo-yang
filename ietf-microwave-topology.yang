@@ -62,7 +62,7 @@
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-   revision 2022-10-12   {
+   revision 2023-02-02   {
      description
      "Draft to be used as a basis for the continued microwave
       team discussions";

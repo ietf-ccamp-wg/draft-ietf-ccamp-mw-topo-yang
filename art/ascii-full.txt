@@ -1,4 +1,6 @@
 
+<artset anchor="full-example">
+   <artwork name="" type="ascii-art" align="left" alt=""><![CDATA[
      Node N1                          Node N2
 +--------------+                 +--------------+
 | +----------+ |                 | +----------+ | L2-network
@@ -72,4 +74,5 @@
    bandwidth-availability-topology (BWA) models as well as
    the reference to the associated interface management
    information, is encoded in JSON as follows:
-
+]]></artwork>
+</artset>

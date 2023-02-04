@@ -1,0 +1,2 @@
+   <artwork type="svg" src="drawing-for-example.svg">
+   </artwork>

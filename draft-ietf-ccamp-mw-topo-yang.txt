@@ -5,14 +5,14 @@
 ccamp                                                         J. Ahlberg
 Internet-Draft                                              S. Mansfield
 Intended status: Standards Track                                Ericsson
-Expires: 23 July 2023                                              M. Ye
+Expires: 8 August 2023                                             M. Ye
                                                                  I. Busi
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         19 January 2023
+                                                         4 February 2023
 
 
                 A YANG Data Model for Microwave Topology
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 July 2023.
+   This Internet-Draft will expire on 8 August 2023.
 
 Copyright Notice
 
@@ -82,8 +82,15 @@ Table of Contents
      6.2.  Informative References
    Appendix A.  Examples of the application of the Microwave Topology
            Model
-     A.1.  A tree for a complete Microwave Topology Model
-     A.2.  A topology with single microwave radio link
+     A.1.  A tree for the Microwave Topology Model including imports
+     A.2.  Instance data example for Microwave Toplogy Model usage
+     A.3.  A tree for a Microwave Topology Model including related
+           models
+     A.4.  A topology example with single microwave radio link
+     A.5.  Instance data for microwave configurations examples
+       A.5.1.  Instance data for 2+0 mode
+       A.5.2.  Instance data for 1+1 mode
+       A.5.3.  Instance data for geolocation information
    Authors' Addresses
 
 1.  Introduction
@@ -277,7 +284,6 @@ Table of Contents
        "WG Web: <https://datatracker.ietf.org/wg/ccamp/>
         WG List: <mailto:ccamp@ietf.org>
 
-   //[JonasA] Who would like to be on the list of editors/contributors?
          Editor: Jonas Ahlberg
                  <mailto:jonas.ahlberg@ericsson.com>
          Editor: Scott Mansfield
@@ -292,8 +298,6 @@ Table of Contents
                  <mailto:daniela.spreafico@nokia.com>
         ";
 
-    // Note to RFC Editor: replace XXXX with actual RFC number and
-    // remove this note.
       description
         "This is a module for microwave topology.
 
@@ -310,7 +314,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see
         the RFC itself for full legal notices.";
 
-      revision 2022-10-12   {
+      revision 2023-02-02   {
         description
         "Draft to be used as a basis for the continued microwave
          team discussions";
@@ -701,7 +705,7 @@ Appendix A.  Examples of the application of the Microwave Topology Model
    topology.  There are also JSON based instantiations of the Microwave
    Topology Model for a couple of small network examples.
 
-A.1.  A tree for a complete Microwave Topology Model
+A.1.  A tree for the Microwave Topology Model including imports
 
    The tree below shows an example of the relevant leafs for a complete
    Microwave Topology Model including the augmented Network Topology
@@ -709,100 +713,519 @@ A.1.  A tree for a complete Microwave Topology Model
    Topologies model defined in [RFC8795].
 
    module: ietf-network
-    +--rw networks
-       +--rw network* [network-id]
-          +--rw network-id                network-id
-          +--rw network-types
-          |  +--rw tet:te-topology!
-          |     +--rw mwtopo:mw-topology!
-          +--rw supporting-network* [network-ref]
-          |  +--rw network-ref
-          |          -> /nw:networks/nw:network/nw:network-id
-          +--rw node* [node-id]
-          |  +--rw node-id               node-id
-          |  +--rw supporting-node* [network-ref node-ref]
-          |  |  +--rw network-ref
-          |  |  |       -> ../../../nw:supporting-network/nw:network-ref
-          |  |  +--rw node-ref
-          |  |          -> /nw:networks/nw:network/nw:node/nw:node-id
-          |  +--rw nt:termination-point* [tp-id]
-          |  |   +--rw nt:tp-id                              tp-id
-          |  |  +--rw nt:supporting-termination-point*
-          |  |  |       [network-ref node-ref tp-ref]
-          |  |  |  +--rw nt:network-ref
-          |  |  |  |       -> ../../../nw:supporting-node/nw:network-ref
-          |  |  |  +--rw nt:node-ref
-          |  |  |  |       -> ../../../nw:supporting-node/nw:node-ref
-          |  |  |  +--rw nt:tp-ref         leafref
-          |  |  +--rw tet:te!
-          |  |     +--rw tet:admin-status?
-          |  |     |       te-types:te-admin-status
-          |  |     +--rw tet:name?                             string
-          |  |     +--ro tet:oper-status?
-          |  |     |       te-types:te-oper-status
-          |  |     +--rw mwtopo:mw-tp-choice
-          |  |        +--rw (mwtopo:mw-tp-option)?
-          |  |           +--:(mwtopo:microwave-rltp)
-          |  |           |  +--rw mwtopo:microwave-rltp!
-          |  |           +--:(mwtopo:microwave-ctp)
-          |  |              +--rw mwtopo:microwave-ctp!
-          |  +--rw tet:te-node-id?           te-types:te-node-id
-          |  +--rw tet:te!
-          |     +--ro tet:geolocation
-          |        +--ro tet:altitude?    int64
-          |        +--ro tet:latitude?    geographic-coordinate-degree
-          |        +--ro tet:longitude?   geographic-coordinate-degree
-          +--rw nt:link* [link-id]
-             +--rw nt:link-id               link-id
-             +--rw nt:source
-             |  +--rw nt:source-node?   -> ../../../nw:node/nw:node-id
-             |  +--rw nt:source-tp?     leafref
-             +--rw nt:destination
-             |  +--rw nt:dest-node?   -> ../../../nw:node/nw:node-id
-             |  +--rw nt:dest-tp?     leafref
-             +--rw tet:te!
-                +--rw (tet:bundle-stack-level)?
-                |  +--:(tet:bundle)
-                |     +--rw tet:bundled-links
-                |        +--rw tet:bundled-link* [sequence]
-                |           +--rw tet:sequence      uint32
-                |           +--rw tet:src-tp-ref?   leafref
-                |           +--rw tet:des-tp-ref?   leafref
-                +--rw tet:te-link-attributes
-                |  +--rw tet:name?                             string
-                |  +--rw tet:admin-status?
-                |  |       te-types:te-admin-status
-                |  +--rw tet:max-link-bandwidth
-                |  |  +--rw tet:te-bandwidth
-                |  |     +--rw (tet:technology)?
-                |  |        +--:(mwtopo:microwave)
-                |  |           +--ro mwtopo:mw-bandwidth?   uint64
-                |  +--rw mwtopo:mw-link-choice
-                |     +--rw (mwtopo:mw-link-option)?
-                |        +--:(mwtopo:microwave-radio-link)
-                |        |  +--rw mwtopo:microwave-radio-link!
-                |        |     +--rw mwtopo:rlt-mode
-                |        |        +--rw mwtopo:num-bonded-carriers
-                |        |        |       uint32
-                |        |        +--rw mwtopo:num-protecting-carriers
-                |        |                uint32
-                |        +--:(mwtopo:microwave-carrier)
-                |           +--rw mwtopo:microwave-carrier!
-                |              +--rw mwtopo:tx-frequency?
-                |              |       uint32
-                |              +--rw mwtopo:rx-frequency?
-                |              |       uint32
-                |              +--rw mwtopo:channel-separation?
-                |              |       uint32
-                |              +--ro mwtopo:actual-tx-cm?
-                |              |       identityref
-                |              +--ro mwtopo:actual-snir?
-                |              |       decimal64
-                |              +--ro mwtopo:actual-transmitted-level?
-                |                      decimal64
-                +--ro tet:oper-status?
+     +--rw networks
+        +--rw network* [network-id]
+           +--rw network-id                network-id
+           +--rw network-types
+           |  +--rw tet:te-topology!
+           |     +--rw mwtopo:mw-topology!
+           +--rw supporting-network* [network-ref]
+           |  +--rw network-ref
+           |          -> /nw:networks/nw:network/nw:network-id
+           +--rw node* [node-id]
+           |  +--rw node-id               node-id
+           |  +--rw supporting-node* [network-ref node-ref]
+           |  |  +--rw network-ref
+           |  |  |      -> ../../../nw:supporting-network/nw:network-ref
+           |  |  +--rw node-ref
+           |  |          -> /nw:networks/nw:network/nw:node/nw:node-id
+           |  +--rw nt:termination-point* [tp-id]
+           |  |   +--rw nt:tp-id                              tp-id
+           |  |  +--rw nt:supporting-termination-point*
+           |  |  |       [network-ref node-ref tp-ref]
+           |  |  |  +--rw nt:network-ref
+           |  |  |  |      -> ../../../nw:supporting-node/nw:network-ref
+           |  |  |  +--rw nt:node-ref
+           |  |  |  |       -> ../../../nw:supporting-node/nw:node-ref
+           |  |  |  +--rw nt:tp-ref         leafref
+           |  |  +--rw tet:te!
+           |  |     +--rw tet:admin-status?
+           |  |     |       te-types:te-admin-status
+           |  |     +--rw tet:name?                             string
+           |  |     +--ro tet:oper-status?
+           |  |     |       te-types:te-oper-status
+           |  |     +--rw mwtopo:mw-tp-choice
+           |  |        +--rw (mwtopo:mw-tp-option)?
+           |  |           +--:(mwtopo:microwave-rltp)
+           |  |           |  +--rw mwtopo:microwave-rltp!
+           |  |           +--:(mwtopo:microwave-ctp)
+           |  |              +--rw mwtopo:microwave-ctp!
+           |  +--rw tet:te-node-id?           te-types:te-node-id
+           |  +--rw tet:te!
+           |     +--ro tet:geolocation
+           |        +--ro tet:altitude?    int64
+           |        +--ro tet:latitude?    geographic-coordinate-degree
+           |        +--ro tet:longitude?   geographic-coordinate-degree
+           +--rw nt:link* [link-id]
+              +--rw nt:link-id               link-id
+              +--rw nt:source
+              |  +--rw nt:source-node?   -> ../../../nw:node/nw:node-id
+              |  +--rw nt:source-tp?     leafref
+              +--rw nt:destination
+              |  +--rw nt:dest-node?   -> ../../../nw:node/nw:node-id
+              |  +--rw nt:dest-tp?     leafref
+              +--rw tet:te!
+                 +--rw (tet:bundle-stack-level)?
+                 |  +--:(tet:bundle)
+                 |     +--rw tet:bundled-links
+                 |        +--rw tet:bundled-link* [sequence]
+                 |           +--rw tet:sequence      uint32
+                 |           +--rw tet:src-tp-ref?   leafref
+                 |           +--rw tet:des-tp-ref?   leafref
+                 +--rw tet:te-link-attributes
+                 |  +--rw tet:name?                             string
+                 |  +--rw tet:admin-status?
+                 |  |       te-types:te-admin-status
+                 |  +--rw tet:max-link-bandwidth
+                 |  |  +--rw tet:te-bandwidth
+                 |  |     +--rw (tet:technology)?
+                 |  |        +--:(mwtopo:microwave)
+                 |  |           +--ro mwtopo:mw-bandwidth?   uint64
+                 |  +--rw mwtopo:mw-link-choice
+                 |     +--rw (mwtopo:mw-link-option)?
+                 |        +--:(mwtopo:microwave-radio-link)
+                 |        |  +--rw mwtopo:microwave-radio-link!
+                 |        |     +--rw mwtopo:rlt-mode
+                 |        |        +--rw mwtopo:num-bonded-carriers
+                 |        |        |       uint32
+                 |        |        +--rw mwtopo:num-protecting-carriers
+                 |        |                uint32
+                 |        +--:(mwtopo:microwave-carrier)
+                 |           +--rw mwtopo:microwave-carrier!
+                 |              +--rw mwtopo:tx-frequency?
+                 |              |       uint32
+                 |              +--rw mwtopo:rx-frequency?
+                 |              |       uint32
+                 |              +--rw mwtopo:channel-separation?
+                 |              |       uint32
+                 |              +--ro mwtopo:actual-tx-cm?
+                 |              |       identityref
+                 |              +--ro mwtopo:actual-snir?
+                 |              |       decimal64
+                 |              +--ro mwtopo:actual-transmitted-level?
+                 |                      power
+                 +--ro tet:oper-status?
 
-A.2.  A topology with single microwave radio link
+   The Microwave Topology Model augments the TE Topology Model.
+
+        Node N1                          Node N2
+   +--------------+                 +--------------+
+   | +----------+ |                 | +----------+ | L2-network
+   | | L2-N1-   | |    L2-N1-N2     | |    L2-N2-| | -L2 topology
+   | | TP1      o---------------------o    TP2   | |
+   | +----------+ |        '        | +----------+ | Supporting
+   |          :   |        '        |   :          | ' mw link
+   |          :   |        '        |   :          | : TPs
+   | +----------+ |        '        | +----------+ |
+   | |mw-N1-    | |   mwrl-N1-N2    | |    mw-N2-| | MW-network
+   | |RLTP1     o---------------------o    RLTP2 | | -MW topology
+   | +----------+ |        *        | +----------+ |
+   |         : :  | ******* ******* |  : :         |
+   |         ::   |**             **|   ::         | Supporting
+   | +-------:--+ * *             * * +--:-------+ | : TPs
+   | |mw-N1- :  * | * mwc-N1-N2-A * | *  : mw-N2-| | * carriers as
+   | |CTP1   :  o---------------------o  : CTP2  | |   bundled links
+   | +-------:--+ | *             * | +--:-------+ |
+   |         :    |*               *|    :         |
+   | +----------+ *                 * +----------+ |
+   | |mw-N1-    * |   mwc-N1-N2-B   | *    mw-N2-| |
+   | |CTP3      o---------------------o    CTP4  | |
+   | +----------+ |                 | +----------+ |
+   +--------------+                 +--------------+
+    L2 transported over a (2+0) microwave radio link
+
+A.2.  Instance data example for Microwave Toplogy Model usage
+
+   This example shows a 2+0 mode for a bonded configuration.
+
+   {
+     "ietf-network:networks": {
+       "network": [
+         {
+           "network-id": "L2-network",
+           "network-types": {
+             "ietf-te-topology:te-topology": {
+               "ietf-eth-te-topology:eth-tran-topology": {}
+             }
+           },
+           "supporting-network": [
+             {
+               "network-ref": "mw-network"
+             }
+           ],
+           "node": [
+             {
+               "node-id": "L2-N1",
+               "supporting-node": [
+                 {
+                   "network-ref": "mw-network",
+                   "node-ref": "mw-N1"
+                 }
+               ],
+               "ietf-network-topology:termination-point": [
+                 {
+                   "tp-id": "L2-N1-TP1",
+                   "supporting-termination-point": [
+                     {
+                       "network-ref": "mw-network",
+                       "node-ref": "mw-N1",
+                       "tp-ref": "mw-N1-RLTP1"
+                     }
+                   ]
+                 }
+               ]
+             },
+             {
+               "node-id": "L2-N2",
+               "supporting-node": [
+                 {
+                   "network-ref": "mw-network",
+                   "node-ref": "mw-N2"
+                 }
+               ],
+               "ietf-network-topology:termination-point": [
+                 {
+                   "tp-id": "L2-N2-TP2",
+                   "supporting-termination-point": [
+                     {
+                       "network-ref": "mw-network",
+                       "node-ref": "mw-N2",
+                       "tp-ref": "mw-N2-RLTP2"
+                     }
+                   ]
+                 }
+               ]
+             }
+           ],
+           "ietf-network-topology:link": [
+             {
+               "link-id": "L2-N1-N2",
+               "source": {
+                 "source-node": "L2-N1",
+                 "source-tp": "L2-N1-TP1"
+               },
+               "destination": {
+                 "dest-node": "L2-N2",
+                 "dest-tp": "L2-N2-TP2"
+               },
+               "supporting-link": [
+                 {
+                   "network-ref": "mw-network",
+                   "link-ref": "mwrl-N1-N2"
+                 }
+               ]
+             }
+           ]
+         },
+         {
+           "network-id": "mw-network",
+           "network-types": {
+             "ietf-te-topology:te-topology": {
+               "ietf-microwave-topology:mw-topology": {}
+             }
+           },
+           "supporting-network": [
+             {
+               "network-ref": "mw-network"
+             }
+           ],
+           "node": [
+             {
+               "node-id": "mw-N1",
+               "supporting-node": [
+                 {
+                   "network-ref": "mw-network",
+                   "node-ref": "mw-N1"
+                 }
+               ],
+               "ietf-network-topology:termination-point": [
+                 {
+                   "tp-id": "mw-N1-RLTP1",
+                   "supporting-termination-point": [
+                     {
+                       "network-ref": "mw-network",
+                       "node-ref": "mw-N1",
+                       "tp-ref": "mw-N1-CTP1"
+                     },
+                     {
+                       "network-ref": "mw-network",
+                       "node-ref": "mw-N1",
+                       "tp-ref": "mw-N1-CTP3"
+                     }
+                   ],
+                   "ietf-te-topology:te-tp-id": "10.10.10.1",
+                   "ietf-te-topology:te": {
+                     "ietf-microwave-topology:mw-tp-choice": {
+                       "microwave-rltp": {}
+                     }
+                   }
+                 },
+                 {
+                   "tp-id": "mw-N1-CTP1",
+                   "ietf-te-topology:te-tp-id": 1,
+                   "ietf-te-topology:te": {
+                     "ietf-microwave-topology:mw-tp-choice": {
+                       "microwave-ctp": {}
+                     }
+                   }
+                 },
+                 {
+                   "tp-id": "mw-N1-CTP3",
+                   "ietf-te-topology:te-tp-id": 2,
+                   "ietf-te-topology:te": {
+                     "ietf-microwave-topology:mw-tp-choice": {
+                       "microwave-ctp": {}
+                     }
+                   }
+                 }
+               ]
+             },
+             {
+               "node-id": "mw-N2",
+               "supporting-node": [
+                 {
+                   "network-ref": "mw-network",
+                   "node-ref": "mw-N2"
+                 }
+               ],
+               "ietf-network-topology:termination-point": [
+                 {
+                   "tp-id": "mw-N2-RLTP2",
+                   "supporting-termination-point": [
+                     {
+                       "network-ref": "mw-network",
+                       "node-ref": "mw-N2",
+                       "tp-ref": "mw-N2-CTP2"
+                     },
+                     {
+                       "network-ref": "mw-network",
+                       "node-ref": "mw-N2",
+                       "tp-ref": "mw-N2-CTP4"
+                     }
+                   ],
+                   "ietf-te-topology:te-tp-id": "10.10.10.1",
+                   "ietf-te-topology:te": {
+                     "ietf-microwave-topology:mw-tp-choice": {
+                       "microwave-rltp": {}
+                     }
+                   }
+                 },
+                 {
+                   "tp-id": "mw-N2-CTP2",
+                   "ietf-te-topology:te-tp-id": 1,
+                   "ietf-te-topology:te": {
+                     "ietf-microwave-topology:mw-tp-choice": {
+                       "microwave-ctp": {}
+                     }
+                   }
+                 },
+                 {
+                   "tp-id": "mw-N2-CTP4",
+                   "ietf-te-topology:te-tp-id": 2,
+                   "ietf-te-topology:te": {
+                     "ietf-microwave-topology:mw-tp-choice": {
+                       "microwave-ctp": {}
+                     }
+                   }
+                 }
+               ]
+             }
+           ],
+           "ietf-network-topology:link": [
+             {
+               "link-id": "mwrl-N1-N2",
+               "source": {
+                 "source-node": "mw-N1",
+                 "source-tp": "mw-N1-RLTP1"
+               },
+               "destination": {
+                 "dest-node": "mw-N2",
+                 "dest-tp": "mw-N2-RLTP2"
+               },
+               "ietf-te-topology:te": {
+                 "bundled-links": {
+                   "bundled-link": [
+                     {
+                       "sequence": 1,
+                       "src-tp-ref": "mw-N1-CTP1",
+                       "des-tp-ref": "mw-N2-CTP2"
+                     },
+                     {
+                       "sequence": 2,
+                       "src-tp-ref": "mw-N1-CTP3",
+                       "des-tp-ref": "mw-N2-CTP4"
+                     }
+                   ]
+                 },
+                 "te-link-attributes": {
+                   "ietf-microwave-topology:mw-link-choice": {
+                     "microwave-radio-link": {
+                       "rlt-mode": {
+                         "num-bonded-carriers": 2,
+                         "num-protecting-carriers": 0
+                       }
+                     }
+                   }
+                 }
+               }
+             },
+             {
+               "link-id": "mwc-N1-N2-A",
+               "source": {
+                 "source-node": "mw-N1",
+                 "source-tp": "mw-N1-CTP1"
+               },
+               "destination": {
+                 "dest-node": "mw-N2",
+                 "dest-tp": "mw-N2-CTP2"
+               },
+               "ietf-te-topology:te": {
+                 "te-link-attributes": {
+                   "ietf-microwave-topology:mw-link-choice": {
+                     "microwave-carrier": {
+                       "tx-frequency": 10728000,
+                       "rx-frequency": 10615000,
+                       "channel-separation": 28000
+                     }
+                   }
+                 }
+               }
+             },
+             {
+               "link-id": "mwc-N1-N2-B",
+               "source": {
+                 "source-node": "mw-N1",
+                 "source-tp": "mw-N1-CTP3"
+               },
+               "destination": {
+                 "dest-node": "mw-N2",
+                 "dest-tp": "mw-N2-CTP4"
+               },
+               "ietf-te-topology:te": {
+                 "te-link-attributes": {
+                   "ietf-microwave-topology:mw-link-choice": {
+                     "microwave-carrier": {
+                       "tx-frequency": 10528000,
+                       "rx-frequency": 10415000,
+                       "channel-separation": 28000
+                     }
+                   }
+                 }
+               }
+             }
+           ]
+         }
+       ]
+     }
+   }
+
+A.3.  A tree for a Microwave Topology Model including related models
+
+   The tree below shows an example of the relevant leafs for a complete
+   Microwave Topology Model including interface reference topology
+   (ifref) and bandwidth-availability-topology (bwa) models.
+
+   module: ietf-network
+     +--rw networks
+        +--rw network* [network-id]
+           +--rw network-id                network-id
+           +--rw network-types
+           |  +--rw tet:te-topology!
+           |     +--rw mwtopo:mw-topology!
+           +--rw supporting-network* [network-ref]
+           |  +--rw network-ref
+           |          -> /nw:networks/nw:network/nw:network-id
+           +--rw node* [node-id]
+           |  +--rw node-id               node-id
+           |  +--rw supporting-node* [network-ref node-ref]
+           |  |  +--rw network-ref
+           |  |  |      -> ../../../nw:supporting-network/nw:network-ref
+           |  |  +--rw node-ref
+           |  |          -> /nw:networks/nw:network/nw:node/nw:node-id
+           |  +--rw nt:termination-point* [tp-id]
+           |  |   +--rw nt:tp-id                              tp-id
+           |  |  +--rw nt:supporting-termination-point*
+           |  |  |       [network-ref node-ref tp-ref]
+           |  |  |  +--rw nt:network-ref
+           |  |  |  |      -> ../../../nw:supporting-node/nw:network-ref
+           |  |  |  +--rw nt:node-ref
+           |  |  |  |       -> ../../../nw:supporting-node/nw:node-ref
+           |  |  |  +--rw nt:tp-ref         leafref
+           |  |  +--rw tet:te!
+           |  |     +--rw tet:admin-status?
+           |  |     |       te-types:te-admin-status
+           |  |     +--rw tet:name?                             string
+           |  |     +--ro tet:oper-status?
+           |  |     |       te-types:te-oper-status
+           |  |     +--rw mwtopo:mw-tp-choice
+           |  |     |  +--rw (mwtopo:mw-tp-option)?
+           |  |     |     +--:(mwtopo:microwave-rltp)
+           |  |     |     |  +--rw mwtopo:microwave-rltp!
+           |  |     |     +--:(mwtopo:microwave-ctp)
+           |  |     |        +--rw mwtopo:microwave-ctp!
+           |  |     +--rw ifref:tp-to-interface-path?  ->
+                         /if:interfaces/interface/name
+           |  +--rw tet:te-node-id?           te-types:te-node-id
+           |  +--rw tet:te!
+           |     +--ro tet:geolocation
+           |        +--ro tet:altitude?    int64
+           |        +--ro tet:latitude?    geographic-coordinate-degree
+           |        +--ro tet:longitude?   geographic-coordinate-degree
+           +--rw nt:link* [link-id]
+              +--rw nt:link-id               link-id
+              +--rw nt:source
+              |  +--rw nt:source-node?   -> ../../../nw:node/nw:node-id
+              |  +--rw nt:source-tp?     leafref
+              +--rw nt:destination
+              |  +--rw nt:dest-node?   -> ../../../nw:node/nw:node-id
+              |  +--rw nt:dest-tp?     leafref
+              +--rw tet:te!
+                 +--rw (tet:bundle-stack-level)?
+                 |  +--:(tet:bundle)
+                 |     +--rw tet:bundled-links
+                 |        +--rw tet:bundled-link* [sequence]
+                 |           +--rw tet:sequence      uint32
+                 |           +--rw tet:src-tp-ref?   leafref
+                 |           +--rw tet:des-tp-ref?   leafref
+                 +--rw tet:te-link-attributes
+                 |  +--rw tet:name?                             string
+                 |  +--rw tet:admin-status?
+                 |  |       te-types:te-admin-status
+                 |  +--rw tet:max-link-bandwidth
+                 |  |  +--rw tet:te-bandwidth
+                 |  |     +--rw (tet:technology)?
+                 |  |        +--:(mwtopo:microwave)
+                 |  |           +--ro mwtopo:mw-bandwidth?   uint64
+                 |  +--rw mwtopo:mw-link-choice
+                 |  |  +--rw (mwtopo:mw-link-option)?
+                 |  |     +--:(mwtopo:microwave-radio-link)
+                 |  |     |  +--rw mwtopo:microwave-radio-link!
+                 |  |     |     +--rw mwtopo:rlt-mode
+                 |  |     |        +--rw mwtopo:num-bonded-carriers
+                 |  |     |        |       uint32
+                 |  |     |        +--rw mwtopo:num-protecting-carriers
+                 |  |     |                uint32
+                 |  |     +--:(mwtopo:microwave-carrier)
+                 |  |        +--rw mwtopo:microwave-carrier!
+                 |  |           +--rw mwtopo:tx-frequency?
+                 |  |           |       uint32
+                 |  |           +--rw mwtopo:rx-frequency?
+                 |  |           |       uint32
+                 |  |           +--rw mwtopo:channel-separation?
+                 |  |           |       uint32
+                 |  |           +--ro mwtopo:actual-tx-cm?
+                 |  |           |       identityref
+                 |  |           +--ro mwtopo:actual-snir?
+                 |  |           |       decimal64
+                 |  |           +--ro mwtopo:actual-transmitted-level?
+                 |  |                   decimal64
+                 |  +--rw bwatopo:link-availability* [availability]
+                 |  |  +--rw bwatopo:availability      decimal64
+                 |  |  +--rw bwatopo:link-bandwidth?   uint64
+                 |  +--ro bwatopo:actual-bandwidth?    yang:gauge64
+                 +--ro tet:oper-status?
+
+A.4.  A topology example with single microwave radio link
 
    Microwave is a transport technology which can be used to transport
    client services, such as L2 Ethernet links.  When an L2 link is
@@ -881,11 +1304,14 @@ A.2.  A topology with single microwave radio link
     Topology model information to the associated interface
     management model information for Node N2
 
-      The example above, a L2 network with a supporting microwave
-      network, including microwave-topology (MW) and
-      bandwidth-availability-topology (BWA) models as well as
-      the reference to the associated interface management
-      information, is encoded in JSON as follows:
+A.5.  Instance data for microwave configurations examples
+
+   The example above, a L2 network with a supporting microwave network,
+   including microwave-topology (MW) and bandwidth-availability-topology
+   (BWA) models as well as the reference to the associated interface
+   management information, is encoded in JSON as follows:
+
+A.5.1.  Instance data for 2+0 mode
 
    This example shows a 2+0 mode for a bonded configuration.
 
@@ -1224,6 +1650,16 @@ A.2.  A topology with single microwave radio link
                },
                "ietf-te-topology:te": {
                  "te-link-attributes": {
+            "ietf-bandwidth-availability-topology:link-availability": [
+                     {
+                     "availability": "0.99",
+                     "link-bandwidth": "998423"
+                     },
+                     {
+                     "availability": "0.95",
+                     "link-bandwidth": "1048576"
+                     }
+                   ],
                    "ietf-microwave-topology:mw-link-choice": {
                      "microwave-carrier": {
                        "tx-frequency": 10728000,
@@ -1261,6 +1697,8 @@ A.2.  A topology with single microwave radio link
        ]
      }
    }
+
+A.5.2.  Instance data for 1+1 mode
 
    This example shows a 1+1 mode for protection.
 
@@ -1643,6 +2081,8 @@ A.2.  A topology with single microwave radio link
 
    Note that the examples above show one particular link
    (unidirectional) and not a complete network topology.
+
+A.5.3.  Instance data for geolocation information
 
    This example provides a json snippet that shows geolocation
    information.
