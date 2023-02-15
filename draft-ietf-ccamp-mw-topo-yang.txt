@@ -5,14 +5,14 @@
 ccamp                                                         J. Ahlberg
 Internet-Draft                                              S. Mansfield
 Intended status: Standards Track                                Ericsson
-Expires: 8 August 2023                                             M. Ye
+Expires: 19 August 2023                                            M. Ye
                                                                  I. Busi
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         4 February 2023
+                                                        15 February 2023
 
 
                 A YANG Data Model for Microwave Topology
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2023.
+   This Internet-Draft will expire on 19 August 2023.
 
 Copyright Notice
 
@@ -301,7 +301,7 @@ Table of Contents
       description
         "This is a module for microwave topology.
 
-        Copyright (c) 2022 IETF Trust and the persons
+        Copyright (c) 2023 IETF Trust and the persons
         identified as authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -314,7 +314,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see
         the RFC itself for full legal notices.";
 
-      revision 2023-02-02   {
+      revision 2023-02-15   {
         description
         "Draft to be used as a basis for the continued microwave
          team discussions";
