@@ -252,3 +252,9 @@ This example provides a json snippet that shows geolocation information.
 {::include ./json/geo-example.json}
 ~~~~
 {: artwork-name="geo-example.json"}
+
+{: numbered="false"}
+# Acknowledgments
+   This document was prepared using kramdown
+
+   The authors would like to thank ...
