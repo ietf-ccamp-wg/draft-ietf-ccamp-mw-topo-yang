@@ -38,7 +38,7 @@
         "description": "'Carrier Termination 1'",
         "type": "iana-if-type:microwaveCarrierTermination",
         "ietf-microwave-radio-link:tx-frequency": 10728000,
-        "ietf-microwave-radio-link:duplex-distance": 644000,
+        "ietf-microwave-radio-link:duplex-distance": 113000,
         "ietf-microwave-radio-link:channel-separation": 28000,
         "ietf-microwave-radio-link:rtpc": {
           "maximum-nominal-power": "20.0"
@@ -52,7 +52,7 @@
         "description": "'Carrier Termination 3'",
         "type": "iana-if-type:microwaveCarrierTermination",
         "ietf-microwave-radio-link:tx-frequency": 10528000,
-        "ietf-microwave-radio-link:duplex-distance": 644000,
+        "ietf-microwave-radio-link:duplex-distance": 113000,
         "ietf-microwave-radio-link:channel-separation": 28000,
         "ietf-microwave-radio-link:rtpc": {
           "maximum-nominal-power": "20.0"
@@ -66,7 +66,7 @@
         "description": "'Carrier Termination 2'",
         "type": "iana-if-type:microwaveCarrierTermination",
         "ietf-microwave-radio-link:tx-frequency": 10615000,
-        "ietf-microwave-radio-link:duplex-distance": 644000,
+        "ietf-microwave-radio-link:duplex-distance": 113000,
         "ietf-microwave-radio-link:channel-separation": 28000,
         "ietf-microwave-radio-link:rtpc": {
           "maximum-nominal-power": "20.0"
@@ -80,7 +80,7 @@
         "description": "'Carrier Termination 4'",
         "type": "iana-if-type:microwaveCarrierTermination",
         "ietf-microwave-radio-link:tx-frequency": 10415000,
-        "ietf-microwave-radio-link:duplex-distance": 644000,
+        "ietf-microwave-radio-link:duplex-distance": 113000,
         "ietf-microwave-radio-link:channel-separation": 28000,
         "ietf-microwave-radio-link:rtpc": {
           "maximum-nominal-power": "20.0"
@@ -209,7 +209,8 @@
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
-                  }
+                  },
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-1"
                 }
               },
               {

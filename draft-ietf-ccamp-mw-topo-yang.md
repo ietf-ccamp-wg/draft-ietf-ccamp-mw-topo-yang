@@ -92,7 +92,7 @@ A microwave radio link is always an aggregate of one or multiple carries, in var
 A microwave radio link carries a payload of traffic on higher topology layers, normally L2 Ethernet.  The leafs supporting-network, supporting-node, supporting-link, and supporting-termination-point in the generic YANG module for Network Topologies {{!RFC8345}} are expected to be used to model a relationship/dependency from higher topology layers to a supporting microwave radio link topology layer.  Appendix A includes JSON examples of an L2 Ethernet link transported over one supporting microwave link.
 
 ## Applicability of the Data Model for Traffic Engineering (TE) Topologies
-Since microwave is a point-to-point radio technology providing connectivity on L0/L1 over a radio link between two termination points and cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links, a majority of the leafs in the Data Model for Traffic Engineering (TE) Topologies augmented by the microwave topology model are not applicable.  An example of which leafs are considered applicable can be found in appendix "Examples of the application of the Topology Models" {{examples}} in this document.
+Since microwave is a point-to-point radio technology providing connectivity on L0/L1 over a radio link between two termination points and cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links, a majority of the leafs in the Data Model for Traffic Engineering (TE) Topologies augmented by the microwave topology model are not applicable.  An example of which leafs are considered applicable can be found in appendices {{examples-mw-only}} and {{examples-mw-imports}} in this document.
 
 More specifically, admin-status and oper-status are recommended to be reported for links only.  Status for termination points can be used when links are inter-domain and when the status of only one side of link is known, but since microwave is a point-to-point technology where both ends normally belong to the same domain it is not expected to be applicable in normal cases.  Furthermore, admin-status is not applicable for microwave radio links.  Enable and disable of a radio link is instead done in the constituent carriers.
 
@@ -165,11 +165,11 @@ XML: N/A; the requested URI is an XML namespace.
 
 --- back
 
-# Examples of the application of the Microwave Topology Model {#examples}
+# Microwave Topology Model with base topology models {#examples-mw-only}
 
-   This appendix provides some examples and illustrations of how the Microwave Topology Model can be used.  There is one extended tree to illustrate an example of a complete Microwave Topology Model including the relevant data nodes from network-topology and te-topology.  There are also JSON based instantiations of the Microwave Topology Model for a couple of small network examples.
+   This appendix provides some examples and illustrations of how the Microwave Topology Model can be used.  The tree illustrates an example of a complete Microwave Topology Model including the relevant data nodes from network-topology and te-topology (base topology models).  There are also JSON based instantiations of the Microwave Topology Model for a couple of small network examples.
 
-## A tree for the Microwave Topology Model including imports
+## Tree for Microwave Topology Model with base topology models
 
    The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including the augmented Network Topology Model defined in {{!RFC8345}} and the Traffic Engineering (TE) Topologies model defined in {{!RFC8795}}.
 
@@ -185,9 +185,7 @@ The Microwave Topology Model augments the TE Topology Model.
 ~~~~
 {: artwork-name="mw-only-art.txt"}
 
-## Instance data example for Microwave Toplogy Model usage
-
-This example shows a 2+0 mode for a bonded configuration.
+## Instance data for 2+0 mode for a bonded configuration
 
 ~~~~ json
 {::include ./json/example2plus0-mw-only.json}
@@ -195,7 +193,19 @@ This example shows a 2+0 mode for a bonded configuration.
 {: artwork-name="example2plus0-mw-only.json"}
 {: sourcecode-markers="false" sourcecode-name="example2plus0-mw-only.json"}
 
-## A tree for a Microwave Topology Model including related models
+## Instance data for 1+1 mode for a protected configuration
+
+~~~~ json
+{::include ./json/example1plus1-mw-only.json}
+~~~~
+{: artwork-name="example1plus1-mw-only.json"}
+{: sourcecode-markers="false" sourcecode-name="example1plus1-mw-only.json"}
+
+# Microwave Topology Model with example extensions {#examples-mw-imports}
+
+   This appendix provides an examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) and the bandwidth-availability-topology (bwa) models. There is also a snippet of json to show geolocation information instance data.
+
+## Tree for Microwave Topology Model including related models
 
    The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including interface reference topology (ifref) and bandwidth-availability-topology (bwa) models.
 
@@ -204,28 +214,16 @@ This example shows a 2+0 mode for a bonded configuration.
 ~~~~
 {: artwork-name="full.tree"}
 
-## A topology example with single microwave radio link
-
-   Microwave is a transport technology which can be used to transport
-   client services, such as L2 Ethernet links.  When an L2 link is
-   transported over a single supporting microwave radio link, the
-   topologies could be as shown below.  Note that the figure
-   just shows an example, there might be other possibilities to
-   demonstrate such a topology.  The example of the instantiation encoded
-   in JSON is using only a selected subset of the leafs from the L2
-   topology model {{?RFC8944}}.
+   Microwave is a transport technology which can be used to transport client services, such as L2 Ethernet links.  When an L2 link is transported over a single supporting microwave radio link, the topologies could be as shown below.  Note that the figure just shows an example, there might be other possibilities to demonstrate such a topology.  The example of the instantiation encoded in JSON is using only a selected subset of the leafs from the L2 topology model {{?RFC8944}}.
 
 ~~~~ ascii-art
 {::include ./art/example.txt}
 ~~~~
 {: artwork-name="example.txt"}
 
-## Instance data for microwave configurations examples
+## Instance data for 2+0 mode
 
-The example above, a L2 network with a supporting microwave network, including microwave-topology (MW) and bandwidth-availability-topology (BWA) models as well as the reference to the associated interface management information, is encoded in JSON as follows:
-
-### Instance data for 2+0 mode
-This example shows a 2+0 mode for a bonded configuration.
+A L2 network with a supporting microwave network, including microwave-topology (MW) and bandwidth-availability-topology (BWA) models as well as the reference to the associated interface management information, is encoded in JSON as follows:
 
 ~~~~ json
 {::include ./json/example2plus0.json}
@@ -233,19 +231,7 @@ This example shows a 2+0 mode for a bonded configuration.
 {: artwork-name="example2plus0.json"}
 {: sourcecode-markers="false" sourcecode-name="example2plus0.json"}
 
-### Instance data for 1+1 mode
-This example shows a 1+1 mode for protection.
-
-~~~~ json
-{::include ./json/example1plus1.json}
-~~~~
-{: artwork-name="example1plus1.json"}
-{: sourcecode-markers="false" sourcecode-name="example1plus1.json"}
-
- Note that the examples above show one particular link
- (unidirectional) and not a complete network topology.
-
-### Instance data for geolocation information
+## Instance data for geolocation information
 This example provides a json snippet that shows geolocation information.
 
 ~~~~ ascii-art

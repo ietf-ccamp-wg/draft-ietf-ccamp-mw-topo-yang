@@ -69,10 +69,6 @@
      reference "";
    }
 
-   /*
-    * Groupings
-    */
-
    grouping rlt-mode {
      description
        "This grouping provides a flexible definition of number
@@ -92,20 +88,6 @@
      }
    }
 
-   grouping microwave-rltp-attributes {
-     description "Grouping used for attributes describing a microwave
-                  radio link termination point.";
-
- //Any attributes to be included?
-   }
-
-   grouping microwave-ctp-attributes {
-     description "Grouping used for attributes describing a microwave
-                  carrier termination point.";
-
- // Any attributes to be included?
-   }
-
    grouping microwave-radio-link-attributes {
      description "Grouping used for attributes describing a microwave
                   radio link.";
@@ -116,7 +98,6 @@
          link.";
        uses rlt-mode;
      }
- // Any other attributes to be included?
    }
 
    grouping microwave-carrier-attributes {
@@ -192,8 +173,6 @@
          "ETSI EN 301 129 and
           RFC 8561: A YANG Data Model for Microwave Radio Link";
      }
-
- //Any other attributes to be included?
    }
 
    grouping microwave-bandwidth {
@@ -207,9 +186,6 @@
      }
    }
 
-   /*
-    * Data nodes
-    */
    augment "/nw:networks/nw:network/nw:network-types/"
            + "tet:te-topology" {
      description
@@ -242,7 +218,6 @@
                "Denotes a microwave radio link termination point.
                 It corresponds to a microwave RLT interface as
                 defined in RFC 8561.";
-             uses microwave-rltp-attributes;
              description
                "Denotes and describes a microwave radio link
                 termination point.";
@@ -254,7 +229,6 @@
                "Denotes a microwave carrier termination point.
                 It corresponds to a microwave CT interface as
                 defined in RFC 8561.";
-             uses microwave-ctp-attributes;
              description
                "Denotes and describes a microwave carrier
                 termination point.";
