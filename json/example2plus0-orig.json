@@ -1,5 +1,3 @@
-=============== NOTE: '\' line wrapping per RFC 8792 ================
-
 {
   "ietf-interfaces:interfaces": {
     "interface": [
@@ -212,8 +210,7 @@
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"RLT-1"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-1"
                 }
               },
               {
@@ -223,8 +220,7 @@ ace-path":"RLT-1"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-1"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-1"
                 }
               },
               {
@@ -234,8 +230,7 @@ ace-path":"CT-1"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-3"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-3"
                 }
               }
             ]
@@ -268,8 +263,7 @@ ace-path":"CT-3"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"RLT-2"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-2"
                 }
               },
               {
@@ -279,8 +273,7 @@ ace-path":"RLT-2"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-2"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-2"
                 }
               },
               {
@@ -290,8 +283,7 @@ ace-path":"CT-2"
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-ctp": {}
                   },
-                  "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-4"
+                  "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-4"
                 }
               }
             ]

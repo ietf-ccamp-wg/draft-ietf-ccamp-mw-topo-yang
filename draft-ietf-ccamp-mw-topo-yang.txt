@@ -5,18 +5,18 @@
 ccamp                                                         J. Ahlberg
 Internet-Draft                                              S. Mansfield
 Intended status: Standards Track                                Ericsson
-Expires: 28 August 2023                                            M. Ye
+Expires: 7 September 2023                                          M. Ye
                                                                  I. Busi
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                        24 February 2023
+                                                            6 March 2023
 
 
                 A YANG Data Model for Microwave Topology
-                  draft-ietf-ccamp-mw-topo-yang-latest
+                  draft-ietf-ccamp-mw-topo-yang-05
 
 Abstract
 
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 August 2023.
+   This Internet-Draft will expire on 7 September 2023.
 
 Copyright Notice
 
@@ -73,21 +73,18 @@ Table of Contents
      3.3.  Relationship with client topology model
      3.4.  Applicability of the Data Model for Traffic Engineering
            (TE) Topologies
-     3.5.  Model applicability to other technology
-     3.6.  Microwave Topology YANG Module
+     3.5.  Microwave Topology YANG Module
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
      6.1.  Normative References
      6.2.  Informative References
    Appendix A.  Microwave Topology Model with base topology models
-     A.1.  Tree for Microwave Topology Model with base topology models
-     A.2.  Instance data for 2+0 mode for a bonded configuration
-     A.3.  Instance data for 1+1 mode for a protected configuration
+     A.1.  Instance data for 2+0 mode for a bonded configuration
+     A.2.  Instance data for 1+1 mode for a protected configuration
    Appendix B.  Microwave Topology Model with example extensions
-     B.1.  Tree for Microwave Topology Model including related models
-     B.2.  Instance data for 2+0 mode
-     B.3.  Instance data for geolocation information
+     B.1.  Instance data for 2+0 mode
+     B.2.  Instance data for geolocation information
    Acknowledgments
    Authors' Addresses
 
@@ -241,11 +238,7 @@ Table of Contents
    applicable for microwave radio links.  Enable and disable of a radio
    link is instead done in the constituent carriers.
 
-3.5.  Model applicability to other technology
-
-   TBD
-
-3.6.  Microwave Topology YANG Module
+3.5.  Microwave Topology YANG Module
 
    <CODE BEGINS> file "ietf-microwave-topology.yang"
     module ietf-microwave-topology {
@@ -677,8 +670,6 @@ Appendix A.  Microwave Topology Model with base topology models
    models).  There are also JSON based instantiations of the Microwave
    Topology Model for a couple of small network examples.
 
-A.1.  Tree for Microwave Topology Model with base topology models
-
    The tree below shows an example of the relevant leafs for a complete
    Microwave Topology Model including the augmented Network Topology
    Model defined in [RFC8345] and the Traffic Engineering (TE)
@@ -806,7 +797,7 @@ A.1.  Tree for Microwave Topology Model with base topology models
    +--------------+                 +--------------+
     L2 transported over a (2+0) microwave radio link
 
-A.2.  Instance data for 2+0 mode for a bonded configuration
+A.1.  Instance data for 2+0 mode for a bonded configuration
 
    {
      "ietf-network:networks": {
@@ -1088,7 +1079,7 @@ A.2.  Instance data for 2+0 mode for a bonded configuration
      }
    }
 
-A.3.  Instance data for 1+1 mode for a protected configuration
+A.2.  Instance data for 1+1 mode for a protected configuration
 
    {
      "ietf-network:networks": {
@@ -1377,8 +1368,6 @@ Appendix B.  Microwave Topology Model with example extensions
    the bandwidth-availability-topology (bwa) models.  There is also a
    snippet of json to show geolocation information instance data.
 
-B.1.  Tree for Microwave Topology Model including related models
-
    The tree below shows an example of the relevant leafs for a complete
    Microwave Topology Model including interface reference topology
    (ifref) and bandwidth-availability-topology (bwa) models.
@@ -1560,12 +1549,14 @@ B.1.  Tree for Microwave Topology Model including related models
     Topology model information to the associated interface
     management model information for Node N2
 
-B.2.  Instance data for 2+0 mode
+B.1.  Instance data for 2+0 mode
 
    A L2 network with a supporting microwave network, including
    microwave-topology (MW) and bandwidth-availability-topology (BWA)
    models as well as the reference to the associated interface
    management information, is encoded in JSON as follows:
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
 
    {
      "ietf-interfaces:interfaces": {
@@ -1779,7 +1770,8 @@ B.2.  Instance data for 2+0 mode
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-rltp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-1"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"RLT-1"
                    }
                  },
                  {
@@ -1789,7 +1781,8 @@ B.2.  Instance data for 2+0 mode
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-ctp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-1"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"CT-1"
                    }
                  },
                  {
@@ -1799,7 +1792,8 @@ B.2.  Instance data for 2+0 mode
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-ctp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-3"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"CT-3"
                    }
                  }
                ]
@@ -1832,7 +1826,8 @@ B.2.  Instance data for 2+0 mode
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-rltp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"RLT-2"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"RLT-2"
                    }
                  },
                  {
@@ -1842,7 +1837,8 @@ B.2.  Instance data for 2+0 mode
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-ctp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-2"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"CT-2"
                    }
                  },
                  {
@@ -1852,7 +1848,8 @@ B.2.  Instance data for 2+0 mode
                      "ietf-microwave-topology:mw-tp-choice": {
                        "microwave-ctp": {}
                      },
-                     "ietf-tp-interface-reference-topology:tp-to-interface-path":"CT-4"
+                     "ietf-tp-interface-reference-topology:tp-to-interf\
+   ace-path":"CT-4"
                    }
                  }
                ]
@@ -1940,6 +1937,16 @@ B.2.  Instance data for 2+0 mode
                },
                "ietf-te-topology:te": {
                  "te-link-attributes": {
+            "ietf-bandwidth-availability-topology:link-availability": [
+                     {
+                     "availability": "0.99",
+                     "link-bandwidth": "998423"
+                     },
+                     {
+                     "availability": "0.95",
+                     "link-bandwidth": "1048576"
+                     }
+                   ],
                    "ietf-microwave-topology:mw-link-choice": {
                      "microwave-carrier": {
                        "tx-frequency": 10528000,
@@ -1956,7 +1963,7 @@ B.2.  Instance data for 2+0 mode
      }
    }
 
-B.3.  Instance data for geolocation information
+B.2.  Instance data for geolocation information
 
    This example provides a json snippet that shows geolocation
    information.

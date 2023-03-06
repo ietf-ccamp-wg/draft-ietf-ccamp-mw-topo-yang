@@ -96,9 +96,6 @@ Since microwave is a point-to-point radio technology providing connectivity on L
 
 More specifically, admin-status and oper-status are recommended to be reported for links only.  Status for termination points can be used when links are inter-domain and when the status of only one side of link is known, but since microwave is a point-to-point technology where both ends normally belong to the same domain it is not expected to be applicable in normal cases.  Furthermore, admin-status is not applicable for microwave radio links.  Enable and disable of a radio link is instead done in the constituent carriers.
 
-## Model applicability to other technology
-TBD
-
 ## Microwave Topology YANG Module
 ~~~~ yang
 {::include ./ietf-microwave-topology.yang}
@@ -169,8 +166,6 @@ XML: N/A; the requested URI is an XML namespace.
 
    This appendix provides some examples and illustrations of how the Microwave Topology Model can be used.  The tree illustrates an example of a complete Microwave Topology Model including the relevant data nodes from network-topology and te-topology (base topology models).  There are also JSON based instantiations of the Microwave Topology Model for a couple of small network examples.
 
-## Tree for Microwave Topology Model with base topology models
-
    The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including the augmented Network Topology Model defined in {{!RFC8345}} and the Traffic Engineering (TE) Topologies model defined in {{!RFC8795}}.
 
 ~~~~ yangtree
@@ -204,8 +199,6 @@ The Microwave Topology Model augments the TE Topology Model.
 # Microwave Topology Model with example extensions {#examples-mw-imports}
 
    This appendix provides an examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) and the bandwidth-availability-topology (bwa) models. There is also a snippet of json to show geolocation information instance data.
-
-## Tree for Microwave Topology Model including related models
 
    The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including interface reference topology (ifref) and bandwidth-availability-topology (bwa) models.
 
