@@ -62,6 +62,12 @@
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
+   revision 2023-07-20   {
+     description
+     "Multi-layer fix, and a few editorials";
+     reference "";
+   }
+
    revision 2023-02-15   {
      description
      "Draft to be used as a basis for the continued microwave
@@ -147,7 +153,6 @@
      leaf actual-snir {
        type decimal64 {
          fraction-digits 1;
-         range "0..99";
        }
        units "dB";
        config false;
@@ -161,7 +166,6 @@
      leaf actual-transmitted-level {
        type decimal64 {
          fraction-digits 1;
-         range "0..99";
        }
        units "dBm";
        config false;
@@ -179,7 +183,7 @@
      description "Grouping used for microwave bandwidth.";
      leaf mw-bandwidth {
        type uint64;
-       units "Kbps";
+       units "bits/seconds";
        config false;
        description
          "Nominal microwave radio link and carrier bandwidth.";
@@ -194,6 +198,22 @@
      container mw-topology {
        presence "Indicates a topology type of microwave.";
        description "Microwave topology type";
+     }
+   }
+
+   augment "/nw:networks/nw:network/nw:node/tet:te"
+        + "/tet:te-node-attributes" {
+    when "/nw:networks/nw:network/nw:network-types"
+       + "/tet:te-topology/mwtopo:mw-topology" {
+       description
+         "Augmentation parameters apply only for networks with an
+          microwave network topology type.";
+     }
+     description
+       "Augment network node to indicate a microwave node.";
+     container mw-node {
+       presence "Indicates a microwave node.";
+       description "Microwave node";
      }
    }
 
@@ -249,9 +269,11 @@
      description
        "Augmentation to add microwave technology specific
         characteristics to a link.";
-     container mw-link-choice {
+     container mw-link {
+       presence "This indicates a microwave link";
        description "Specification of type of link.";
        choice mw-link-option {
+         mandatory true;
          description "Selection of type of link.";
          case microwave-radio-link {
            container "microwave-radio-link" {
