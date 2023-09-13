@@ -54,7 +54,7 @@ This document defines a YANG data model to describe microwave/millimeter radio l
 
 # Introduction
 
-This document defines a YANG data model to describe topologies of microwave/millimeter wave (hereafter microwave is used to simplify the text).  The YANG data model describes radio links, supporting carrier(s) and the associated termination points. A carrier is a description of a link providing transport capacity over the air by a single carrier.  It is typically defined by its transmitting and receiving frequencies.  A radio link is a link providing the aggregated transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and TDM.  The model augments "YANG Data Model for Traffic Engineering (TE) Topologies" defined in {{!RFC8795}}, which is based on "A YANG Data Model for Network Topologies" defined in {{!RFC8345}}.
+This document defines a YANG data model to describe topologies of microwave/millimeter wave (hereafter microwave is used to simplify the text).  The YANG data model describes radio links, supporting carrier(s) and the associated termination points {{!RFC8561}}. A carrier is a description of a link providing transport capacity over the air by a single carrier.  It is typically defined by its transmitting and receiving frequencies.  A radio link is a link providing the aggregated transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and TDM.  The model augments "YANG Data Model for Traffic Engineering (TE) Topologies" defined in {{!RFC8795}}, which is based on "A YANG Data Model for Network Topologies" defined in {{!RFC8345}}.
 
 The microwave point-to-point radio technology provides connectivity on L0/L1 over a radio link between two termination points, using one or several supporting carriers in aggregated or protected configurations.  That application of microwave technology cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links. Instead, a payload of traffic on higher topology layers, normally L2 Ethernet, is carried over the microwave radio link and when the microwave radio link is terminated at the endpoints, cross-connection and switching can be performed on that higher layer creating connectivity across multiple supporting microwave radio links.
 
@@ -67,9 +67,17 @@ The microwave topology model is expected to be used between a Provisioning Netwo
 ## Terminology and Definitions
 The following acronyms are used in this document:
 
-PNC Provisioning Network Controller
+CTP Carrier Termination Point
+
+RLT Radio Link Terminal
+
+RLTP Radio Link Termination Point
+
+SNIR Signal Noise Interference Ratio
 
 MDSC Multi Domain Service Coordinator
+
+PNC Provisioning Network Controller
 
 ## Tree Structure
 A simplified graphical representation of the data model is used in chapter 3.1 of this document.  The meaning of the symbols in these diagrams is defined in {{?RFC8340}}.
@@ -86,7 +94,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 {: artwork-name="mw.tree"}
 
 ## Relationship between radio links and carriers
-A microwave radio link is always an aggregate of one or multiple carries, in various configurations/modes.  The supporting carriers are identified by its termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{!RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes JSON examples of how such a relationship can be modelled.
+A microwave radio link is always an aggregate of one or multiple carriers, in various configurations/modes.  The supporting carriers are identified by their termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{!RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes JSON examples of how such a relationship can be modelled.
 
 ## Relationship with client topology model
 A microwave radio link carries a payload of traffic on higher topology layers, normally L2 Ethernet.  The leafs supporting-network, supporting-node, supporting-link, and supporting-termination-point in the generic YANG module for Network Topologies {{!RFC8345}} are expected to be used to model a relationship/dependency from higher topology layers to a supporting microwave radio link topology layer.  Appendix A includes JSON examples of an L2 Ethernet link transported over one supporting microwave link.
@@ -198,7 +206,7 @@ The Microwave Topology Model augments the TE Topology Model.
 
 # Microwave Topology Model with example extensions {#examples-mw-imports}
 
-   This appendix provides an examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) and the bandwidth-availability-topology (bwa) models. There is also a snippet of json to show geolocation information instance data.
+   This appendix provides an examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) and the bandwidth-availability-topology (bwa) models. There is also a snippet of json to show geolocation information instance data.  When the json files have long lines, {{?RFC8792}} is used to wrap the long lines.
 
    The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including interface reference topology (ifref) and bandwidth-availability-topology (bwa) models.
 
@@ -236,4 +244,4 @@ This example provides a json snippet that shows geolocation information.
 # Acknowledgments
    This document was prepared using kramdown
 
-   The authors would like to thank ...
+   The authors would like to thank Tom Petch for his review.

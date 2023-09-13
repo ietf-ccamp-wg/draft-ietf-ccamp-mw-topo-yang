@@ -1042,11 +1042,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Microwave Topology YANG Model</td>
-<td class="right">March 2023</td>
+<td class="right">September 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ahlberg, et al.</td>
-<td class="center">Expires 7 September 2023</td>
+<td class="center">Expires 16 March 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ccamp-mw-topo-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-03-06" class="published">6 March 2023</time>
+<time datetime="2023-09-13" class="published">13 September 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-09-07">7 September 2023</time></dd>
+<dd class="expires"><time datetime="2024-03-16">16 March 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1126,7 +1126,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 March 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1243,7 +1243,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document defines a YANG data model to describe topologies of microwave/millimeter wave (hereafter microwave is used to simplify the text).  The YANG data model describes radio links, supporting carrier(s) and the associated termination points. A carrier is a description of a link providing transport capacity over the air by a single carrier.  It is typically defined by its transmitting and receiving frequencies.  A radio link is a link providing the aggregated transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and TDM.  The model augments "YANG Data Model for Traffic Engineering (TE) Topologies" defined in <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span>, which is based on "A YANG Data Model for Network Topologies" defined in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">This document defines a YANG data model to describe topologies of microwave/millimeter wave (hereafter microwave is used to simplify the text).  The YANG data model describes radio links, supporting carrier(s) and the associated termination points <span>[<a href="#RFC8561" class="cite xref">RFC8561</a>]</span>. A carrier is a description of a link providing transport capacity over the air by a single carrier.  It is typically defined by its transmitting and receiving frequencies.  A radio link is a link providing the aggregated transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and TDM.  The model augments "YANG Data Model for Traffic Engineering (TE) Topologies" defined in <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span>, which is based on "A YANG Data Model for Network Topologies" defined in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The microwave point-to-point radio technology provides connectivity on L0/L1 over a radio link between two termination points, using one or several supporting carriers in aggregated or protected configurations.  That application of microwave technology cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links. Instead, a payload of traffic on higher topology layers, normally L2 Ethernet, is carried over the microwave radio link and when the microwave radio link is terminated at the endpoints, cross-connection and switching can be performed on that higher layer creating connectivity across multiple supporting microwave radio links.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">The microwave topology model is expected to be used between a Provisioning Network Controller (PNC) and a Multi Domain Service Coordinator(MDSC) <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>. Examples of use cases that can be supported are:<a href="#section-1-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-1-4">
@@ -1260,8 +1260,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-terminology-and-definitions" class="section-name selfRef">Terminology and Definitions</a>
         </h3>
 <p id="section-1.1-1">The following acronyms are used in this document:<a href="#section-1.1-1" class="pilcrow">¶</a></p>
-<p id="section-1.1-2">PNC Provisioning Network Controller<a href="#section-1.1-2" class="pilcrow">¶</a></p>
-<p id="section-1.1-3">MDSC Multi Domain Service Coordinator<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">CTP Carrier Termination Point<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">RLT Radio Link Terminal<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<p id="section-1.1-4">RLTP Radio Link Termination Point<a href="#section-1.1-4" class="pilcrow">¶</a></p>
+<p id="section-1.1-5">SNIR Signal Noise Interference Ratio<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+<p id="section-1.1-6">MDSC Multi Domain Service Coordinator<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+<p id="section-1.1-7">PNC Provisioning Network Controller<a href="#section-1.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="tree-structure">
@@ -1332,7 +1336,7 @@ module: ietf-microwave-topology
         <h3 id="name-relationship-between-radio-">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-relationship-between-radio-" class="section-name selfRef">Relationship between radio links and carriers</a>
         </h3>
-<p id="section-3.2-1">A microwave radio link is always an aggregate of one or multiple carries, in various configurations/modes.  The supporting carriers are identified by its termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> for a radio-link.  The exact configuration of the included carriers is further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes JSON examples of how such a relationship can be modelled.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">A microwave radio link is always an aggregate of one or multiple carriers, in various configurations/modes.  The supporting carriers are identified by their termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> for a radio-link.  The exact configuration of the included carriers is further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes JSON examples of how such a relationship can be modelled.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="relationship-with-client-topology-model">
@@ -1424,6 +1428,12 @@ module: ietf-microwave-topology
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
+   revision 2023-07-20   {
+     description
+     "Multi-layer fix, and a few editorials";
+     reference "";
+   }
+
    revision 2023-02-15   {
      description
      "Draft to be used as a basis for the continued microwave
@@ -1509,7 +1519,6 @@ module: ietf-microwave-topology
      leaf actual-snir {
        type decimal64 {
          fraction-digits 1;
-         range "0..99";
        }
        units "dB";
        config false;
@@ -1523,7 +1532,6 @@ module: ietf-microwave-topology
      leaf actual-transmitted-level {
        type decimal64 {
          fraction-digits 1;
-         range "0..99";
        }
        units "dBm";
        config false;
@@ -1541,7 +1549,7 @@ module: ietf-microwave-topology
      description "Grouping used for microwave bandwidth.";
      leaf mw-bandwidth {
        type uint64;
-       units "Kbps";
+       units "bits/seconds";
        config false;
        description
          "Nominal microwave radio link and carrier bandwidth.";
@@ -1556,6 +1564,22 @@ module: ietf-microwave-topology
      container mw-topology {
        presence "Indicates a topology type of microwave.";
        description "Microwave topology type";
+     }
+   }
+
+   augment "/nw:networks/nw:network/nw:node/tet:te"
+        + "/tet:te-node-attributes" {
+    when "/nw:networks/nw:network/nw:network-types"
+       + "/tet:te-topology/mwtopo:mw-topology" {
+       description
+         "Augmentation parameters apply only for networks with an
+          microwave network topology type.";
+     }
+     description
+       "Augment network node to indicate a microwave node.";
+     container mw-node {
+       presence "Indicates a microwave node.";
+       description "Microwave node";
      }
    }
 
@@ -1611,9 +1635,11 @@ module: ietf-microwave-topology
      description
        "Augmentation to add microwave technology specific
         characteristics to a link.";
-     container mw-link-choice {
+     container mw-link {
+       presence "This indicates a microwave link";
        description "Specification of type of link.";
        choice mw-link-option {
+         mandatory true;
          description "Selection of type of link.";
          case microwave-radio-link {
            container "microwave-radio-link" {
@@ -1774,6 +1800,10 @@ XML: N/A; the requested URI is an XML namespace.
         <dd>
 <span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8561">[RFC8561]</dt>
+        <dd>
+<span class="refAuthor">Ahlberg, J.</span>, <span class="refAuthor">Ye, M.</span>, <span class="refAuthor">Li, X.</span>, <span class="refAuthor">Spreafico, D.</span>, and <span class="refAuthor">M. Vaupotic</span>, <span class="refTitle">"A YANG Data Model for Microwave Radio Link"</span>, <span class="seriesInfo">RFC 8561</span>, <span class="seriesInfo">DOI 10.17487/RFC8561</span>, <time datetime="2019-06" class="refDate">June 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8561">https://www.rfc-editor.org/rfc/rfc8561</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8795">[RFC8795]</dt>
       <dd>
 <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Bryskin, I.</span>, <span class="refAuthor">Beeram, V.</span>, <span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Shah, H.</span>, and <span class="refAuthor">O. Gonzalez de Dios</span>, <span class="refTitle">"YANG Data Model for Traffic Engineering (TE) Topologies"</span>, <span class="seriesInfo">RFC 8795</span>, <span class="seriesInfo">DOI 10.17487/RFC8795</span>, <time datetime="2020-08" class="refDate">August 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8795">https://www.rfc-editor.org/rfc/rfc8795</a>&gt;</span>. </dd>
@@ -1792,6 +1822,10 @@ XML: N/A; the requested URI is an XML namespace.
 <dt id="RFC8453">[RFC8453]</dt>
         <dd>
 <span class="refAuthor">Ceccarelli, D., Ed.</span> and <span class="refAuthor">Y. Lee, Ed.</span>, <span class="refTitle">"Framework for Abstraction and Control of TE Networks (ACTN)"</span>, <span class="seriesInfo">RFC 8453</span>, <span class="seriesInfo">DOI 10.17487/RFC8453</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8453">https://www.rfc-editor.org/rfc/rfc8453</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8792">[RFC8792]</dt>
+        <dd>
+<span class="refAuthor">Watsen, K.</span>, <span class="refAuthor">Auerswald, E.</span>, <span class="refAuthor">Farrel, A.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Handling Long Lines in Content of Internet-Drafts and RFCs"</span>, <span class="seriesInfo">RFC 8792</span>, <span class="seriesInfo">DOI 10.17487/RFC8792</span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8792">https://www.rfc-editor.org/rfc/rfc8792</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8944">[RFC8944]</dt>
       <dd>
@@ -1948,8 +1982,7 @@ module: ietf-network
       {
         "network-id": "L2-network",
         "network-types": {
-          "ietf-te-topology:te-topology": {
-          }
+          "ietf-te-topology:te-topology": {}
         },
         "supporting-network": [
           {
@@ -2161,7 +2194,7 @@ module: ietf-network
                 ]
               },
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-radio-link": {
                     "rlt-mode": {
                       "num-bonded-carriers": 2,
@@ -2184,7 +2217,7 @@ module: ietf-network
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
                     "rx-frequency": 10615000,
@@ -2206,7 +2239,7 @@ module: ietf-network
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10528000,
                     "rx-frequency": 10415000,
@@ -2238,8 +2271,7 @@ module: ietf-network
       {
         "network-id": "L2-network",
         "network-types": {
-          "ietf-te-topology:te-topology": {
-          }
+          "ietf-te-topology:te-topology": {}
         },
         "supporting-network": [
           {
@@ -2451,7 +2483,7 @@ module: ietf-network
                 ]
               },
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-radio-link": {
                     "rlt-mode": {
                       "num-bonded-carriers": 1,
@@ -2474,7 +2506,7 @@ module: ietf-network
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
                     "rx-frequency": 10615000,
@@ -2496,7 +2528,7 @@ module: ietf-network
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
                     "rx-frequency": 10615000,
@@ -2522,7 +2554,7 @@ module: ietf-network
       <h2 id="name-microwave-topology-model-wit">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-microwave-topology-model-wit" class="section-name selfRef">Microwave Topology Model with example extensions</a>
       </h2>
-<p id="appendix-B-1">This appendix provides an examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) and the bandwidth-availability-topology (bwa) models. There is also a snippet of json to show geolocation information instance data.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">This appendix provides an examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) and the bandwidth-availability-topology (bwa) models. There is also a snippet of json to show geolocation information instance data.  When the json files have long lines, <span>[<a href="#RFC8792" class="cite xref">RFC8792</a>]</span> is used to wrap the long lines.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including interface reference topology (ifref) and bandwidth-availability-topology (bwa) models.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <div class="breakable lang-yangtree sourcecode" id="appendix-B-3">
 <pre>
@@ -2727,8 +2759,8 @@ module: ietf-network
         "name": "RLT-1",
         "description": "'Radio Link Terminal 1'",
         "type": "iana-if-type:microwaveRadioLinkTerminal",
-        "ietf-microwave-radio-link:mode":
-           "ietf-microwave-types:two-plus-zero",
+        "ietf-microwave-radio-link:mode": "ietf-microwave-types:two-\
+plus-zero",
         "ietf-microwave-radio-link:carrier-terminations": [
           "CT-1",
           "CT-3"
@@ -2738,8 +2770,8 @@ module: ietf-network
         "name": "RLT-2",
         "description": "'Radio Link Terminal 2'",
         "type": "iana-if-type:microwaveRadioLinkTerminal",
-        "ietf-microwave-radio-link:mode":
-           "ietf-microwave-types:two-plus-zero",
+        "ietf-microwave-radio-link:mode": "ietf-microwave-types:two-\
+plus-zero",
         "ietf-microwave-radio-link:carrier-terminations": [
           "CT-2",
           "CT-4"
@@ -2837,7 +2869,13 @@ module: ietf-network
                   }
                 ]
               }
-            ]
+            ],
+            "ietf-te-topology:te-node-id": "192.0.2.1",
+            "ietf-te-topology:te": {
+              "te-node-attributes": {
+                "ietf-eth-te-topology:eth-node": {}
+              }
+            }
           },
           {
             "node-id": "L2-N2",
@@ -2858,7 +2896,13 @@ module: ietf-network
                   }
                 ]
               }
-            ]
+            ],
+            "ietf-te-topology:te-node-id": "192.0.2.2",
+            "ietf-te-topology:te": {
+              "te-node-attributes": {
+                "ietf-eth-te-topology:eth-node": {}
+              }
+            }
           }
         ],
         "ietf-network-topology:link": [
@@ -2877,7 +2921,18 @@ module: ietf-network
                 "network-ref": "mw-network",
                 "link-ref": "mwrl-N1-N2"
               }
-            ]
+            ],
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "interface-switching-capability": [
+                  {
+                    "switching-capability": "ietf-te-types:switching\
+-l2sc",
+                    "encoding": "ietf-te-types:lsp-encoding-ethernet"
+                  }
+                ]
+              }
+            }
           }
         ]
       },
@@ -2923,7 +2978,7 @@ module: ietf-network
                     "microwave-rltp": {}
                   },
                   "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"RLT-1"
+ace-path": "RLT-1"
                 }
               },
               {
@@ -2934,7 +2989,7 @@ ace-path":"RLT-1"
                     "microwave-ctp": {}
                   },
                   "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-1"
+ace-path": "CT-1"
                 }
               },
               {
@@ -2945,10 +3000,16 @@ ace-path":"CT-1"
                     "microwave-ctp": {}
                   },
                   "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-3"
+ace-path": "CT-3"
                 }
               }
-            ]
+            ],
+            "ietf-te-topology:te-node-id": "192.0.2.1",
+            "ietf-te-topology:te": {
+              "te-node-attributes": {
+                "ietf-microwave-topology:mw-node": {}
+              }
+            }
           },
           {
             "node-id": "mw-N2",
@@ -2979,7 +3040,7 @@ ace-path":"CT-3"
                     "microwave-rltp": {}
                   },
                   "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"RLT-2"
+ace-path": "RLT-2"
                 }
               },
               {
@@ -2990,7 +3051,7 @@ ace-path":"RLT-2"
                     "microwave-ctp": {}
                   },
                   "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-2"
+ace-path": "CT-2"
                 }
               },
               {
@@ -3001,10 +3062,16 @@ ace-path":"CT-2"
                     "microwave-ctp": {}
                   },
                   "ietf-tp-interface-reference-topology:tp-to-interf\
-ace-path":"CT-4"
+ace-path": "CT-4"
                 }
               }
-            ]
+            ],
+            "ietf-te-topology:te-node-id": "192.0.2.1",
+            "ietf-te-topology:te": {
+              "te-node-attributes": {
+                "ietf-microwave-topology:mw-node": {}
+              }
+            }
           }
         ],
         "ietf-network-topology:link": [
@@ -3034,7 +3101,7 @@ ace-path":"CT-4"
                 ]
               },
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-radio-link": {
                     "rlt-mode": {
                       "num-bonded-carriers": 2,
@@ -3057,17 +3124,18 @@ ace-path":"CT-4"
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-         "ietf-bandwidth-availability-topology:link-availability": [
+                "ietf-bandwidth-availability-topology:link-availabil\
+ity": [
                   {
-                  "availability": "0.99",
-                  "link-bandwidth": "998423"
+                    "availability": "0.99",
+                    "link-bandwidth": "998423"
                   },
                   {
-                  "availability": "0.95",
-                  "link-bandwidth": "1048576"
+                    "availability": "0.95",
+                    "link-bandwidth": "1048576"
                   }
                 ],
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
                     "rx-frequency": 10615000,
@@ -3089,17 +3157,7 @@ ace-path":"CT-4"
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-         "ietf-bandwidth-availability-topology:link-availability": [
-                  {
-                  "availability": "0.99",
-                  "link-bandwidth": "998423"
-                  },
-                  {
-                  "availability": "0.95",
-                  "link-bandwidth": "1048576"
-                  }
-                ],
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10528000,
                     "rx-frequency": 10415000,
@@ -3155,7 +3213,7 @@ ace-path":"CT-4"
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="appendix-C-1">This document was prepared using kramdown<a href="#appendix-C-1" class="pilcrow">¶</a></p>
-<p id="appendix-C-2">The authors would like to thank ...<a href="#appendix-C-2" class="pilcrow">¶</a></p>
+<p id="appendix-C-2">The authors would like to thank Tom Petch for his review.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">

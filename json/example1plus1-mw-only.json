@@ -4,8 +4,7 @@
       {
         "network-id": "L2-network",
         "network-types": {
-          "ietf-te-topology:te-topology": {
-          }
+          "ietf-te-topology:te-topology": {}
         },
         "supporting-network": [
           {
@@ -217,7 +216,7 @@
                 ]
               },
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-radio-link": {
                     "rlt-mode": {
                       "num-bonded-carriers": 1,
@@ -240,7 +239,7 @@
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
                     "rx-frequency": 10615000,
@@ -262,7 +261,7 @@
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "ietf-microwave-topology:mw-link-choice": {
+                "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
                     "rx-frequency": 10615000,
