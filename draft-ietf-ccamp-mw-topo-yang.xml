@@ -48,7 +48,7 @@
         <email>daniela.spreafico@nokia.com</email>
       </address>
     </author>
-    <date year="2023" month="September" day="13"/>
+    <date year="2023" month="September" day="27"/>
     <area>Routing</area>
     <workgroup>ccamp</workgroup>
     <keyword>Internet-Draft</keyword>
@@ -99,31 +99,35 @@ module: ietf-microwave-topology
 
   augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
     +--rw mw-topology!
-  augment /nw:networks/nw:network/nw:node/nt:termination-point
-            /tet:te:
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes:
+    +--rw mw-node!
+  augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
     +--rw mw-tp-choice
        +--rw (mw-tp-option)?
           +--:(microwave-rltp)
           |  +--rw microwave-rltp!
-          |     +---u microwave-rltp-attributes
           +--:(microwave-ctp)
              +--rw microwave-ctp!
-                +---u microwave-ctp-attributes
-  augment /nw:networks/nw:network/nt:link/tet:te
-            /tet:te-link-attributes:
-    +--rw mw-link-choice
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
+    +--rw mw-link!
        +--rw (mw-link-option)?
           +--:(microwave-radio-link)
           |  +--rw microwave-radio-link!
-          |     +---u microwave-radio-link-attributes
+          |     +--rw rlt-mode
+          |        +--rw num-bonded-carriers        uint32
+          |        +--rw num-protecting-carriers    uint32
           +--:(microwave-carrier)
              +--rw microwave-carrier!
-                +---u microwave-carrier-attributes
-  augment /nw:networks/nw:network/nt:link/tet:te
-            /tet:te-link-attributes/tet:max-link-bandwidth
-            /tet:te-bandwidth/tet:technology:
+                +--rw tx-frequency?               uint32
+                +--rw rx-frequency?               uint32
+                +--rw channel-separation?         uint32
+                +--ro actual-tx-cm?               identityref
+                +--ro actual-snir?                decimal64
+                +--ro actual-transmitted-level?   decimal64
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+tet:max-link-bandwidth/tet:te-bandwidth/tet:technology:
     +--:(microwave)
-       +---u microwave-bandwidth
+       +--ro mw-bandwidth?   uint64
 ]]></sourcecode>
       </section>
       <section anchor="relationship-between-radio-links-and-carriers">
@@ -206,6 +210,12 @@ module: ietf-microwave-topology
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
+   revision 2023-09-27   {
+     description
+     "last call comment resolutions.";
+     reference "";
+   }
+
    revision 2023-07-20   {
      description
      "Multi-layer fix, and a few editorials";
@@ -280,8 +290,7 @@ module: ietf-microwave-topology
           frequency channels arrangement.
           Related to the data node channel-separation in RFC 8561.";
        reference
-         "ETSI EN 302 217-1 and
-          RFC 8561: A YANG Data Model for Microwave Radio Link";
+         "RFC 8561: A YANG Data Model for Microwave Radio Link";
      }
      leaf actual-tx-cm {
        type identityref {
@@ -318,8 +327,7 @@ module: ietf-microwave-topology
           Related to the data node actual-transmitted-level
           in RFC 8561.";
        reference
-         "ETSI EN 301 129 and
-          RFC 8561: A YANG Data Model for Microwave Radio Link";
+         "RFC 8561: A YANG Data Model for Microwave Radio Link";
      }
    }
 
@@ -350,7 +358,7 @@ module: ietf-microwave-topology
     when "/nw:networks/nw:network/nw:network-types"
        + "/tet:te-topology/mwtopo:mw-topology" {
        description
-         "Augmentation parameters apply only for networks with an
+         "Augmentation parameters apply only for networks with a
           microwave network topology type.";
      }
      description
@@ -366,7 +374,7 @@ module: ietf-microwave-topology
      when '../../../nw:network-types/tet:te-topology/'
           + 'mwtopo:mw-topology' {
        description
-         "Augmentation parameters apply only for networks with an
+         "Augmentation parameters apply only for networks with a
           microwave network topology type.";
      }
      description
@@ -407,7 +415,7 @@ module: ietf-microwave-topology
      when '../../../nw:network-types/tet:te-topology/'
         + 'mwtopo:mw-topology' {
        description
-         "Augmentation parameters apply only for networks with an
+         "Augmentation parameters apply only for networks with a
           microwave network topology type.";
      }
      description
@@ -446,7 +454,7 @@ module: ietf-microwave-topology
      when '../../../../../nw:network-types/tet:te-topology/'
           + 'mwtopo:mw-topology' {
        description
-         "Augmentation parameters apply only for networks with an
+         "Augmentation parameters apply only for networks with a
           microwave network topology type.";
      }
      description
@@ -760,96 +768,96 @@ XML: N/A; the requested URI is an XML namespace.
 module: ietf-network
   +--rw networks
      +--rw network* [network-id]
-        +--rw network-id                network-id
-        +--rw network-types
-        |  +--rw tet:te-topology!
-        |     +--rw mwtopo:mw-topology!
-        +--rw supporting-network* [network-ref]
-        |  +--rw network-ref
-        |          -> /nw:networks/nw:network/nw:network-id
-        +--rw node* [node-id]
-        |  +--rw node-id               node-id
-        |  +--rw supporting-node* [network-ref node-ref]
-        |  |  +--rw network-ref
-        |  |  |      -> ../../../nw:supporting-network/nw:network-ref
-        |  |  +--rw node-ref
-        |  |          -> /nw:networks/nw:network/nw:node/nw:node-id
-        |  +--rw nt:termination-point* [tp-id]
-        |  |   +--rw nt:tp-id                              tp-id
-        |  |  +--rw nt:supporting-termination-point*
-        |  |  |       [network-ref node-ref tp-ref]
-        |  |  |  +--rw nt:network-ref
-        |  |  |  |      -> ../../../nw:supporting-node/nw:network-ref
-        |  |  |  +--rw nt:node-ref
-        |  |  |  |       -> ../../../nw:supporting-node/nw:node-ref
-        |  |  |  +--rw nt:tp-ref         leafref
-        |  |  +--rw tet:te!
-        |  |     +--rw tet:admin-status?
-        |  |     |       te-types:te-admin-status
-        |  |     +--rw tet:name?                             string
-        |  |     +--ro tet:oper-status?
-        |  |     |       te-types:te-oper-status
-        |  |     +--rw mwtopo:mw-tp-choice
-        |  |        +--rw (mwtopo:mw-tp-option)?
-        |  |           +--:(mwtopo:microwave-rltp)
-        |  |           |  +--rw mwtopo:microwave-rltp!
-        |  |           +--:(mwtopo:microwave-ctp)
-        |  |              +--rw mwtopo:microwave-ctp!
-        |  +--rw tet:te-node-id?           te-types:te-node-id
-        |  +--rw tet:te!
-        |     +--ro tet:geolocation
-        |        +--ro tet:altitude?    int64
-        |        +--ro tet:latitude?    geographic-coordinate-degree
-        |        +--ro tet:longitude?   geographic-coordinate-degree
-        +--rw nt:link* [link-id]
-           +--rw nt:link-id               link-id
-           +--rw nt:source
-           |  +--rw nt:source-node?   -> ../../../nw:node/nw:node-id
-           |  +--rw nt:source-tp?     leafref
-           +--rw nt:destination
-           |  +--rw nt:dest-node?   -> ../../../nw:node/nw:node-id
-           |  +--rw nt:dest-tp?     leafref
-           +--rw tet:te!
-              +--rw (tet:bundle-stack-level)?
-              |  +--:(tet:bundle)
-              |     +--rw tet:bundled-links
-              |        +--rw tet:bundled-link* [sequence]
-              |           +--rw tet:sequence      uint32
-              |           +--rw tet:src-tp-ref?   leafref
-              |           +--rw tet:des-tp-ref?   leafref
-              +--rw tet:te-link-attributes
-              |  +--rw tet:name?                             string
-              |  +--rw tet:admin-status?
-              |  |       te-types:te-admin-status
-              |  +--rw tet:max-link-bandwidth
-              |  |  +--rw tet:te-bandwidth
-              |  |     +--rw (tet:technology)?
-              |  |        +--:(mwtopo:microwave)
-              |  |           +--ro mwtopo:mw-bandwidth?   uint64
-              |  +--rw mwtopo:mw-link-choice
-              |     +--rw (mwtopo:mw-link-option)?
-              |        +--:(mwtopo:microwave-radio-link)
-              |        |  +--rw mwtopo:microwave-radio-link!
-              |        |     +--rw mwtopo:rlt-mode
-              |        |        +--rw mwtopo:num-bonded-carriers
-              |        |        |       uint32
-              |        |        +--rw mwtopo:num-protecting-carriers
-              |        |                uint32
-              |        +--:(mwtopo:microwave-carrier)
-              |           +--rw mwtopo:microwave-carrier!
-              |              +--rw mwtopo:tx-frequency?
-              |              |       uint32
-              |              +--rw mwtopo:rx-frequency?
-              |              |       uint32
-              |              +--rw mwtopo:channel-separation?
-              |              |       uint32
-              |              +--ro mwtopo:actual-tx-cm?
-              |              |       identityref
-              |              +--ro mwtopo:actual-snir?
-              |              |       decimal64
-              |              +--ro mwtopo:actual-transmitted-level?
-              |                      power
-              +--ro tet:oper-status?
+     |  +--rw network-id                    network-id
+     |  +--rw network-types
+     |  |  +--rw tet:te-topology!
+     |  |  |  +--rw mwtopo:mw-topology!
+     |  +--rw supporting-network* [network-ref]
+     |  |  +--rw network-ref    -> /networks/network/network-id
+     |  +--rw node* [node-id]
+     |  |  +--rw node-id                   node-id
+     |  |  +--rw supporting-node* [network-ref node-ref]
+     |  |  |  +--rw network-ref    -> ../../../supporting-network/networ
+k-ref
+     |  |  |  +--rw node-ref       -> /networks/network/node/node-id
+     |  |  +--rw nt:termination-point* [tp-id]
+     |  |  |  +--rw nt:tp-id                               tp-id
+     |  |  |  +--rw nt:supporting-termination-point* [network-ref node-r
+ef tp-ref]
+     |  |  |  |  +--rw nt:network-ref    -> ../../../nw:supporting-node/
+network-ref
+     |  |  |  |  +--rw nt:node-ref       -> ../../../nw:supporting-node/
+node-ref
+     |  |  |  |  +--rw nt:tp-ref         -> /nw:networks/network[nw:netw
+ork-id=current()/../network-ref]/node[nw:node-id=current()/../node-ref]/
+termination-point/tp-id
+     |  |  |  +--rw tet:te-tp-id?                          te-types:te-t
+p-id
+     |  |  |  +--rw tet:te!
+     |  |  |  |  +--rw tet:name?                             string
+     |  |  |  |  +--ro tet:geolocation
+     |  |  |  |  |  +--ro tet:altitude?    int64
+     |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
+     |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
+     |  |  |  |  +--rw mwtopo:mw-tp-choice
+     |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
+     |  |  |  |  |     +--:(mwtopo:microwave-rltp)
+     |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
+     |  |  |  |  |     +--:(mwtopo:microwave-ctp)
+     |  |  |  |  |        +--rw mwtopo:microwave-ctp!
+     |  |  +--rw tet:te-node-id?           te-types:te-node-id
+     |  +--rw nt:link* [link-id]
+     |  |  +--rw nt:link-id                link-id
+     |  |  +--rw nt:source
+     |  |  |  +--rw nt:source-node?   -> ../../../nw:node/node-id
+     |  |  |  +--rw nt:source-tp?     -> ../../../nw:node[nw:node-id=cur
+rent()/../source-node]/termination-point/tp-id
+     |  |  +--rw nt:destination
+     |  |  |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
+     |  |  |  +--rw nt:dest-tp?     -> ../../../nw:node[nw:node-id=curre
+nt()/../dest-node]/termination-point/tp-id
+     |  |  +--rw tet:te!
+     |  |  |  +--rw (tet:bundle-stack-level)?
+     |  |  |  |  +--:(tet:bundle)
+     |  |  |  |  |  +--rw tet:bundled-links
+     |  |  |  |  |     +--rw tet:bundled-link* [sequence]
+     |  |  |  |  |        +--rw tet:sequence      uint32
+     |  |  |  |  |        +--rw tet:src-tp-ref?   -> ../../../../../nw:n
+ode[nw:node-id = current()/../../../../nt:source/source-node]/terminatio
+n-point/tp-id
+     |  |  |  |  |        +--rw tet:des-tp-ref?   -> ../../../../../nw:n
+ode[nw:node-id = current()/../../../../nt:destination/dest-node]/termina
+tion-point/tp-id
+     |  |  |  +--rw tet:te-link-attributes
+     |  |  |  |  +--rw tet:name?                             string
+     |  |  |  |  +--rw tet:max-link-bandwidth
+     |  |  |  |  |  +--rw tet:te-bandwidth
+     |  |  |  |  |     +--rw (tet:technology)?
+     |  |  |  |  |        +--:(mwtopo:microwave)
+     |  |  |  |  |           +--ro mwtopo:mw-bandwidth?       uint64
+     |  |  |  |  +--rw mwtopo:mw-link!
+     |  |  |  |     +--rw (mwtopo:mw-link-option)?
+     |  |  |  |        +--:(mwtopo:microwave-radio-link)
+     |  |  |  |        |  +--rw mwtopo:microwave-radio-link!
+     |  |  |  |        |     +--rw mwtopo:rlt-mode
+     |  |  |  |        |        +--rw mwtopo:num-bonded-carriers        
+uint32
+     |  |  |  |        |        +--rw mwtopo:num-protecting-carriers    
+uint32
+     |  |  |  |        +--:(mwtopo:microwave-carrier)
+     |  |  |  |           +--rw mwtopo:microwave-carrier!
+     |  |  |  |              +--rw mwtopo:tx-frequency?               ui
+nt32
+     |  |  |  |              +--rw mwtopo:rx-frequency?               ui
+nt32
+     |  |  |  |              +--rw mwtopo:channel-separation?         ui
+nt32
+     |  |  |  |              +--ro mwtopo:actual-tx-cm?               id
+entityref
+     |  |  |  |              +--ro mwtopo:actual-snir?                de
+cimal64
+     |  |  |  |              +--ro mwtopo:actual-transmitted-level?   de
+cimal64
 ]]></sourcecode>
       <t>The Microwave Topology Model augments the TE Topology Model.</t>
       <artwork type="ascii-art" name="mw-only-art.txt"><![CDATA[
@@ -996,7 +1004,7 @@ module: ietf-network
                     "tp-ref": "mw-N1-CTP3"
                   }
                 ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te-tp-id": "192.0.2.3",
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
@@ -1046,7 +1054,7 @@ module: ietf-network
                     "tp-ref": "mw-N2-CTP4"
                   }
                 ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te-tp-id": "192.0.2.4",
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
@@ -1279,7 +1287,7 @@ module: ietf-network
                     "tp-ref": "mw-N1-CTP3"
                   }
                 ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te-tp-id": "192.0.2.3",
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
@@ -1329,7 +1337,7 @@ module: ietf-network
                     "tp-ref": "mw-N2-CTP4"
                   }
                 ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te-tp-id": "192.0.2.4",
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
@@ -1455,102 +1463,105 @@ module: ietf-network
 module: ietf-network
   +--rw networks
      +--rw network* [network-id]
-        +--rw network-id                network-id
-        +--rw network-types
-        |  +--rw tet:te-topology!
-        |     +--rw mwtopo:mw-topology!
-        +--rw supporting-network* [network-ref]
-        |  +--rw network-ref
-        |          -> /nw:networks/nw:network/nw:network-id
-        +--rw node* [node-id]
-        |  +--rw node-id               node-id
-        |  +--rw supporting-node* [network-ref node-ref]
-        |  |  +--rw network-ref
-        |  |  |      -> ../../../nw:supporting-network/nw:network-ref
-        |  |  +--rw node-ref
-        |  |          -> /nw:networks/nw:network/nw:node/nw:node-id
-        |  +--rw nt:termination-point* [tp-id]
-        |  |   +--rw nt:tp-id                              tp-id
-        |  |  +--rw nt:supporting-termination-point*
-        |  |  |       [network-ref node-ref tp-ref]
-        |  |  |  +--rw nt:network-ref
-        |  |  |  |      -> ../../../nw:supporting-node/nw:network-ref
-        |  |  |  +--rw nt:node-ref
-        |  |  |  |       -> ../../../nw:supporting-node/nw:node-ref
-        |  |  |  +--rw nt:tp-ref         leafref
-        |  |  +--rw tet:te!
-        |  |     +--rw tet:admin-status?
-        |  |     |       te-types:te-admin-status
-        |  |     +--rw tet:name?                             string
-        |  |     +--ro tet:oper-status?
-        |  |     |       te-types:te-oper-status
-        |  |     +--rw mwtopo:mw-tp-choice
-        |  |     |  +--rw (mwtopo:mw-tp-option)?
-        |  |     |     +--:(mwtopo:microwave-rltp)
-        |  |     |     |  +--rw mwtopo:microwave-rltp!
-        |  |     |     +--:(mwtopo:microwave-ctp)
-        |  |     |        +--rw mwtopo:microwave-ctp!
-        |  |     +--rw ifref:tp-to-interface-path?  ->
-                      /if:interfaces/interface/name
-        |  +--rw tet:te-node-id?           te-types:te-node-id
-        |  +--rw tet:te!
-        |     +--ro tet:geolocation
-        |        +--ro tet:altitude?    int64
-        |        +--ro tet:latitude?    geographic-coordinate-degree
-        |        +--ro tet:longitude?   geographic-coordinate-degree
-        +--rw nt:link* [link-id]
-           +--rw nt:link-id               link-id
-           +--rw nt:source
-           |  +--rw nt:source-node?   -> ../../../nw:node/nw:node-id
-           |  +--rw nt:source-tp?     leafref
-           +--rw nt:destination
-           |  +--rw nt:dest-node?   -> ../../../nw:node/nw:node-id
-           |  +--rw nt:dest-tp?     leafref
-           +--rw tet:te!
-              +--rw (tet:bundle-stack-level)?
-              |  +--:(tet:bundle)
-              |     +--rw tet:bundled-links
-              |        +--rw tet:bundled-link* [sequence]
-              |           +--rw tet:sequence      uint32
-              |           +--rw tet:src-tp-ref?   leafref
-              |           +--rw tet:des-tp-ref?   leafref
-              +--rw tet:te-link-attributes
-              |  +--rw tet:name?                             string
-              |  +--rw tet:admin-status?
-              |  |       te-types:te-admin-status
-              |  +--rw tet:max-link-bandwidth
-              |  |  +--rw tet:te-bandwidth
-              |  |     +--rw (tet:technology)?
-              |  |        +--:(mwtopo:microwave)
-              |  |           +--ro mwtopo:mw-bandwidth?   uint64
-              |  +--rw mwtopo:mw-link-choice
-              |  |  +--rw (mwtopo:mw-link-option)?
-              |  |     +--:(mwtopo:microwave-radio-link)
-              |  |     |  +--rw mwtopo:microwave-radio-link!
-              |  |     |     +--rw mwtopo:rlt-mode
-              |  |     |        +--rw mwtopo:num-bonded-carriers
-              |  |     |        |       uint32
-              |  |     |        +--rw mwtopo:num-protecting-carriers
-              |  |     |                uint32
-              |  |     +--:(mwtopo:microwave-carrier)
-              |  |        +--rw mwtopo:microwave-carrier!
-              |  |           +--rw mwtopo:tx-frequency?
-              |  |           |       uint32
-              |  |           +--rw mwtopo:rx-frequency?
-              |  |           |       uint32
-              |  |           +--rw mwtopo:channel-separation?
-              |  |           |       uint32
-              |  |           +--ro mwtopo:actual-tx-cm?
-              |  |           |       identityref
-              |  |           +--ro mwtopo:actual-snir?
-              |  |           |       decimal64
-              |  |           +--ro mwtopo:actual-transmitted-level?
-              |  |                   decimal64
-              |  +--rw bwatopo:link-availability* [availability]
-              |  |  +--rw bwatopo:availability      decimal64
-              |  |  +--rw bwatopo:link-bandwidth?   uint64
-              |  +--ro bwatopo:actual-bandwidth?    yang:gauge64
-              +--ro tet:oper-status?
+     |  +--rw network-id                    network-id
+     |  +--rw network-types
+     |  |  +--rw tet:te-topology!
+     |  |  |  +--rw mwtopo:mw-topology!
+     |  +--rw supporting-network* [network-ref]
+     |  |  +--rw network-ref    -> /networks/network/network-id
+     |  +--rw node* [node-id]
+     |  |  +--rw node-id                   node-id
+     |  |  +--rw supporting-node* [network-ref node-ref]
+     |  |  |  +--rw network-ref    -> ../../../supporting-network/networ
+k-ref
+     |  |  |  +--rw node-ref       -> /networks/network/node/node-id
+     |  |  +--rw nt:termination-point* [tp-id]
+     |  |  |  +--rw nt:tp-id                               tp-id
+     |  |  |  +--rw nt:supporting-termination-point* [network-ref node-r
+ef tp-ref]
+     |  |  |  |  +--rw nt:network-ref    -> ../../../nw:supporting-node/
+network-ref
+     |  |  |  |  +--rw nt:node-ref       -> ../../../nw:supporting-node/
+node-ref
+     |  |  |  |  +--rw nt:tp-ref         -> /nw:networks/network[nw:netw
+ork-id=current()/../network-ref]/node[nw:node-id=current()/../node-ref]/
+termination-point/tp-id
+     |  |  |  +--rw tet:te-tp-id?                          te-types:te-t
+p-id
+     |  |  |  +--rw tet:te!
+     |  |  |  |  +--rw tet:name?                             string
+     |  |  |  |  +--ro tet:geolocation
+     |  |  |  |  |  +--ro tet:altitude?    int64
+     |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
+     |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
+     |  |  |  |  +--rw mwtopo:mw-tp-choice
+     |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
+     |  |  |  |  |     +--:(mwtopo:microwave-rltp)
+     |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
+     |  |  |  |  |     +--:(mwtopo:microwave-ctp)
+     |  |  |  |  |        +--rw mwtopo:microwave-ctp!
+     |  |  |  |  +--rw ifref:tp-to-interface-path?           -> /if:inte
+rfaces/interface/name
+     |  |  +--rw tet:te-node-id?           te-types:te-node-id
+     |  +--rw nt:link* [link-id]
+     |  |  +--rw nt:link-id                link-id
+     |  |  +--rw nt:source
+     |  |  |  +--rw nt:source-node?   -> ../../../nw:node/node-id
+     |  |  |  +--rw nt:source-tp?     -> ../../../nw:node[nw:node-id=cur
+rent()/../source-node]/termination-point/tp-id
+     |  |  +--rw nt:destination
+     |  |  |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
+     |  |  |  +--rw nt:dest-tp?     -> ../../../nw:node[nw:node-id=curre
+nt()/../dest-node]/termination-point/tp-id
+     |  |  +--rw tet:te!
+     |  |  |  +--rw (tet:bundle-stack-level)?
+     |  |  |  |  +--:(tet:bundle)
+     |  |  |  |  |  +--rw tet:bundled-links
+     |  |  |  |  |     +--rw tet:bundled-link* [sequence]
+     |  |  |  |  |        +--rw tet:sequence      uint32
+     |  |  |  |  |        +--rw tet:src-tp-ref?   -> ../../../../../nw:n
+ode[nw:node-id = current()/../../../../nt:source/source-node]/terminatio
+n-point/tp-id
+     |  |  |  |  |        +--rw tet:des-tp-ref?   -> ../../../../../nw:n
+ode[nw:node-id = current()/../../../../nt:destination/dest-node]/termina
+tion-point/tp-id
+     |  |  |  +--rw tet:te-link-attributes
+     |  |  |  |  +--rw tet:name?                             string
+     |  |  |  |  +--rw tet:admin-status?                     te-types:te
+-admin-status
+     |  |  |  |  +--rw tet:max-link-bandwidth
+     |  |  |  |  |  +--rw tet:te-bandwidth
+     |  |  |  |  |     +--rw (tet:technology)?
+     |  |  |  |  |        +--:(mwtopo:microwave)
+     |  |  |  |  |           +--ro mwtopo:mw-bandwidth?       uint64
+     |  |  |  |  +--rw mwtopo:mw-link!
+     |  |  |  |     +--rw (mwtopo:mw-link-option)?
+     |  |  |  |        +--:(mwtopo:microwave-radio-link)
+     |  |  |  |        |  +--rw mwtopo:microwave-radio-link!
+     |  |  |  |        |     +--rw mwtopo:rlt-mode
+     |  |  |  |        |        +--rw mwtopo:num-bonded-carriers        
+uint32
+     |  |  |  |        |        +--rw mwtopo:num-protecting-carriers    
+uint32
+     |  |  |  |        +--:(mwtopo:microwave-carrier)
+     |  |  |  |           +--rw mwtopo:microwave-carrier!
+     |  |  |  |              +--rw mwtopo:tx-frequency?               ui
+nt32
+     |  |  |  |              +--rw mwtopo:rx-frequency?               ui
+nt32
+     |  |  |  |              +--rw mwtopo:channel-separation?         ui
+nt32
+     |  |  |  |              +--ro mwtopo:actual-tx-cm?               id
+entityref
+     |  |  |  |              +--ro mwtopo:actual-snir?                de
+cimal64
+     |  |  |  |              +--ro mwtopo:actual-transmitted-level?   de
+cimal64
+     |  |  |  |  +--rw bwatopo:link-availability* [availability]
+     |  |  |  |  |  +--rw bwatopo:availability      decimal64
+     |  |  |  |  |  +--rw bwatopo:link-bandwidth?   uint64
+     |  |  |  |  +--ro bwatopo:actual-bandwidth?             yang:gauge6
+4
 ]]></sourcecode>
       <t>Microwave is a transport technology which can be used to transport client services, such as L2 Ethernet links.  When an L2 link is transported over a single supporting microwave radio link, the topologies could be as shown below.  Note that the figure just shows an example, there might be other possibilities to demonstrate such a topology.  The example of the instantiation encoded in JSON is using only a selected subset of the leafs from the L2 topology model <xref target="RFC8944"/>.</t>
       <artwork type="ascii-art" name="example.txt"><![CDATA[
@@ -1859,7 +1870,7 @@ plus-zero",
                     "tp-ref": "mw-N1-CTP3"
                   }
                 ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te-tp-id": "192.0.2.3",
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
@@ -1921,7 +1932,7 @@ ace-path": "CT-3"
                     "tp-ref": "mw-N2-CTP4"
                   }
                 ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te-tp-id": "192.0.2.4",
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
@@ -2092,221 +2103,221 @@ ity": [
     </section>
   </back>
   <!-- ##markdown-source:
-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
-pXKyl6w9+9y3CmOotN1Wiu5muy3KoJx1k7tLmzP45ji+BONvMyb/VONvWszH
-raVrm/+9Kutv6/8YqN2uaVIs82Nd2Wpuu1sd+Z9tai1dLao5a1qhEdSpdUVf
-Vrp2W1Ad1eMt/lKav+VyvVch1ovY1n0cvPI+Pau2V2VV7+/Aqrt6/DYP8p/q
-8Ztu8uO2JrV9/r0ql/9TWpNVqN1prMmDqEgpCo01qcmqncaafJJtvrHvvO1G
-3+6w5jf6laG1u2z17brN3OpXBl6KaOtJSjuXLWUVh1yT1aySSo+yr3vRRCdC
-LfVSFSuchzBJBqmWdbeIVJuXuIjUuvZomdJpW+qNWOdvgSKQU2rVH9YCEpX6
-QiXvVLZAK15O1almt2xvSbWBPlvWLvehonJRnAUOb07h6IPPT6Bxyrv5T6Fw
-ykvslvrmkwmtqodRKbFmnhMqqK1vet9ubW1VLOa42PpF93l163LuEQo6gv/c
-Ivr604jo9mcR0Z2/u4g+X0lEdx6HiGaOXsv8Bb/dtG4q8gbkZcUelhPeUrdM
-O3j2376pKklCRVQtNUkWwrKnI3Sfdc10BGmFmoyEJiOhyUhYxKwmI+GLik82
-GQlVLZqMBFZ63GQk5MbQZCQ0GQm57k1GQpORUILWnCHlcTUZCeJ7k5FgZ0yT
-kSC7NxkJTUZCCVpjTfK4mowE8b3JSLAzpslIYE1GgsmwJiOhyUjI2tgzEiok
-gy3KSOhauzQZCdSpyUhoMhJYlYg2GQmNiFLrLyMjoYtZBN37yUiww1pak1sV
-cuZXKRb2x/rR+Yrc8kUTC4tyZwWhVy7ALajI3vGM74TT7/rNymCv+Viabl2X
-etY1zxz55g16BYFZRXvursvi2R1ZOhtJx8rZLktCH8ZAL+9APmFJe6xszYxK
-lUDOMIon6m8jpwNf4YCvC0IyqPfQx3HTyxewoCSWsODJBvvw4ZUoLN27uUHc
-NFrANI9dUYI/a/xpa23XZvRKTG5KZzels1mhiHFTOrv605TOtiFqSmcXPo+5
-dLZmYt3S2RpD/dLZBUx1S2cvwmQvnW2v0FldOtvkFtlMlDp8yZmyrs7UpZKs
-zg8VEYBNf9jXrZNN/ecmSkWlpWqqdDdVunPUNFW6myrdTZXuf2CVbpv5XVKl
-e6EBXlSle6kZXlSlu2CS61TpXmSTa1XpLgBQf1Qt2GX4alXpLgBRn8U4V63S
-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
+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
+haEeE+kOmg0R1xVaXHHh26DHwa8yTZWJdQXPrQCmY75Z7yfdmOSP4lpFA3WM
+Jc+hq+Jnfwrf3BBYRK6q8tY08PeTufeUuorcMeSHMKSvxHSF/eNwXCfelRaK
+fWjQLpHzBJPyeq9//qu3RBxPeKy2gCbKnpmUPXAECpLILMm9ojlYxghcmSyw
+etrxtbhtdJbVswZr2jsUm7riSN61ZLPb5IpMY1ybJerkIvu0nKkf+Xwo/mCI
+Npim84S8BnO4gcfYaahZEljpo9DA4hv6eJj/U2RZjf+EjbXM2UGSVTpwZQkX
+k1DAQQ+YXSSjQyvMjIMnH39i7CO1ypRYJ2rFE0YpnmavOQI/Gq0T+W80BkP1
+tf5DnYpMwKlZZpF2iRomkW4VSCnuYuf1jqNMOrTrrAE5yE/GYzx4rLDYHB3a
+DJ5gqhgeEYyjc1wFgzpL1fIYPy0GsD6XhcwdAm4llD40i+dCnSBZeUQkmRaT
+N7b7AzZ+arnHd9eZA2LCpxPz6vnth56P6ftMiEUdm6ULTC0kGhXLpzfleW3U
+VtuPOBWN7kyhtFfzYooogWlZ9k7sU26HnXm0U7UzZ/D/W4LDlI3FjWbwOKXE
+veYkZn0vok6xxRudPdBbOfOpZzts9ylAaWdC9dp2XruqN3PThWKKdEEFc+hK
+GaoKxvRmAqTYyOGJW2lXxQTIpEDcLR7gMQzehoNOSqhK2fB9p+23b+OV2t6U
+oUW+V8FNYGVD8pdmKZ2prDxRBrOFWBO/JcPvI4tnvYJpDRpDDkydCGHcH68L
+CTr5uJKHO7hSNGkyMhVYwlKb2oYpvV5dfqQHnoJKkZNbFiCMtznlJClt2Nwy
+0oCnUS4Q6n3EwZmi515rZqpIIO70+1vyv8uSFLfueDa2O3UhuPMFCYGkAT3t
+8diO4hang/qg1HRfzYknN7120NmgW3RipJNFsGnSp7ImMUbplmb8SBBhtJMr
+bTeg3AHtytZAzuj0spJ4aaO3R9grg/XKcMUiqe7We894klZXjJ2yUSOwtt8/
+wKyiDPDP0BbKSSlwYb669A4DDICLWnMr/drhVtQY2TwAPJM1txXdw6l13s5/
+y10r/VmZl3ClaQnfd1a0P/DeU7L3yWdEDeWDTMf1DXR2OaWywSOqRCg/gNbu
+dLaSxYZgrMrUdpl2dWvLZd9ja9ewqlKvxFMLPW5lituLtSFIvoqKr3RV1+om
+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
+/wfHKVY4pAoBAA==
 
 -->
 

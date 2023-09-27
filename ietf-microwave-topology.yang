@@ -62,6 +62,12 @@
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
+   revision 2023-09-27   {
+     description
+     "last call comment resolutions.";
+     reference "";
+   }
+
    revision 2023-07-20   {
      description
      "Multi-layer fix, and a few editorials";
@@ -136,8 +142,7 @@
           frequency channels arrangement.
           Related to the data node channel-separation in RFC 8561.";
        reference
-         "ETSI EN 302 217-1 and
-          RFC 8561: A YANG Data Model for Microwave Radio Link";
+         "RFC 8561: A YANG Data Model for Microwave Radio Link";
      }
      leaf actual-tx-cm {
        type identityref {
@@ -174,8 +179,7 @@
           Related to the data node actual-transmitted-level
           in RFC 8561.";
        reference
-         "ETSI EN 301 129 and
-          RFC 8561: A YANG Data Model for Microwave Radio Link";
+         "RFC 8561: A YANG Data Model for Microwave Radio Link";
      }
    }
 
@@ -206,7 +210,7 @@
     when "/nw:networks/nw:network/nw:network-types"
        + "/tet:te-topology/mwtopo:mw-topology" {
        description
-         "Augmentation parameters apply only for networks with an
+         "Augmentation parameters apply only for networks with a
           microwave network topology type.";
      }
      description
@@ -222,7 +226,7 @@
      when '../../../nw:network-types/tet:te-topology/'
           + 'mwtopo:mw-topology' {
        description
-         "Augmentation parameters apply only for networks with an
+         "Augmentation parameters apply only for networks with a
           microwave network topology type.";
      }
      description
@@ -263,7 +267,7 @@
      when '../../../nw:network-types/tet:te-topology/'
         + 'mwtopo:mw-topology' {
        description
-         "Augmentation parameters apply only for networks with an
+         "Augmentation parameters apply only for networks with a
           microwave network topology type.";
      }
      description
@@ -302,7 +306,7 @@
      when '../../../../../nw:network-types/tet:te-topology/'
           + 'mwtopo:mw-topology' {
        description
-         "Augmentation parameters apply only for networks with an
+         "Augmentation parameters apply only for networks with a
           microwave network topology type.";
      }
      description

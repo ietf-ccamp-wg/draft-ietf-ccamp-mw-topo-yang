@@ -111,7 +111,7 @@
                     "tp-ref": "mw-N1-CTP3"
                   }
                 ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te-tp-id": "192.0.2.3",
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
@@ -161,7 +161,7 @@
                     "tp-ref": "mw-N2-CTP4"
                   }
                 ],
-                "ietf-te-topology:te-tp-id": "10.10.10.1",
+                "ietf-te-topology:te-tp-id": "192.0.2.4",
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp-choice": {
                     "microwave-rltp": {}
