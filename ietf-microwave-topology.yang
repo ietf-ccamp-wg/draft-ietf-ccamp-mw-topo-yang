@@ -142,7 +142,8 @@
           frequency channels arrangement.
           Related to the data node channel-separation in RFC 8561.";
        reference
-         "RFC 8561: A YANG Data Model for Microwave Radio Link";
+         "ETSI EN 302 217-1 and
+          RFC 8561: A YANG Data Model for Microwave Radio Link";
      }
      leaf actual-tx-cm {
        type identityref {
@@ -179,7 +180,8 @@
           Related to the data node actual-transmitted-level
           in RFC 8561.";
        reference
-         "RFC 8561: A YANG Data Model for Microwave Radio Link";
+         "ETSI EN 301 129 and
+          RFC 8561: A YANG Data Model for Microwave Radio Link";
      }
    }
 
