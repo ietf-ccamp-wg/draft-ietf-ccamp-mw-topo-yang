@@ -33,7 +33,7 @@ p-id
  |  |  |  |  |  +--ro tet:altitude?    int64
  |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
  |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
- |  |  |  |  +--rw mwtopo:mw-tp-choice
+ |  |  |  |  +--rw mwtopo:mw-tp!
  |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
  |  |  |  |  |     +--:(mwtopo:microwave-rltp)
  |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
@@ -69,9 +69,7 @@ dest-node]/termination-point/tp-id
  |  |  |  |  +--rw tet:admin-status?     te-types:te-admin-status
  |  |  |  |  +--rw tet:max-link-bandwidth
  |  |  |  |  |  +--rw tet:te-bandwidth
- |  |  |  |  |     +--rw (tet:technology)?
- |  |  |  |  |        +--:(mwtopo:microwave)
- |  |  |  |  |           +--ro mwtopo:mw-bandwidth?       uint64
+ |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
  |  |  |  |  +--rw mwtopo:mw-link!
  |  |  |  |     +--rw (mwtopo:mw-link-option)?
  |  |  |  |        +--:(mwtopo:microwave-radio-link)

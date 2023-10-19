@@ -230,7 +230,7 @@
                 ],
                 "ietf-te-topology:te-tp-id": "192.0.2.3",
                 "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
+                  "ietf-microwave-topology:mw-tp": {
                     "microwave-rltp": {}
                   },
 "ietf-tp-interface-reference-topology:tp-to-interface-path": "RLT-1"
@@ -240,7 +240,7 @@
                 "tp-id": "mw-N1-CTP1",
                 "ietf-te-topology:te-tp-id": 1,
                 "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
+                  "ietf-microwave-topology:mw-tp": {
                     "microwave-ctp": {}
                   },
 "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-1"
@@ -250,7 +250,7 @@
                 "tp-id": "mw-N1-CTP3",
                 "ietf-te-topology:te-tp-id": 2,
                 "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
+                  "ietf-microwave-topology:mw-tp": {
                     "microwave-ctp": {}
                   },
 "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-3"
@@ -289,7 +289,7 @@
                 ],
                 "ietf-te-topology:te-tp-id": "192.0.2.4",
                 "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
+                  "ietf-microwave-topology:mw-tp": {
                     "microwave-rltp": {}
                   },
 "ietf-tp-interface-reference-topology:tp-to-interface-path": "RLT-2"
@@ -299,7 +299,7 @@
                 "tp-id": "mw-N2-CTP2",
                 "ietf-te-topology:te-tp-id": 1,
                 "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
+                  "ietf-microwave-topology:mw-tp": {
                     "microwave-ctp": {}
                   },
 "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-2"
@@ -309,7 +309,7 @@
                 "tp-id": "mw-N2-CTP4",
                 "ietf-te-topology:te-tp-id": 2,
                 "ietf-te-topology:te": {
-                  "ietf-microwave-topology:mw-tp-choice": {
+                  "ietf-microwave-topology:mw-tp": {
                     "microwave-ctp": {}
                   },
 "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-4"

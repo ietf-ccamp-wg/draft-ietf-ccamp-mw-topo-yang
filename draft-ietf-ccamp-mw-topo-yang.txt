@@ -5,7 +5,7 @@
 CCAMP Working Group                                           J. Ahlberg
 Internet-Draft                                               Ericsson AB
 Intended status: Standards Track                            S. Mansfield
-Expires: 20 April 2024                                      Ericsson Inc
+Expires: 21 April 2024                                      Ericsson Inc
                                                                    M. Ye
                                                                  I. Busi
                                                      Huawei Technologies
@@ -13,7 +13,7 @@ Expires: 20 April 2024                                      Ericsson Inc
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         18 October 2023
+                                                         19 October 2023
 
 
                 A YANG Data Model for Microwave Topology
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 April 2024.
+   This Internet-Draft will expire on 21 April 2024.
 
 Copyright Notice
 
@@ -192,7 +192,7 @@ Table of Contents
      +--rw mw-node!
    augment
     /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
-     +--rw mw-tp-choice
+     +--rw mw-tp!
         +--rw (mw-tp-option)?
            +--:(microwave-rltp)
            |  +--rw microwave-rltp!
@@ -217,9 +217,8 @@ Table of Contents
                  +--ro actual-transmitted-level?   decimal64
    augment
     /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
-    tet:max-link-bandwidth/tet:te-bandwidth/tet:technology:
-     +--:(microwave)
-        +--ro mw-bandwidth?   uint64
+    tet:max-link-bandwidth/tet:te-bandwidth:
+      +--ro mw-bandwidth?   uint64
 
 3.2.  Relationship between radio links and carriers
 
@@ -333,7 +332,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see
         the RFC itself for full legal notices.";
 
-      revision 2023-09-27   {
+      revision 2023-10-19   {
         description
         "last call comment resolutions.";
         reference "";
@@ -505,7 +504,9 @@ Table of Contents
         description
           "Augmentation to add microwave technology specific
            characteristics to a termination point.";
-        container mw-tp-choice {
+        container mw-tp {
+          presence
+            "Denotes a microwave termination point.";
           description "Specification of type of termination point.";
           choice mw-tp-option {
             description "Selection of type of termination point.";
@@ -575,7 +576,7 @@ Table of Contents
       augment "/nw:networks/nw:network/nt:link/tet:te/"
               + "tet:te-link-attributes/"
               + "tet:max-link-bandwidth/"
-              + "tet:te-bandwidth/tet:technology" {
+              + "tet:te-bandwidth" {
         when '../../../../../nw:network-types/tet:te-topology/'
              + 'mwtopo:mw-topology' {
           description
@@ -584,9 +585,7 @@ Table of Contents
         }
         description
           "Augmentation for TE bandwidth.";
-        case microwave {
          uses microwave-bandwidth;
-        }
       }
     }
    <CODE ENDS>
@@ -785,7 +784,7 @@ Appendix A.  Microwave Topology Model with base topology models
     |  |  |  |  |  +--ro tet:altitude?    int64
     |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
     |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
-    |  |  |  |  +--rw mwtopo:mw-tp-choice
+    |  |  |  |  +--rw mwtopo:mw-tp
     |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
     |  |  |  |  |     +--:(mwtopo:microwave-rltp)
     |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
@@ -818,9 +817,7 @@ Appendix A.  Microwave Topology Model with base topology models
     |  |  |  |  +--rw tet:name?                             string
     |  |  |  |  +--rw tet:max-link-bandwidth
     |  |  |  |  |  +--rw tet:te-bandwidth
-    |  |  |  |  |     +--rw (tet:technology)?
-    |  |  |  |  |        +--:(mwtopo:microwave)
-    |  |  |  |  |           +--ro mwtopo:mw-bandwidth?       uint64
+    |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
     |  |  |  |  +--rw mwtopo:mw-link!
     |  |  |  |     +--rw (mwtopo:mw-link-option)?
     |  |  |  |        +--:(mwtopo:microwave-radio-link)
@@ -985,7 +982,7 @@ A.1.  Instance data for 2+0 mode for a bonded configuration
                    ],
                    "ietf-te-topology:te-tp-id": "192.0.2.3",
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-rltp": {}
                      }
                    }
@@ -994,7 +991,7 @@ A.1.  Instance data for 2+0 mode for a bonded configuration
                    "tp-id": "mw-N1-CTP1",
                    "ietf-te-topology:te-tp-id": 1,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      }
                    }
@@ -1003,7 +1000,7 @@ A.1.  Instance data for 2+0 mode for a bonded configuration
                    "tp-id": "mw-N1-CTP3",
                    "ietf-te-topology:te-tp-id": 2,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      }
                    }
@@ -1035,7 +1032,7 @@ A.1.  Instance data for 2+0 mode for a bonded configuration
                    ],
                    "ietf-te-topology:te-tp-id": "192.0.2.4",
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-rltp": {}
                      }
                    }
@@ -1044,7 +1041,7 @@ A.1.  Instance data for 2+0 mode for a bonded configuration
                    "tp-id": "mw-N2-CTP2",
                    "ietf-te-topology:te-tp-id": 1,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      }
                    }
@@ -1053,7 +1050,7 @@ A.1.  Instance data for 2+0 mode for a bonded configuration
                    "tp-id": "mw-N2-CTP4",
                    "ietf-te-topology:te-tp-id": 2,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      }
                    }
@@ -1266,7 +1263,7 @@ A.2.  Instance data for 1+1 mode for a protected configuration
                    ],
                    "ietf-te-topology:te-tp-id": "192.0.2.3",
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-rltp": {}
                      }
                    }
@@ -1275,7 +1272,7 @@ A.2.  Instance data for 1+1 mode for a protected configuration
                    "tp-id": "mw-N1-CTP1",
                    "ietf-te-topology:te-tp-id": 1,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      }
                    }
@@ -1284,7 +1281,7 @@ A.2.  Instance data for 1+1 mode for a protected configuration
                    "tp-id": "mw-N1-CTP3",
                    "ietf-te-topology:te-tp-id": 2,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      }
                    }
@@ -1316,7 +1313,7 @@ A.2.  Instance data for 1+1 mode for a protected configuration
                    ],
                    "ietf-te-topology:te-tp-id": "192.0.2.4",
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-rltp": {}
                      }
                    }
@@ -1325,7 +1322,7 @@ A.2.  Instance data for 1+1 mode for a protected configuration
                    "tp-id": "mw-N2-CTP2",
                    "ietf-te-topology:te-tp-id": 1,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      }
                    }
@@ -1334,7 +1331,7 @@ A.2.  Instance data for 1+1 mode for a protected configuration
                    "tp-id": "mw-N2-CTP4",
                    "ietf-te-topology:te-tp-id": 2,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      }
                    }
@@ -1478,7 +1475,7 @@ Appendix B.  Microwave Topology Model with example extensions
     |  |  |  |  |  +--ro tet:altitude?    int64
     |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
     |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
-    |  |  |  |  +--rw mwtopo:mw-tp-choice
+    |  |  |  |  +--rw mwtopo:mw-tp!
     |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
     |  |  |  |  |     +--:(mwtopo:microwave-rltp)
     |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
@@ -1514,9 +1511,7 @@ Appendix B.  Microwave Topology Model with example extensions
     |  |  |  |  +--rw tet:admin-status?     te-types:te-admin-status
     |  |  |  |  +--rw tet:max-link-bandwidth
     |  |  |  |  |  +--rw tet:te-bandwidth
-    |  |  |  |  |     +--rw (tet:technology)?
-    |  |  |  |  |        +--:(mwtopo:microwave)
-    |  |  |  |  |           +--ro mwtopo:mw-bandwidth?       uint64
+    |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
     |  |  |  |  +--rw mwtopo:mw-link!
     |  |  |  |     +--rw (mwtopo:mw-link-option)?
     |  |  |  |        +--:(mwtopo:microwave-radio-link)
@@ -1854,7 +1849,7 @@ B.1.  Instance data for 2+0 mode
                    ],
                    "ietf-te-topology:te-tp-id": "192.0.2.3",
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-rltp": {}
                      },
    "ietf-tp-interface-reference-topology:tp-to-interface-path": "RLT-1"
@@ -1864,7 +1859,7 @@ B.1.  Instance data for 2+0 mode
                    "tp-id": "mw-N1-CTP1",
                    "ietf-te-topology:te-tp-id": 1,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      },
    "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-1"
@@ -1874,7 +1869,7 @@ B.1.  Instance data for 2+0 mode
                    "tp-id": "mw-N1-CTP3",
                    "ietf-te-topology:te-tp-id": 2,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      },
    "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-3"
@@ -1913,7 +1908,7 @@ B.1.  Instance data for 2+0 mode
                    ],
                    "ietf-te-topology:te-tp-id": "192.0.2.4",
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-rltp": {}
                      },
    "ietf-tp-interface-reference-topology:tp-to-interface-path": "RLT-2"
@@ -1923,7 +1918,7 @@ B.1.  Instance data for 2+0 mode
                    "tp-id": "mw-N2-CTP2",
                    "ietf-te-topology:te-tp-id": 1,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      },
    "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-2"
@@ -1933,7 +1928,7 @@ B.1.  Instance data for 2+0 mode
                    "tp-id": "mw-N2-CTP4",
                    "ietf-te-topology:te-tp-id": 2,
                    "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp-choice": {
+                     "ietf-microwave-topology:mw-tp": {
                        "microwave-ctp": {}
                      },
    "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-4"

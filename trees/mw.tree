@@ -7,7 +7,7 @@ augment
   +--rw mw-node!
 augment
  /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
-  +--rw mw-tp-choice
+  +--rw mw-tp!
      +--rw (mw-tp-option)?
         +--:(microwave-rltp)
         |  +--rw microwave-rltp!
@@ -32,6 +32,5 @@ augment
               +--ro actual-transmitted-level?   decimal64
 augment
  /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
- tet:max-link-bandwidth/tet:te-bandwidth/tet:technology:
-  +--:(microwave)
-     +--ro mw-bandwidth?   uint64
+ tet:max-link-bandwidth/tet:te-bandwidth:
+   +--ro mw-bandwidth?   uint64
