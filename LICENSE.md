@@ -1,4 +1,4 @@
 # License
 
 See the
-[guidelines for contributions](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/{GITHUB_USER}/{GITHUB_REPO}/blob/{GITHUB_BRANCH}/CONTRIBUTING.md).
