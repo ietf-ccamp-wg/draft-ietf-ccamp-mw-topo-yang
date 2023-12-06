@@ -22,7 +22,11 @@ pi: [toc, sortrefs, symrefs]
 
 author:
  -
-   email: jonas.ahlberg@ericsson.com
+   role: editor
+   fullname: Scott Mansfield
+   organization: Ericsson Inc
+   email: scott.mansfield@ericsson.com
+ -
    fullname: Jonas Ahlberg
    organization: Ericsson AB
    street: Lindholmspiren 11
@@ -30,10 +34,6 @@ author:
    code: 417 56
    country: Sweden
    email: jonas.ahlberg@ericsson.com
- -
-   fullname: Scott Mansfield
-   organization: Ericsson Inc
-   email: scott.mansfield@ericsson.com
  -
    fullname: Min Ye
    organization: Huawei Technologies
@@ -43,10 +43,6 @@ author:
    country: China
    email: amy.yemin@huawei.com
  -
-   fullname: Italo Busi
-   organization: Huawei Technologies
-   email: italo.busi@huawei.com
- -
    fullname: Xi Li
    organization: NEC Laboratories Europe
    street: Kurfursten-Anlage 36
@@ -55,13 +51,19 @@ author:
    country: Germany
    email: Xi.Li@neclab.eu
  -
-    fullname: Daniela Spreafico
-    organization: Nokia - IT
-    street: Via Energy Park, 14
-    city: Vimercate (MI)
-    code: 20871
-    country: Italy
-    email: daniela.spreafico@nokia.com
+   fullname: Daniela Spreafico
+   organization: Nokia - IT
+   street: Via Energy Park, 14
+   city: Vimercate (MI)
+   code: 20871
+   country: Italy
+   email: daniela.spreafico@nokia.com
+
+contributor:
+ -
+   fullname: Italo Busi
+   organization: Huawei Technologies
+   email: italo.busi@huawei.com
 
 normative:
 
