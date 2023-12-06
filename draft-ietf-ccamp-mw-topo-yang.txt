@@ -2,18 +2,17 @@
 
 
 
-CCAMP Working Group                                           J. Ahlberg
-Internet-Draft                                               Ericsson AB
-Intended status: Standards Track                            S. Mansfield
-Expires: 21 April 2024                                      Ericsson Inc
+CCAMP Working Group                                    S. Mansfield, Ed.
+Internet-Draft                                              Ericsson Inc
+Intended status: Standards Track                              J. Ahlberg
+Expires: 8 June 2024                                         Ericsson AB
                                                                    M. Ye
-                                                                 I. Busi
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         19 October 2023
+                                                         6 December 2023
 
 
                 A YANG Data Model for Microwave Topology
@@ -57,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 April 2024.
+   This Internet-Draft will expire on 8 June 2024.
 
 Copyright Notice
 
@@ -98,6 +97,7 @@ Table of Contents
      B.1.  Instance data for 2+0 mode
      B.2.  Instance data for geolocation information
    Acknowledgments
+   Contributors
    Authors' Addresses
 
 1.  Introduction
@@ -2069,7 +2069,19 @@ Acknowledgments
 
    The authors would like to thank Tom Petch for his review.
 
+Contributors
+
+   Italo Busi
+   Huawei Technologies
+   Email: italo.busi@huawei.com
+
+
 Authors' Addresses
+
+   Scott Mansfield (editor)
+   Ericsson Inc
+   Email: scott.mansfield@ericsson.com
+
 
    Jonas Ahlberg
    Ericsson AB
@@ -2079,11 +2091,6 @@ Authors' Addresses
    Email: jonas.ahlberg@ericsson.com
 
 
-   Scott Mansfield
-   Ericsson Inc
-   Email: scott.mansfield@ericsson.com
-
-
    Min Ye
    Huawei Technologies
    No.1899, Xiyuan Avenue
@@ -2091,11 +2098,6 @@ Authors' Addresses
    611731
    China
    Email: amy.yemin@huawei.com
-
-
-   Italo Busi
-   Huawei Technologies
-   Email: italo.busi@huawei.com
 
 
    Xi Li
