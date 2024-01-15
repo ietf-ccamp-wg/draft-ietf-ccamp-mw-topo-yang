@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="640" width="448" viewBox="0 0 448 640" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<path d="M 8,32 L 8,288" fill="none" stroke="black"/>
+<path d="M 8,368 L 8,624" fill="none" stroke="black"/>
+<path d="M 24,48 L 24,80" fill="none" stroke="black"/>
+<path d="M 24,112 L 24,144" fill="none" stroke="black"/>
+<path d="M 24,176 L 24,208" fill="none" stroke="black"/>
+<path d="M 24,240 L 24,272" fill="none" stroke="black"/>
+<path d="M 24,384 L 24,416" fill="none" stroke="black"/>
+<path d="M 24,448 L 24,480" fill="none" stroke="black"/>
+<path d="M 24,512 L 24,544" fill="none" stroke="black"/>
+<path d="M 24,576 L 24,608" fill="none" stroke="black"/>
+<path d="M 120,48 L 120,80" fill="none" stroke="black"/>
+<path d="M 120,112 L 120,144" fill="none" stroke="black"/>
+<path d="M 120,176 L 120,208" fill="none" stroke="black"/>
+<path d="M 120,240 L 120,272" fill="none" stroke="black"/>
+<path d="M 120,384 L 120,416" fill="none" stroke="black"/>
+<path d="M 120,448 L 120,480" fill="none" stroke="black"/>
+<path d="M 120,512 L 120,544" fill="none" stroke="black"/>
+<path d="M 120,576 L 120,608" fill="none" stroke="black"/>
+<path d="M 136,32 L 136,56" fill="none" stroke="black"/>
+<path d="M 136,72 L 136,120" fill="none" stroke="black"/>
+<path d="M 136,136 L 136,184" fill="none" stroke="black"/>
+<path d="M 136,200 L 136,248" fill="none" stroke="black"/>
+<path d="M 136,264 L 136,288" fill="none" stroke="black"/>
+<path d="M 136,368 L 136,392" fill="none" stroke="black"/>
+<path d="M 136,408 L 136,456" fill="none" stroke="black"/>
+<path d="M 136,472 L 136,520" fill="none" stroke="black"/>
+<path d="M 136,536 L 136,584" fill="none" stroke="black"/>
+<path d="M 136,600 L 136,624" fill="none" stroke="black"/>
+<path d="M 304,32 L 304,56" fill="none" stroke="black"/>
+<path d="M 304,72 L 304,120" fill="none" stroke="black"/>
+<path d="M 304,136 L 304,184" fill="none" stroke="black"/>
+<path d="M 304,200 L 304,248" fill="none" stroke="black"/>
+<path d="M 304,264 L 304,288" fill="none" stroke="black"/>
+<path d="M 304,368 L 304,392" fill="none" stroke="black"/>
+<path d="M 304,408 L 304,456" fill="none" stroke="black"/>
+<path d="M 304,472 L 304,520" fill="none" stroke="black"/>
+<path d="M 304,536 L 304,584" fill="none" stroke="black"/>
+<path d="M 304,600 L 304,624" fill="none" stroke="black"/>
+<path d="M 320,48 L 320,80" fill="none" stroke="black"/>
+<path d="M 320,112 L 320,144" fill="none" stroke="black"/>
+<path d="M 320,176 L 320,208" fill="none" stroke="black"/>
+<path d="M 320,240 L 320,272" fill="none" stroke="black"/>
+<path d="M 320,384 L 320,416" fill="none" stroke="black"/>
+<path d="M 320,448 L 320,480" fill="none" stroke="black"/>
+<path d="M 320,512 L 320,544" fill="none" stroke="black"/>
+<path d="M 320,576 L 320,608" fill="none" stroke="black"/>
+<path d="M 424,48 L 424,80" fill="none" stroke="black"/>
+<path d="M 424,112 L 424,144" fill="none" stroke="black"/>
+<path d="M 424,176 L 424,208" fill="none" stroke="black"/>
+<path d="M 424,240 L 424,272" fill="none" stroke="black"/>
+<path d="M 424,384 L 424,416" fill="none" stroke="black"/>
+<path d="M 424,448 L 424,480" fill="none" stroke="black"/>
+<path d="M 424,512 L 424,544" fill="none" stroke="black"/>
+<path d="M 424,576 L 424,608" fill="none" stroke="black"/>
+<path d="M 440,32 L 440,288" fill="none" stroke="black"/>
+<path d="M 440,368 L 440,624" fill="none" stroke="black"/>
+<path d="M 8,32 L 136,32" fill="none" stroke="black"/>
+<path d="M 304,32 L 440,32" fill="none" stroke="black"/>
+<path d="M 24,48 L 120,48" fill="none" stroke="black"/>
+<path d="M 320,48 L 424,48" fill="none" stroke="black"/>
+<path d="M 128,64 L 312,64" fill="none" stroke="black"/>
+<path d="M 24,80 L 120,80" fill="none" stroke="black"/>
+<path d="M 320,80 L 424,80" fill="none" stroke="black"/>
+<path d="M 24,112 L 120,112" fill="none" stroke="black"/>
+<path d="M 320,112 L 424,112" fill="none" stroke="black"/>
+<path d="M 128,128 L 312,128" fill="none" stroke="black"/>
+<path d="M 24,144 L 120,144" fill="none" stroke="black"/>
+<path d="M 320,144 L 424,144" fill="none" stroke="black"/>
+<path d="M 24,176 L 120,176" fill="none" stroke="black"/>
+<path d="M 320,176 L 424,176" fill="none" stroke="black"/>
+<path d="M 128,192 L 312,192" fill="none" stroke="black"/>
+<path d="M 24,208 L 120,208" fill="none" stroke="black"/>
+<path d="M 320,208 L 424,208" fill="none" stroke="black"/>
+<path d="M 24,240 L 120,240" fill="none" stroke="black"/>
+<path d="M 320,240 L 424,240" fill="none" stroke="black"/>
+<path d="M 128,256 L 312,256" fill="none" stroke="black"/>
+<path d="M 24,272 L 120,272" fill="none" stroke="black"/>
+<path d="M 320,272 L 424,272" fill="none" stroke="black"/>
+<path d="M 8,288 L 136,288" fill="none" stroke="black"/>
+<path d="M 304,288 L 440,288" fill="none" stroke="black"/>
+<path d="M 8,320 L 440,320" fill="none" stroke="black"/>
+<path d="M 8,368 L 136,368" fill="none" stroke="black"/>
+<path d="M 304,368 L 440,368" fill="none" stroke="black"/>
+<path d="M 24,384 L 120,384" fill="none" stroke="black"/>
+<path d="M 320,384 L 424,384" fill="none" stroke="black"/>
+<path d="M 128,400 L 312,400" fill="none" stroke="black"/>
+<path d="M 24,416 L 120,416" fill="none" stroke="black"/>
+<path d="M 320,416 L 424,416" fill="none" stroke="black"/>
+<path d="M 24,448 L 120,448" fill="none" stroke="black"/>
+<path d="M 320,448 L 424,448" fill="none" stroke="black"/>
+<path d="M 128,464 L 312,464" fill="none" stroke="black"/>
+<path d="M 24,480 L 120,480" fill="none" stroke="black"/>
+<path d="M 320,480 L 424,480" fill="none" stroke="black"/>
+<path d="M 24,512 L 120,512" fill="none" stroke="black"/>
+<path d="M 320,512 L 424,512" fill="none" stroke="black"/>
+<path d="M 128,528 L 312,528" fill="none" stroke="black"/>
+<path d="M 24,544 L 120,544" fill="none" stroke="black"/>
+<path d="M 320,544 L 424,544" fill="none" stroke="black"/>
+<path d="M 24,576 L 120,576" fill="none" stroke="black"/>
+<path d="M 320,576 L 424,576" fill="none" stroke="black"/>
+<path d="M 128,592 L 312,592" fill="none" stroke="black"/>
+<path d="M 24,608 L 120,608" fill="none" stroke="black"/>
+<path d="M 320,608 L 424,608" fill="none" stroke="black"/>
+<path d="M 8,624 L 136,624" fill="none" stroke="black"/>
+<path d="M 304,624 L 440,624" fill="none" stroke="black"/>
+<polygon class="arrowhead" points="320,592 308,586.4 308,597.6" fill="black" transform="rotate(0,312,592)"/>
+<polygon class="arrowhead" points="320,528 308,522.4 308,533.6" fill="black" transform="rotate(0,312,528)"/>
+<polygon class="arrowhead" points="320,464 308,458.4 308,469.6" fill="black" transform="rotate(0,312,464)"/>
+<polygon class="arrowhead" points="320,400 308,394.4 308,405.6" fill="black" transform="rotate(0,312,400)"/>
+<polygon class="arrowhead" points="320,256 308,250.4 308,261.6" fill="black" transform="rotate(0,312,256)"/>
+<polygon class="arrowhead" points="320,192 308,186.4 308,197.6" fill="black" transform="rotate(0,312,192)"/>
+<polygon class="arrowhead" points="320,128 308,122.4 308,133.6" fill="black" transform="rotate(0,312,128)"/>
+<polygon class="arrowhead" points="320,64 308,58.4 308,69.6" fill="black" transform="rotate(0,312,64)"/>
+<polygon class="arrowhead" points="136,592 124,586.4 124,597.6" fill="black" transform="rotate(180,128,592)"/>
+<polygon class="arrowhead" points="136,528 124,522.4 124,533.6" fill="black" transform="rotate(180,128,528)"/>
+<polygon class="arrowhead" points="136,464 124,458.4 124,469.6" fill="black" transform="rotate(180,128,464)"/>
+<polygon class="arrowhead" points="136,400 124,394.4 124,405.6" fill="black" transform="rotate(180,128,400)"/>
+<polygon class="arrowhead" points="136,256 124,250.4 124,261.6" fill="black" transform="rotate(180,128,256)"/>
+<polygon class="arrowhead" points="136,192 124,186.4 124,197.6" fill="black" transform="rotate(180,128,192)"/>
+<polygon class="arrowhead" points="136,128 124,122.4 124,133.6" fill="black" transform="rotate(180,128,128)"/>
+<polygon class="arrowhead" points="136,64 124,58.4 124,69.6" fill="black" transform="rotate(180,128,64)"/>
+<g class="text">
+<text x="72" y="20">Node N1</text>
+<text x="364" y="20">Interfaces</text>
+<text x="220" y="52">tp-to-interface-path</text>
+<text x="72" y="68">L2-N1-TP1</text>
+<text x="372" y="68">L2Interface1</text>
+<text x="220" y="116">tp-to-interface-path</text>
+<text x="72" y="132">mw-N1-RLTP1</text>
+<text x="368" y="132">RLT-1</text>
+<text x="220" y="180">tp-to-interface-path</text>
+<text x="68" y="196">mw-N1-CTP1</text>
+<text x="372" y="196">CT-1</text>
+<text x="220" y="244">tp-to-interface-path</text>
+<text x="68" y="260">mw-N1-CTP3</text>
+<text x="372" y="260">CT-3</text>
+<text x="72" y="356">Node N2</text>
+<text x="364" y="356">Interfaces</text>
+<text x="220" y="388">tp-to-interface-path</text>
+<text x="72" y="404">L2-N2-TP2</text>
+<text x="372" y="404">L2Interface2</text>
+<text x="220" y="452">tp-to-interface-path</text>
+<text x="72" y="468">mw-N2-RLTP2</text>
+<text x="368" y="468">RLT-2</text>
+<text x="220" y="516">tp-to-interface-path</text>
+<text x="68" y="532">mw-N2-CTP2</text>
+<text x="372" y="532">CT-2</text>
+<text x="220" y="580">tp-to-interface-path</text>
+<text x="68" y="596">mw-N2-CTP4</text>
+<text x="372" y="596">CT-4</text>
+</g>
+</svg>

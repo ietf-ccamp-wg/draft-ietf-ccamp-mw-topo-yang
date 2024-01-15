@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="520" viewBox="0 0 520 400" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<path d="M 8,32 L 8,384" fill="none" stroke="black"/>
+<path d="M 24,48 L 24,96" fill="none" stroke="black"/>
+<path d="M 24,144 L 24,192" fill="none" stroke="black"/>
+<path d="M 24,240 L 24,288" fill="none" stroke="black"/>
+<path d="M 24,320 L 24,368" fill="none" stroke="black"/>
+<path d="M 112,48 L 112,96" fill="none" stroke="black"/>
+<path d="M 112,144 L 112,192" fill="none" stroke="black"/>
+<path d="M 112,240 L 112,288" fill="none" stroke="black"/>
+<path d="M 112,320 L 112,368" fill="none" stroke="black"/>
+<path d="M 128,32 L 128,72" fill="none" stroke="black"/>
+<path d="M 128,88 L 128,168" fill="none" stroke="black"/>
+<path d="M 128,184 L 128,248" fill="none" stroke="black"/>
+<path d="M 128,280 L 128,328" fill="none" stroke="black"/>
+<path d="M 128,360 L 128,384" fill="none" stroke="black"/>
+<path d="M 144,256 L 144,336" fill="none" stroke="black"/>
+<path d="M 272,256 L 272,336" fill="none" stroke="black"/>
+<path d="M 288,32 L 288,72" fill="none" stroke="black"/>
+<path d="M 288,88 L 288,168" fill="none" stroke="black"/>
+<path d="M 288,184 L 288,248" fill="none" stroke="black"/>
+<path d="M 288,280 L 288,328" fill="none" stroke="black"/>
+<path d="M 288,360 L 288,384" fill="none" stroke="black"/>
+<path d="M 304,48 L 304,96" fill="none" stroke="black"/>
+<path d="M 304,144 L 304,192" fill="none" stroke="black"/>
+<path d="M 304,240 L 304,288" fill="none" stroke="black"/>
+<path d="M 304,320 L 304,368" fill="none" stroke="black"/>
+<path d="M 392,48 L 392,96" fill="none" stroke="black"/>
+<path d="M 392,144 L 392,192" fill="none" stroke="black"/>
+<path d="M 392,240 L 392,288" fill="none" stroke="black"/>
+<path d="M 392,320 L 392,368" fill="none" stroke="black"/>
+<path d="M 408,32 L 408,384" fill="none" stroke="black"/>
+<path d="M 8,32 L 128,32" fill="none" stroke="black"/>
+<path d="M 288,32 L 408,32" fill="none" stroke="black"/>
+<path d="M 24,48 L 112,48" fill="none" stroke="black"/>
+<path d="M 304,48 L 392,48" fill="none" stroke="black"/>
+<path d="M 120,80 L 296,80" fill="none" stroke="black"/>
+<path d="M 24,96 L 112,96" fill="none" stroke="black"/>
+<path d="M 304,96 L 392,96" fill="none" stroke="black"/>
+<path d="M 24,144 L 112,144" fill="none" stroke="black"/>
+<path d="M 304,144 L 392,144" fill="none" stroke="black"/>
+<path d="M 120,176 L 200,176" fill="none" stroke="black"/>
+<path d="M 216,176 L 296,176" fill="none" stroke="black"/>
+<path d="M 24,192 L 112,192" fill="none" stroke="black"/>
+<path d="M 304,192 L 392,192" fill="none" stroke="black"/>
+<path d="M 24,240 L 80,240" fill="none" stroke="black"/>
+<path d="M 96,240 L 112,240" fill="none" stroke="black"/>
+<path d="M 304,240 L 320,240" fill="none" stroke="black"/>
+<path d="M 336,240 L 392,240" fill="none" stroke="black"/>
+<path d="M 120,256 L 168,256" fill="none" stroke="black"/>
+<path d="M 248,256 L 296,256" fill="none" stroke="black"/>
+<path d="M 120,272 L 136,272" fill="none" stroke="black"/>
+<path d="M 152,272 L 264,272" fill="none" stroke="black"/>
+<path d="M 280,272 L 296,272" fill="none" stroke="black"/>
+<path d="M 24,288 L 80,288" fill="none" stroke="black"/>
+<path d="M 96,288 L 112,288" fill="none" stroke="black"/>
+<path d="M 304,288 L 320,288" fill="none" stroke="black"/>
+<path d="M 336,288 L 392,288" fill="none" stroke="black"/>
+<path d="M 24,320 L 112,320" fill="none" stroke="black"/>
+<path d="M 304,320 L 392,320" fill="none" stroke="black"/>
+<path d="M 120,336 L 144,336" fill="none" stroke="black"/>
+<path d="M 272,336 L 296,336" fill="none" stroke="black"/>
+<path d="M 120,352 L 296,352" fill="none" stroke="black"/>
+<path d="M 24,368 L 112,368" fill="none" stroke="black"/>
+<path d="M 304,368 L 392,368" fill="none" stroke="black"/>
+<path d="M 8,384 L 128,384" fill="none" stroke="black"/>
+<path d="M 288,384 L 408,384" fill="none" stroke="black"/>
+<path d="M 204,168 L 248,256" fill="none" stroke="black"/>
+<path d="M 168,256 L 208,176" fill="none" stroke="black"/>
+<polygon class="arrowhead" points="300,352 288,346.4 288,357.6" fill="black" transform="rotate(0,292,352)"/>
+<polygon class="arrowhead" points="300,272 288,266.4 288,277.6" fill="black" transform="rotate(0,292,272)"/>
+<polygon class="arrowhead" points="300,176 288,170.4 288,181.6" fill="black" transform="rotate(0,292,176)"/>
+<polygon class="arrowhead" points="300,80 288,74.4 288,85.6" fill="black" transform="rotate(0,292,80)"/>
+<polygon class="arrowhead" points="132,352 120,346.4 120,357.6" fill="black" transform="rotate(180,124,352)"/>
+<polygon class="arrowhead" points="132,272 120,266.4 120,277.6" fill="black" transform="rotate(180,124,272)"/>
+<polygon class="arrowhead" points="132,176 120,170.4 120,181.6" fill="black" transform="rotate(180,124,176)"/>
+<polygon class="arrowhead" points="132,80 120,74.4 120,85.6" fill="black" transform="rotate(180,124,80)"/>
+<circle cx="112" cy="80" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="112" cy="176" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="112" cy="256" r="6" class="closeddot" fill="black"/>
+<circle cx="112" cy="272" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="112" cy="336" r="6" class="closeddot" fill="black"/>
+<circle cx="112" cy="352" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="208" cy="176" r="6" class="closeddot" fill="black"/>
+<circle cx="304" cy="80" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="304" cy="176" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="304" cy="256" r="6" class="closeddot" fill="black"/>
+<circle cx="304" cy="272" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="304" cy="336" r="6" class="closeddot" fill="black"/>
+<circle cx="304" cy="352" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="424" cy="256" r="6" class="closeddot" fill="black"/>
+<g class="text">
+<text x="72" y="20">Node N1</text>
+<text x="352" y="20">Node N2</text>
+<text x="460" y="52">L2-network</text>
+<text x="64" y="68">L2-N1-TP1</text>
+<text x="204" y="68">L2-N1-N2</text>
+<text x="344" y="68">L2-N2-TP2</text>
+<text x="468" y="68">-L2 topology</text>
+<text x="208" y="100">'</text>
+<text x="460" y="100">Supporting</text>
+<text x="96" y="116">:</text>
+<text x="208" y="116">'</text>
+<text x="320" y="116">:</text>
+<text x="456" y="116">' mw link</text>
+<text x="96" y="132">:</text>
+<text x="208" y="132">'</text>
+<text x="320" y="132">:</text>
+<text x="440" y="132">: TPs</text>
+<text x="208" y="148">'</text>
+<text x="52" y="164">mw-N1-</text>
+<text x="204" y="164">mwrl-N1-N2</text>
+<text x="340" y="164">mw-N2-</text>
+<text x="460" y="164">MW-network</text>
+<text x="48" y="180">RLTP1</text>
+<text x="336" y="180">RLTP2</text>
+<text x="468" y="180">-MW topology</text>
+<text x="96" y="212">: :</text>
+<text x="320" y="212">: :</text>
+<text x="92" y="228">::</text>
+<text x="324" y="228">::</text>
+<text x="460" y="228">Supporting</text>
+<text x="88" y="244">:</text>
+<text x="328" y="244">:</text>
+<text x="440" y="244">: TPs</text>
+<text x="60" y="260">mw-N1- :</text>
+<text x="356" y="260">: mw-N2-</text>
+<text x="468" y="260">carriers</text>
+<text x="44" y="276">CTP1</text>
+<text x="88" y="276">:</text>
+<text x="348" y="276">: CTP2</text>
+<text x="476" y="276">as bundled</text>
+<text x="88" y="292">:</text>
+<text x="208" y="292">mwc-N1-N2-A</text>
+<text x="328" y="292">:</text>
+<text x="456" y="292">links</text>
+<text x="88" y="308">:</text>
+<text x="312" y="308">:</text>
+<text x="68" y="340">mw-N1-CTP3</text>
+<text x="348" y="340">mw-N2-CTP4</text>
+<text x="208" y="372">mwc-N1-N2-B</text>
+</g>
+</svg>
