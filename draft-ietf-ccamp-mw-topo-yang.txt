@@ -5,14 +5,14 @@
 CCAMP Working Group                                    S. Mansfield, Ed.
 Internet-Draft                                              Ericsson Inc
 Intended status: Standards Track                              J. Ahlberg
-Expires: 8 June 2024                                         Ericsson AB
+Expires: 18 July 2024                                        Ericsson AB
                                                                    M. Ye
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         6 December 2023
+                                                         15 January 2024
 
 
                 A YANG Data Model for Microwave Topology
@@ -56,11 +56,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 June 2024.
+   This Internet-Draft will expire on 18 July 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -75,21 +75,21 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-     1.1.  Terminology and Definitions
+     1.1.  Abbreviations
      1.2.  Tree Structure
-   2.  Requirements Language
-   3.  Microwave Topology YANG Data Model
-     3.1.  YANG Tree
-     3.2.  Relationship between radio links and carriers
-     3.3.  Relationship with client topology model
-     3.4.  Applicability of the Data Model for Traffic Engineering
+     1.3.  Prefixes in Data Node Names
+   2.  Microwave Topology YANG Data Model
+     2.1.  YANG Tree
+     2.2.  Relationship between radio links and carriers
+     2.3.  Relationship with client topology model
+     2.4.  Applicability of the Data Model for Traffic Engineering
            (TE) Topologies
-     3.5.  Microwave Topology YANG Module
-   4.  Security Considerations
-   5.  IANA Considerations
-   6.  References
-     6.1.  Normative References
-     6.2.  Informative References
+     2.5.  Microwave Topology YANG Module
+   3.  Security Considerations
+   4.  IANA Considerations
+   5.  References
+     5.1.  Normative References
+     5.2.  Informative References
    Appendix A.  Microwave Topology Model with base topology models
      A.1.  Instance data for 2+0 mode for a bonded configuration
      A.2.  Instance data for 1+1 mode for a protected configuration
@@ -117,41 +117,41 @@ Table of Contents
    Model for Network Topologies" defined in [RFC8345].
 
    The microwave point-to-point radio technology provides connectivity
-   on L0/L1 over a radio link between two termination points, using one
-   or several supporting carriers in aggregated or protected
-   configurations.  That application of microwave technology cannot be
-   used to perform cross-connection or switching of the traffic to
-   create network connectivity across multiple microwave radio links.
-   Instead, a payload of traffic on higher topology layers, normally L2
-   Ethernet, is carried over the microwave radio link and when the
-   microwave radio link is terminated at the endpoints, cross-connection
-   and switching can be performed on that higher layer creating
-   connectivity across multiple supporting microwave radio links.
+   on Layer 0 / Layer 1 (L0/L1) over a radio link between two
+   termination points, using one or several supporting carriers in
+   aggregated or protected configurations.  That application of
+   microwave technology cannot be used to perform cross-connection or
+   switching of the traffic to create network connectivity across
+   multiple microwave radio links.  Instead, a payload of traffic on
+   higher topology layers, normally Layer 2 (L2) Ethernet, is carried
+   over the microwave radio link and when the microwave radio link is
+   terminated at the endpoints, cross-connection and switching can be
+   performed on that higher layer creating connectivity across multiple
+   supporting microwave radio links.
 
    The microwave topology model is expected to be used between a
    Provisioning Network Controller (PNC) and a Multi Domain Service
-   Coordinator(MDSC) [RFC8453].  Examples of use cases that can be
+   Coordinator (MDSC) [RFC8453].  Examples of use cases that can be
    supported are:
 
    1.  Correlation between microwave radio links and the supported links
-       on higher topology layers. e.g. an L2 Ethernet topology.  This
+       on higher topology layers (e.g., an L2 Ethernet topology).  This
        information can be used to understand how changes in the
        performance/status of a microwave radio link affect traffic on
        higher layers.
 
    2.  Propagation of relevant characteristics of a microwave radio
-       link, such as bandwidth, to higher topology layers, where it e.g.
+       link, such as bandwidth, to higher topology layers, where it
        could be used as a criterion when configuring and optimizing a
        path for a connection/service through the network end to end.
 
    3.  Optimization of the microwave radio link configurations on a
-       network level, e.g. with the purpose to minimize overall
-       interference and/or maximize the overall capacity provided by the
-       links.
+       network level, with the purpose to minimize overall interference
+       and/or maximize the overall capacity provided by the links.
 
-1.1.  Terminology and Definitions
+1.1.  Abbreviations
 
-   The following acronyms are used in this document:
+   The following abbreviations are used in this document:
 
    CTP Carrier Termination Point
 
@@ -171,17 +171,29 @@ Table of Contents
    chapter 3.1 of this document.  The meaning of the symbols in these
    diagrams is defined in [RFC8340].
 
-2.  Requirements Language
+1.3.  Prefixes in Data Node Names
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
+   In this document, names of data nodes and other data model objects
+   are prefixed wising the standard prefix associated with the
+   corresponding YANG imported modules, as shown in Table 1.
 
-3.  Microwave Topology YANG Data Model
+             +==========+=======================+===========+
+             | Prefix   | YANG Module           | Reference |
+             +==========+=======================+===========+
+             | nw       | ietf-network          | [RFC8345] |
+             +----------+-----------------------+-----------+
+             | nt       | ietf-network-topology | [RFC8345] |
+             +----------+-----------------------+-----------+
+             | mw-types | ietf-microwave-types  | [RFC8561] |
+             +----------+-----------------------+-----------+
+             | tet      | ietf-te-topology      | [RFC8795] |
+             +----------+-----------------------+-----------+
 
-3.1.  YANG Tree
+               Table 1: Prefixes for imported YANG modules
+
+2.  Microwave Topology YANG Data Model
+
+2.1.  YANG Tree
 
    module: ietf-microwave-topology
 
@@ -220,7 +232,7 @@ Table of Contents
     tet:max-link-bandwidth/tet:te-bandwidth:
       +--ro mw-bandwidth?   uint64
 
-3.2.  Relationship between radio links and carriers
+2.2.  Relationship between radio links and carriers
 
    A microwave radio link is always an aggregate of one or multiple
    carriers, in various configurations/modes.  The supporting carriers
@@ -232,7 +244,7 @@ Table of Contents
    the radio-link.  Appendix A includes JSON examples of how such a
    relationship can be modelled.
 
-3.3.  Relationship with client topology model
+2.3.  Relationship with client topology model
 
    A microwave radio link carries a payload of traffic on higher
    topology layers, normally L2 Ethernet.  The leafs supporting-network,
@@ -243,31 +255,29 @@ Table of Contents
    Appendix A includes JSON examples of an L2 Ethernet link transported
    over one supporting microwave link.
 
-3.4.  Applicability of the Data Model for Traffic Engineering (TE)
+2.4.  Applicability of the Data Model for Traffic Engineering (TE)
       Topologies
 
-   Since microwave is a point-to-point radio technology providing
-   connectivity on L0/L1 over a radio link between two termination
-   points and cannot be used to perform cross-connection or switching of
-   the traffic to create network connectivity across multiple microwave
-   radio links, a majority of the leafs in the Data Model for Traffic
-   Engineering (TE) Topologies augmented by the microwave topology model
-   are not applicable.  An example of which leafs are considered
-   applicable can be found in appendices Appendix A and Appendix B in
-   this document.
+   Since microwave is a point-to-point radio technology, a majority of
+   the leafs in the Data Model for Traffic Engineering (TE) Topologies
+   augmented by the microwave topology model are not applicable.  An
+   example of which leafs are considered applicable can be found in
+   appendices Appendix A and Appendix B in this document.
 
-   More specifically, admin-status and oper-status are recommended to be
-   reported for links only.  Status for termination points can be used
-   when links are inter-domain and when the status of only one side of
-   link is known, but since microwave is a point-to-point technology
-   where both ends normally belong to the same domain it is not expected
-   to be applicable in normal cases.  Furthermore, admin-status is not
-   applicable for microwave radio links.  Enable and disable of a radio
-   link is instead done in the constituent carriers.
+   More specifically in the context of the microwave-specific
+   augmentations of te-topology, admin-status and oper-status leafs
+   (from te-topology) are only applicable to microwave carriers (in the
+   mw-link tree) and not microwave radio links.  Enable and disable of a
+   radio link is instead done in the constituent carriers.  Furthermore
+   the status leafs related to mw-tp can be used when links are inter-
+   domain and when the status of only one side of the link is known, but
+   since microwave is a point-to-point technology where both ends
+   normally belong to the same domain it is not expected to be
+   applicable in normal cases.
 
-3.5.  Microwave Topology YANG Module
+2.5.  Microwave Topology YANG Module
 
-   <CODE BEGINS> file "ietf-microwave-topology.yang"
+   <CODE BEGINS> file "ietf-microwave-topology@2023-10-19.yang"
     module ietf-microwave-topology {
       yang-version "1.1";
       namespace
@@ -590,7 +600,7 @@ Table of Contents
     }
    <CODE ENDS>
 
-4.  Security Considerations
+3.  Security Considerations
 
    The YANG module specified in this document defines schemas for data
    that is designed to be accessed via network management protocols such
@@ -612,7 +622,7 @@ Table of Contents
 
    There are a several data nodes defined in this YANG module that are
    writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
+   default).  These data nodes can be considered sensitive or vulnerable
    in some network environments.  Write operations (e.g., edit-config)
    to these data nodes without proper protection can have a negative
    effect on network operations.  These are the subtrees and data nodes
@@ -620,14 +630,14 @@ Table of Contents
 
    *  rlt-mode: A malicious client could attempt to modify the mode in
       which the radio link is configured and thereby change the intended
-      behaviour of the link.
+      behavior of the link.
 
    *  tx-frequency, rx-frequency and channel-separation: A malicious
       client could attempt to modify the frequency configuration of a
-      carrier which could modify the intended behaviour or make the
-      configurtion invalid and thereby stop the operation of it.
+      carrier which could modify the intended behavior or make the
+      configuration invalid and thereby stop the operation of it.
 
-5.  IANA Considerations
+4.  IANA Considerations
 
    IANA is asked to assign a new URI from the "IETF XML Registry"
    [RFC3688] as follows:
@@ -636,7 +646,7 @@ Table of Contents
    Registrant Contact: The IESG
    XML: N/A; the requested URI is an XML namespace.
 
-   It is proposed that IANA should record YANG module names in the "YANG
+   It is proposed that IANA record the YANG module names in the "YANG
    Module Names" registry [RFC6020] as follows:
 
        Name: ietf-microwave-topology
@@ -645,14 +655,9 @@ Table of Contents
        Prefix: mwtopo
        Reference: RFC XXXX
 
-6.  References
+5.  References
 
-6.1.  Normative References
-
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/rfc/rfc2119>.
+5.1.  Normative References
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
@@ -675,10 +680,6 @@ Table of Contents
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/rfc/rfc8040>.
-
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
               Access Control Model", STD 91, RFC 8341,
@@ -705,7 +706,7 @@ Table of Contents
               DOI 10.17487/RFC8795, August 2020,
               <https://www.rfc-editor.org/rfc/rfc8795>.
 
-6.2.  Informative References
+5.2.  Informative References
 
    [EN301129] ETSI, "Transmission and Multiplexing (TM); Digital Radio
               Relay Systems (DRRS); Synchronous Digital Hierarchy (SDH);
@@ -717,6 +718,22 @@ Table of Contents
               requirements for point-to-point equipment and antennas;
               Part 1: Overview, common characteristics and system-
               dependent requirements", EN 302 217-1 V3.1.0 , May 2017.
+
+   [I-D.draft-ietf-ccamp-bwa-topo-yang]
+              Ahlberg, J., Mansfield, S., Ye, M., Busi, I., Li, X., and
+              D. Spreafico, "A YANG Data Model for Bandwidth
+              Availability Topology", Work in Progress, Internet-Draft,
+              draft-ietf-ccamp-bwa-topo-yang-01, 18 October 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
+              bwa-topo-yang-01>.
+
+   [I-D.draft-ietf-ccamp-if-ref-topo-yang]
+              Ahlberg, J., Mansfield, S., Ye, M., Busi, I., Li, X., and
+              D. Spreafico, "A YANG Data Model for Interface Reference
+              Topology", Work in Progress, Internet-Draft, draft-ietf-
+              ccamp-if-ref-topo-yang-01, 18 October 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
+              if-ref-topo-yang-01>.
 
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
@@ -839,31 +856,32 @@ Appendix A.  Microwave Topology Model with base topology models
 
    The Microwave Topology Model augments the TE Topology Model.
 
-        Node N1                          Node N2
-   +--------------+                 +--------------+
-   | +----------+ |                 | +----------+ | L2-network
-   | | L2-N1-   | |    L2-N1-N2     | |    L2-N2-| | -L2 topology
-   | | TP1      o---------------------o    TP2   | |
-   | +----------+ |        '        | +----------+ | Supporting
-   |          :   |        '        |   :          | ' mw link
-   |          :   |        '        |   :          | : TPs
-   | +----------+ |        '        | +----------+ |
-   | |mw-N1-    | |   mwrl-N1-N2    | |    mw-N2-| | MW-network
-   | |RLTP1     o---------------------o    RLTP2 | | -MW topology
-   | +----------+ |        *        | +----------+ |
-   |         : :  | ******* ******* |  : :         |
-   |         ::   |**             **|   ::         | Supporting
-   | +-------:--+ * *             * * +--:-------+ | : TPs
-   | |mw-N1- :  * | * mwc-N1-N2-A * | *  : mw-N2-| | * carriers as
-   | |CTP1   :  o---------------------o  : CTP2  | |   bundled links
-   | +-------:--+ | *             * | +--:-------+ |
-   |         :    |*               *|    :         |
-   | +----------+ *                 * +----------+ |
-   | |mw-N1-    * |   mwc-N1-N2-B   | *    mw-N2-| |
-   | |CTP3      o---------------------o    CTP4  | |
-   | +----------+ |                 | +----------+ |
-   +--------------+                 +--------------+
-    L2 transported over a (2+0) microwave radio link
+        Node N1                            Node N2
+   +--------------+                   +--------------+
+   | +----------+ |                   | +----------+ | L2-network
+   | |L2-N1-TP1 | |     L2-N1-N2      | |L2-N2-TP2 | | -L2 topology
+   | |          o<--------------------->o          | |
+   | +----------+ |         '         | +----------+ | Supporting
+   |          :   |         '         |   :          | ' mw link
+   |          :   |         '         |   :          | : TPs
+   | +----------+ |         '         | +----------+ |
+   | |mw-N1-    | |    mwrl-N1-N2     | | mw-N2-   | | MW-network
+   | |RLTP1     o<----------*---------->o RLTP2    | | -MW topology
+   | +----------+ |        / \        | +----------+ |
+   |         : :  |       /   \       |  : :         |
+   |         ::   |      /     \      |   ::         | Supporting
+   | +-------:--+ |     /       \     | +--:-------+ | : TPs
+   | |mw-N1- :  *---+--'         '--+---*  : mw-N2-| | * carriers
+   | |CTP1   :  o<--|---------------|-->o  : CTP2  | |   as bundled
+   | +-------:--+ | |  mwc-N1-N2-A  | | +--:-------+ |   links
+   |         :    | |               | |  :           |
+   | +----------+ | |               | | +----------+ |
+   | |mw-N1-CTP3*---'               '---*mw-N2-CTP4| |
+   | |          o<--------------------->o          | |
+   | +----------+ |    mwc-N1-N2-B    | +----------+ |
+   +--------------+                   +--------------+
+
+                  Figure 1: Example for L2 over microwave
 
 A.1.  Instance data for 2+0 mode for a bonded configuration
 
@@ -1429,16 +1447,19 @@ A.2.  Instance data for 1+1 mode for a protected configuration
 
 Appendix B.  Microwave Topology Model with example extensions
 
-   This appendix provides an examples of how the Microwave Topology
-   Model can be used with the interface reference topology (ifref) and
-   the bandwidth-availability-topology (bwa) models.  There is also a
-   snippet of json to show geolocation information instance data.  When
-   the json files have long lines, [RFC8792] is used to wrap the long
-   lines.
+   This appendix provides examples of how the Microwave Topology Model
+   can be used with the interface reference topology (ifref)
+   [I-D.draft-ietf-ccamp-if-ref-topo-yang] and the bandwidth-
+   availability-topology (bwa) [I-D.draft-ietf-ccamp-bwa-topo-yang]
+   models.  There is also a snippet of JSON to show geolocation
+   information instance data.  When the JSON files have long lines,
+   [RFC8792] is used to wrap the long lines.
 
    The tree below shows an example of the relevant leafs for a complete
    Microwave Topology Model including interface reference topology
-   (ifref) and bandwidth-availability-topology (bwa) models.
+   (ifref) [I-D.draft-ietf-ccamp-if-ref-topo-yang] and bandwidth-
+   availability-topology (bwa) [I-D.draft-ietf-ccamp-bwa-topo-yang]
+   models.
 
    module: ietf-network
    +--rw networks
@@ -1540,75 +1561,50 @@ Appendix B.  Microwave Topology Model with example extensions
    an example, there might be other possibilities to demonstrate such a
    topology.  The example of the instantiation encoded in JSON is using
    only a selected subset of the leafs from the L2 topology model
-   [RFC8944].
-
-        Node N1                          Node N2
-   +--------------+                 +--------------+
-   | +----------+ |                 | +----------+ | L2-network
-   | | L2-N1-   | |    L2-N1-N2     | |    L2-N2-| | -L2 topology
-   | | TP1      o---------------------o    TP2   | |
-   | +----------+ |        '        | +----------+ | Supporting
-   |          :   |        '        |   :          | ' mw link
-   |          :   |        '        |   :          | : TPs
-   | +----------+ |        '        | +----------+ |
-   | |mw-N1-    | |   mwrl-N1-N2    | |    mw-N2-| | MW-network
-   | |RLTP1     o---------------------o    RLTP2 | | -MW topology
-   | +----------+ |        *        | +----------+ |
-   |         : :  | ******* ******* |  : :         |
-   |         ::   |**             **|   ::         | Supporting
-   | +-------:--+ * *             * * +--:-------+ | : TPs
-   | |mw-N1- :  * | * mwc-N1-N2-A * | *  : mw-N2-| | * carriers as
-   | |CTP1   :  o---------------------o  : CTP2  | |   bundled links
-   | +-------:--+ | *             * | +--:-------+ |
-   |         :    |*               *|    :         |
-   | +----------+ *                 * +----------+ |
-   | |mw-N1-    * |   mwc-N1-N2-B   | *    mw-N2-| |
-   | |CTP3      o---------------------o    CTP4  | |
-   | +----------+ |                 | +----------+ |
-   +--------------+                 +--------------+
-    L2 transported over a (2+0) microwave radio link
+   [RFC8944].  The example below uses Figure 1 and adds the Interface
+   related information.
 
         Node N1                            Interfaces
    +---------------+                    +----------------+
    | +-----------+ |tp-to-interface-path| +------------+ |
-   | | L2-N1-TP1 |************************|L2Interface1| |
+   | | L2-N1-TP1 |<---------------------->|L2Interface1| |
    | +-----------+ |                    | +------------+ |
    |               |                    |                |
    | +-----------+ |tp-to-interface-path| +------------+ |
-   | |mw-N1-RLTP1|************************|   RLT-1    | |
+   | |mw-N1-RLTP1|<---------------------->|   RLT-1    | |
    | +-----------+ |                    | +------------+ |
    |               |                    |                |
    | +-----------+ |tp-to-interface-path| +------------+ |
-   | |mw-N1-CTP1 |************************|    CT-1    | |
+   | |mw-N1-CTP1 |<---------------------->|    CT-1    | |
    | +-----------+ |                    | +------------+ |
    |               |                    |                |
    | +-----------+ |tp-to-interface-path| +------------+ |
-   | |mw-N1-CTP3 |************************|    CT-3    | |
+   | |mw-N1-CTP3 |<---------------------->|    CT-3    | |
    | +-----------+ |                    | +------------+ |
    +---------------+                    +----------------+
-    Topology model information to the associated interface
-    management model information for Node N1
+
+   -------------------------------------------------------
 
         Node N2                            Interfaces
    +---------------+                    +----------------+
    | +-----------+ |tp-to-interface-path| +------------+ |
-   | | L2-N2-TP2 |************************|L2Interface2| |
+   | | L2-N2-TP2 |<---------------------->|L2Interface2| |
    | +-----------+ |                    | +------------+ |
    |               |                    |                |
    | +-----------+ |tp-to-interface-path| +------------+ |
-   | |mw-N2-RLTP2|************************|   RLT-2    | |
+   | |mw-N2-RLTP2|<---------------------->|   RLT-2    | |
    | +-----------+ |                    | +------------+ |
    |               |                    |                |
    | +-----------+ |tp-to-interface-path| +------------+ |
-   | |mw-N2-CTP2 |************************|    CT-2    | |
+   | |mw-N2-CTP2 |<---------------------->|    CT-2    | |
    | +-----------+ |                    | +------------+ |
    |               |                    |                |
    | +-----------+ |tp-to-interface-path| +------------+ |
-   | |mw-N2-CTP4 |************************|    CT-4    | |
+   | |mw-N2-CTP4 |<---------------------->|    CT-4    | |
    | +-----------+ |                    | +------------+ |
    +---------------+                    +----------------+
-    Topology model information to the associated interface
-    management model information for Node N2
+
+        Figure 2: Interface extension example for L2 over microwave
 
 B.1.  Instance data for 2+0 mode
 
@@ -2065,9 +2061,10 @@ B.2.  Instance data for geolocation information
 
 Acknowledgments
 
-   This document was prepared using kramdown
+   This document was prepared using kramdown (thanks Martin Thomson).
 
-   The authors would like to thank Tom Petch for his review.
+   The authors would like to thank Tom Petch and Éric Vyncke for their
+   reviews.
 
 Contributors
 
