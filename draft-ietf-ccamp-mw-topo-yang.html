@@ -13,11 +13,11 @@
 <meta content="
        This document defines a YANG data model to describe microwave/millimeter radio links in a network topology. 
     " name="description">
-<meta content="xml2rfc 3.19.0" name="generator">
+<meta content="xml2rfc 3.19.1" name="generator">
 <meta content="Internet-Draft" name="keyword">
-<meta content="draft-ietf-ccamp-mw-topo-yang-latest" name="ietf.draft">
+<meta content="draft-ietf-ccamp-mw-topo-yang-09" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.0
+  xml2rfc 3.19.1
     Python 3.11.6
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -30,7 +30,7 @@
     requests 2.31.0
     setuptools 68.2.2
     six 1.16.0
-    wcwidth 0.2.12
+    wcwidth 0.2.13
 -->
 <link href="draft-ietf-ccamp-mw-topo-yang.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1033,7 +1033,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mansfield, et al.</td>
-<td class="center">Expires 18 July 2024</td>
+<td class="center">Expires 22 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1043,15 +1043,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">CCAMP Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-ccamp-mw-topo-yang-latest</dd>
+<dd class="internet-draft">draft-ietf-ccamp-mw-topo-yang-09</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-15" class="published">15 January 2024</time>
+<time datetime="2024-01-19" class="published">19 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-18">18 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-22">22 July 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1118,7 +1118,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1279,7 +1279,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-prefixes-in-data-node-names">
 <a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-prefixes-in-data-node-names" class="section-name selfRef">Prefixes in Data Node Names</a>
         </h3>
-<p id="section-1.3-1">In this document, names of data nodes and other data model objects are prefixed wising the standard prefix associated with the corresponding YANG imported modules, as shown in <a href="#tab-prefix" class="auto internal xref">Table 1</a>.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
+<p id="section-1.3-1">In this document, names of data nodes and other data model objects are prefixed using the standard prefix associated with the corresponding YANG imported modules, as shown in <a href="#tab-prefix" class="auto internal xref">Table 1</a>.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
 <span id="name-prefixes-for-imported-yang-"></span><div id="tab-prefix">
 <table class="center" id="table-1">
           <caption>
@@ -1294,6 +1294,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">mwt</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-microwave-topology</td>
+              <td class="text-left" rowspan="1" colspan="1">This document</td>
+            </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">nw</td>
               <td class="text-left" rowspan="1" colspan="1">ietf-network</td>
@@ -1412,14 +1417,14 @@ augment
 <a href="#section-2.5" class="section-number selfRef">2.5. </a><a href="#name-microwave-topology-yang-mod" class="section-name selfRef">Microwave Topology YANG Module</a>
         </h3>
 <div class="breakable lang-yang sourcecode" id="section-2.5-1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-microwave-topology@2023-10-19.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-microwave-topology@2024-01-19.yang"
 
  module ietf-microwave-topology {
    yang-version "1.1";
    namespace
    "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
 
-   prefix "mwtopo";
+   prefix "mwt";
 
    import ietf-network {
      prefix "nw";
@@ -1465,7 +1470,7 @@ augment
    description
      "This is a module for microwave topology.
 
-     Copyright (c) 2023 IETF Trust and the persons
+     Copyright (c) 2024 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -1478,22 +1483,9 @@ augment
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-   revision 2023-10-19   {
+   revision 2024-01-19   {
      description
-     "last call comment resolutions.";
-     reference "";
-   }
-
-   revision 2023-07-20   {
-     description
-     "Multi-layer fix, and a few editorials";
-     reference "";
-   }
-
-   revision 2023-02-15   {
-     description
-     "Draft to be used as a basis for the continued microwave
-      team discussions";
+     "AD comment resolutions.";
      reference "";
    }
 
@@ -1626,7 +1618,7 @@ augment
    augment "/nw:networks/nw:network/nw:node/tet:te"
         + "/tet:te-node-attributes" {
     when "/nw:networks/nw:network/nw:network-types"
-       + "/tet:te-topology/mwtopo:mw-topology" {
+       + "/tet:te-topology/mwt:mw-topology" {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -1642,7 +1634,7 @@ augment
    augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
            + "tet:te" {
      when '../../../nw:network-types/tet:te-topology/'
-          + 'mwtopo:mw-topology' {
+          + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -1685,7 +1677,7 @@ augment
    augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:te-link-attributes" {
      when '../../../nw:network-types/tet:te-topology/'
-        + 'mwtopo:mw-topology' {
+        + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -1724,7 +1716,7 @@ augment
            + "tet:max-link-bandwidth/"
            + "tet:te-bandwidth" {
      when '../../../../../nw:network-types/tet:te-topology/'
-          + 'mwtopo:mw-topology' {
+          + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -1803,7 +1795,7 @@ XML: N/A; the requested URI is an XML namespace.
     Name: ietf-microwave-topology
     Maintained by IANA?: N
     Namespace: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
-    Prefix: mwtopo
+    Prefix: mwt
     Reference: RFC XXXX
 </pre><a href="#section-4-4" class="pilcrow">¶</a>
 </div>
@@ -1915,7 +1907,7 @@ module: ietf-network
  |  +--rw network-id                    network-id
  |  +--rw network-types
  |  |  +--rw tet:te-topology!
- |  |  |  +--rw mwtopo:mw-topology!
+ |  |  |  +--rw mwt:mw-topology!
  |  +--rw supporting-network* [network-ref]
  |  |  +--rw network-ref    -&gt; /networks/network/network-id
  |  +--rw node* [node-id]
@@ -1942,12 +1934,12 @@ node[nw:node-id=current()/../node-ref]/termination-point/tp-id
  |  |  |  |  |  +--ro tet:altitude?    int64
  |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
  |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
- |  |  |  |  +--rw mwtopo:mw-tp
- |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
- |  |  |  |  |     +--:(mwtopo:microwave-rltp)
- |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
- |  |  |  |  |     +--:(mwtopo:microwave-ctp)
- |  |  |  |  |        +--rw mwtopo:microwave-ctp!
+ |  |  |  |  +--rw mwt:mw-tp
+ |  |  |  |  |  +--rw (mwt:mw-tp-option)?
+ |  |  |  |  |     +--:(mwt:microwave-rltp)
+ |  |  |  |  |     |  +--rw mwt:microwave-rltp!
+ |  |  |  |  |     +--:(mwt:microwave-ctp)
+ |  |  |  |  |        +--rw mwt:microwave-ctp!
  |  |  +--rw tet:te-node-id?           te-types:te-node-id
  |  +--rw nt:link* [link-id]
  |  |  +--rw nt:link-id                link-id
@@ -1975,57 +1967,175 @@ termination-point/tp-id
  |  |  |  |  +--rw tet:name?                             string
  |  |  |  |  +--rw tet:max-link-bandwidth
  |  |  |  |  |  +--rw tet:te-bandwidth
- |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
- |  |  |  |  +--rw mwtopo:mw-link!
- |  |  |  |     +--rw (mwtopo:mw-link-option)?
- |  |  |  |        +--:(mwtopo:microwave-radio-link)
- |  |  |  |        |  +--rw mwtopo:microwave-radio-link!
- |  |  |  |        |     +--rw mwtopo:rlt-mode
- |  |  |  |        |        +--rw mwtopo:num-bonded-carriers
+ |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
+ |  |  |  |  +--rw mwt:mw-link!
+ |  |  |  |     +--rw (mwt:mw-link-option)?
+ |  |  |  |        +--:(mwt:microwave-radio-link)
+ |  |  |  |        |  +--rw mwt:microwave-radio-link!
+ |  |  |  |        |     +--rw mwt:rlt-mode
+ |  |  |  |        |        +--rw mwt:num-bonded-carriers
 uint32
- |  |  |  |        |        +--rw mwtopo:num-protecting-carriers
+ |  |  |  |        |        +--rw mwt:num-protecting-carriers
 uint32
- |  |  |  |        +--:(mwtopo:microwave-carrier)
- |  |  |  |           +--rw mwtopo:microwave-carrier!
- |  |  |  |              +--rw mwtopo:tx-frequency?      uint32
- |  |  |  |              +--rw mwtopo:rx-frequency?      uint32
- |  |  |  |              +--rw mwtopo:channel-separation? uint32
- |  |  |  |              +--ro mwtopo:actual-tx-cm?      identityref
- |  |  |  |              +--ro mwtopo:actual-snir?       decimal64
- |  |  |  |              +--ro mwtopo:actual-transmitted-level?
+ |  |  |  |        +--:(mwt:microwave-carrier)
+ |  |  |  |           +--rw mwt:microwave-carrier!
+ |  |  |  |              +--rw mwt:tx-frequency?      uint32
+ |  |  |  |              +--rw mwt:rx-frequency?      uint32
+ |  |  |  |              +--rw mwt:channel-separation? uint32
+ |  |  |  |              +--ro mwt:actual-tx-cm?      identityref
+ |  |  |  |              +--ro mwt:actual-snir?       decimal64
+ |  |  |  |              +--ro mwt:actual-transmitted-level?
 decimal64
 </pre><a href="#appendix-A-3" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-4">The Microwave Topology Model augments the TE Topology Model.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <span id="name-example-for-l2-over-microwa"></span><div id="fig-mw-model">
 <figure id="figure-1">
-        <div class="alignLeft art-ascii-art art-text artwork" id="appendix-A-5.1">
-<pre>
-     Node N1                            Node N2
-+--------------+                   +--------------+
-| +----------+ |                   | +----------+ | L2-network
-| |L2-N1-TP1 | |     L2-N1-N2      | |L2-N2-TP2 | | -L2 topology
-| |          o&lt;---------------------&gt;o          | |
-| +----------+ |         '         | +----------+ | Supporting
-|          :   |         '         |   :          | ' mw link
-|          :   |         '         |   :          | : TPs
-| +----------+ |         '         | +----------+ |
-| |mw-N1-    | |    mwrl-N1-N2     | | mw-N2-   | | MW-network
-| |RLTP1     o&lt;----------*----------&gt;o RLTP2    | | -MW topology
-| +----------+ |        / \        | +----------+ |
-|         : :  |       /   \       |  : :         |
-|         ::   |      /     \      |   ::         | Supporting
-| +-------:--+ |     /       \     | +--:-------+ | : TPs
-| |mw-N1- :  *---+--'         '--+---*  : mw-N2-| | * carriers
-| |CTP1   :  o&lt;--|---------------|--&gt;o  : CTP2  | |   as bundled
-| +-------:--+ | |  mwc-N1-N2-A  | | +--:-------+ |   links
-|         :    | |               | |  :           |
-| +----------+ | |               | | +----------+ |
-| |mw-N1-CTP3*---'               '---*mw-N2-CTP4| |
-| |          o&lt;---------------------&gt;o          | |
-| +----------+ |    mwc-N1-N2-B    | +----------+ |
-+--------------+                   +--------------+
-</pre>
+        <div id="appendix-A-5.1">
+          <div class="alignLeft art-svg artwork" id="appendix-A-5.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 520 400" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,384" fill="none" stroke="black"></path>
+              <path d="M 24,48 L 24,96" fill="none" stroke="black"></path>
+              <path d="M 24,144 L 24,192" fill="none" stroke="black"></path>
+              <path d="M 24,240 L 24,288" fill="none" stroke="black"></path>
+              <path d="M 24,320 L 24,368" fill="none" stroke="black"></path>
+              <path d="M 112,48 L 112,96" fill="none" stroke="black"></path>
+              <path d="M 112,144 L 112,192" fill="none" stroke="black"></path>
+              <path d="M 112,240 L 112,288" fill="none" stroke="black"></path>
+              <path d="M 112,320 L 112,368" fill="none" stroke="black"></path>
+              <path d="M 128,32 L 128,72" fill="none" stroke="black"></path>
+              <path d="M 128,88 L 128,168" fill="none" stroke="black"></path>
+              <path d="M 128,184 L 128,248" fill="none" stroke="black"></path>
+              <path d="M 128,280 L 128,328" fill="none" stroke="black"></path>
+              <path d="M 128,360 L 128,384" fill="none" stroke="black"></path>
+              <path d="M 144,256 L 144,336" fill="none" stroke="black"></path>
+              <path d="M 272,256 L 272,336" fill="none" stroke="black"></path>
+              <path d="M 288,32 L 288,72" fill="none" stroke="black"></path>
+              <path d="M 288,88 L 288,168" fill="none" stroke="black"></path>
+              <path d="M 288,184 L 288,248" fill="none" stroke="black"></path>
+              <path d="M 288,280 L 288,328" fill="none" stroke="black"></path>
+              <path d="M 288,360 L 288,384" fill="none" stroke="black"></path>
+              <path d="M 304,48 L 304,96" fill="none" stroke="black"></path>
+              <path d="M 304,144 L 304,192" fill="none" stroke="black"></path>
+              <path d="M 304,240 L 304,288" fill="none" stroke="black"></path>
+              <path d="M 304,320 L 304,368" fill="none" stroke="black"></path>
+              <path d="M 392,48 L 392,96" fill="none" stroke="black"></path>
+              <path d="M 392,144 L 392,192" fill="none" stroke="black"></path>
+              <path d="M 392,240 L 392,288" fill="none" stroke="black"></path>
+              <path d="M 392,320 L 392,368" fill="none" stroke="black"></path>
+              <path d="M 408,32 L 408,384" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 128,32" fill="none" stroke="black"></path>
+              <path d="M 288,32 L 408,32" fill="none" stroke="black"></path>
+              <path d="M 24,48 L 112,48" fill="none" stroke="black"></path>
+              <path d="M 304,48 L 392,48" fill="none" stroke="black"></path>
+              <path d="M 120,80 L 296,80" fill="none" stroke="black"></path>
+              <path d="M 24,96 L 112,96" fill="none" stroke="black"></path>
+              <path d="M 304,96 L 392,96" fill="none" stroke="black"></path>
+              <path d="M 24,144 L 112,144" fill="none" stroke="black"></path>
+              <path d="M 304,144 L 392,144" fill="none" stroke="black"></path>
+              <path d="M 120,176 L 200,176" fill="none" stroke="black"></path>
+              <path d="M 216,176 L 296,176" fill="none" stroke="black"></path>
+              <path d="M 24,192 L 112,192" fill="none" stroke="black"></path>
+              <path d="M 304,192 L 392,192" fill="none" stroke="black"></path>
+              <path d="M 24,240 L 80,240" fill="none" stroke="black"></path>
+              <path d="M 96,240 L 112,240" fill="none" stroke="black"></path>
+              <path d="M 304,240 L 320,240" fill="none" stroke="black"></path>
+              <path d="M 336,240 L 392,240" fill="none" stroke="black"></path>
+              <path d="M 120,256 L 168,256" fill="none" stroke="black"></path>
+              <path d="M 248,256 L 296,256" fill="none" stroke="black"></path>
+              <path d="M 120,272 L 136,272" fill="none" stroke="black"></path>
+              <path d="M 152,272 L 264,272" fill="none" stroke="black"></path>
+              <path d="M 280,272 L 296,272" fill="none" stroke="black"></path>
+              <path d="M 24,288 L 80,288" fill="none" stroke="black"></path>
+              <path d="M 96,288 L 112,288" fill="none" stroke="black"></path>
+              <path d="M 304,288 L 320,288" fill="none" stroke="black"></path>
+              <path d="M 336,288 L 392,288" fill="none" stroke="black"></path>
+              <path d="M 24,320 L 112,320" fill="none" stroke="black"></path>
+              <path d="M 304,320 L 392,320" fill="none" stroke="black"></path>
+              <path d="M 120,336 L 144,336" fill="none" stroke="black"></path>
+              <path d="M 272,336 L 296,336" fill="none" stroke="black"></path>
+              <path d="M 120,352 L 296,352" fill="none" stroke="black"></path>
+              <path d="M 24,368 L 112,368" fill="none" stroke="black"></path>
+              <path d="M 304,368 L 392,368" fill="none" stroke="black"></path>
+              <path d="M 8,384 L 128,384" fill="none" stroke="black"></path>
+              <path d="M 288,384 L 408,384" fill="none" stroke="black"></path>
+              <path d="M 204,168 L 248,256" fill="none" stroke="black"></path>
+              <path d="M 168,256 L 208,176" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="300,352 288,346.4 288,357.6" fill="black" transform="rotate(0,292,352)"></polygon>
+              <polygon class="arrowhead" points="300,272 288,266.4 288,277.6" fill="black" transform="rotate(0,292,272)"></polygon>
+              <polygon class="arrowhead" points="300,176 288,170.4 288,181.6" fill="black" transform="rotate(0,292,176)"></polygon>
+              <polygon class="arrowhead" points="300,80 288,74.4 288,85.6" fill="black" transform="rotate(0,292,80)"></polygon>
+              <polygon class="arrowhead" points="132,352 120,346.4 120,357.6" fill="black" transform="rotate(180,124,352)"></polygon>
+              <polygon class="arrowhead" points="132,272 120,266.4 120,277.6" fill="black" transform="rotate(180,124,272)"></polygon>
+              <polygon class="arrowhead" points="132,176 120,170.4 120,181.6" fill="black" transform="rotate(180,124,176)"></polygon>
+              <polygon class="arrowhead" points="132,80 120,74.4 120,85.6" fill="black" transform="rotate(180,124,80)"></polygon>
+              <circle cx="112" cy="80" r="6" class="opendot" fill="white" stroke="black"></circle>
+              <circle cx="112" cy="176" r="6" class="opendot" fill="white" stroke="black"></circle>
+              <circle cx="112" cy="256" r="6" class="closeddot" fill="black"></circle>
+              <circle cx="112" cy="272" r="6" class="opendot" fill="white" stroke="black"></circle>
+              <circle cx="112" cy="336" r="6" class="closeddot" fill="black"></circle>
+              <circle cx="112" cy="352" r="6" class="opendot" fill="white" stroke="black"></circle>
+              <circle cx="208" cy="176" r="6" class="closeddot" fill="black"></circle>
+              <circle cx="304" cy="80" r="6" class="opendot" fill="white" stroke="black"></circle>
+              <circle cx="304" cy="176" r="6" class="opendot" fill="white" stroke="black"></circle>
+              <circle cx="304" cy="256" r="6" class="closeddot" fill="black"></circle>
+              <circle cx="304" cy="272" r="6" class="opendot" fill="white" stroke="black"></circle>
+              <circle cx="304" cy="336" r="6" class="closeddot" fill="black"></circle>
+              <circle cx="304" cy="352" r="6" class="opendot" fill="white" stroke="black"></circle>
+              <circle cx="424" cy="256" r="6" class="closeddot" fill="black"></circle>
+              <g class="text">
+                <text x="72" y="20">Node N1</text>
+                <text x="352" y="20">Node N2</text>
+                <text x="460" y="52">L2-network</text>
+                <text x="64" y="68">L2-N1-TP1</text>
+                <text x="204" y="68">L2-N1-N2</text>
+                <text x="344" y="68">L2-N2-TP2</text>
+                <text x="468" y="68">-L2 topology</text>
+                <text x="208" y="100">'</text>
+                <text x="460" y="100">Supporting</text>
+                <text x="96" y="116">:</text>
+                <text x="208" y="116">'</text>
+                <text x="320" y="116">:</text>
+                <text x="456" y="116">' mw link</text>
+                <text x="96" y="132">:</text>
+                <text x="208" y="132">'</text>
+                <text x="320" y="132">:</text>
+                <text x="440" y="132">: TPs</text>
+                <text x="208" y="148">'</text>
+                <text x="52" y="164">mw-N1-</text>
+                <text x="204" y="164">mwrl-N1-N2</text>
+                <text x="340" y="164">mw-N2-</text>
+                <text x="460" y="164">MW-network</text>
+                <text x="48" y="180">RLTP1</text>
+                <text x="336" y="180">RLTP2</text>
+                <text x="468" y="180">-MW topology</text>
+                <text x="96" y="212">: :</text>
+                <text x="320" y="212">: :</text>
+                <text x="92" y="228">::</text>
+                <text x="324" y="228">::</text>
+                <text x="460" y="228">Supporting</text>
+                <text x="88" y="244">:</text>
+                <text x="328" y="244">:</text>
+                <text x="440" y="244">: TPs</text>
+                <text x="60" y="260">mw-N1- :</text>
+                <text x="356" y="260">: mw-N2-</text>
+                <text x="468" y="260">carriers</text>
+                <text x="44" y="276">CTP1</text>
+                <text x="88" y="276">:</text>
+                <text x="348" y="276">: CTP2</text>
+                <text x="476" y="276">as bundled</text>
+                <text x="88" y="292">:</text>
+                <text x="208" y="292">mwc-N1-N2-A</text>
+                <text x="328" y="292">:</text>
+                <text x="456" y="292">links</text>
+                <text x="104" y="308">:</text>
+                <text x="312" y="308">:</text>
+                <text x="68" y="340">mw-N1-CTP3</text>
+                <text x="348" y="340">mw-N2-CTP4</text>
+                <text x="208" y="372">mwc-N1-N2-B</text>
+              </g>
+            </svg><a href="#appendix-A-5.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-example-for-l2-over-microwa" class="selfRef">Example for L2 over microwave</a>
@@ -2626,7 +2736,7 @@ module: ietf-network
  |  +--rw network-id                    network-id
  |  +--rw network-types
  |  |  +--rw tet:te-topology!
- |  |  |  +--rw mwtopo:mw-topology!
+ |  |  |  +--rw mwt:mw-topology!
  |  +--rw supporting-network* [network-ref]
  |  |  +--rw network-ref    -&gt; /networks/network/network-id
  |  +--rw node* [node-id]
@@ -2655,12 +2765,12 @@ p-id
  |  |  |  |  |  +--ro tet:altitude?    int64
  |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
  |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
- |  |  |  |  +--rw mwtopo:mw-tp!
- |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
- |  |  |  |  |     +--:(mwtopo:microwave-rltp)
- |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
- |  |  |  |  |     +--:(mwtopo:microwave-ctp)
- |  |  |  |  |        +--rw mwtopo:microwave-ctp!
+ |  |  |  |  +--rw mwt:mw-tp!
+ |  |  |  |  |  +--rw (mwt:mw-tp-option)?
+ |  |  |  |  |     +--:(mwt:microwave-rltp)
+ |  |  |  |  |     |  +--rw mwt:microwave-rltp!
+ |  |  |  |  |     +--:(mwt:microwave-ctp)
+ |  |  |  |  |        +--rw mwt:microwave-ctp!
  |  |  |  |  +--rw ifref:tp-to-interface-path?  -&gt; /if:interfaces/
 interface/name
  |  |  +--rw tet:te-node-id?           te-types:te-node-id
@@ -2691,22 +2801,22 @@ dest-node]/termination-point/tp-id
  |  |  |  |  +--rw tet:admin-status?     te-types:te-admin-status
  |  |  |  |  +--rw tet:max-link-bandwidth
  |  |  |  |  |  +--rw tet:te-bandwidth
- |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
- |  |  |  |  +--rw mwtopo:mw-link!
- |  |  |  |     +--rw (mwtopo:mw-link-option)?
- |  |  |  |        +--:(mwtopo:microwave-radio-link)
- |  |  |  |        |  +--rw mwtopo:microwave-radio-link!
- |  |  |  |        |     +--rw mwtopo:rlt-mode
- |  |  |  |        |      +--rw mwtopo:num-bonded-carriers uint32
- |  |  |  |        |      +--rw mwtopo:num-protecting-carriers uint32
- |  |  |  |        +--:(mwtopo:microwave-carrier)
- |  |  |  |           +--rw mwtopo:microwave-carrier!
- |  |  |  |            +--rw mwtopo:tx-frequency?       uint32
- |  |  |  |            +--rw mwtopo:rx-frequency?       uint32
- |  |  |  |            +--rw mwtopo:channel-separation? uint32
- |  |  |  |            +--ro mwtopo:actual-tx-cm?       identityref
- |  |  |  |            +--ro mwtopo:actual-snir?        decimal64
- |  |  |  |            +--ro mwtopo:actual-transmitted-level?
+ |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
+ |  |  |  |  +--rw mwt:mw-link!
+ |  |  |  |     +--rw (mwt:mw-link-option)?
+ |  |  |  |        +--:(mwt:microwave-radio-link)
+ |  |  |  |        |  +--rw mwt:microwave-radio-link!
+ |  |  |  |        |     +--rw mwt:rlt-mode
+ |  |  |  |        |      +--rw mwt:num-bonded-carriers uint32
+ |  |  |  |        |      +--rw mwt:num-protecting-carriers uint32
+ |  |  |  |        +--:(mwt:microwave-carrier)
+ |  |  |  |           +--rw mwt:microwave-carrier!
+ |  |  |  |            +--rw mwt:tx-frequency?       uint32
+ |  |  |  |            +--rw mwt:rx-frequency?       uint32
+ |  |  |  |            +--rw mwt:channel-separation? uint32
+ |  |  |  |            +--ro mwt:actual-tx-cm?       identityref
+ |  |  |  |            +--ro mwt:actual-snir?        decimal64
+ |  |  |  |            +--ro mwt:actual-transmitted-level?
 decimal64
  |  |  |  |  +--rw bwatopo:link-availability* [availability]
  |  |  |  |  |  +--rw bwatopo:availability      decimal64
@@ -2717,48 +2827,162 @@ decimal64
 <p id="appendix-B-4">Microwave is a transport technology which can be used to transport client services, such as L2 Ethernet links.  When an L2 link is transported over a single supporting microwave radio link, the topologies could be as shown below.  Note that the figure just shows an example, there might be other possibilities to demonstrate such a topology.  The example of the instantiation encoded in JSON is using only a selected subset of the leafs from the L2 topology model <span>[<a href="#RFC8944" class="cite xref">RFC8944</a>]</span>. The example below uses <a href="#fig-mw-model" class="auto internal xref">Figure 1</a> and adds the Interface related information.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 <span id="name-interface-extension-example"></span><div id="fig-mw-extensions">
 <figure id="figure-2">
-        <div class="alignLeft art-ascii-art art-text artwork" id="appendix-B-5.1">
-<pre>
-     Node N1                            Interfaces
-+---------------+                    +----------------+
-| +-----------+ |tp-to-interface-path| +------------+ |
-| | L2-N1-TP1 |&lt;----------------------&gt;|L2Interface1| |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N1-RLTP1|&lt;----------------------&gt;|   RLT-1    | |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N1-CTP1 |&lt;----------------------&gt;|    CT-1    | |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N1-CTP3 |&lt;----------------------&gt;|    CT-3    | |
-| +-----------+ |                    | +------------+ |
-+---------------+                    +----------------+
-
--------------------------------------------------------
-
-     Node N2                            Interfaces
-+---------------+                    +----------------+
-| +-----------+ |tp-to-interface-path| +------------+ |
-| | L2-N2-TP2 |&lt;----------------------&gt;|L2Interface2| |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N2-RLTP2|&lt;----------------------&gt;|   RLT-2    | |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N2-CTP2 |&lt;----------------------&gt;|    CT-2    | |
-| +-----------+ |                    | +------------+ |
-|               |                    |                |
-| +-----------+ |tp-to-interface-path| +------------+ |
-| |mw-N2-CTP4 |&lt;----------------------&gt;|    CT-4    | |
-| +-----------+ |                    | +------------+ |
-+---------------+                    +----------------+
-</pre>
+        <div id="appendix-B-5.1">
+          <div class="alignLeft art-svg artwork" id="appendix-B-5.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 448 640" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,288" fill="none" stroke="black"></path>
+              <path d="M 8,368 L 8,624" fill="none" stroke="black"></path>
+              <path d="M 24,48 L 24,80" fill="none" stroke="black"></path>
+              <path d="M 24,112 L 24,144" fill="none" stroke="black"></path>
+              <path d="M 24,176 L 24,208" fill="none" stroke="black"></path>
+              <path d="M 24,240 L 24,272" fill="none" stroke="black"></path>
+              <path d="M 24,384 L 24,416" fill="none" stroke="black"></path>
+              <path d="M 24,448 L 24,480" fill="none" stroke="black"></path>
+              <path d="M 24,512 L 24,544" fill="none" stroke="black"></path>
+              <path d="M 24,576 L 24,608" fill="none" stroke="black"></path>
+              <path d="M 120,48 L 120,80" fill="none" stroke="black"></path>
+              <path d="M 120,112 L 120,144" fill="none" stroke="black"></path>
+              <path d="M 120,176 L 120,208" fill="none" stroke="black"></path>
+              <path d="M 120,240 L 120,272" fill="none" stroke="black"></path>
+              <path d="M 120,384 L 120,416" fill="none" stroke="black"></path>
+              <path d="M 120,448 L 120,480" fill="none" stroke="black"></path>
+              <path d="M 120,512 L 120,544" fill="none" stroke="black"></path>
+              <path d="M 120,576 L 120,608" fill="none" stroke="black"></path>
+              <path d="M 136,32 L 136,56" fill="none" stroke="black"></path>
+              <path d="M 136,72 L 136,120" fill="none" stroke="black"></path>
+              <path d="M 136,136 L 136,184" fill="none" stroke="black"></path>
+              <path d="M 136,200 L 136,248" fill="none" stroke="black"></path>
+              <path d="M 136,264 L 136,288" fill="none" stroke="black"></path>
+              <path d="M 136,368 L 136,392" fill="none" stroke="black"></path>
+              <path d="M 136,408 L 136,456" fill="none" stroke="black"></path>
+              <path d="M 136,472 L 136,520" fill="none" stroke="black"></path>
+              <path d="M 136,536 L 136,584" fill="none" stroke="black"></path>
+              <path d="M 136,600 L 136,624" fill="none" stroke="black"></path>
+              <path d="M 304,32 L 304,56" fill="none" stroke="black"></path>
+              <path d="M 304,72 L 304,120" fill="none" stroke="black"></path>
+              <path d="M 304,136 L 304,184" fill="none" stroke="black"></path>
+              <path d="M 304,200 L 304,248" fill="none" stroke="black"></path>
+              <path d="M 304,264 L 304,288" fill="none" stroke="black"></path>
+              <path d="M 304,368 L 304,392" fill="none" stroke="black"></path>
+              <path d="M 304,408 L 304,456" fill="none" stroke="black"></path>
+              <path d="M 304,472 L 304,520" fill="none" stroke="black"></path>
+              <path d="M 304,536 L 304,584" fill="none" stroke="black"></path>
+              <path d="M 304,600 L 304,624" fill="none" stroke="black"></path>
+              <path d="M 320,48 L 320,80" fill="none" stroke="black"></path>
+              <path d="M 320,112 L 320,144" fill="none" stroke="black"></path>
+              <path d="M 320,176 L 320,208" fill="none" stroke="black"></path>
+              <path d="M 320,240 L 320,272" fill="none" stroke="black"></path>
+              <path d="M 320,384 L 320,416" fill="none" stroke="black"></path>
+              <path d="M 320,448 L 320,480" fill="none" stroke="black"></path>
+              <path d="M 320,512 L 320,544" fill="none" stroke="black"></path>
+              <path d="M 320,576 L 320,608" fill="none" stroke="black"></path>
+              <path d="M 424,48 L 424,80" fill="none" stroke="black"></path>
+              <path d="M 424,112 L 424,144" fill="none" stroke="black"></path>
+              <path d="M 424,176 L 424,208" fill="none" stroke="black"></path>
+              <path d="M 424,240 L 424,272" fill="none" stroke="black"></path>
+              <path d="M 424,384 L 424,416" fill="none" stroke="black"></path>
+              <path d="M 424,448 L 424,480" fill="none" stroke="black"></path>
+              <path d="M 424,512 L 424,544" fill="none" stroke="black"></path>
+              <path d="M 424,576 L 424,608" fill="none" stroke="black"></path>
+              <path d="M 440,32 L 440,288" fill="none" stroke="black"></path>
+              <path d="M 440,368 L 440,624" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 136,32" fill="none" stroke="black"></path>
+              <path d="M 304,32 L 440,32" fill="none" stroke="black"></path>
+              <path d="M 24,48 L 120,48" fill="none" stroke="black"></path>
+              <path d="M 320,48 L 424,48" fill="none" stroke="black"></path>
+              <path d="M 128,64 L 312,64" fill="none" stroke="black"></path>
+              <path d="M 24,80 L 120,80" fill="none" stroke="black"></path>
+              <path d="M 320,80 L 424,80" fill="none" stroke="black"></path>
+              <path d="M 24,112 L 120,112" fill="none" stroke="black"></path>
+              <path d="M 320,112 L 424,112" fill="none" stroke="black"></path>
+              <path d="M 128,128 L 312,128" fill="none" stroke="black"></path>
+              <path d="M 24,144 L 120,144" fill="none" stroke="black"></path>
+              <path d="M 320,144 L 424,144" fill="none" stroke="black"></path>
+              <path d="M 24,176 L 120,176" fill="none" stroke="black"></path>
+              <path d="M 320,176 L 424,176" fill="none" stroke="black"></path>
+              <path d="M 128,192 L 312,192" fill="none" stroke="black"></path>
+              <path d="M 24,208 L 120,208" fill="none" stroke="black"></path>
+              <path d="M 320,208 L 424,208" fill="none" stroke="black"></path>
+              <path d="M 24,240 L 120,240" fill="none" stroke="black"></path>
+              <path d="M 320,240 L 424,240" fill="none" stroke="black"></path>
+              <path d="M 128,256 L 312,256" fill="none" stroke="black"></path>
+              <path d="M 24,272 L 120,272" fill="none" stroke="black"></path>
+              <path d="M 320,272 L 424,272" fill="none" stroke="black"></path>
+              <path d="M 8,288 L 136,288" fill="none" stroke="black"></path>
+              <path d="M 304,288 L 440,288" fill="none" stroke="black"></path>
+              <path d="M 8,320 L 440,320" fill="none" stroke="black"></path>
+              <path d="M 8,368 L 136,368" fill="none" stroke="black"></path>
+              <path d="M 304,368 L 440,368" fill="none" stroke="black"></path>
+              <path d="M 24,384 L 120,384" fill="none" stroke="black"></path>
+              <path d="M 320,384 L 424,384" fill="none" stroke="black"></path>
+              <path d="M 128,400 L 312,400" fill="none" stroke="black"></path>
+              <path d="M 24,416 L 120,416" fill="none" stroke="black"></path>
+              <path d="M 320,416 L 424,416" fill="none" stroke="black"></path>
+              <path d="M 24,448 L 120,448" fill="none" stroke="black"></path>
+              <path d="M 320,448 L 424,448" fill="none" stroke="black"></path>
+              <path d="M 128,464 L 312,464" fill="none" stroke="black"></path>
+              <path d="M 24,480 L 120,480" fill="none" stroke="black"></path>
+              <path d="M 320,480 L 424,480" fill="none" stroke="black"></path>
+              <path d="M 24,512 L 120,512" fill="none" stroke="black"></path>
+              <path d="M 320,512 L 424,512" fill="none" stroke="black"></path>
+              <path d="M 128,528 L 312,528" fill="none" stroke="black"></path>
+              <path d="M 24,544 L 120,544" fill="none" stroke="black"></path>
+              <path d="M 320,544 L 424,544" fill="none" stroke="black"></path>
+              <path d="M 24,576 L 120,576" fill="none" stroke="black"></path>
+              <path d="M 320,576 L 424,576" fill="none" stroke="black"></path>
+              <path d="M 128,592 L 312,592" fill="none" stroke="black"></path>
+              <path d="M 24,608 L 120,608" fill="none" stroke="black"></path>
+              <path d="M 320,608 L 424,608" fill="none" stroke="black"></path>
+              <path d="M 8,624 L 136,624" fill="none" stroke="black"></path>
+              <path d="M 304,624 L 440,624" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="320,592 308,586.4 308,597.6" fill="black" transform="rotate(0,312,592)"></polygon>
+              <polygon class="arrowhead" points="320,528 308,522.4 308,533.6" fill="black" transform="rotate(0,312,528)"></polygon>
+              <polygon class="arrowhead" points="320,464 308,458.4 308,469.6" fill="black" transform="rotate(0,312,464)"></polygon>
+              <polygon class="arrowhead" points="320,400 308,394.4 308,405.6" fill="black" transform="rotate(0,312,400)"></polygon>
+              <polygon class="arrowhead" points="320,256 308,250.4 308,261.6" fill="black" transform="rotate(0,312,256)"></polygon>
+              <polygon class="arrowhead" points="320,192 308,186.4 308,197.6" fill="black" transform="rotate(0,312,192)"></polygon>
+              <polygon class="arrowhead" points="320,128 308,122.4 308,133.6" fill="black" transform="rotate(0,312,128)"></polygon>
+              <polygon class="arrowhead" points="320,64 308,58.4 308,69.6" fill="black" transform="rotate(0,312,64)"></polygon>
+              <polygon class="arrowhead" points="136,592 124,586.4 124,597.6" fill="black" transform="rotate(180,128,592)"></polygon>
+              <polygon class="arrowhead" points="136,528 124,522.4 124,533.6" fill="black" transform="rotate(180,128,528)"></polygon>
+              <polygon class="arrowhead" points="136,464 124,458.4 124,469.6" fill="black" transform="rotate(180,128,464)"></polygon>
+              <polygon class="arrowhead" points="136,400 124,394.4 124,405.6" fill="black" transform="rotate(180,128,400)"></polygon>
+              <polygon class="arrowhead" points="136,256 124,250.4 124,261.6" fill="black" transform="rotate(180,128,256)"></polygon>
+              <polygon class="arrowhead" points="136,192 124,186.4 124,197.6" fill="black" transform="rotate(180,128,192)"></polygon>
+              <polygon class="arrowhead" points="136,128 124,122.4 124,133.6" fill="black" transform="rotate(180,128,128)"></polygon>
+              <polygon class="arrowhead" points="136,64 124,58.4 124,69.6" fill="black" transform="rotate(180,128,64)"></polygon>
+              <g class="text">
+                <text x="72" y="20">Node N1</text>
+                <text x="364" y="20">Interfaces</text>
+                <text x="220" y="52">tp-to-interface-path</text>
+                <text x="72" y="68">L2-N1-TP1</text>
+                <text x="372" y="68">L2Interface1</text>
+                <text x="220" y="116">tp-to-interface-path</text>
+                <text x="72" y="132">mw-N1-RLTP1</text>
+                <text x="368" y="132">RLT-1</text>
+                <text x="220" y="180">tp-to-interface-path</text>
+                <text x="68" y="196">mw-N1-CTP1</text>
+                <text x="372" y="196">CT-1</text>
+                <text x="220" y="244">tp-to-interface-path</text>
+                <text x="68" y="260">mw-N1-CTP3</text>
+                <text x="372" y="260">CT-3</text>
+                <text x="72" y="356">Node N2</text>
+                <text x="364" y="356">Interfaces</text>
+                <text x="220" y="388">tp-to-interface-path</text>
+                <text x="72" y="404">L2-N2-TP2</text>
+                <text x="372" y="404">L2Interface2</text>
+                <text x="220" y="452">tp-to-interface-path</text>
+                <text x="72" y="468">mw-N2-RLTP2</text>
+                <text x="368" y="468">RLT-2</text>
+                <text x="220" y="516">tp-to-interface-path</text>
+                <text x="68" y="532">mw-N2-CTP2</text>
+                <text x="372" y="532">CT-2</text>
+                <text x="220" y="580">tp-to-interface-path</text>
+                <text x="68" y="596">mw-N2-CTP4</text>
+                <text x="372" y="596">CT-4</text>
+              </g>
+            </svg><a href="#appendix-B-5.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-interface-extension-example" class="selfRef">Interface extension example for L2 over microwave</a>
