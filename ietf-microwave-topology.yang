@@ -3,7 +3,7 @@
    namespace
    "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
 
-   prefix "mwtopo";
+   prefix "mwt";
 
    import ietf-network {
      prefix "nw";
@@ -49,7 +49,7 @@
    description
      "This is a module for microwave topology.
 
-     Copyright (c) 2023 IETF Trust and the persons
+     Copyright (c) 2024 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -62,22 +62,9 @@
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-   revision 2023-10-19   {
+   revision 2024-01-19   {
      description
-     "last call comment resolutions.";
-     reference "";
-   }
-
-   revision 2023-07-20   {
-     description
-     "Multi-layer fix, and a few editorials";
-     reference "";
-   }
-
-   revision 2023-02-15   {
-     description
-     "Draft to be used as a basis for the continued microwave
-      team discussions";
+     "AD comment resolutions.";
      reference "";
    }
 
@@ -210,7 +197,7 @@
    augment "/nw:networks/nw:network/nw:node/tet:te"
         + "/tet:te-node-attributes" {
     when "/nw:networks/nw:network/nw:network-types"
-       + "/tet:te-topology/mwtopo:mw-topology" {
+       + "/tet:te-topology/mwt:mw-topology" {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -226,7 +213,7 @@
    augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
            + "tet:te" {
      when '../../../nw:network-types/tet:te-topology/'
-          + 'mwtopo:mw-topology' {
+          + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -269,7 +256,7 @@
    augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:te-link-attributes" {
      when '../../../nw:network-types/tet:te-topology/'
-        + 'mwtopo:mw-topology' {
+        + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -308,7 +295,7 @@
            + "tet:max-link-bandwidth/"
            + "tet:te-bandwidth" {
      when '../../../../../nw:network-types/tet:te-topology/'
-          + 'mwtopo:mw-topology' {
+          + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";

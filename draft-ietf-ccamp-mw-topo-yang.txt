@@ -5,14 +5,14 @@
 CCAMP Working Group                                    S. Mansfield, Ed.
 Internet-Draft                                              Ericsson Inc
 Intended status: Standards Track                              J. Ahlberg
-Expires: 18 July 2024                                        Ericsson AB
+Expires: 22 July 2024                                        Ericsson AB
                                                                    M. Ye
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         15 January 2024
+                                                         19 January 2024
 
 
                 A YANG Data Model for Microwave Topology
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 July 2024.
+   This Internet-Draft will expire on 22 July 2024.
 
 Copyright Notice
 
@@ -174,20 +174,22 @@ Table of Contents
 1.3.  Prefixes in Data Node Names
 
    In this document, names of data nodes and other data model objects
-   are prefixed wising the standard prefix associated with the
+   are prefixed using the standard prefix associated with the
    corresponding YANG imported modules, as shown in Table 1.
 
-             +==========+=======================+===========+
-             | Prefix   | YANG Module           | Reference |
-             +==========+=======================+===========+
-             | nw       | ietf-network          | [RFC8345] |
-             +----------+-----------------------+-----------+
-             | nt       | ietf-network-topology | [RFC8345] |
-             +----------+-----------------------+-----------+
-             | mw-types | ietf-microwave-types  | [RFC8561] |
-             +----------+-----------------------+-----------+
-             | tet      | ietf-te-topology      | [RFC8795] |
-             +----------+-----------------------+-----------+
+          +==========+=========================+===============+
+          | Prefix   | YANG Module             | Reference     |
+          +==========+=========================+===============+
+          | mwt      | ietf-microwave-topology | This document |
+          +----------+-------------------------+---------------+
+          | nw       | ietf-network            | [RFC8345]     |
+          +----------+-------------------------+---------------+
+          | nt       | ietf-network-topology   | [RFC8345]     |
+          +----------+-------------------------+---------------+
+          | mw-types | ietf-microwave-types    | [RFC8561]     |
+          +----------+-------------------------+---------------+
+          | tet      | ietf-te-topology        | [RFC8795]     |
+          +----------+-------------------------+---------------+
 
                Table 1: Prefixes for imported YANG modules
 
@@ -277,13 +279,13 @@ Table of Contents
 
 2.5.  Microwave Topology YANG Module
 
-   <CODE BEGINS> file "ietf-microwave-topology@2023-10-19.yang"
+   <CODE BEGINS> file "ietf-microwave-topology@2024-01-19.yang"
     module ietf-microwave-topology {
       yang-version "1.1";
       namespace
       "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
 
-      prefix "mwtopo";
+      prefix "mwt";
 
       import ietf-network {
         prefix "nw";
@@ -329,7 +331,7 @@ Table of Contents
       description
         "This is a module for microwave topology.
 
-        Copyright (c) 2023 IETF Trust and the persons
+        Copyright (c) 2024 IETF Trust and the persons
         identified as authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -342,22 +344,9 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see
         the RFC itself for full legal notices.";
 
-      revision 2023-10-19   {
+      revision 2024-01-19   {
         description
-        "last call comment resolutions.";
-        reference "";
-      }
-
-      revision 2023-07-20   {
-        description
-        "Multi-layer fix, and a few editorials";
-        reference "";
-      }
-
-      revision 2023-02-15   {
-        description
-        "Draft to be used as a basis for the continued microwave
-         team discussions";
+        "AD comment resolutions.";
         reference "";
       }
 
@@ -490,7 +479,7 @@ Table of Contents
       augment "/nw:networks/nw:network/nw:node/tet:te"
            + "/tet:te-node-attributes" {
        when "/nw:networks/nw:network/nw:network-types"
-          + "/tet:te-topology/mwtopo:mw-topology" {
+          + "/tet:te-topology/mwt:mw-topology" {
           description
             "Augmentation parameters apply only for networks with a
              microwave network topology type.";
@@ -506,7 +495,7 @@ Table of Contents
       augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
               + "tet:te" {
         when '../../../nw:network-types/tet:te-topology/'
-             + 'mwtopo:mw-topology' {
+             + 'mwt:mw-topology' {
           description
             "Augmentation parameters apply only for networks with a
              microwave network topology type.";
@@ -549,7 +538,7 @@ Table of Contents
       augment "/nw:networks/nw:network/nt:link/tet:te/"
               + "tet:te-link-attributes" {
         when '../../../nw:network-types/tet:te-topology/'
-           + 'mwtopo:mw-topology' {
+           + 'mwt:mw-topology' {
           description
             "Augmentation parameters apply only for networks with a
              microwave network topology type.";
@@ -588,7 +577,7 @@ Table of Contents
               + "tet:max-link-bandwidth/"
               + "tet:te-bandwidth" {
         when '../../../../../nw:network-types/tet:te-topology/'
-             + 'mwtopo:mw-topology' {
+             + 'mwt:mw-topology' {
           description
             "Augmentation parameters apply only for networks with a
              microwave network topology type.";
@@ -652,7 +641,7 @@ Table of Contents
        Name: ietf-microwave-topology
        Maintained by IANA?: N
        Namespace: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
-       Prefix: mwtopo
+       Prefix: mwt
        Reference: RFC XXXX
 
 5.  References
@@ -774,7 +763,7 @@ Appendix A.  Microwave Topology Model with base topology models
     |  +--rw network-id                    network-id
     |  +--rw network-types
     |  |  +--rw tet:te-topology!
-    |  |  |  +--rw mwtopo:mw-topology!
+    |  |  |  +--rw mwt:mw-topology!
     |  +--rw supporting-network* [network-ref]
     |  |  +--rw network-ref    -> /networks/network/network-id
     |  +--rw node* [node-id]
@@ -801,12 +790,12 @@ Appendix A.  Microwave Topology Model with base topology models
     |  |  |  |  |  +--ro tet:altitude?    int64
     |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
     |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
-    |  |  |  |  +--rw mwtopo:mw-tp
-    |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
-    |  |  |  |  |     +--:(mwtopo:microwave-rltp)
-    |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
-    |  |  |  |  |     +--:(mwtopo:microwave-ctp)
-    |  |  |  |  |        +--rw mwtopo:microwave-ctp!
+    |  |  |  |  +--rw mwt:mw-tp
+    |  |  |  |  |  +--rw (mwt:mw-tp-option)?
+    |  |  |  |  |     +--:(mwt:microwave-rltp)
+    |  |  |  |  |     |  +--rw mwt:microwave-rltp!
+    |  |  |  |  |     +--:(mwt:microwave-ctp)
+    |  |  |  |  |        +--rw mwt:microwave-ctp!
     |  |  +--rw tet:te-node-id?           te-types:te-node-id
     |  +--rw nt:link* [link-id]
     |  |  +--rw nt:link-id                link-id
@@ -834,24 +823,24 @@ Appendix A.  Microwave Topology Model with base topology models
     |  |  |  |  +--rw tet:name?                             string
     |  |  |  |  +--rw tet:max-link-bandwidth
     |  |  |  |  |  +--rw tet:te-bandwidth
-    |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
-    |  |  |  |  +--rw mwtopo:mw-link!
-    |  |  |  |     +--rw (mwtopo:mw-link-option)?
-    |  |  |  |        +--:(mwtopo:microwave-radio-link)
-    |  |  |  |        |  +--rw mwtopo:microwave-radio-link!
-    |  |  |  |        |     +--rw mwtopo:rlt-mode
-    |  |  |  |        |        +--rw mwtopo:num-bonded-carriers
+    |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
+    |  |  |  |  +--rw mwt:mw-link!
+    |  |  |  |     +--rw (mwt:mw-link-option)?
+    |  |  |  |        +--:(mwt:microwave-radio-link)
+    |  |  |  |        |  +--rw mwt:microwave-radio-link!
+    |  |  |  |        |     +--rw mwt:rlt-mode
+    |  |  |  |        |        +--rw mwt:num-bonded-carriers
    uint32
-    |  |  |  |        |        +--rw mwtopo:num-protecting-carriers
+    |  |  |  |        |        +--rw mwt:num-protecting-carriers
    uint32
-    |  |  |  |        +--:(mwtopo:microwave-carrier)
-    |  |  |  |           +--rw mwtopo:microwave-carrier!
-    |  |  |  |              +--rw mwtopo:tx-frequency?      uint32
-    |  |  |  |              +--rw mwtopo:rx-frequency?      uint32
-    |  |  |  |              +--rw mwtopo:channel-separation? uint32
-    |  |  |  |              +--ro mwtopo:actual-tx-cm?      identityref
-    |  |  |  |              +--ro mwtopo:actual-snir?       decimal64
-    |  |  |  |              +--ro mwtopo:actual-transmitted-level?
+    |  |  |  |        +--:(mwt:microwave-carrier)
+    |  |  |  |           +--rw mwt:microwave-carrier!
+    |  |  |  |              +--rw mwt:tx-frequency?      uint32
+    |  |  |  |              +--rw mwt:rx-frequency?      uint32
+    |  |  |  |              +--rw mwt:channel-separation? uint32
+    |  |  |  |              +--ro mwt:actual-tx-cm?      identityref
+    |  |  |  |              +--ro mwt:actual-snir?       decimal64
+    |  |  |  |              +--ro mwt:actual-transmitted-level?
    decimal64
 
    The Microwave Topology Model augments the TE Topology Model.
@@ -874,7 +863,7 @@ Appendix A.  Microwave Topology Model with base topology models
    | |mw-N1- :  *---+--'         '--+---*  : mw-N2-| | * carriers
    | |CTP1   :  o<--|---------------|-->o  : CTP2  | |   as bundled
    | +-------:--+ | |  mwc-N1-N2-A  | | +--:-------+ |   links
-   |         :    | |               | |  :           |
+   |           :  | |               | |  :           |
    | +----------+ | |               | | +----------+ |
    | |mw-N1-CTP3*---'               '---*mw-N2-CTP4| |
    | |          o<--------------------->o          | |
@@ -1467,7 +1456,7 @@ Appendix B.  Microwave Topology Model with example extensions
     |  +--rw network-id                    network-id
     |  +--rw network-types
     |  |  +--rw tet:te-topology!
-    |  |  |  +--rw mwtopo:mw-topology!
+    |  |  |  +--rw mwt:mw-topology!
     |  +--rw supporting-network* [network-ref]
     |  |  +--rw network-ref    -> /networks/network/network-id
     |  +--rw node* [node-id]
@@ -1496,12 +1485,12 @@ Appendix B.  Microwave Topology Model with example extensions
     |  |  |  |  |  +--ro tet:altitude?    int64
     |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
     |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
-    |  |  |  |  +--rw mwtopo:mw-tp!
-    |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
-    |  |  |  |  |     +--:(mwtopo:microwave-rltp)
-    |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
-    |  |  |  |  |     +--:(mwtopo:microwave-ctp)
-    |  |  |  |  |        +--rw mwtopo:microwave-ctp!
+    |  |  |  |  +--rw mwt:mw-tp!
+    |  |  |  |  |  +--rw (mwt:mw-tp-option)?
+    |  |  |  |  |     +--:(mwt:microwave-rltp)
+    |  |  |  |  |     |  +--rw mwt:microwave-rltp!
+    |  |  |  |  |     +--:(mwt:microwave-ctp)
+    |  |  |  |  |        +--rw mwt:microwave-ctp!
     |  |  |  |  +--rw ifref:tp-to-interface-path?  -> /if:interfaces/
    interface/name
     |  |  +--rw tet:te-node-id?           te-types:te-node-id
@@ -1532,22 +1521,22 @@ Appendix B.  Microwave Topology Model with example extensions
     |  |  |  |  +--rw tet:admin-status?     te-types:te-admin-status
     |  |  |  |  +--rw tet:max-link-bandwidth
     |  |  |  |  |  +--rw tet:te-bandwidth
-    |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
-    |  |  |  |  +--rw mwtopo:mw-link!
-    |  |  |  |     +--rw (mwtopo:mw-link-option)?
-    |  |  |  |        +--:(mwtopo:microwave-radio-link)
-    |  |  |  |        |  +--rw mwtopo:microwave-radio-link!
-    |  |  |  |        |     +--rw mwtopo:rlt-mode
-    |  |  |  |        |      +--rw mwtopo:num-bonded-carriers uint32
-    |  |  |  |        |      +--rw mwtopo:num-protecting-carriers uint32
-    |  |  |  |        +--:(mwtopo:microwave-carrier)
-    |  |  |  |           +--rw mwtopo:microwave-carrier!
-    |  |  |  |            +--rw mwtopo:tx-frequency?       uint32
-    |  |  |  |            +--rw mwtopo:rx-frequency?       uint32
-    |  |  |  |            +--rw mwtopo:channel-separation? uint32
-    |  |  |  |            +--ro mwtopo:actual-tx-cm?       identityref
-    |  |  |  |            +--ro mwtopo:actual-snir?        decimal64
-    |  |  |  |            +--ro mwtopo:actual-transmitted-level?
+    |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
+    |  |  |  |  +--rw mwt:mw-link!
+    |  |  |  |     +--rw (mwt:mw-link-option)?
+    |  |  |  |        +--:(mwt:microwave-radio-link)
+    |  |  |  |        |  +--rw mwt:microwave-radio-link!
+    |  |  |  |        |     +--rw mwt:rlt-mode
+    |  |  |  |        |      +--rw mwt:num-bonded-carriers uint32
+    |  |  |  |        |      +--rw mwt:num-protecting-carriers uint32
+    |  |  |  |        +--:(mwt:microwave-carrier)
+    |  |  |  |           +--rw mwt:microwave-carrier!
+    |  |  |  |            +--rw mwt:tx-frequency?       uint32
+    |  |  |  |            +--rw mwt:rx-frequency?       uint32
+    |  |  |  |            +--rw mwt:channel-separation? uint32
+    |  |  |  |            +--ro mwt:actual-tx-cm?       identityref
+    |  |  |  |            +--ro mwt:actual-snir?        decimal64
+    |  |  |  |            +--ro mwt:actual-transmitted-level?
    decimal64
     |  |  |  |  +--rw bwatopo:link-availability* [availability]
     |  |  |  |  |  +--rw bwatopo:availability      decimal64

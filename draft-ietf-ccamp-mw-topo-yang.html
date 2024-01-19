@@ -1043,7 +1043,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mansfield, et al.</td>
-<td class="center">Expires 18 July 2024</td>
+<td class="center">Expires 22 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1056,12 +1056,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ccamp-mw-topo-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-15" class="published">15 January 2024</time>
+<time datetime="2024-01-19" class="published">19 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-18">18 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-22">22 July 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1289,7 +1289,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-prefixes-in-data-node-names">
 <a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-prefixes-in-data-node-names" class="section-name selfRef">Prefixes in Data Node Names</a>
         </h3>
-<p id="section-1.3-1">In this document, names of data nodes and other data model objects are prefixed wising the standard prefix associated with the corresponding YANG imported modules, as shown in <a href="#tab-prefix" class="auto internal xref">Table 1</a>.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
+<p id="section-1.3-1">In this document, names of data nodes and other data model objects are prefixed using the standard prefix associated with the corresponding YANG imported modules, as shown in <a href="#tab-prefix" class="auto internal xref">Table 1</a>.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
 <span id="name-prefixes-for-imported-yang-"></span><div id="tab-prefix">
 <table class="center" id="table-1">
           <caption>
@@ -1304,6 +1304,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">mwt</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-microwave-topology</td>
+              <td class="text-left" rowspan="1" colspan="1">This document</td>
+            </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">nw</td>
               <td class="text-left" rowspan="1" colspan="1">ietf-network</td>
@@ -1422,14 +1427,14 @@ augment
 <a href="#section-2.5" class="section-number selfRef">2.5. </a><a href="#name-microwave-topology-yang-mod" class="section-name selfRef">Microwave Topology YANG Module</a>
         </h3>
 <div class="breakable lang-yang sourcecode" id="section-2.5-1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-microwave-topology@2023-10-19.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-microwave-topology@2024-01-19.yang"
 
  module ietf-microwave-topology {
    yang-version "1.1";
    namespace
    "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
 
-   prefix "mwtopo";
+   prefix "mwt";
 
    import ietf-network {
      prefix "nw";
@@ -1475,7 +1480,7 @@ augment
    description
      "This is a module for microwave topology.
 
-     Copyright (c) 2023 IETF Trust and the persons
+     Copyright (c) 2024 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -1488,22 +1493,9 @@ augment
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-   revision 2023-10-19   {
+   revision 2024-01-19   {
      description
-     "last call comment resolutions.";
-     reference "";
-   }
-
-   revision 2023-07-20   {
-     description
-     "Multi-layer fix, and a few editorials";
-     reference "";
-   }
-
-   revision 2023-02-15   {
-     description
-     "Draft to be used as a basis for the continued microwave
-      team discussions";
+     "AD comment resolutions.";
      reference "";
    }
 
@@ -1636,7 +1628,7 @@ augment
    augment "/nw:networks/nw:network/nw:node/tet:te"
         + "/tet:te-node-attributes" {
     when "/nw:networks/nw:network/nw:network-types"
-       + "/tet:te-topology/mwtopo:mw-topology" {
+       + "/tet:te-topology/mwt:mw-topology" {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -1652,7 +1644,7 @@ augment
    augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
            + "tet:te" {
      when '../../../nw:network-types/tet:te-topology/'
-          + 'mwtopo:mw-topology' {
+          + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -1695,7 +1687,7 @@ augment
    augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:te-link-attributes" {
      when '../../../nw:network-types/tet:te-topology/'
-        + 'mwtopo:mw-topology' {
+        + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -1734,7 +1726,7 @@ augment
            + "tet:max-link-bandwidth/"
            + "tet:te-bandwidth" {
      when '../../../../../nw:network-types/tet:te-topology/'
-          + 'mwtopo:mw-topology' {
+          + 'mwt:mw-topology' {
        description
          "Augmentation parameters apply only for networks with a
           microwave network topology type.";
@@ -1813,7 +1805,7 @@ XML: N/A; the requested URI is an XML namespace.
     Name: ietf-microwave-topology
     Maintained by IANA?: N
     Namespace: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
-    Prefix: mwtopo
+    Prefix: mwt
     Reference: RFC XXXX
 </pre><a href="#section-4-4" class="pilcrow">¶</a>
 </div>
@@ -1925,7 +1917,7 @@ module: ietf-network
  |  +--rw network-id                    network-id
  |  +--rw network-types
  |  |  +--rw tet:te-topology!
- |  |  |  +--rw mwtopo:mw-topology!
+ |  |  |  +--rw mwt:mw-topology!
  |  +--rw supporting-network* [network-ref]
  |  |  +--rw network-ref    -&gt; /networks/network/network-id
  |  +--rw node* [node-id]
@@ -1952,12 +1944,12 @@ node[nw:node-id=current()/../node-ref]/termination-point/tp-id
  |  |  |  |  |  +--ro tet:altitude?    int64
  |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
  |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
- |  |  |  |  +--rw mwtopo:mw-tp
- |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
- |  |  |  |  |     +--:(mwtopo:microwave-rltp)
- |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
- |  |  |  |  |     +--:(mwtopo:microwave-ctp)
- |  |  |  |  |        +--rw mwtopo:microwave-ctp!
+ |  |  |  |  +--rw mwt:mw-tp
+ |  |  |  |  |  +--rw (mwt:mw-tp-option)?
+ |  |  |  |  |     +--:(mwt:microwave-rltp)
+ |  |  |  |  |     |  +--rw mwt:microwave-rltp!
+ |  |  |  |  |     +--:(mwt:microwave-ctp)
+ |  |  |  |  |        +--rw mwt:microwave-ctp!
  |  |  +--rw tet:te-node-id?           te-types:te-node-id
  |  +--rw nt:link* [link-id]
  |  |  +--rw nt:link-id                link-id
@@ -1985,24 +1977,24 @@ termination-point/tp-id
  |  |  |  |  +--rw tet:name?                             string
  |  |  |  |  +--rw tet:max-link-bandwidth
  |  |  |  |  |  +--rw tet:te-bandwidth
- |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
- |  |  |  |  +--rw mwtopo:mw-link!
- |  |  |  |     +--rw (mwtopo:mw-link-option)?
- |  |  |  |        +--:(mwtopo:microwave-radio-link)
- |  |  |  |        |  +--rw mwtopo:microwave-radio-link!
- |  |  |  |        |     +--rw mwtopo:rlt-mode
- |  |  |  |        |        +--rw mwtopo:num-bonded-carriers
+ |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
+ |  |  |  |  +--rw mwt:mw-link!
+ |  |  |  |     +--rw (mwt:mw-link-option)?
+ |  |  |  |        +--:(mwt:microwave-radio-link)
+ |  |  |  |        |  +--rw mwt:microwave-radio-link!
+ |  |  |  |        |     +--rw mwt:rlt-mode
+ |  |  |  |        |        +--rw mwt:num-bonded-carriers
 uint32
- |  |  |  |        |        +--rw mwtopo:num-protecting-carriers
+ |  |  |  |        |        +--rw mwt:num-protecting-carriers
 uint32
- |  |  |  |        +--:(mwtopo:microwave-carrier)
- |  |  |  |           +--rw mwtopo:microwave-carrier!
- |  |  |  |              +--rw mwtopo:tx-frequency?      uint32
- |  |  |  |              +--rw mwtopo:rx-frequency?      uint32
- |  |  |  |              +--rw mwtopo:channel-separation? uint32
- |  |  |  |              +--ro mwtopo:actual-tx-cm?      identityref
- |  |  |  |              +--ro mwtopo:actual-snir?       decimal64
- |  |  |  |              +--ro mwtopo:actual-transmitted-level?
+ |  |  |  |        +--:(mwt:microwave-carrier)
+ |  |  |  |           +--rw mwt:microwave-carrier!
+ |  |  |  |              +--rw mwt:tx-frequency?      uint32
+ |  |  |  |              +--rw mwt:rx-frequency?      uint32
+ |  |  |  |              +--rw mwt:channel-separation? uint32
+ |  |  |  |              +--ro mwt:actual-tx-cm?      identityref
+ |  |  |  |              +--ro mwt:actual-snir?       decimal64
+ |  |  |  |              +--ro mwt:actual-transmitted-level?
 decimal64
 </pre><a href="#appendix-A-3" class="pilcrow">¶</a>
 </div>
@@ -2029,7 +2021,7 @@ decimal64
 | |mw-N1- :  *---+--'         '--+---*  : mw-N2-| | * carriers
 | |CTP1   :  o&lt;--|---------------|--&gt;o  : CTP2  | |   as bundled
 | +-------:--+ | |  mwc-N1-N2-A  | | +--:-------+ |   links
-|         :    | |               | |  :           |
+|           :  | |               | |  :           |
 | +----------+ | |               | | +----------+ |
 | |mw-N1-CTP3*---'               '---*mw-N2-CTP4| |
 | |          o&lt;---------------------&gt;o          | |
@@ -2636,7 +2628,7 @@ module: ietf-network
  |  +--rw network-id                    network-id
  |  +--rw network-types
  |  |  +--rw tet:te-topology!
- |  |  |  +--rw mwtopo:mw-topology!
+ |  |  |  +--rw mwt:mw-topology!
  |  +--rw supporting-network* [network-ref]
  |  |  +--rw network-ref    -&gt; /networks/network/network-id
  |  +--rw node* [node-id]
@@ -2665,12 +2657,12 @@ p-id
  |  |  |  |  |  +--ro tet:altitude?    int64
  |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
  |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
- |  |  |  |  +--rw mwtopo:mw-tp!
- |  |  |  |  |  +--rw (mwtopo:mw-tp-option)?
- |  |  |  |  |     +--:(mwtopo:microwave-rltp)
- |  |  |  |  |     |  +--rw mwtopo:microwave-rltp!
- |  |  |  |  |     +--:(mwtopo:microwave-ctp)
- |  |  |  |  |        +--rw mwtopo:microwave-ctp!
+ |  |  |  |  +--rw mwt:mw-tp!
+ |  |  |  |  |  +--rw (mwt:mw-tp-option)?
+ |  |  |  |  |     +--:(mwt:microwave-rltp)
+ |  |  |  |  |     |  +--rw mwt:microwave-rltp!
+ |  |  |  |  |     +--:(mwt:microwave-ctp)
+ |  |  |  |  |        +--rw mwt:microwave-ctp!
  |  |  |  |  +--rw ifref:tp-to-interface-path?  -&gt; /if:interfaces/
 interface/name
  |  |  +--rw tet:te-node-id?           te-types:te-node-id
@@ -2701,22 +2693,22 @@ dest-node]/termination-point/tp-id
  |  |  |  |  +--rw tet:admin-status?     te-types:te-admin-status
  |  |  |  |  +--rw tet:max-link-bandwidth
  |  |  |  |  |  +--rw tet:te-bandwidth
- |  |  |  |  |     +--ro mwtopo:mw-bandwidth?       uint64
- |  |  |  |  +--rw mwtopo:mw-link!
- |  |  |  |     +--rw (mwtopo:mw-link-option)?
- |  |  |  |        +--:(mwtopo:microwave-radio-link)
- |  |  |  |        |  +--rw mwtopo:microwave-radio-link!
- |  |  |  |        |     +--rw mwtopo:rlt-mode
- |  |  |  |        |      +--rw mwtopo:num-bonded-carriers uint32
- |  |  |  |        |      +--rw mwtopo:num-protecting-carriers uint32
- |  |  |  |        +--:(mwtopo:microwave-carrier)
- |  |  |  |           +--rw mwtopo:microwave-carrier!
- |  |  |  |            +--rw mwtopo:tx-frequency?       uint32
- |  |  |  |            +--rw mwtopo:rx-frequency?       uint32
- |  |  |  |            +--rw mwtopo:channel-separation? uint32
- |  |  |  |            +--ro mwtopo:actual-tx-cm?       identityref
- |  |  |  |            +--ro mwtopo:actual-snir?        decimal64
- |  |  |  |            +--ro mwtopo:actual-transmitted-level?
+ |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
+ |  |  |  |  +--rw mwt:mw-link!
+ |  |  |  |     +--rw (mwt:mw-link-option)?
+ |  |  |  |        +--:(mwt:microwave-radio-link)
+ |  |  |  |        |  +--rw mwt:microwave-radio-link!
+ |  |  |  |        |     +--rw mwt:rlt-mode
+ |  |  |  |        |      +--rw mwt:num-bonded-carriers uint32
+ |  |  |  |        |      +--rw mwt:num-protecting-carriers uint32
+ |  |  |  |        +--:(mwt:microwave-carrier)
+ |  |  |  |           +--rw mwt:microwave-carrier!
+ |  |  |  |            +--rw mwt:tx-frequency?       uint32
+ |  |  |  |            +--rw mwt:rx-frequency?       uint32
+ |  |  |  |            +--rw mwt:channel-separation? uint32
+ |  |  |  |            +--ro mwt:actual-tx-cm?       identityref
+ |  |  |  |            +--ro mwt:actual-snir?        decimal64
+ |  |  |  |            +--ro mwt:actual-transmitted-level?
 decimal64
  |  |  |  |  +--rw bwatopo:link-availability* [availability]
  |  |  |  |  |  +--rw bwatopo:availability      decimal64

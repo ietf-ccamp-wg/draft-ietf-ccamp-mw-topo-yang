@@ -125,13 +125,14 @@ PNC Provisioning Network Controller
 A simplified graphical representation of the data model is used in chapter 3.1 of this document.  The meaning of the symbols in these diagrams is defined in {{?RFC8340}}.
 
 ## Prefixes in Data Node Names
-In this document, names of data nodes and other data model objects are prefixed wising the standard prefix associated with the corresponding YANG imported modules, as shown in {{tab-prefix}}.
+In this document, names of data nodes and other data model objects are prefixed using the standard prefix associated with the corresponding YANG imported modules, as shown in {{tab-prefix}}.
 
-| Prefix   | YANG Module           | Reference
-| nw       | ietf-network          | {{!RFC8345}}
-| nt       | ietf-network-topology | {{!RFC8345}}
-| mw-types | ietf-microwave-types  | {{!RFC8561}}
-| tet      | ietf-te-topology      | {{!RFC8795}}
+| Prefix   | YANG Module             | Reference
+| mwt      | ietf-microwave-topology | This document
+| nw       | ietf-network            | {{!RFC8345}}
+| nt       | ietf-network-topology   | {{!RFC8345}}
+| mw-types | ietf-microwave-types    | {{!RFC8561}}
+| tet      | ietf-te-topology        | {{!RFC8795}}
 {: #tab-prefix title="Prefixes for imported YANG modules"}
 
 # Microwave Topology YANG Data Model
@@ -157,7 +158,7 @@ More specifically in the context of the microwave-specific augmentations of te-t
 ~~~~ yang
 {::include ./ietf-microwave-topology.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology@2023-10-19.yang"}
+{: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology@2024-01-19.yang"}
 
 # Security Considerations
 
@@ -213,7 +214,7 @@ XML: N/A; the requested URI is an XML namespace.
     Name: ietf-microwave-topology
     Maintained by IANA?: N
     Namespace: urn:ietf:params:xml:ns:yang:ietf-microwave-topology
-    Prefix: mwtopo
+    Prefix: mwt
     Reference: RFC XXXX
 ~~~~
 
@@ -270,6 +271,7 @@ The Microwave Topology Model augments the TE Topology Model.
 ~~~~ ascii-art
 {::include ./art/mw-extensions-art.txt}
 ~~~~
+{: artwork-name="mw-extensions-art.txt"}
 {: #fig-mw-extensions title="Interface extension example for L2 over microwave"}
 
 ## Instance data for 2+0 mode
