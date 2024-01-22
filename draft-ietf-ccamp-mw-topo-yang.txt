@@ -5,14 +5,14 @@
 CCAMP Working Group                                    S. Mansfield, Ed.
 Internet-Draft                                              Ericsson Inc
 Intended status: Standards Track                              J. Ahlberg
-Expires: 22 July 2024                                        Ericsson AB
+Expires: 25 July 2024                                        Ericsson AB
                                                                    M. Ye
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         19 January 2024
+                                                         22 January 2024
 
 
                 A YANG Data Model for Microwave Topology
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 July 2024.
+   This Internet-Draft will expire on 25 July 2024.
 
 Copyright Notice
 
@@ -278,6 +278,9 @@ Table of Contents
    applicable in normal cases.
 
 2.5.  Microwave Topology YANG Module
+
+   This module imports typedefs and modules from [RFC8345], [RFC8561],
+   and [RFC8795], and it references [EN301129] and [EN302217-1].
 
    <CODE BEGINS> file "ietf-microwave-topology@2024-01-19.yang"
     module ietf-microwave-topology {

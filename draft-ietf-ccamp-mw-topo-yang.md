@@ -155,6 +155,8 @@ Since microwave is a point-to-point radio technology, a majority of the leafs in
 More specifically in the context of the microwave-specific augmentations of te-topology, admin-status and oper-status leafs (from te-topology) are only applicable to microwave carriers (in the mw-link tree) and not microwave radio links. Enable and disable of a radio link is instead done in the constituent carriers. Furthermore the status leafs related to mw-tp can be used when links are inter-domain and when the status of only one side of the link is known, but since microwave is a point-to-point technology where both ends normally belong to the same domain it is not expected to be applicable in normal cases.
 
 ## Microwave Topology YANG Module
+This module imports typedefs and modules from {{!RFC8345}}, {{!RFC8561}}, and {{!RFC8795}}, and it references {{EN301129}} and {{EN302217-1}}.
+
 ~~~~ yang
 {::include ./ietf-microwave-topology.yang}
 ~~~~
