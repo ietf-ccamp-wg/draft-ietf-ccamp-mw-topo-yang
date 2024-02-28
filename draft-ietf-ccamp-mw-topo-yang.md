@@ -154,7 +154,7 @@ This module imports typedefs and modules from {{!RFC8345}}, {{!RFC8561}}, and {{
 ~~~~ yang
 {::include ./ietf-microwave-topology.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology@2024-01-19.yang"}
+{: sourcecode-markers="true" sourcecode-name="ietf-microwave-topology@2024-02-27.yang"}
 
 # Security Considerations
 
