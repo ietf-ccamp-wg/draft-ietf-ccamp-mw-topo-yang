@@ -1,92 +1,96 @@
 module: ietf-network
-+--rw networks
- +--rw network* [network-id]
- |  +--rw network-id                    network-id
- |  +--rw network-types
- |  |  +--rw tet:te-topology!
- |  |  |  +--rw mwt:mw-topology!
- |  +--rw supporting-network* [network-ref]
- |  |  +--rw network-ref    -> /networks/network/network-id
- |  +--rw node* [node-id]
- |  |  +--rw node-id                   node-id
- |  |  +--rw supporting-node* [network-ref node-ref]
- |  |  |  +--rw network-ref    -> ../../../supporting-network/networ
-k-ref
- |  |  |  +--rw node-ref       -> /networks/network/node/node-id
- |  |  +--rw nt:termination-point* [tp-id]
- |  |  |  +--rw nt:tp-id                               tp-id
- |  |  |  +--rw nt:supporting-termination-point* [network-ref node-r
-ef tp-ref]
- |  |  |  |  +--rw nt:network-ref    -> ../../../nw:supporting-node/
-network-ref
- |  |  |  |  +--rw nt:node-ref       -> ../../../nw:supporting-node/
-node-ref
- |  |  |  |  +--rw nt:tp-ref         -> /nw:networks/
-network[nw:network-id=current()/../network-ref]/
-node[nw:node-id=current()/../node-ref]/
-termination-point/tp-id
- |  |  |  +--rw tet:te-tp-id?                          te-types:te-t
-p-id
- |  |  |  +--rw tet:te!
- |  |  |  |  +--rw tet:name?                             string
- |  |  |  |  +--ro tet:geolocation
- |  |  |  |  |  +--ro tet:altitude?    int64
- |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
- |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
- |  |  |  |  +--rw mwt:mw-tp!
- |  |  |  |  |  +--rw (mwt:mw-tp-option)?
- |  |  |  |  |     +--:(mwt:microwave-rltp)
- |  |  |  |  |     |  +--rw mwt:microwave-rltp!
- |  |  |  |  |     +--:(mwt:microwave-ctp)
- |  |  |  |  |        +--rw mwt:microwave-ctp!
- |  |  |  |  +--rw ifref:tp-to-interface-path?  -> /if:interfaces/
-interface/name
- |  |  +--rw tet:te-node-id?           te-types:te-node-id
- |  +--rw nt:link* [link-id]
- |  |  +--rw nt:link-id                link-id
- |  |  +--rw nt:source
- |  |  |  +--rw nt:source-node?   -> ../../../nw:node/node-id
- |  |  |  +--rw nt:source-tp?     -> ../../../
-nw:node[nw:node-id=current()/../source-node]/termination-point/tp-id
- |  |  +--rw nt:destination
- |  |  |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
- |  |  |  +--rw nt:dest-tp?     -> ../../../
-nw:node[nw:node-id=current()/../dest-node]/termination-point/tp-id
- |  |  +--rw tet:te!
- |  |  |  +--rw (tet:bundle-stack-level)?
- |  |  |  |  +--:(tet:bundle)
- |  |  |  |  |  +--rw tet:bundled-links
- |  |  |  |  |     +--rw tet:bundled-link* [sequence]
- |  |  |  |  |        +--rw tet:sequence      uint32
- |  |  |  |  |        +--rw tet:src-tp-ref?   -> ../../../../../
-nw:node[nw:node-id = current()/../../../../nt:source/source-node]/
-termination-point/tp-id
- |  |  |  |  |        +--rw tet:des-tp-ref?   -> ../../../../../
-nw:node[nw:node-id = current()/../../../../nt:destination/
-dest-node]/termination-point/tp-id
- |  |  |  +--rw tet:te-link-attributes
- |  |  |  |  +--rw tet:name?             string
- |  |  |  |  +--rw tet:admin-status?     te-types:te-admin-status
- |  |  |  |  +--rw tet:max-link-bandwidth
- |  |  |  |  |  +--rw tet:te-bandwidth
- |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
- |  |  |  |  +--rw mwt:mw-link!
- |  |  |  |     +--rw (mwt:mw-link-option)?
- |  |  |  |        +--:(mwt:microwave-radio-link)
- |  |  |  |        |  +--rw mwt:microwave-radio-link!
- |  |  |  |        |     +--rw mwt:rlt-mode
- |  |  |  |        |      +--rw mwt:num-bonded-carriers uint32
- |  |  |  |        |      +--rw mwt:num-protecting-carriers uint32
- |  |  |  |        +--:(mwt:microwave-carrier)
- |  |  |  |           +--rw mwt:microwave-carrier!
- |  |  |  |            +--rw mwt:tx-frequency?       uint32
- |  |  |  |            +--rw mwt:rx-frequency?       uint32
- |  |  |  |            +--rw mwt:channel-separation? uint32
- |  |  |  |            +--ro mwt:actual-tx-cm?       identityref
- |  |  |  |            +--ro mwt:actual-snir?        decimal64
- |  |  |  |            +--ro mwt:actual-transmitted-level?
-decimal64
- |  |  |  |  +--rw bwatopo:link-availability* [availability]
- |  |  |  |  |  +--rw bwatopo:availability      decimal64
- |  |  |  |  |  +--rw bwatopo:link-bandwidth?   uint64
- |  |  |  |  +--ro bwatopo:actual-bandwidth?    yang:gauge64
+  +--rw networks
+     +--rw network* [network-id]
+     |  +--rw network-id                    network-id
+     |  +--rw network-types
+     |  |  +--rw tet:te-topology!
+     |  |     +--rw mwt:mw-topology!
+     |  +--rw supporting-network* [network-ref]
+     |  |  +--rw network-ref    -> /networks/network/network-id
+     |  +--rw node* [node-id]
+     |  |  +--rw node-id                 node-id
+     |  |  +--rw supporting-node* [network-ref node-ref]
+     |  |  |  +--rw network-ref
+     |  |  |  |       -> ../../../supporting-network/network-ref
+     |  |  |  +--rw node-ref       -> /networks/network/node/node-id
+     |  |  +--rw nt:termination-point* [tp-id]
+     |  |  |  +--rw nt:tp-id                           tp-id
+     |  |  |  +--rw nt:supporting-termination-point*
+     |  |  |  |       [network-ref node-ref tp-ref]
+     |  |  |  |  +--rw nt:network-ref
+     |  |  |  |  |       -> ../../../nw:supporting-node/network-ref
+     |  |  |  |  +--rw nt:node-ref
+     |  |  |  |  |       -> ../../../nw:supporting-node/node-ref
+     |  |  |  |  +--rw nt:tp-ref         leafref
+     |  |  |  +--rw tet:te-tp-id?
+     |  |  |  |       te-types:te-tp-id
+     |  |  |  +--rw tet:te!
+     |  |  |     +--rw tet:name?                             string
+     |  |  |     +--ro tet:geolocation
+     |  |  |     |  +--ro tet:altitude?    int64
+     |  |  |     |  +--ro tet:latitude?
+     |  |  |     |  |       geographic-coordinate-degree
+     |  |  |     |  +--ro tet:longitude?
+     |  |  |     |          geographic-coordinate-degree
+     |  |  |     +--rw mwt:mw-tp!
+     |  |  |     |  +--rw (mwt:mw-tp-option)?
+     |  |  |     |     +--:(mwt:microwave-rltp)
+     |  |  |     |     |  +--rw mwt:microwave-rltp!
+     |  |  |     |     +--:(mwt:microwave-ctp)
+     |  |  |     |        +--rw mwt:microwave-ctp!
+     |  |  |     +--rw ifref:tp-to-interface-path?
+     |  |  |             -> /if:interfaces/interface/name
+     |  |  +--rw tet:te-node-id?         te-types:te-node-id
+     |  +--rw nt:link* [link-id]
+     |  |  +--rw nt:link-id            link-id
+     |  |  +--rw nt:source
+     |  |  |  +--rw nt:source-node?   -> ../../../nw:node/node-id
+     |  |  |  +--rw nt:source-tp?     leafref
+     |  |  +--rw nt:destination
+     |  |  |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
+     |  |  |  +--rw nt:dest-tp?     leafref
+     |  |  +--rw nt:supporting-link* [network-ref link-ref]
+     |  |  |  +--rw nt:network-ref
+     |  |  |  |       -> ../../../nw:supporting-network/network-ref
+     |  |  |  +--rw nt:link-ref       leafref
+     |  |  +--rw tet:te!
+     |  |     +--rw (tet:bundle-stack-level)?
+     |  |     |  +--:(tet:bundle)
+     |  |     |  |  +--rw tet:bundled-links
+     |  |     |  |     +--rw tet:bundled-link* [sequence]
+     |  |     |  |        +--rw tet:sequence      uint32
+     |  |     |  |        +--rw tet:src-tp-ref?   leafref
+     |  |     |  |        +--rw tet:des-tp-ref?   leafref
+     |  |     +--rw tet:te-link-attributes
+     |  |     |  +--rw tet:name?                             string
+     |  |     |  +--rw tet:max-link-bandwidth
+     |  |     |  |  +--rw tet:te-bandwidth
+     |  |     |  |     +--ro mwt:mw-bandwidth?    uint64
+     |  |     |  +--rw mwt:mw-link!
+     |  |     |  |  +--rw (mwt:mw-link-option)
+     |  |     |  |     +--:(mwt:microwave-radio-link)
+     |  |     |  |     |  +--rw mwt:microwave-radio-link!
+     |  |     |  |     |     +--rw mwt:rlt-mode
+     |  |     |  |     |        +--rw mwt:num-bonded-carriers
+     |  |     |  |     |        |       uint32
+     |  |     |  |     |        +--rw mwt:num-protecting-carriers
+     |  |     |  |     |                uint32
+     |  |     |  |     +--:(mwt:microwave-carrier)
+     |  |     |  |        +--rw mwt:microwave-carrier!
+     |  |     |  |           +--rw mwt:tx-frequency?
+     |  |     |  |           |       uint32
+     |  |     |  |           +--rw mwt:rx-frequency?
+     |  |     |  |           |       uint32
+     |  |     |  |           +--rw mwt:channel-separation?
+     |  |     |  |           |       uint32
+     |  |     |  |           +--ro mwt:actual-tx-cm?
+     |  |     |  |           |       identityref
+     |  |     |  |           +--ro mwt:actual-snir?
+     |  |     |  |           |       decimal64
+     |  |     |  |           +--ro mwt:actual-transmitted-level?
+     |  |     |  |                   decimal64
+     |  |     |  +--rw bwatopo:link-availability* [availability]
+     |  |     |  |  +--rw bwatopo:availability      decimal64
+     |  |     |  |  +--rw bwatopo:link-bandwidth?   uint64
+     |  |     |  +--ro bwatopo:actual-bandwidth?
+     |  |     |          yang:gauge64

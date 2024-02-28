@@ -115,12 +115,6 @@ RLT Radio Link Terminal
 
 RLTP Radio Link Termination Point
 
-SNIR Signal Noise Interference Ratio
-
-MDSC Multi Domain Service Coordinator
-
-PNC Provisioning Network Controller
-
 ## Tree Structure
 A simplified graphical representation of the data model is used in chapter 3.1 of this document.  The meaning of the symbols in these diagrams is defined in {{?RFC8340}}.
 
@@ -138,10 +132,10 @@ In this document, names of data nodes and other data model objects are prefixed 
 # Microwave Topology YANG Data Model
 
 ## YANG Tree
-~~~~ yangtree
+~~~~
 {::include ./trees/mw.tree}
 ~~~~
-{: artwork-name="mw.tree"}
+{: #fig-mw-tree title="Microwave Topology Tree"}
 
 ## Relationship between radio links and carriers
 A microwave radio link is always an aggregate of one or multiple carriers, in various configurations/modes.  The supporting carriers are identified by their termination points and are listed in the container bundled-links as part of the te-link-config in the YANG Data Model for Traffic Engineering (TE) Topologies {{!RFC8795}} for a radio-link.  The exact configuration of the included carriers is further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for the radio-link.  Appendix A includes JSON examples of how such a relationship can be modelled.
@@ -228,10 +222,10 @@ XML: N/A; the requested URI is an XML namespace.
 
    The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including the augmented Network Topology Model defined in {{!RFC8345}} and the Traffic Engineering (TE) Topologies model defined in {{!RFC8795}}.
 
-~~~~ yangtree
+~~~~
 {::include ./trees/mw-only.tree}
 ~~~~
-{: artwork-name="mw-only.tree"}
+{: #fig-mw-only-tree title="Microwave Topology with Augmentations Tree"}
 
 The Microwave Topology Model augments the TE Topology Model.
 
@@ -243,6 +237,8 @@ The Microwave Topology Model augments the TE Topology Model.
 
 ## Instance data for 2+0 mode for a bonded configuration
 
+A L2 network with a supporting microwave network, showing a 2+0 microwave configuration. The num-bonded-carriers = 2 and the num-protecting-carriers = 0 which means both carriers are active so there is no redundancy but there is more capacity.  The JSON encoding of the 2+0 example data follows:
+
 ~~~~ json
 {::include ./json/example2plus0-mw-only.json}
 ~~~~
@@ -250,6 +246,8 @@ The Microwave Topology Model augments the TE Topology Model.
 {: sourcecode-markers="false" sourcecode-name="example2plus0-mw-only.json"}
 
 ## Instance data for 1+1 mode for a protected configuration
+
+A L2 network with a supporting microwave network, showing a 1+1 microwave configuration. The num-bonded-carriers = 1 and the num-protecting-carriers = 1 which means there is a standby carrier protecting the active carrier. The JSON encoding of the 1+1 example data follows:
 
 ~~~~ json
 {::include ./json/example1plus1-mw-only.json}
@@ -259,14 +257,14 @@ The Microwave Topology Model augments the TE Topology Model.
 
 # Microwave Topology Model with example extensions {#examples-mw-imports}
 
-   This appendix provides examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) {{?I-D.draft-ietf-ccamp-if-ref-topo-yang}} and the bandwidth-availability-topology (bwa) {{?I-D.draft-ietf-ccamp-bwa-topo-yang}} models. There is also a snippet of JSON to show geolocation information instance data.  When the JSON files have long lines, {{?RFC8792}} is used to wrap the long lines.
+   This non-normative appendix provides examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) {{?I-D.draft-ietf-ccamp-if-ref-topo-yang}} and the bandwidth-availability-topology (bwa) {{?I-D.draft-ietf-ccamp-bwa-topo-yang}} models. There is also a snippet of JSON to show geolocation information instance data.  When the JSON files have long lines, {{?RFC8792}} is used to wrap the long lines.
 
    The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including interface reference topology (ifref) {{?I-D.draft-ietf-ccamp-if-ref-topo-yang}} and bandwidth-availability-topology (bwa) {{?I-D.draft-ietf-ccamp-bwa-topo-yang}} models.
 
-~~~~ yangtree
+~~~~
 {::include ./trees/full.tree}
 ~~~~
-{: artwork-name="full.tree"}
+{: #fig-mw-extensions-tree title="Microwave Topology with Extensions Tree"}
 
    Microwave is a transport technology which can be used to transport client services, such as L2 Ethernet links.  When an L2 link is transported over a single supporting microwave radio link, the topologies could be as shown below.  Note that the figure just shows an example, there might be other possibilities to demonstrate such a topology.  The example of the instantiation encoded in JSON is using only a selected subset of the leafs from the L2 topology model {{?RFC8944}}. The example below uses {{fig-mw-model}} and adds the Interface related information.
 
@@ -296,6 +294,6 @@ This example provides a json snippet that shows geolocation information.
 
 {: numbered="false"}
 # Acknowledgments
-   This document was prepared using kramdown (thanks Martin Thomson).
+   This document was prepared using the kramdown RFC tool written and maintained by Carsten Bormann. Thanks to Martin Thomson for the github integration of the kramdown RFC tool and for the aasvg tool which is used for the ascii to SVG conversion.
 
-   The authors would like to thank Tom Petch and Éric Vyncke for their reviews.
+   The authors would like to thank Tom Petch, Éric Vyncke, and Rob Wilton for their reviews.
