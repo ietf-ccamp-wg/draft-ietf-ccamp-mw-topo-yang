@@ -5,14 +5,14 @@
 CCAMP Working Group                                    S. Mansfield, Ed.
 Internet-Draft                                              Ericsson Inc
 Intended status: Standards Track                              J. Ahlberg
-Expires: 25 July 2024                                        Ericsson AB
+Expires: 31 August 2024                                      Ericsson AB
                                                                    M. Ye
                                                      Huawei Technologies
                                                                    X. Li
                                                  NEC Laboratories Europe
                                                             D. Spreafico
                                                               Nokia - IT
-                                                         22 January 2024
+                                                        28 February 2024
 
 
                 A YANG Data Model for Microwave Topology
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 July 2024.
+   This Internet-Draft will expire on 31 August 2024.
 
 Copyright Notice
 
@@ -159,12 +159,6 @@ Table of Contents
 
    RLTP Radio Link Termination Point
 
-   SNIR Signal Noise Interference Ratio
-
-   MDSC Multi Domain Service Coordinator
-
-   PNC Provisioning Network Controller
-
 1.2.  Tree Structure
 
    A simplified graphical representation of the data model is used in
@@ -199,40 +193,42 @@ Table of Contents
 
    module: ietf-microwave-topology
 
-   augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
-     +--rw mw-topology!
-   augment
-    /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes:
-     +--rw mw-node!
-   augment
-    /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
-     +--rw mw-tp!
-        +--rw (mw-tp-option)?
-           +--:(microwave-rltp)
-           |  +--rw microwave-rltp!
-           +--:(microwave-ctp)
-              +--rw microwave-ctp!
-   augment
-    /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
-     +--rw mw-link!
-        +--rw (mw-link-option)?
-           +--:(microwave-radio-link)
-           |  +--rw microwave-radio-link!
-           |     +--rw rlt-mode
-           |        +--rw num-bonded-carriers        uint32
-           |        +--rw num-protecting-carriers    uint32
-           +--:(microwave-carrier)
-              +--rw microwave-carrier!
-                 +--rw tx-frequency?               uint32
-                 +--rw rx-frequency?               uint32
-                 +--rw channel-separation?         uint32
-                 +--ro actual-tx-cm?               identityref
-                 +--ro actual-snir?                decimal64
-                 +--ro actual-transmitted-level?   decimal64
-   augment
-    /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
-    tet:max-link-bandwidth/tet:te-bandwidth:
-      +--ro mw-bandwidth?   uint64
+     augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
+       +--rw mw-topology!
+     augment /nw:networks/nw:network/nw:node/tet:te
+               /tet:te-node-attributes:
+       +--rw mw-node!
+     augment /nw:networks/nw:network/nw:node/nt:termination-point
+               /tet:te:
+       +--rw mw-tp!
+          +--rw (mw-tp-option)?
+             +--:(microwave-rltp)
+             |  +--rw microwave-rltp!
+             +--:(microwave-ctp)
+                +--rw microwave-ctp!
+     augment /nw:networks/nw:network/nt:link/tet:te
+               /tet:te-link-attributes:
+       +--rw mw-link!
+          +--rw (mw-link-option)
+             +--:(microwave-radio-link)
+             |  +--rw microwave-radio-link!
+             |     +--rw rlt-mode
+             |        +--rw num-bonded-carriers        uint32
+             |        +--rw num-protecting-carriers    uint32
+             +--:(microwave-carrier)
+                +--rw microwave-carrier!
+                   +--rw tx-frequency?               uint32
+                   +--rw rx-frequency?               uint32
+                   +--rw channel-separation?         uint32
+                   +--ro actual-tx-cm?               identityref
+                   +--ro actual-snir?                decimal64
+                   +--ro actual-transmitted-level?   decimal64
+     augment /nw:networks/nw:network/nt:link/tet:te
+               /tet:te-link-attributes/tet:max-link-bandwidth
+               /tet:te-bandwidth:
+       +--ro mw-bandwidth?   uint64
+
+                     Figure 1: Microwave Topology Tree
 
 2.2.  Relationship between radio links and carriers
 
@@ -761,90 +757,96 @@ Appendix A.  Microwave Topology Model with base topology models
    Topologies model defined in [RFC8795].
 
    module: ietf-network
-   +--rw networks
-    +--rw network* [network-id]
-    |  +--rw network-id                    network-id
-    |  +--rw network-types
-    |  |  +--rw tet:te-topology!
-    |  |  |  +--rw mwt:mw-topology!
-    |  +--rw supporting-network* [network-ref]
-    |  |  +--rw network-ref    -> /networks/network/network-id
-    |  +--rw node* [node-id]
-    |  |  +--rw node-id                   node-id
-    |  |  +--rw supporting-node* [network-ref node-ref]
-    |  |  |  +--rw network-ref  -> ../../../supporting-network/
-   network-ref
-    |  |  |  +--rw node-ref     -> /networks/network/node/node-id
-    |  |  +--rw nt:termination-point* [tp-id]
-    |  |  |  +--rw nt:tp-id                               tp-id
-    |  |  |  +--rw nt:supporting-termination-point* [network-ref
-   node-ref tp-ref]
-    |  |  |  |  +--rw nt:network-ref    -> ../../../nw:supporting-node/
-   network-ref
-    |  |  |  |  +--rw nt:node-ref       -> ../../../nw:supporting-node/
-   node-ref
-    |  |  |  |  +--rw nt:tp-ref         -> /nw:networks/
-   network[nw:network-id=current()/../network-ref]/
-   node[nw:node-id=current()/../node-ref]/termination-point/tp-id
-    |  |  |  +--rw tet:te-tp-id?                  te-types:te-tp-id
-    |  |  |  +--rw tet:te!
-    |  |  |  |  +--rw tet:name?                   string
-    |  |  |  |  +--ro tet:geolocation
-    |  |  |  |  |  +--ro tet:altitude?    int64
-    |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
-    |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
-    |  |  |  |  +--rw mwt:mw-tp
-    |  |  |  |  |  +--rw (mwt:mw-tp-option)?
-    |  |  |  |  |     +--:(mwt:microwave-rltp)
-    |  |  |  |  |     |  +--rw mwt:microwave-rltp!
-    |  |  |  |  |     +--:(mwt:microwave-ctp)
-    |  |  |  |  |        +--rw mwt:microwave-ctp!
-    |  |  +--rw tet:te-node-id?           te-types:te-node-id
-    |  +--rw nt:link* [link-id]
-    |  |  +--rw nt:link-id                link-id
-    |  |  +--rw nt:source
-    |  |  |  +--rw nt:source-node?   -> ../../../nw:node/node-id
-    |  |  |  +--rw nt:source-tp?     -> ../../../nw:node
-   [nw:node-id=current()/../source-node]/termination-point/tp-id
-    |  |  +--rw nt:destination
-    |  |  |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
-    |  |  |  +--rw nt:dest-tp?     -> ../../../nw:node
-   [nw:node-id=current()/../dest-node]/termination-point/tp-id
-    |  |  +--rw tet:te!
-    |  |  |  +--rw (tet:bundle-stack-level)?
-    |  |  |  |  +--:(tet:bundle)
-    |  |  |  |  |  +--rw tet:bundled-links
-    |  |  |  |  |     +--rw tet:bundled-link* [sequence]
-    |  |  |  |  |        +--rw tet:sequence      uint32
-    |  |  |  |  |        +--rw tet:src-tp-ref?   -> ../../../../../
-   nw:node[nw:node-id = current()/../../../../nt:source/source-node]/
-   termination-point/tp-id
-    |  |  |  |  |        +--rw tet:des-tp-ref?   -> ../../../../../
-   nw:node[nw:node-id = current()/../../../../nt:destination/dest-node]/
-   termination-point/tp-id
-    |  |  |  +--rw tet:te-link-attributes
-    |  |  |  |  +--rw tet:name?                             string
-    |  |  |  |  +--rw tet:max-link-bandwidth
-    |  |  |  |  |  +--rw tet:te-bandwidth
-    |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
-    |  |  |  |  +--rw mwt:mw-link!
-    |  |  |  |     +--rw (mwt:mw-link-option)?
-    |  |  |  |        +--:(mwt:microwave-radio-link)
-    |  |  |  |        |  +--rw mwt:microwave-radio-link!
-    |  |  |  |        |     +--rw mwt:rlt-mode
-    |  |  |  |        |        +--rw mwt:num-bonded-carriers
-   uint32
-    |  |  |  |        |        +--rw mwt:num-protecting-carriers
-   uint32
-    |  |  |  |        +--:(mwt:microwave-carrier)
-    |  |  |  |           +--rw mwt:microwave-carrier!
-    |  |  |  |              +--rw mwt:tx-frequency?      uint32
-    |  |  |  |              +--rw mwt:rx-frequency?      uint32
-    |  |  |  |              +--rw mwt:channel-separation? uint32
-    |  |  |  |              +--ro mwt:actual-tx-cm?      identityref
-    |  |  |  |              +--ro mwt:actual-snir?       decimal64
-    |  |  |  |              +--ro mwt:actual-transmitted-level?
-   decimal64
+     +--rw networks
+        +--rw network* [network-id]
+        |  +--rw network-id                    network-id
+        |  +--rw network-types
+        |  |  +--rw tet:te-topology!
+        |  |     +--rw mwt:mw-topology!
+        |  +--rw supporting-network* [network-ref]
+        |  |  +--rw network-ref    -> /networks/network/network-id
+        |  +--rw node* [node-id]
+        |  |  +--rw node-id                 node-id
+        |  |  +--rw supporting-node* [network-ref node-ref]
+        |  |  |  +--rw network-ref
+        |  |  |  |       -> ../../../supporting-network/network-ref
+        |  |  |  +--rw node-ref       -> /networks/network/node/node-id
+        |  |  +--rw nt:termination-point* [tp-id]
+        |  |  |  +--rw nt:tp-id                           tp-id
+        |  |  |  +--rw nt:supporting-termination-point*
+        |  |  |  |       [network-ref node-ref tp-ref]
+        |  |  |  |  +--rw nt:network-ref
+        |  |  |  |  |       -> ../../../nw:supporting-node/network-ref
+        |  |  |  |  +--rw nt:node-ref
+        |  |  |  |  |       -> ../../../nw:supporting-node/node-ref
+        |  |  |  |  +--rw nt:tp-ref         leafref
+        |  |  |  +--rw tet:te-tp-id?
+        |  |  |  |       te-types:te-tp-id
+        |  |  |  +--rw tet:te!
+        |  |  |     +--rw tet:name?                             string
+        |  |  |     +--ro tet:geolocation
+        |  |  |     |  +--ro tet:altitude?    int64
+        |  |  |     |  +--ro tet:latitude?
+        |  |  |     |  |       geographic-coordinate-degree
+        |  |  |     |  +--ro tet:longitude?
+        |  |  |     |          geographic-coordinate-degree
+        |  |  |     +--rw mwt:mw-tp!
+        |  |  |        +--rw (mwt:mw-tp-option)?
+        |  |  |           +--:(mwt:microwave-rltp)
+        |  |  |           |  +--rw mwt:microwave-rltp!
+        |  |  |           +--:(mwt:microwave-ctp)
+        |  |  |              +--rw mwt:microwave-ctp!
+        |  |  +--rw tet:te-node-id?         te-types:te-node-id
+        |  +--rw nt:link* [link-id]
+        |  |  +--rw nt:link-id            link-id
+        |  |  +--rw nt:source
+        |  |  |  +--rw nt:source-node?   -> ../../../nw:node/node-id
+        |  |  |  +--rw nt:source-tp?     leafref
+        |  |  +--rw nt:destination
+        |  |  |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
+        |  |  |  +--rw nt:dest-tp?     leafref
+        |  |  +--rw nt:supporting-link* [network-ref link-ref]
+        |  |  |  +--rw nt:network-ref
+        |  |  |  |       -> ../../../nw:supporting-network/network-ref
+        |  |  |  +--rw nt:link-ref       leafref
+        |  |  +--rw tet:te!
+        |  |     +--rw (tet:bundle-stack-level)?
+        |  |     |  +--:(tet:bundle)
+        |  |     |  |  +--rw tet:bundled-links
+        |  |     |  |     +--rw tet:bundled-link* [sequence]
+        |  |     |  |        +--rw tet:sequence      uint32
+        |  |     |  |        +--rw tet:src-tp-ref?   leafref
+        |  |     |  |        +--rw tet:des-tp-ref?   leafref
+        |  |     +--rw tet:te-link-attributes
+        |  |     |  +--rw tet:name?                             string
+        |  |     |  +--rw tet:max-link-bandwidth
+        |  |     |  |  +--rw tet:te-bandwidth
+        |  |     |  |     +--ro mwt:mw-bandwidth?    uint64
+        |  |     |  +--rw mwt:mw-link!
+        |  |     |     +--rw (mwt:mw-link-option)
+        |  |     |        +--:(mwt:microwave-radio-link)
+        |  |     |        |  +--rw mwt:microwave-radio-link!
+        |  |     |        |     +--rw mwt:rlt-mode
+        |  |     |        |        +--rw mwt:num-bonded-carriers
+        |  |     |        |        |       uint32
+        |  |     |        |        +--rw mwt:num-protecting-carriers
+        |  |     |        |                uint32
+        |  |     |        +--:(mwt:microwave-carrier)
+        |  |     |           +--rw mwt:microwave-carrier!
+        |  |     |              +--rw mwt:tx-frequency?
+        |  |     |              |       uint32
+        |  |     |              +--rw mwt:rx-frequency?
+        |  |     |              |       uint32
+        |  |     |              +--rw mwt:channel-separation?
+        |  |     |              |       uint32
+        |  |     |              +--ro mwt:actual-tx-cm?
+        |  |     |              |       identityref
+        |  |     |              +--ro mwt:actual-snir?
+        |  |     |              |       decimal64
+        |  |     |              +--ro mwt:actual-transmitted-level?
+        |  |     |                      decimal64
+
+            Figure 2: Microwave Topology with Augmentations Tree
 
    The Microwave Topology Model augments the TE Topology Model.
 
@@ -873,9 +875,15 @@ Appendix A.  Microwave Topology Model with base topology models
    | +----------+ |    mwc-N1-N2-B    | +----------+ |
    +--------------+                   +--------------+
 
-                  Figure 1: Example for L2 over microwave
+                  Figure 3: Example for L2 over microwave
 
 A.1.  Instance data for 2+0 mode for a bonded configuration
+
+   A L2 network with a supporting microwave network, showing a 2+0
+   microwave configuration.  The num-bonded-carriers = 2 and the num-
+   protecting-carriers = 0 which means both carriers are active so there
+   is no redundancy but there is more capacity.  The JSON encoding of
+   the 2+0 example data follows:
 
    {
      "ietf-network:networks": {
@@ -1158,6 +1166,12 @@ A.1.  Instance data for 2+0 mode for a bonded configuration
 
 A.2.  Instance data for 1+1 mode for a protected configuration
 
+   A L2 network with a supporting microwave network, showing a 1+1
+   microwave configuration.  The num-bonded-carriers = 1 and the num-
+   protecting-carriers = 1 which means there is a standby carrier
+   protecting the active carrier.  The JSON encoding of the 1+1 example
+   data follows:
+
    {
      "ietf-network:networks": {
        "network": [
@@ -1439,9 +1453,9 @@ A.2.  Instance data for 1+1 mode for a protected configuration
 
 Appendix B.  Microwave Topology Model with example extensions
 
-   This appendix provides examples of how the Microwave Topology Model
-   can be used with the interface reference topology (ifref)
-   [I-D.draft-ietf-ccamp-if-ref-topo-yang] and the bandwidth-
+   This non-normative appendix provides examples of how the Microwave
+   Topology Model can be used with the interface reference topology
+   (ifref) [I-D.draft-ietf-ccamp-if-ref-topo-yang] and the bandwidth-
    availability-topology (bwa) [I-D.draft-ietf-ccamp-bwa-topo-yang]
    models.  There is also a snippet of JSON to show geolocation
    information instance data.  When the JSON files have long lines,
@@ -1454,97 +1468,103 @@ Appendix B.  Microwave Topology Model with example extensions
    models.
 
    module: ietf-network
-   +--rw networks
-    +--rw network* [network-id]
-    |  +--rw network-id                    network-id
-    |  +--rw network-types
-    |  |  +--rw tet:te-topology!
-    |  |  |  +--rw mwt:mw-topology!
-    |  +--rw supporting-network* [network-ref]
-    |  |  +--rw network-ref    -> /networks/network/network-id
-    |  +--rw node* [node-id]
-    |  |  +--rw node-id                   node-id
-    |  |  +--rw supporting-node* [network-ref node-ref]
-    |  |  |  +--rw network-ref    -> ../../../supporting-network/networ
-   k-ref
-    |  |  |  +--rw node-ref       -> /networks/network/node/node-id
-    |  |  +--rw nt:termination-point* [tp-id]
-    |  |  |  +--rw nt:tp-id                               tp-id
-    |  |  |  +--rw nt:supporting-termination-point* [network-ref node-r
-   ef tp-ref]
-    |  |  |  |  +--rw nt:network-ref    -> ../../../nw:supporting-node/
-   network-ref
-    |  |  |  |  +--rw nt:node-ref       -> ../../../nw:supporting-node/
-   node-ref
-    |  |  |  |  +--rw nt:tp-ref         -> /nw:networks/
-   network[nw:network-id=current()/../network-ref]/
-   node[nw:node-id=current()/../node-ref]/
-   termination-point/tp-id
-    |  |  |  +--rw tet:te-tp-id?                          te-types:te-t
-   p-id
-    |  |  |  +--rw tet:te!
-    |  |  |  |  +--rw tet:name?                             string
-    |  |  |  |  +--ro tet:geolocation
-    |  |  |  |  |  +--ro tet:altitude?    int64
-    |  |  |  |  |  +--ro tet:latitude?    geographic-coordinate-degree
-    |  |  |  |  |  +--ro tet:longitude?   geographic-coordinate-degree
-    |  |  |  |  +--rw mwt:mw-tp!
-    |  |  |  |  |  +--rw (mwt:mw-tp-option)?
-    |  |  |  |  |     +--:(mwt:microwave-rltp)
-    |  |  |  |  |     |  +--rw mwt:microwave-rltp!
-    |  |  |  |  |     +--:(mwt:microwave-ctp)
-    |  |  |  |  |        +--rw mwt:microwave-ctp!
-    |  |  |  |  +--rw ifref:tp-to-interface-path?  -> /if:interfaces/
-   interface/name
-    |  |  +--rw tet:te-node-id?           te-types:te-node-id
-    |  +--rw nt:link* [link-id]
-    |  |  +--rw nt:link-id                link-id
-    |  |  +--rw nt:source
-    |  |  |  +--rw nt:source-node?   -> ../../../nw:node/node-id
-    |  |  |  +--rw nt:source-tp?     -> ../../../
-   nw:node[nw:node-id=current()/../source-node]/termination-point/tp-id
-    |  |  +--rw nt:destination
-    |  |  |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
-    |  |  |  +--rw nt:dest-tp?     -> ../../../
-   nw:node[nw:node-id=current()/../dest-node]/termination-point/tp-id
-    |  |  +--rw tet:te!
-    |  |  |  +--rw (tet:bundle-stack-level)?
-    |  |  |  |  +--:(tet:bundle)
-    |  |  |  |  |  +--rw tet:bundled-links
-    |  |  |  |  |     +--rw tet:bundled-link* [sequence]
-    |  |  |  |  |        +--rw tet:sequence      uint32
-    |  |  |  |  |        +--rw tet:src-tp-ref?   -> ../../../../../
-   nw:node[nw:node-id = current()/../../../../nt:source/source-node]/
-   termination-point/tp-id
-    |  |  |  |  |        +--rw tet:des-tp-ref?   -> ../../../../../
-   nw:node[nw:node-id = current()/../../../../nt:destination/
-   dest-node]/termination-point/tp-id
-    |  |  |  +--rw tet:te-link-attributes
-    |  |  |  |  +--rw tet:name?             string
-    |  |  |  |  +--rw tet:admin-status?     te-types:te-admin-status
-    |  |  |  |  +--rw tet:max-link-bandwidth
-    |  |  |  |  |  +--rw tet:te-bandwidth
-    |  |  |  |  |     +--ro mwt:mw-bandwidth?       uint64
-    |  |  |  |  +--rw mwt:mw-link!
-    |  |  |  |     +--rw (mwt:mw-link-option)?
-    |  |  |  |        +--:(mwt:microwave-radio-link)
-    |  |  |  |        |  +--rw mwt:microwave-radio-link!
-    |  |  |  |        |     +--rw mwt:rlt-mode
-    |  |  |  |        |      +--rw mwt:num-bonded-carriers uint32
-    |  |  |  |        |      +--rw mwt:num-protecting-carriers uint32
-    |  |  |  |        +--:(mwt:microwave-carrier)
-    |  |  |  |           +--rw mwt:microwave-carrier!
-    |  |  |  |            +--rw mwt:tx-frequency?       uint32
-    |  |  |  |            +--rw mwt:rx-frequency?       uint32
-    |  |  |  |            +--rw mwt:channel-separation? uint32
-    |  |  |  |            +--ro mwt:actual-tx-cm?       identityref
-    |  |  |  |            +--ro mwt:actual-snir?        decimal64
-    |  |  |  |            +--ro mwt:actual-transmitted-level?
-   decimal64
-    |  |  |  |  +--rw bwatopo:link-availability* [availability]
-    |  |  |  |  |  +--rw bwatopo:availability      decimal64
-    |  |  |  |  |  +--rw bwatopo:link-bandwidth?   uint64
-    |  |  |  |  +--ro bwatopo:actual-bandwidth?    yang:gauge64
+     +--rw networks
+        +--rw network* [network-id]
+        |  +--rw network-id                    network-id
+        |  +--rw network-types
+        |  |  +--rw tet:te-topology!
+        |  |     +--rw mwt:mw-topology!
+        |  +--rw supporting-network* [network-ref]
+        |  |  +--rw network-ref    -> /networks/network/network-id
+        |  +--rw node* [node-id]
+        |  |  +--rw node-id                 node-id
+        |  |  +--rw supporting-node* [network-ref node-ref]
+        |  |  |  +--rw network-ref
+        |  |  |  |       -> ../../../supporting-network/network-ref
+        |  |  |  +--rw node-ref       -> /networks/network/node/node-id
+        |  |  +--rw nt:termination-point* [tp-id]
+        |  |  |  +--rw nt:tp-id                           tp-id
+        |  |  |  +--rw nt:supporting-termination-point*
+        |  |  |  |       [network-ref node-ref tp-ref]
+        |  |  |  |  +--rw nt:network-ref
+        |  |  |  |  |       -> ../../../nw:supporting-node/network-ref
+        |  |  |  |  +--rw nt:node-ref
+        |  |  |  |  |       -> ../../../nw:supporting-node/node-ref
+        |  |  |  |  +--rw nt:tp-ref         leafref
+        |  |  |  +--rw tet:te-tp-id?
+        |  |  |  |       te-types:te-tp-id
+        |  |  |  +--rw tet:te!
+        |  |  |     +--rw tet:name?                             string
+        |  |  |     +--ro tet:geolocation
+        |  |  |     |  +--ro tet:altitude?    int64
+        |  |  |     |  +--ro tet:latitude?
+        |  |  |     |  |       geographic-coordinate-degree
+        |  |  |     |  +--ro tet:longitude?
+        |  |  |     |          geographic-coordinate-degree
+        |  |  |     +--rw mwt:mw-tp!
+        |  |  |     |  +--rw (mwt:mw-tp-option)?
+        |  |  |     |     +--:(mwt:microwave-rltp)
+        |  |  |     |     |  +--rw mwt:microwave-rltp!
+        |  |  |     |     +--:(mwt:microwave-ctp)
+        |  |  |     |        +--rw mwt:microwave-ctp!
+        |  |  |     +--rw ifref:tp-to-interface-path?
+        |  |  |             -> /if:interfaces/interface/name
+        |  |  +--rw tet:te-node-id?         te-types:te-node-id
+        |  +--rw nt:link* [link-id]
+        |  |  +--rw nt:link-id            link-id
+        |  |  +--rw nt:source
+        |  |  |  +--rw nt:source-node?   -> ../../../nw:node/node-id
+        |  |  |  +--rw nt:source-tp?     leafref
+        |  |  +--rw nt:destination
+        |  |  |  +--rw nt:dest-node?   -> ../../../nw:node/node-id
+        |  |  |  +--rw nt:dest-tp?     leafref
+        |  |  +--rw nt:supporting-link* [network-ref link-ref]
+        |  |  |  +--rw nt:network-ref
+        |  |  |  |       -> ../../../nw:supporting-network/network-ref
+        |  |  |  +--rw nt:link-ref       leafref
+        |  |  +--rw tet:te!
+        |  |     +--rw (tet:bundle-stack-level)?
+        |  |     |  +--:(tet:bundle)
+        |  |     |  |  +--rw tet:bundled-links
+        |  |     |  |     +--rw tet:bundled-link* [sequence]
+        |  |     |  |        +--rw tet:sequence      uint32
+        |  |     |  |        +--rw tet:src-tp-ref?   leafref
+        |  |     |  |        +--rw tet:des-tp-ref?   leafref
+        |  |     +--rw tet:te-link-attributes
+        |  |     |  +--rw tet:name?                             string
+        |  |     |  +--rw tet:max-link-bandwidth
+        |  |     |  |  +--rw tet:te-bandwidth
+        |  |     |  |     +--ro mwt:mw-bandwidth?    uint64
+        |  |     |  +--rw mwt:mw-link!
+        |  |     |  |  +--rw (mwt:mw-link-option)
+        |  |     |  |     +--:(mwt:microwave-radio-link)
+        |  |     |  |     |  +--rw mwt:microwave-radio-link!
+        |  |     |  |     |     +--rw mwt:rlt-mode
+        |  |     |  |     |        +--rw mwt:num-bonded-carriers
+        |  |     |  |     |        |       uint32
+        |  |     |  |     |        +--rw mwt:num-protecting-carriers
+        |  |     |  |     |                uint32
+        |  |     |  |     +--:(mwt:microwave-carrier)
+        |  |     |  |        +--rw mwt:microwave-carrier!
+        |  |     |  |           +--rw mwt:tx-frequency?
+        |  |     |  |           |       uint32
+        |  |     |  |           +--rw mwt:rx-frequency?
+        |  |     |  |           |       uint32
+        |  |     |  |           +--rw mwt:channel-separation?
+        |  |     |  |           |       uint32
+        |  |     |  |           +--ro mwt:actual-tx-cm?
+        |  |     |  |           |       identityref
+        |  |     |  |           +--ro mwt:actual-snir?
+        |  |     |  |           |       decimal64
+        |  |     |  |           +--ro mwt:actual-transmitted-level?
+        |  |     |  |                   decimal64
+        |  |     |  +--rw bwatopo:link-availability* [availability]
+        |  |     |  |  +--rw bwatopo:availability      decimal64
+        |  |     |  |  +--rw bwatopo:link-bandwidth?   uint64
+        |  |     |  +--ro bwatopo:actual-bandwidth?
+        |  |     |          yang:gauge64
+
+             Figure 4: Microwave Topology with Extensions Tree
 
    Microwave is a transport technology which can be used to transport
    client services, such as L2 Ethernet links.  When an L2 link is
@@ -1553,7 +1573,7 @@ Appendix B.  Microwave Topology Model with example extensions
    an example, there might be other possibilities to demonstrate such a
    topology.  The example of the instantiation encoded in JSON is using
    only a selected subset of the leafs from the L2 topology model
-   [RFC8944].  The example below uses Figure 1 and adds the Interface
+   [RFC8944].  The example below uses Figure 3 and adds the Interface
    related information.
 
         Node N1                            Interfaces
@@ -1596,7 +1616,7 @@ Appendix B.  Microwave Topology Model with example extensions
    | +-----------+ |                    | +------------+ |
    +---------------+                    +----------------+
 
-        Figure 2: Interface extension example for L2 over microwave
+        Figure 5: Interface extension example for L2 over microwave
 
 B.1.  Instance data for 2+0 mode
 
@@ -1606,427 +1626,432 @@ B.1.  Instance data for 2+0 mode
    management information, is encoded in JSON as follows:
 
    {
-     "ietf-interfaces:interfaces": {
-       "interface": [
-         {
-           "name": "L2Interface1",
-           "description": "'Ethernet Interface 1'",
-           "type": "iana-if-type:ethernetCsmacd"
-         },
-         {
-           "name": "L2Interface2",
-           "description": "'Ethernet Interface 2'",
-           "type": "iana-if-type:ethernetCsmacd"
-         },
-         {
-           "name": "RLT-1",
-           "description": "'Radio Link Terminal 1'",
-           "type": "iana-if-type:microwaveRadioLinkTerminal",
-           "ietf-microwave-radio-link:mode":
-             "ietf-microwave-types:two-plus-zero",
-           "ietf-microwave-radio-link:carrier-terminations": [
-             "CT-1",
-             "CT-3"
-           ]
-         },
-         {
-           "name": "RLT-2",
-           "description": "'Radio Link Terminal 2'",
-           "type": "iana-if-type:microwaveRadioLinkTerminal",
-           "ietf-microwave-radio-link:mode":
-             "ietf-microwave-types:two-plus-zero",
-           "ietf-microwave-radio-link:carrier-terminations": [
-             "CT-2",
-             "CT-4"
-           ]
-         },
-         {
-           "name": "CT-1",
-           "description": "'Carrier Termination 1'",
-           "type": "iana-if-type:microwaveCarrierTermination",
-           "ietf-microwave-radio-link:tx-frequency": 10728000,
-           "ietf-microwave-radio-link:duplex-distance": 113000,
-           "ietf-microwave-radio-link:channel-separation": 28000,
-           "ietf-microwave-radio-link:rtpc": {
-             "maximum-nominal-power": "20.0"
-           },
-           "ietf-microwave-radio-link:single": {
-             "selected-cm": "ietf-microwave-types:qam-512"
-           }
-         },
-         {
-           "name": "CT-3",
-           "description": "'Carrier Termination 3'",
-           "type": "iana-if-type:microwaveCarrierTermination",
-           "ietf-microwave-radio-link:tx-frequency": 10528000,
-           "ietf-microwave-radio-link:duplex-distance": 113000,
-           "ietf-microwave-radio-link:channel-separation": 28000,
-           "ietf-microwave-radio-link:rtpc": {
-             "maximum-nominal-power": "20.0"
-           },
-           "ietf-microwave-radio-link:single": {
-             "selected-cm": "ietf-microwave-types:qam-512"
-           }
-         },
-         {
-           "name": "CT-2",
-           "description": "'Carrier Termination 2'",
-           "type": "iana-if-type:microwaveCarrierTermination",
-           "ietf-microwave-radio-link:tx-frequency": 10615000,
-           "ietf-microwave-radio-link:duplex-distance": 113000,
-           "ietf-microwave-radio-link:channel-separation": 28000,
-           "ietf-microwave-radio-link:rtpc": {
-             "maximum-nominal-power": "20.0"
-           },
-           "ietf-microwave-radio-link:single": {
-             "selected-cm": "ietf-microwave-types:qam-512"
-           }
-         },
-         {
-           "name": "CT-4",
-           "description": "'Carrier Termination 4'",
-           "type": "iana-if-type:microwaveCarrierTermination",
-           "ietf-microwave-radio-link:tx-frequency": 10415000,
-           "ietf-microwave-radio-link:duplex-distance": 113000,
-           "ietf-microwave-radio-link:channel-separation": 28000,
-           "ietf-microwave-radio-link:rtpc": {
-             "maximum-nominal-power": "20.0"
-           },
-           "ietf-microwave-radio-link:single": {
-             "selected-cm": "ietf-microwave-types:qam-512"
-           }
-         }
+    "ietf-interfaces:interfaces": {
+     "interface": [
+      {
+       "name": "L2Interface1",
+       "description": "'Ethernet Interface 1'",
+       "type": "iana-if-type:ethernetCsmacd"
+      },
+      {
+       "name": "L2Interface2",
+       "description": "'Ethernet Interface 2'",
+       "type": "iana-if-type:ethernetCsmacd"
+      },
+      {
+       "name": "RLT-1",
+       "description": "'Radio Link Terminal 1'",
+       "type": "iana-if-type:microwaveRadioLinkTerminal",
+       "ietf-microwave-radio-link:mode":
+         "ietf-microwave-types:two-plus-zero",
+       "ietf-microwave-radio-link:carrier-terminations": [
+        "CT-1",
+        "CT-3"
        ]
-     },
-     "ietf-network:networks": {
-       "network": [
-         {
-           "network-id": "L2-network",
-           "network-types": {
-             "ietf-te-topology:te-topology": {
-               "ietf-eth-te-topology:eth-tran-topology": {}
-             }
-           },
-           "supporting-network": [
-             {
-               "network-ref": "mw-network"
-             }
-           ],
-           "node": [
-             {
-               "node-id": "L2-N1",
-               "supporting-node": [
-                 {
-                   "network-ref": "mw-network",
-                   "node-ref": "mw-N1"
-                 }
-               ],
-               "ietf-network-topology:termination-point": [
-                 {
-                   "tp-id": "L2-N1-TP1",
-                   "supporting-termination-point": [
-                     {
-                       "network-ref": "mw-network",
-                       "node-ref": "mw-N1",
-                       "tp-ref": "mw-N1-RLTP1"
-                     }
-                   ]
-                 }
-               ],
-               "ietf-te-topology:te-node-id": "192.0.2.1",
-               "ietf-te-topology:te": {
-                 "te-node-attributes": {
-                   "ietf-eth-te-topology:eth-node": {}
-                 }
-               }
-             },
-             {
-               "node-id": "L2-N2",
-               "supporting-node": [
-                 {
-                   "network-ref": "mw-network",
-                   "node-ref": "mw-N2"
-                 }
-               ],
-               "ietf-network-topology:termination-point": [
-                 {
-                   "tp-id": "L2-N2-TP2",
-                   "supporting-termination-point": [
-                     {
-                       "network-ref": "mw-network",
-                       "node-ref": "mw-N2",
-                       "tp-ref": "mw-N2-RLTP2"
-                     }
-                   ]
-                 }
-               ],
-               "ietf-te-topology:te-node-id": "192.0.2.2",
-               "ietf-te-topology:te": {
-                 "te-node-attributes": {
-                   "ietf-eth-te-topology:eth-node": {}
-                 }
-               }
-             }
-           ],
-           "ietf-network-topology:link": [
-             {
-               "link-id": "L2-N1-N2",
-               "source": {
-                 "source-node": "L2-N1",
-                 "source-tp": "L2-N1-TP1"
-               },
-               "destination": {
-                 "dest-node": "L2-N2",
-                 "dest-tp": "L2-N2-TP2"
-               },
-               "supporting-link": [
-                 {
-                   "network-ref": "mw-network",
-                   "link-ref": "mwrl-N1-N2"
-                 }
-               ],
-               "ietf-te-topology:te": {
-                 "te-link-attributes": {
-                   "interface-switching-capability": [
-                     {
-                       "switching-capability":
-                         "ietf-te-types:switching-l2sc",
-                       "encoding": "ietf-te-types:lsp-encoding-ethernet"
-                     }
-                   ]
-                 }
-               }
-             }
-           ]
-         },
-         {
-           "network-id": "mw-network",
-           "network-types": {
-             "ietf-te-topology:te-topology": {
-               "ietf-microwave-topology:mw-topology": {}
-             }
-           },
-           "supporting-network": [
-             {
-               "network-ref": "mw-network"
-             }
-           ],
-           "node": [
-             {
-               "node-id": "mw-N1",
-               "supporting-node": [
-                 {
-                   "network-ref": "mw-network",
-                   "node-ref": "mw-N1"
-                 }
-               ],
-               "ietf-network-topology:termination-point": [
-                 {
-                   "tp-id": "mw-N1-RLTP1",
-                   "supporting-termination-point": [
-                     {
-                       "network-ref": "mw-network",
-                       "node-ref": "mw-N1",
-                       "tp-ref": "mw-N1-CTP1"
-                     },
-                     {
-                       "network-ref": "mw-network",
-                       "node-ref": "mw-N1",
-                       "tp-ref": "mw-N1-CTP3"
-                     }
-                   ],
-                   "ietf-te-topology:te-tp-id": "192.0.2.3",
-                   "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp": {
-                       "microwave-rltp": {}
-                     },
-   "ietf-tp-interface-reference-topology:tp-to-interface-path": "RLT-1"
-                   }
-                 },
-                 {
-                   "tp-id": "mw-N1-CTP1",
-                   "ietf-te-topology:te-tp-id": 1,
-                   "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp": {
-                       "microwave-ctp": {}
-                     },
-   "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-1"
-                   }
-                 },
-                 {
-                   "tp-id": "mw-N1-CTP3",
-                   "ietf-te-topology:te-tp-id": 2,
-                   "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp": {
-                       "microwave-ctp": {}
-                     },
-   "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-3"
-                   }
-                 }
-               ],
-               "ietf-te-topology:te-node-id": "192.0.2.1",
-               "ietf-te-topology:te": {
-                 "te-node-attributes": {
-                   "ietf-microwave-topology:mw-node": {}
-                 }
-               }
-             },
-             {
-               "node-id": "mw-N2",
-               "supporting-node": [
-                 {
-                   "network-ref": "mw-network",
-                   "node-ref": "mw-N2"
-                 }
-               ],
-               "ietf-network-topology:termination-point": [
-                 {
-                   "tp-id": "mw-N2-RLTP2",
-                   "supporting-termination-point": [
-                     {
-                       "network-ref": "mw-network",
-                       "node-ref": "mw-N2",
-                       "tp-ref": "mw-N2-CTP2"
-                     },
-                     {
-                       "network-ref": "mw-network",
-                       "node-ref": "mw-N2",
-                       "tp-ref": "mw-N2-CTP4"
-                     }
-                   ],
-                   "ietf-te-topology:te-tp-id": "192.0.2.4",
-                   "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp": {
-                       "microwave-rltp": {}
-                     },
-   "ietf-tp-interface-reference-topology:tp-to-interface-path": "RLT-2"
-                   }
-                 },
-                 {
-                   "tp-id": "mw-N2-CTP2",
-                   "ietf-te-topology:te-tp-id": 1,
-                   "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp": {
-                       "microwave-ctp": {}
-                     },
-   "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-2"
-                   }
-                 },
-                 {
-                   "tp-id": "mw-N2-CTP4",
-                   "ietf-te-topology:te-tp-id": 2,
-                   "ietf-te-topology:te": {
-                     "ietf-microwave-topology:mw-tp": {
-                       "microwave-ctp": {}
-                     },
-   "ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-4"
-                   }
-                 }
-               ],
-               "ietf-te-topology:te-node-id": "192.0.2.1",
-               "ietf-te-topology:te": {
-                 "te-node-attributes": {
-                   "ietf-microwave-topology:mw-node": {}
-                 }
-               }
-             }
-           ],
-           "ietf-network-topology:link": [
-             {
-               "link-id": "mwrl-N1-N2",
-               "source": {
-                 "source-node": "mw-N1",
-                 "source-tp": "mw-N1-RLTP1"
-               },
-               "destination": {
-                 "dest-node": "mw-N2",
-                 "dest-tp": "mw-N2-RLTP2"
-               },
-               "ietf-te-topology:te": {
-                 "bundled-links": {
-                   "bundled-link": [
-                     {
-                       "sequence": 1,
-                       "src-tp-ref": "mw-N1-CTP1",
-                       "des-tp-ref": "mw-N2-CTP2"
-                     },
-                     {
-                       "sequence": 2,
-                       "src-tp-ref": "mw-N1-CTP3",
-                       "des-tp-ref": "mw-N2-CTP4"
-                     }
-                   ]
-                 },
-                 "te-link-attributes": {
-                   "ietf-microwave-topology:mw-link": {
-                     "microwave-radio-link": {
-                       "rlt-mode": {
-                         "num-bonded-carriers": 2,
-                         "num-protecting-carriers": 0
-                       }
-                     }
-                   }
-                 }
-               }
-             },
-             {
-               "link-id": "mwc-N1-N2-A",
-               "source": {
-                 "source-node": "mw-N1",
-                 "source-tp": "mw-N1-CTP1"
-               },
-               "destination": {
-                 "dest-node": "mw-N2",
-                 "dest-tp": "mw-N2-CTP2"
-               },
-               "ietf-te-topology:te": {
-                 "te-link-attributes": {
-   "ietf-bandwidth-availability-topology:link-availability": [
-                     {
-                       "availability": "0.99",
-                       "link-bandwidth": "998423"
-                     },
-                     {
-                       "availability": "0.95",
-                       "link-bandwidth": "1048576"
-                     }
-                   ],
-                   "ietf-microwave-topology:mw-link": {
-                     "microwave-carrier": {
-                       "tx-frequency": 10728000,
-                       "rx-frequency": 10615000,
-                       "channel-separation": 28000
-                     }
-                   }
-                 }
-               }
-             },
-             {
-               "link-id": "mwc-N1-N2-B",
-               "source": {
-                 "source-node": "mw-N1",
-                 "source-tp": "mw-N1-CTP3"
-               },
-               "destination": {
-                 "dest-node": "mw-N2",
-                 "dest-tp": "mw-N2-CTP4"
-               },
-               "ietf-te-topology:te": {
-                 "te-link-attributes": {
-                   "ietf-microwave-topology:mw-link": {
-                     "microwave-carrier": {
-                       "tx-frequency": 10528000,
-                       "rx-frequency": 10415000,
-                       "channel-separation": 28000
-                     }
-                   }
-                 }
-               }
-             }
-           ]
-         }
+      },
+      {
+       "name": "RLT-2",
+       "description": "'Radio Link Terminal 2'",
+       "type": "iana-if-type:microwaveRadioLinkTerminal",
+       "ietf-microwave-radio-link:mode":
+          "ietf-microwave-types:two-plus-zero",
+       "ietf-microwave-radio-link:carrier-terminations": [
+        "CT-2",
+        "CT-4"
        ]
-     }
+      },
+      {
+       "name": "CT-1",
+       "description": "'Carrier Termination 1'",
+       "type": "iana-if-type:microwaveCarrierTermination",
+       "ietf-microwave-radio-link:tx-frequency": 10728000,
+       "ietf-microwave-radio-link:duplex-distance": 113000,
+       "ietf-microwave-radio-link:channel-separation": 28000,
+       "ietf-microwave-radio-link:rtpc": {
+        "maximum-nominal-power": "20.0"
+       },
+       "ietf-microwave-radio-link:single": {
+        "selected-cm": "ietf-microwave-types:qam-512"
+       }
+      },
+      {
+       "name": "CT-3",
+       "description": "'Carrier Termination 3'",
+       "type": "iana-if-type:microwaveCarrierTermination",
+       "ietf-microwave-radio-link:tx-frequency": 10528000,
+       "ietf-microwave-radio-link:duplex-distance": 113000,
+       "ietf-microwave-radio-link:channel-separation": 28000,
+       "ietf-microwave-radio-link:rtpc": {
+        "maximum-nominal-power": "20.0"
+       },
+       "ietf-microwave-radio-link:single": {
+        "selected-cm": "ietf-microwave-types:qam-512"
+       }
+      },
+      {
+       "name": "CT-2",
+       "description": "'Carrier Termination 2'",
+       "type": "iana-if-type:microwaveCarrierTermination",
+       "ietf-microwave-radio-link:tx-frequency": 10615000,
+       "ietf-microwave-radio-link:duplex-distance": 113000,
+       "ietf-microwave-radio-link:channel-separation": 28000,
+       "ietf-microwave-radio-link:rtpc": {
+        "maximum-nominal-power": "20.0"
+       },
+       "ietf-microwave-radio-link:single": {
+        "selected-cm": "ietf-microwave-types:qam-512"
+       }
+      },
+      {
+       "name": "CT-4",
+       "description": "'Carrier Termination 4'",
+       "type": "iana-if-type:microwaveCarrierTermination",
+       "ietf-microwave-radio-link:tx-frequency": 10415000,
+       "ietf-microwave-radio-link:duplex-distance": 113000,
+       "ietf-microwave-radio-link:channel-separation": 28000,
+       "ietf-microwave-radio-link:rtpc": {
+        "maximum-nominal-power": "20.0"
+       },
+       "ietf-microwave-radio-link:single": {
+        "selected-cm": "ietf-microwave-types:qam-512"
+       }
+      }
+     ]
+    },
+    "ietf-network:networks": {
+     "network": [
+      {
+       "network-id": "L2-network",
+       "network-types": {
+        "ietf-te-topology:te-topology": {
+         "ietf-eth-te-topology:eth-tran-topology": {}
+        }
+       },
+       "supporting-network": [
+        {
+         "network-ref": "mw-network"
+        }
+       ],
+       "node": [
+        {
+         "node-id": "L2-N1",
+         "supporting-node": [
+          {
+           "network-ref": "mw-network",
+           "node-ref": "mw-N1"
+          }
+         ],
+         "ietf-network-topology:termination-point": [
+          {
+           "tp-id": "L2-N1-TP1",
+           "supporting-termination-point": [
+            {
+             "network-ref": "mw-network",
+             "node-ref": "mw-N1",
+             "tp-ref": "mw-N1-RLTP1"
+            }
+           ]
+          }
+         ],
+         "ietf-te-topology:te-node-id": "192.0.2.1",
+         "ietf-te-topology:te": {
+          "te-node-attributes": {
+           "ietf-eth-te-topology:eth-node": {}
+          }
+         }
+        },
+        {
+         "node-id": "L2-N2",
+         "supporting-node": [
+          {
+           "network-ref": "mw-network",
+           "node-ref": "mw-N2"
+          }
+         ],
+         "ietf-network-topology:termination-point": [
+          {
+           "tp-id": "L2-N2-TP2",
+           "supporting-termination-point": [
+            {
+             "network-ref": "mw-network",
+             "node-ref": "mw-N2",
+             "tp-ref": "mw-N2-RLTP2"
+            }
+           ]
+          }
+         ],
+         "ietf-te-topology:te-node-id": "192.0.2.2",
+         "ietf-te-topology:te": {
+          "te-node-attributes": {
+           "ietf-eth-te-topology:eth-node": {}
+          }
+         }
+        }
+       ],
+       "ietf-network-topology:link": [
+        {
+         "link-id": "L2-N1-N2",
+         "source": {
+          "source-node": "L2-N1",
+          "source-tp": "L2-N1-TP1"
+         },
+         "destination": {
+          "dest-node": "L2-N2",
+          "dest-tp": "L2-N2-TP2"
+         },
+         "supporting-link": [
+          {
+           "network-ref": "mw-network",
+           "link-ref": "mwrl-N1-N2"
+          }
+         ],
+         "ietf-te-topology:te": {
+          "te-link-attributes": {
+           "interface-switching-capability": [
+            {
+             "switching-capability": "ietf-te-types:switching-l2sc",
+             "encoding": "ietf-te-types:lsp-encoding-ethernet"
+            }
+           ]
+          }
+         }
+        }
+       ]
+      },
+      {
+       "network-id": "mw-network",
+       "network-types": {
+        "ietf-te-topology:te-topology": {
+         "ietf-microwave-topology:mw-topology": {}
+        }
+       },
+       "supporting-network": [
+        {
+         "network-ref": "mw-network"
+        }
+       ],
+       "node": [
+        {
+         "node-id": "mw-N1",
+         "supporting-node": [
+          {
+           "network-ref": "mw-network",
+           "node-ref": "mw-N1"
+          }
+         ],
+         "ietf-network-topology:termination-point": [
+          {
+           "tp-id": "mw-N1-RLTP1",
+           "supporting-termination-point": [
+            {
+             "network-ref": "mw-network",
+             "node-ref": "mw-N1",
+             "tp-ref": "mw-N1-CTP1"
+            },
+            {
+             "network-ref": "mw-network",
+             "node-ref": "mw-N1",
+             "tp-ref": "mw-N1-CTP3"
+            }
+           ],
+           "ietf-te-topology:te-tp-id": "192.0.2.3",
+           "ietf-te-topology:te": {
+            "ietf-microwave-topology:mw-tp": {
+             "microwave-rltp": {}
+            },
+            "ietf-tp-interface-reference-topology:tp-to-interface-path":
+            "RLT-1"
+           }
+          },
+          {
+           "tp-id": "mw-N1-CTP1",
+           "ietf-te-topology:te-tp-id": 1,
+           "ietf-te-topology:te": {
+            "ietf-microwave-topology:mw-tp": {
+             "microwave-ctp": {}
+            },
+            "ietf-tp-interface-reference-topology:tp-to-interface-path":
+            "CT-1"
+           }
+          },
+          {
+           "tp-id": "mw-N1-CTP3",
+           "ietf-te-topology:te-tp-id": 2,
+           "ietf-te-topology:te": {
+            "ietf-microwave-topology:mw-tp": {
+             "microwave-ctp": {}
+            },
+            "ietf-tp-interface-reference-topology:tp-to-interface-path":
+            "CT-3"
+           }
+          }
+         ],
+         "ietf-te-topology:te-node-id": "192.0.2.1",
+         "ietf-te-topology:te": {
+          "te-node-attributes": {
+           "ietf-microwave-topology:mw-node": {}
+          }
+         }
+        },
+        {
+         "node-id": "mw-N2",
+         "supporting-node": [
+          {
+           "network-ref": "mw-network",
+           "node-ref": "mw-N2"
+          }
+         ],
+         "ietf-network-topology:termination-point": [
+          {
+           "tp-id": "mw-N2-RLTP2",
+           "supporting-termination-point": [
+            {
+             "network-ref": "mw-network",
+             "node-ref": "mw-N2",
+             "tp-ref": "mw-N2-CTP2"
+            },
+            {
+             "network-ref": "mw-network",
+             "node-ref": "mw-N2",
+             "tp-ref": "mw-N2-CTP4"
+            }
+           ],
+           "ietf-te-topology:te-tp-id": "192.0.2.4",
+           "ietf-te-topology:te": {
+            "ietf-microwave-topology:mw-tp": {
+             "microwave-rltp": {}
+            },
+            "ietf-tp-interface-reference-topology:tp-to-interface-path":
+            "RLT-2"
+           }
+          },
+          {
+           "tp-id": "mw-N2-CTP2",
+           "ietf-te-topology:te-tp-id": 1,
+           "ietf-te-topology:te": {
+            "ietf-microwave-topology:mw-tp": {
+             "microwave-ctp": {}
+            },
+            "ietf-tp-interface-reference-topology:tp-to-interface-path":
+            "CT-2"
+           }
+          },
+          {
+           "tp-id": "mw-N2-CTP4",
+           "ietf-te-topology:te-tp-id": 2,
+           "ietf-te-topology:te": {
+            "ietf-microwave-topology:mw-tp": {
+             "microwave-ctp": {}
+            },
+            "ietf-tp-interface-reference-topology:tp-to-interface-path":
+            "CT-4"
+           }
+          }
+         ],
+         "ietf-te-topology:te-node-id": "192.0.2.1",
+         "ietf-te-topology:te": {
+          "te-node-attributes": {
+           "ietf-microwave-topology:mw-node": {}
+          }
+         }
+        }
+       ],
+       "ietf-network-topology:link": [
+        {
+         "link-id": "mwrl-N1-N2",
+         "source": {
+          "source-node": "mw-N1",
+          "source-tp": "mw-N1-RLTP1"
+         },
+         "destination": {
+          "dest-node": "mw-N2",
+          "dest-tp": "mw-N2-RLTP2"
+         },
+         "ietf-te-topology:te": {
+          "bundled-links": {
+           "bundled-link": [
+            {
+             "sequence": 1,
+             "src-tp-ref": "mw-N1-CTP1",
+             "des-tp-ref": "mw-N2-CTP2"
+            },
+            {
+             "sequence": 2,
+             "src-tp-ref": "mw-N1-CTP3",
+             "des-tp-ref": "mw-N2-CTP4"
+            }
+           ]
+          },
+          "te-link-attributes": {
+           "ietf-microwave-topology:mw-link": {
+            "microwave-radio-link": {
+             "rlt-mode": {
+              "num-bonded-carriers": 2,
+              "num-protecting-carriers": 0
+             }
+            }
+           }
+          }
+         }
+        },
+        {
+         "link-id": "mwc-N1-N2-A",
+         "source": {
+          "source-node": "mw-N1",
+          "source-tp": "mw-N1-CTP1"
+         },
+         "destination": {
+          "dest-node": "mw-N2",
+          "dest-tp": "mw-N2-CTP2"
+         },
+         "ietf-te-topology:te": {
+          "te-link-attributes": {
+           "ietf-bandwidth-availability-topology:link-availability": [
+            {
+             "availability": "0.99",
+             "link-bandwidth": "998423"
+            },
+            {
+             "availability": "0.95",
+             "link-bandwidth": "1048576"
+            }
+           ],
+           "ietf-microwave-topology:mw-link": {
+            "microwave-carrier": {
+             "tx-frequency": 10728000,
+             "rx-frequency": 10615000,
+             "channel-separation": 28000
+            }
+           }
+          }
+         }
+        },
+        {
+         "link-id": "mwc-N1-N2-B",
+         "source": {
+          "source-node": "mw-N1",
+          "source-tp": "mw-N1-CTP3"
+         },
+         "destination": {
+          "dest-node": "mw-N2",
+          "dest-tp": "mw-N2-CTP4"
+         },
+         "ietf-te-topology:te": {
+          "te-link-attributes": {
+           "ietf-microwave-topology:mw-link": {
+            "microwave-carrier": {
+             "tx-frequency": 10528000,
+             "rx-frequency": 10415000,
+             "channel-separation": 28000
+            }
+           }
+          }
+         }
+        }
+       ]
+      }
+     ]
+    }
    }
 
 B.2.  Instance data for geolocation information
@@ -2053,10 +2078,13 @@ B.2.  Instance data for geolocation information
 
 Acknowledgments
 
-   This document was prepared using kramdown (thanks Martin Thomson).
+   This document was prepared using the kramdown RFC tool written and
+   maintained by Carsten Bormann.  Thanks to Martin Thomson for the
+   github integration of the kramdown RFC tool and for the aasvg tool
+   which is used for the ascii to SVG conversion.
 
-   The authors would like to thank Tom Petch and Éric Vyncke for their
-   reviews.
+   The authors would like to thank Tom Petch, Éric Vyncke, and Rob
+   Wilton for their reviews.
 
 Contributors
 
