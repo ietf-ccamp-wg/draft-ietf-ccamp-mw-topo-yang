@@ -1,0 +1,1139 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-03-07T01:55:38.480330+00:00",
+  "repo": "ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    },
+    {
+      "name": "tooling",
+      "description": "tooling related issue",
+      "color": "FBCA04"
+    },
+    {
+      "name": "action",
+      "description": "Action Item",
+      "color": "e99695"
+    },
+    {
+      "name": "Agreed",
+      "description": "",
+      "color": "0E8A16"
+    },
+    {
+      "name": "Wait",
+      "description": "",
+      "color": "FEF2C0"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOGF2QDc5BqbwP",
+      "title": "Create SVG Example in Markdown",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/1",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [
+        "tooling"
+      ],
+      "body": "Provide a SVG file and example of including the SVG file as a figure in a draft.  Provide markdown example.",
+      "createdAt": "2022-01-13T12:23:41Z",
+      "updatedAt": "2022-04-21T10:36:50Z",
+      "closedAt": "2022-04-21T10:36:49Z",
+      "comments": [
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Scott will send a list with the tools tht can be used for creation & iinclusion into the textfile.",
+          "createdAt": "2022-04-21T10:36:49Z",
+          "updatedAt": "2022-04-21T10:36:49Z"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOGF2QDc5BqdUO",
+      "title": "Support for tx-enabled or not? ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/2",
+      "state": "OPEN",
+      "author": "JonasAhl",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "question",
+        "Wait"
+      ],
+      "body": "Is this used on a node level for troubleshooting only, or is it needed also in the topology model",
+      "createdAt": "2022-01-13T12:28:44Z",
+      "updatedAt": "2022-02-17T13:03:05Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "NONE",
+          "body": "The meeting agrees that the need to disable the transmitter is only related to trouble-shooting (mainly on site).\r\nClose of issue pending input from other uW WG-members.",
+          "createdAt": "2022-01-27T13:11:52Z",
+          "updatedAt": "2022-01-27T13:11:52Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "NONE",
+          "body": "I suggest that we rely on the te-topology leaf \"tet:te-link-attributes/tet:admin-status\" for enabling/disabling a carrier, e.g. in an energy-efficiency use-case, instead of adding the tx-enabled leaf.\r\nThen it is up to the controller implementation if this should be translated into turning off the transmitter only or if both transmitter and receiver should be turned off.",
+          "createdAt": "2022-01-27T15:31:31Z",
+          "updatedAt": "2022-01-27T15:31:31Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "In order to support the energy efficiency use case, I am wondering whether the MW topology model should provide the management of the operational modes as defined in section 3.2 of [RFC 8432](https://datatracker.ietf.org/doc/html/rfc8432) rather than the management of each specific MW interface attributes\r\n\r\nThe controller can properly set the MW interface attributes based on the configured operational mode",
+          "createdAt": "2022-02-10T09:05:58Z",
+          "updatedAt": "2022-02-10T09:05:58Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "NONE",
+          "body": "I suppose that the use of operational modes as suggested above assumes that there is a standardized definition of those modes, which I don't think is the case.",
+          "createdAt": "2022-02-17T12:00:55Z",
+          "updatedAt": "2022-02-17T12:00:55Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "NONE",
+          "body": "Open up a separate issue related operation modes. If included/supported, then it makes the requirement to include detailed configuration parameters superfluous.",
+          "createdAt": "2022-02-17T13:01:39Z",
+          "updatedAt": "2022-02-17T13:01:39Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOGF2QDc5Bqdeu",
+      "title": "Bandwidth utilization ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/3",
+      "state": "OPEN",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "DanielaSpreafico"
+      ],
+      "labels": [
+        "question",
+        "Wait"
+      ],
+      "body": "o\tDo nodes provide this info on a link/carrier level?\r\no\tHow often do they change?\r\no\tAverage value over which period of time?\r\no\tRetrieve from node?\r\n",
+      "createdAt": "2022-01-13T12:29:15Z",
+      "updatedAt": "2022-12-15T10:29:07Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I add my considerations about Bandwidth utilization.\r\n\r\nThe Bandwidth utilization could provide a way to understand whether the nominal (maximum) radio capacity is coherent with the traffic passing through it.\r\nThe formula to calculate it has to use the throughput (transmitted data in specific period time ) and the nominal capacity (or nominal maximum bandwidth)\r\nBandwidth-utilization = [throughput (Mb/s) / nominal-maximum-bandwidth (Mb/s)]  * 100\r\n\r\nIs this information is on link level, taking into account the single carriers and the mode they are combined for the link (1+1, 2+0, etc). Or is it on carrier level (each single carrier on a link, whatever the mode of the radio link?\r\n\r\nDue to the frequent change of throughput then also the Bandwidth utilization could change frequently.\r\nIt is mainly a performance counter (both as statistic/timely data value or on period-time basis data value).\r\n\r\nCould it be recovered from the node? It is not a standard counter, so not all devices are able to provide it.\r\nOr based on other data from the node (tx bytes sent) ? In this case it is needed a reference time to calculated delta-time and delta-tx-bytes-sent).\r\n\r\n",
+          "createdAt": "2022-01-13T14:40:33Z",
+          "updatedAt": "2022-01-13T14:40:33Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I agree with the definition and questions raised by Daniela in the previous comment.\r\nAnother question is if it perhaps is more relevant to measure this on the Ethernet link level rather than on radio link level. It is most likely dependent upon the use case to be supported.",
+          "createdAt": "2022-01-27T10:23:05Z",
+          "updatedAt": "2022-01-27T10:23:05Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "FYI, this is the definition of band in [RFC8776](https://datatracker.ietf.org/doc/html/rfc8776):\r\n\r\n```\r\n       leaf one-way-utilized-bandwidth {\r\n         type rt-types:bandwidth-ieee-float32;\r\n         units \"bytes per second\";\r\n         default \"0x0p0\";\r\n         description\r\n           \"Bandwidth utilization that represents the actual\r\n            utilization of the link (i.e., as measured in the router).\r\n            For a bundled link, bandwidth utilization is defined to\r\n            be the sum of the component link bandwidth utilizations.\";\r\n       }\r\n\r\n```\r\n",
+          "createdAt": "2022-02-10T08:52:55Z",
+          "updatedAt": "2022-02-10T08:52:55Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Bandwidth utilization is an important information for use cases such as energy efficiency.\r\nThere are a couple of questions to be answered:\r\n- Is there a need to manage this in a multidomain context or not, and in such case do you measure utilization on a radio link level or on e.g. the Ethernet level which is a multidomain technology?\r\n- Is this specific for microwave or is it generic and can be used for many technologies and thereby perhaps should be included in the topology model itself, alternatively included in the bandwidth-availability module.\r\n- ",
+          "createdAt": "2022-02-10T12:59:53Z",
+          "updatedAt": "2022-02-10T12:59:53Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Check with authors of RFC 8776 why not in te-topology.",
+          "createdAt": "2022-02-17T12:50:22Z",
+          "updatedAt": "2022-02-17T12:50:22Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Agreed to define a new attribute specifically for microwave topology, instead of reusing the grouping above.\r\nDaniela to suggest a definition of the leaf & description.",
+          "createdAt": "2022-04-07T10:51:40Z",
+          "updatedAt": "2022-04-07T10:51:40Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The period over which the bandwidth is measured should be clear. 1s? 6 sec? Leo to investigate.\r\nCheck what the difference is between the leaf defined by RFC 8776 and the leaf actual-bandwidth in the generic module ietf-bandwidth-availability-topology.",
+          "createdAt": "2022-04-28T11:02:35Z",
+          "updatedAt": "2022-04-28T11:02:35Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Bandwidth utilization is recommended to be based on \"tx-bytes-sent\".\r\n\"tx-bytes-sent is not included/supported in the RFC 8561 device model.\r\nout-octets is included in RFC 7223, but is referring to the ethernet level.\r\nTime slot for the measurement still remains to be decided - or should we allow vendor specific implementations, described in a separate data node for the time window used.",
+          "createdAt": "2022-09-29T10:00:48Z",
+          "updatedAt": "2022-09-29T10:00:48Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Continued to discuss Issue #3:\r\nClarify that it is about utilized bandwidth, not utilization in percentage.\r\nChange the name of the attribute accordingly.\r\nProposal is to add a node/leaf for the time-window.\r\nClarify/describe that the utilization can be calculated in different ways depending on the policy used. \r\nCompare e.g. with max in highest modulation, or max in current modulation, etc.\r\n",
+          "createdAt": "2022-10-20T09:56:12Z",
+          "updatedAt": "2022-10-20T09:56:12Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Let's check that we have a common view about the definitions:\r\n\r\n<img src=\"https://latex.codecogs.com/gif.image?\\dpi{110}utilizedBw=\\frac{txBytes}{timeWindow}*8\"/>\r\n\r\n<img src=\"https://latex.codecogs.com/gif.image?\\dpi{110}BwUtilization=\\frac{utilizedBw}{linkBw}\"/>\r\n\r\nIn order to get comparable values, a common/standard definition is needed for\r\n1. _txBytes_\r\n2. _timeWindow_ \r\n3. _linkBw_\r\n\r\nReporting the _utilizedBw_ instead of the _BwUtilization_ removes the need for a common/standard definition of the _linkBw_.\r\n\r\nReporting the _timeWindow_ removes the need for a common/standard definition of the _timeWindow_,\r\n\r\nI am not sure whether we have a common/standard definition for counting the _txBytes_: to be investigated.",
+          "createdAt": "2022-10-26T13:03:17Z",
+          "updatedAt": "2022-10-26T13:03:17Z"
+        },
+        {
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I agree with the concept and the formula about utilizedBw and BwUtilization.\r\n\r\nThe txBytes has to be the bytes sent on the timeWindow, so the difference between the tx bytes sent at T0 and tx bytes sent at T1 where T1-T0 = timeWindow.\r\n",
+          "createdAt": "2022-10-26T13:58:49Z",
+          "updatedAt": "2022-10-26T13:58:49Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I also agree with the concept and Daniela\u00b4s addition, but I'm not sure I understand the first formula.\r\nWhy is there a multiplication with 8?\r\nIsn't 1 byte = 8 bits and not the opposite, which I think could be the mistake.\r\n",
+          "createdAt": "2022-10-26T15:05:30Z",
+          "updatedAt": "2022-10-26T15:05:30Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "> I also agree with the concept and Daniela\u00b4s addition, but I'm not sure I understand the first formula. Why is there a multiplication with 8? Isn't 1 byte = 8 bits and not the opposite, which I think could be the mistake.\r\n\r\nGood point, I think that adding the measurements units would help:\r\n\r\n<img src=\"https://latex.codecogs.com/gif.image?\\dpi{110}utilizedBw=\\frac{txBytes*8}{timeWindow}\\;&space;[bits/sec]\"/>\r\n\r\n<img src=\"https://latex.codecogs.com/gif.image?\\dpi{110}BwUtilization=\\frac{utilizedBw}{linkBw}*100\\,&space;[%]\"/>\r\n",
+          "createdAt": "2022-10-27T09:00:50Z",
+          "updatedAt": "2022-10-27T09:00:50Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "A few observations and questions about the bandwidth topic.\r\n[mw-bandwidth-questions.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/files/9878722/mw-bandwidth-questions.pptx)\r\n",
+          "createdAt": "2022-10-27T11:11:24Z",
+          "updatedAt": "2022-10-27T11:11:24Z"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOGF2QDc5Bqde3",
+      "title": "Markdown cheat sheet",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/4",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [
+        "tooling"
+      ],
+      "body": "Create a markdown cheat sheet",
+      "createdAt": "2022-01-13T12:29:16Z",
+      "updatedAt": "2022-02-10T11:43:50Z",
+      "closedAt": "2022-02-10T11:43:03Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This is the website with all the syntax for kramdown:  https://kramdown.gettalong.org/syntax.html\r\nThe https://github.com/cabo/kramdown-rfc2629 site has the directives specifically used for IETF RFCs and I-Ds.",
+          "createdAt": "2022-02-10T11:43:03Z",
+          "updatedAt": "2022-02-10T11:43:03Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "https://xml2rfc.tools.ietf.org/experimental.html#kramdown is an online converter to use for testing.",
+          "createdAt": "2022-02-10T11:43:50Z",
+          "updatedAt": "2022-02-10T11:43:50Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOGF2QDc5BqdkU",
+      "title": "\u2022\tRequest & consider feedback from CCAMP on the suggestion to include generic modules for bandwidth & interface ref ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/5",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "JonasAhl"
+      ],
+      "labels": [
+        "question"
+      ],
+      "body": "",
+      "createdAt": "2022-01-13T12:29:32Z",
+      "updatedAt": "2022-12-08T10:53:27Z",
+      "closedAt": "2022-12-08T10:53:27Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Suggestion is to point out that YANG model has been decomposed into generic portion and mw portion.  Get feedback on the decomposition when draft is reviewed by the YANG doctors.",
+          "createdAt": "2022-02-24T12:53:38Z",
+          "updatedAt": "2022-02-24T12:53:38Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Based on CCAMP comments and consensus the internet draft has been split into three internet drafts one for each yang module.  There is a mw-topo, bwa, and if-ref internet drafts now.",
+          "createdAt": "2022-12-08T10:53:27Z",
+          "updatedAt": "2022-12-08T10:53:27Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOGF2QDc5Bqd0H",
+      "title": "Consider including more example instantiations (JSON) ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/6",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "DanielaSpreafico"
+      ],
+      "labels": [
+        "enhancement",
+        "Agreed"
+      ],
+      "body": "Agree on what examples to include",
+      "createdAt": "2022-01-13T12:30:22Z",
+      "updatedAt": "2022-04-21T10:16:33Z",
+      "closedAt": "2022-04-21T10:16:33Z",
+      "comments": [
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Same as the existing example but with 1+1 configuration of the carriers. Daniela to make a proposal.",
+          "createdAt": "2022-02-17T12:34:02Z",
+          "updatedAt": "2022-02-17T12:34:02Z"
+        },
+        {
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I add an example (exampleL2OnePlusOne.json) in the repository. \r\nThis is related to 'l2-topology' network type, but a new one could be created for 'ETH topology' type.",
+          "createdAt": "2022-02-23T18:03:09Z",
+          "updatedAt": "2022-02-23T18:03:09Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Action to validate the json using yanglint.",
+          "createdAt": "2022-02-24T12:18:28Z",
+          "updatedAt": "2022-02-24T12:18:28Z"
+        },
+        {
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I updated the json example (file 'exampleL2OnePlusOne.json') to introduce ACM coding modulation mode with 2 modulation values and adding entries on 'link-availability' list.",
+          "createdAt": "2022-03-03T10:09:19Z",
+          "updatedAt": "2022-03-03T10:09:19Z"
+        },
+        {
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I changed on exampleL2OnePlusOne.jsin file the 'ietf-bandwidth-availability-topology:link-availability' list putting the lowest value of \"link-bandwidth\" on higher values of \"availability\".\r\nThat both for 'microwave-rltp' and 'microwave-ctp'.\r\nThat means the \"link-bandwidth\" for lower modulation values have more chances of 'availabiliy'.",
+          "createdAt": "2022-03-10T11:53:12Z",
+          "updatedAt": "2022-03-10T11:53:12Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Inserted in the draft.",
+          "createdAt": "2022-04-21T10:16:33Z",
+          "updatedAt": "2022-04-21T10:16:33Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOGF2QDc5Bqd6n",
+      "title": "Send the draft for review by the YANG doctors",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/7",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [
+        "action"
+      ],
+      "body": "",
+      "createdAt": "2022-01-13T12:30:42Z",
+      "updatedAt": "2022-12-15T10:28:06Z",
+      "closedAt": "2022-12-15T10:28:06Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "When do we want to send it?  \r\nDeadline for meeting consideration:\r\n2022-03-07 (Monday): Internet Draft submission cut-off (for all drafts, including -00) by UTC 23:59. Upload using the ID Submission Tool.",
+          "createdAt": "2022-01-13T12:42:53Z",
+          "updatedAt": "2022-01-13T12:42:53Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Updated draft ready for review by YANG doctors by 1st week of February\r\n",
+          "createdAt": "2022-01-13T12:44:46Z",
+          "updatedAt": "2022-01-13T12:44:46Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Implemented the split of the draft into multiple drafts that have one module per draft.",
+          "createdAt": "2022-12-15T10:28:06Z",
+          "updatedAt": "2022-12-15T10:28:06Z"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOGF2QDc5CHZ_w",
+      "title": "Using a makefile, submit to github directly from markdown",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/8",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [],
+      "body": "Use the [Martin Thomson environment](https://github.com/martinthomson/i-d-template) to support uploading to github (IETF's ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang repository).\r\n\r\nSubmit the draft to the IETF using the makefile.",
+      "createdAt": "2022-01-20T12:23:24Z",
+      "updatedAt": "2022-12-08T10:51:40Z",
+      "closedAt": "2022-12-08T10:51:40Z",
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOGF2QDc5ChwyN",
+      "title": "Consider remove leafs \"supporting-network\" attributes in the example tree A.1.",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/9",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans",
+        "JonasAhl"
+      ],
+      "labels": [
+        "enhancement",
+        "Agreed"
+      ],
+      "body": "",
+      "createdAt": "2022-01-27T12:22:33Z",
+      "updatedAt": "2022-04-14T10:45:13Z",
+      "closedAt": "2022-04-14T10:45:13Z",
+      "comments": [
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The meeting agrees with the proposal and assigns the task to Jonas to make an update of the tree example accordingly.",
+          "createdAt": "2022-02-17T12:28:22Z",
+          "updatedAt": "2022-02-17T12:28:22Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "If we remove supporting-network, then I don't think we can use the concept of supporting-termination-point between radio-link-terminal and the supporting carrier-terminations. OK?\r\nCheck with Scott about the JSON instantiation. Consider checking with the authors of RFC 8345",
+          "createdAt": "2022-03-03T11:41:40Z",
+          "updatedAt": "2022-03-03T12:16:27Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Cannot be removed.",
+          "createdAt": "2022-04-14T10:45:13Z",
+          "updatedAt": "2022-04-14T10:45:13Z"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOGF2QDc5DVWWy",
+      "title": "L2 topology in Appendix A",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/10",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "Agreed"
+      ],
+      "body": "Appendix A assumes to use the L2 topology model defined in [RFC8944](https://datatracker.ietf.org/doc/html/rfc8944)\r\n\r\nIn ETSI DGS mWT-024. the Ethernet TE and Client Topology topology model defined in [draft-ietf-ccamp-eth-client-te-topo-yang](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-eth-client-te-topo-yang)\r\n\r\nThe advantages of the Ethernet TE and Client Topology topology model are that:\r\n- It supports administrative/operational state management from TE topology (profile)\r\n- It supports for inter-domain link discovery (plug-id) from TE topology (profile)\r\n- It supports a common way to manage link bundling (e.g., LAG) from TE topology (profile)\r\n- Allows reporting the VLAN classification capabilities at the edge of the network\r\n",
+      "createdAt": "2022-02-10T09:01:45Z",
+      "updatedAt": "2022-04-14T10:16:53Z",
+      "closedAt": "2022-04-14T10:16:53Z",
+      "comments": [
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The meeting agrees with the proposal and assigns the task to Italo to make an update of the JSON example accordingly.",
+          "createdAt": "2022-02-17T12:24:26Z",
+          "updatedAt": "2022-02-17T12:24:26Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Now included in the latest github version.",
+          "createdAt": "2022-04-14T10:16:53Z",
+          "updatedAt": "2022-04-14T10:16:53Z"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOGF2QDc5EBwZZ",
+      "title": "Operational Mode",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/11",
+      "state": "OPEN",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "enhancement",
+        "Wait"
+      ],
+      "body": "",
+      "createdAt": "2022-02-17T13:03:31Z",
+      "updatedAt": "2022-12-15T10:26:23Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "See section 3.2 of https://www.rfc-editor.org/rfc/rfc8432.html",
+          "createdAt": "2022-10-26T16:37:32Z",
+          "updatedAt": "2022-10-26T16:37:32Z"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOGF2QDc5Ef6zK",
+      "title": "Contact ccamp chairs about errata ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/12",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "JonasAhl"
+      ],
+      "labels": [
+        "action"
+      ],
+      "body": " Errata status\r\n  - https://datatracker.ietf.org/doc/html/rfc8561\r\n  - https://www.rfc-editor.org/errata_search.php?rfc=8561&rec_status=0\r\n  - Contact Daniele and Fatai about errate process (Issue)",
+      "createdAt": "2022-02-24T12:16:42Z",
+      "updatedAt": "2022-04-14T10:11:44Z",
+      "closedAt": "2022-04-14T10:11:43Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The guidance I received is...\r\n\r\nA note to the relevant AD from the lead author, with a copy to the CCAMP working group, indicating the author\u2019s expectation about resolution should cause the AD to act.\r\n\r\nSo...  \r\nJonas needs to send the email to Fatai Zhang (Document Shephard) and John Scudder (AD) with CC to the current leaders:\r\nChairs Daniele Ceccarelli\u00a0Fatai Zhang\r\nAD: John Scudder\r\nCCAMP Secretary:  Oscar de Dios\r\nResponsible AD when draft was completed: Deborah Brungard",
+          "createdAt": "2022-03-10T15:37:37Z",
+          "updatedAt": "2022-03-10T15:37:37Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Errata verified and included in data tracker.",
+          "createdAt": "2022-04-14T10:11:43Z",
+          "updatedAt": "2022-04-14T10:11:43Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOGF2QDc5FcusK",
+      "title": "Ensure that the new md-file covers everything in the latest xml-based version",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/13",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans",
+        "JonasAhl"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-03-10T12:26:46Z",
+      "updatedAt": "2022-04-14T10:15:24Z",
+      "closedAt": "2022-04-14T10:15:24Z",
+      "comments": [
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Successfully done. MD-file/text-file in Github is now the latest version.",
+          "createdAt": "2022-04-14T10:15:24Z",
+          "updatedAt": "2022-04-14T10:15:24Z"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOGF2QDc5HyT4k",
+      "title": "Add supporting-network & supporting-node for the two \"RLT\" termination points in the examples",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/15",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-04-14T10:45:29Z",
+      "updatedAt": "2022-04-21T10:12:51Z",
+      "closedAt": "2022-04-21T10:12:51Z",
+      "comments": [
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "One instance of supporting-network under mw-network and one instance supporting-node for each node, mw-N1 and mw-N2.",
+          "createdAt": "2022-04-14T10:50:55Z",
+          "updatedAt": "2022-04-14T10:50:55Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Make sure that all examples are updated accordingly",
+          "createdAt": "2022-04-14T10:53:22Z",
+          "updatedAt": "2022-04-14T10:53:22Z"
+        },
+        {
+          "author": "JonasAhl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The leafs have been added to the examples and been successfully validate.",
+          "createdAt": "2022-04-21T10:11:35Z",
+          "updatedAt": "2022-04-21T10:11:35Z"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOGF2QDc5HyXzM",
+      "title": "Open up a repository for RFC8561 bis",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/16",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Look into how band/carrier aggregation can be supported by an update of RFC8561.",
+      "createdAt": "2022-04-14T11:03:19Z",
+      "updatedAt": "2022-04-14T14:07:35Z",
+      "closedAt": "2022-04-14T14:07:35Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "https://github.com/samans/draft-ybam-rfc8561bis\r\nUse the above repository for work on the draft for rfc8561bis.",
+          "createdAt": "2022-04-14T14:07:35Z",
+          "updatedAt": "2022-04-14T14:07:35Z"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOGF2QDc5IK5la",
+      "title": "Inconsistencies in the examples",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/17",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "DanielaSpreafico"
+      ],
+      "labels": [],
+      "body": "Go through the two examples to remove any inconsistences wrt to the type of configurations and associated frequencies.",
+      "createdAt": "2022-04-21T10:15:11Z",
+      "updatedAt": "2022-04-28T10:50:00Z",
+      "closedAt": "2022-04-28T10:49:59Z",
+      "comments": [
+        {
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I found the following inconsistencies on example-fold.json (2+0 case) on  \"ietf-interfaces:interfaces\" section:\r\n\r\n  1.  \"interface\": [\r\n  ..\r\n  ..\r\n      {\r\n        \"name\": \"RLT-1\",\r\n        \"description\": \"'Radio Link Terminal 1'\",\r\n        \"type\": \"iana-if-type:microwaveRadioLinkTerminal\",\r\n        \"ietf-microwave-radio-link:mode\":\r\n        \"ietf-microwave-types:**one-plus-zero\",** --> to be changed to **two-plus-zero**\r\n\r\nThe same for RLT-2.\r\n\r\n2.     The 'tx-frequency' attribute values for CT-2/CT-3/CT-4 need to be changed according to the 'tx-frequency' \r\n        and 'rx-frequency' attributes of 'te-link-attributes' :\r\n      \r\n         \"interface\": [\r\n           ...\r\n        \"name\": \"CT-3\",\r\n         ...\r\n        \"ietf-microwave-radio-link:tx-frequency\": **10728000**, --> **10528000**\r\n        ...\r\n        \"name\": \"CT-2\",\r\n        ...\r\n        \"ietf-microwave-radio-link:tx-frequency\": **10728000**, --> **10615000**\r\n        ...\r\n        \"name\": \"CT-4\",\r\n        ...\r\n        \"ietf-microwave-radio-link:tx-frequency\": **10728000**, --> **10415000**",
+          "createdAt": "2022-04-22T13:57:58Z",
+          "updatedAt": "2022-04-22T13:57:58Z"
+        },
+        {
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "These inconsistencies were present on the actual draft.",
+          "createdAt": "2022-04-22T14:04:31Z",
+          "updatedAt": "2022-04-22T14:04:31Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The updates were made to the 2+0 json example.",
+          "createdAt": "2022-04-28T10:49:59Z",
+          "updatedAt": "2022-04-28T10:49:59Z"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOGF2QDc5IK6z6",
+      "title": "Pictures for the examples",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/18",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [],
+      "body": "Add a picture to illustrate the configuration in the second JSON example.",
+      "createdAt": "2022-04-21T10:19:16Z",
+      "updatedAt": "2022-04-28T10:49:31Z",
+      "closedAt": "2022-04-28T10:49:31Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The existing figure is valid for both 1+1 and 2+0, so modify text to indicate that.  A new action to create small diagrams to show difference in instance data between 1+1 and 2+0 will be created.",
+          "createdAt": "2022-04-28T10:49:31Z",
+          "updatedAt": "2022-04-28T10:49:31Z"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOGF2QDc5ILAJT",
+      "title": "Create SVG versions of the diagrams/pictures in the two examples",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/19",
+      "state": "CLOSED",
+      "author": "JonasAhl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-04-21T10:37:52Z",
+      "updatedAt": "2022-04-28T10:47:40Z",
+      "closedAt": "2022-04-28T10:47:40Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Information about SVG files...\r\n\r\n```raw\r\nFor svg art-work, do this in the xml code...\r\n        <artset anchor=\"test\">\r\n           <artwork type=\"svg\" src=\"drawing.svg\">\r\n           </artwork>\r\n           <artwork type=\"ascii-art\" align=\"left\" alt=\"\"><![CDATA[\r\n                 \u2026.\r\n           </artwork>\r\n       </artset>\r\n```\r\n\r\nMarkdown doesn't support the artset\r\nhttps://www.ietf.org/archive/id/draft-fossati-svg-test-01.html\r\n\r\ngoat (ascii to svg) can't get this to install.\r\nhttps://xml2rfc.tools.ietf.org/xml2rfc3.html\r\nhttps://www.rfc-editor.org/rse/wiki/doku.php?id=svg_files\r\nhttps://www.rfc-editor.org/materials/FAQ-xml2rfcv3.html#name-how-do-i-generate-svg-that\r\n",
+          "createdAt": "2022-04-21T12:14:15Z",
+          "updatedAt": "2022-04-21T12:18:22Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Discussion related to diagrams, add new action to fix legend. (a new action item will be created with the list of updates)\r\nProcess is to run makefile to generate xml file, then modify xml file to include artset.\r\ngoat works but does not provide a good representation of the ascii art we currently have.  So use the hand drawn svg for the svg version.",
+          "createdAt": "2022-04-28T10:47:40Z",
+          "updatedAt": "2022-04-28T10:47:40Z"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOGF2QDc5IoZeJ",
+      "title": "JSON instance file fold and unfold tooling",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/20",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "Provide information on the tools related to folding and unfolding JSON instance files.\r\nAlso provide a pointer to the guidelines for extracting JSON instance files without using <CODE BEGINS>...",
+      "createdAt": "2022-04-28T10:51:38Z",
+      "updatedAt": "2022-05-10T18:21:49Z",
+      "closedAt": "2022-05-10T18:21:49Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "merging, txt file will be deleted and regenerated.",
+          "createdAt": "2022-05-10T18:21:49Z",
+          "updatedAt": "2022-05-10T18:21:49Z"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "I_kwDOGF2QDc5IoaUD",
+      "title": "Example Diagrams",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/21",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [],
+      "body": "To the SVG diagram for examples add a legend.  Differentiate the the lines used (need a new line style for tp-to-interface-path.\r\n\r\nModify the text describing the diagram (that it is for both examples).\r\n\r\nAdd text above the instance data to describe what the example is showing.\r\n\r\nCreate a small diagram that graphically represents what is different between the instance data in each example.",
+      "createdAt": "2022-04-28T10:55:10Z",
+      "updatedAt": "2022-05-10T19:28:01Z",
+      "closedAt": "2022-05-10T19:28:00Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Updated with folding and supporting the SVG for html version.",
+          "createdAt": "2022-05-10T19:28:00Z",
+          "updatedAt": "2022-05-10T19:28:00Z"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOGF2QDc5Ralsr",
+      "title": "Replace type from 8561bis to topology model",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/23",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "decouple the 68561bis work from the mw-topo-yang work.",
+      "createdAt": "2022-09-08T09:47:50Z",
+      "updatedAt": "2022-10-20T17:13:34Z",
+      "closedAt": "2022-10-20T17:13:34Z",
+      "comments": []
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOGF2QDc5XruD9",
+      "title": "Clean-up the repository",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/25",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "After the updated draft is available (see issue #5), clean-up the repository, e.g.:\r\n- remove YANG and tree files not needed",
+      "createdAt": "2022-12-01T10:39:07Z",
+      "updatedAt": "2022-12-08T10:50:56Z",
+      "closedAt": "2022-12-08T10:50:56Z",
+      "comments": []
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOGF2QDc5YeNNj",
+      "title": "tree files for all three projects",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/26",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [],
+      "body": "Create full tree files for each project, then edit down to only the elements that are related to the project.  For example in if-ref ...\r\n\r\nmodule: ietf-te-topology\r\n...\r\n  augment /nw:networks/nw:network/nw:node/nt:termination-point:\r\n    +--rw te-tp-id?   te-types:te-tp-id\r\n    +--rw te!\r\n...\r\n       +--rw name?                             string\r\n...\r\n       +--rw ifref:tp-to-interface-path?       -> /if:interfaces/interface/name",
+      "createdAt": "2022-12-08T10:37:37Z",
+      "updatedAt": "2023-03-06T15:40:35Z",
+      "closedAt": "2023-03-06T15:40:35Z",
+      "comments": []
+    },
+    {
+      "number": 27,
+      "id": "I_kwDOGF2QDc5ZTQDn",
+      "title": "Example updates",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/27",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans",
+        "DanielaSpreafico"
+      ],
+      "labels": [],
+      "body": "Provide updated example in the mw-topo-yang draft that includes the use of if-ref-topo-yang and bwa-topo-yang.  Add the bwa-topo-yang and if-ref-topo-yang as an informative reference.\r\n\r\nPut the geolocation data in the node instead of the termination-point.  The te-topology model supports adding the geolocation data to nodes.",
+      "createdAt": "2022-12-15T10:55:12Z",
+      "updatedAt": "2023-03-06T15:40:27Z",
+      "closedAt": "2023-03-06T15:40:27Z",
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Take the example1plus1.json and example2plus0.json examples from https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/ and remove the interface-reference and bandwidth-availability elements.\r\nCreate a generic example for interface-reference and bandwidth-availability for use in their respective drafts.\r\nMaintain a combined example (that includes mw, bwa, and if-ref) that can be used in presentations to show how to use the drafts together.",
+          "createdAt": "2023-01-12T10:47:52Z",
+          "updatedAt": "2023-01-12T10:47:52Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Validate all examples",
+          "createdAt": "2023-01-12T10:52:16Z",
+          "updatedAt": "2023-01-12T10:52:16Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "- Question on the example related to geo-location information associated with the termination-point.  Put the geolocation data in the node instead of the termination-point.  The te-topology model supports adding the geolocation data to nodes.",
+          "createdAt": "2023-01-12T10:57:01Z",
+          "updatedAt": "2023-01-12T10:57:01Z"
+        },
+        {
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "A new example file exampleInterfRef.json has been uploaded on a new branch on [draft-ietf-ccamp-if-ref-topo-yang](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-if-ref-topo-yang) and submitted a pull request for that.\r\n\r\nFor the new example exampleBwa.json the file has been uploaded directly on the branch Generic-drafts.\r\n\r\nFor the update of [draft-ietf-ccamp-mw-topo-yang](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang)  new files (example1plus1-withoutBwaInterfRef.json  and example2plus0-withoutBwaInterfRef.json ) have been uploaded on the branch Generic-drafts.\r\n\r\nChecks are needed for all files.\r\n",
+          "createdAt": "2023-01-19T09:10:39Z",
+          "updatedAt": "2023-01-19T09:10:39Z"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOGF2QDc5bOaJX",
+      "title": "Align introduction text in all drafts",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/28",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-01-12T10:52:49Z",
+      "updatedAt": "2023-03-06T15:40:22Z",
+      "closedAt": "2023-03-06T15:40:22Z",
+      "comments": []
+    },
+    {
+      "number": 29,
+      "id": "I_kwDOGF2QDc5bOamU",
+      "title": "Clean-up drafts",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/29",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "samans",
+        "JonasAhl"
+      ],
+      "labels": [],
+      "body": "- Clean-up and review drafts\r\n  - edit the tree files to include only the branches and leafs necessary (by hand)\r\n  - revisions of the imports and references\r\n  - clean up any idnits (copyright dates, boiler plate)\r\n  - ensure the rfcstrip for yang files produces yang files that validate with pyang\r\n  - ensure the version numbering of the yang files is correct",
+      "createdAt": "2023-01-12T10:54:10Z",
+      "updatedAt": "2023-03-06T15:40:16Z",
+      "closedAt": "2023-03-06T15:40:16Z",
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "I_kwDOGF2QDc5bOazh",
+      "title": "Drafts loaded on datatracker",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/issues/30",
+      "state": "CLOSED",
+      "author": "samans",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Before the IETF 116 cutoff (13 Mar 2023)\r\nRequest Last Call",
+      "createdAt": "2023-01-12T10:54:47Z",
+      "updatedAt": "2023-03-06T15:40:08Z",
+      "closedAt": "2023-03-06T15:40:08Z",
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 14,
+      "id": "PR_kwDOGF2QDc41eJCS",
+      "title": "Proposal for ETH TE Topology in Appendix A ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/pull/14",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Proposed changes to the JSON example in Appendix A to use the ETH TE Topology instead of the L2 Topology model: fix #10 \r\n",
+      "createdAt": "2022-04-01T08:31:01Z",
+      "updatedAt": "2022-04-14T10:19:18Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang",
+      "baseRefName": "main",
+      "baseRefOid": "241f0debd8611858a2cd32c46cf0f3c1d3118ad7",
+      "headRepository": "italobusi/draft-ietf-ccamp-mw-topo-yang",
+      "headRefName": "eth-te-topo",
+      "headRefOid": "8c3c35e2033ae071420b8bfbb01d00441267ce6f",
+      "closedAt": "2022-04-08T12:54:02Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "@samans : could you also check that the JSON example can be validated using yanglint?",
+          "createdAt": "2022-04-01T08:32:06Z",
+          "updatedAt": "2022-04-01T08:32:06Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The JSON example passes yanglint.  I had to modify the expect script to include the ietf-eth-te-topology and ietf-eth-tran-types modules.  The file produced by yanglint is attached\r\n[example-yanglint.txt](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/files/8445976/example-yanglint.txt)\r\n.",
+          "createdAt": "2022-04-07T19:36:55Z",
+          "updatedAt": "2022-04-07T19:36:55Z"
+        },
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I integrated the changes, but made further modifications.  So closed this pull request.",
+          "createdAt": "2022-04-08T12:54:39Z",
+          "updatedAt": "2022-04-08T12:54:39Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOGF2QDc43Ix0-",
+      "title": "Folding JSON examples",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/pull/22",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Folding JSON examples using RFC 8792 tool\r\n\r\nUse artwork and sourcecode kramdown instructions for RFC strip\r\n\r\nNote 1: RFC 8792 provides instructions (and shell sript) for folding/unfolding files\r\n\r\nNote 2: rfcstrip will extract YANG code from txt files and other files (e.g., folded JSON examples) from xml files\r\n\r\nFix #20 \r\n",
+      "createdAt": "2022-05-01T22:04:47Z",
+      "updatedAt": "2022-10-12T10:23:52Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang",
+      "baseRefName": "main",
+      "baseRefOid": "eef4f0e384f001a06fa93d1b2323447f63fc8950",
+      "headRepository": "italobusi/draft-ietf-ccamp-mw-topo-yang",
+      "headRefName": "rfcfold",
+      "headRefOid": "43a093e3183878aced20a48e0abf12c69c31bb5f",
+      "closedAt": "2022-05-10T18:31:15Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "samans",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Closed this without merging.  Will make the changes and then push the changes.",
+          "createdAt": "2022-05-10T18:31:59Z",
+          "updatedAt": "2022-05-10T18:31:59Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOGF2QDc5ApAs7",
+      "title": "Updated RLT mode",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang/pull/24",
+      "state": "MERGED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Updated RLT mode definition: fix #23",
+      "createdAt": "2022-10-12T10:46:36Z",
+      "updatedAt": "2022-10-21T09:10:12Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-mw-topo-yang",
+      "baseRefName": "main",
+      "baseRefOid": "6e7b271779cf3ef50ab4e6f7217def682df2e872",
+      "headRepository": "italobusi/draft-ietf-ccamp-mw-topo-yang",
+      "headRefName": "rlt-mode",
+      "headRefOid": "f3f47dc320ac530bcae53edf58548ae4848ac361",
+      "closedAt": "2022-10-20T17:13:33Z",
+      "mergedAt": "2022-10-20T17:13:33Z",
+      "mergedBy": "samans",
+      "mergeCommit": {
+        "oid": "063a2ee292f74e9777c37817379b9d41b3d32f51"
+      },
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "@samans : I cannot run the make file on my machine, maybe this is the reason why checks fail",
+          "createdAt": "2022-10-20T10:24:41Z",
+          "updatedAt": "2022-10-20T10:24:41Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOGF2QDc5Eh0eW",
+          "commit": {
+            "abbreviatedOid": "f3f47dc"
+          },
+          "author": "DanielaSpreafico",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "No comments. I accept the changes",
+          "createdAt": "2022-10-20T17:44:35Z",
+          "updatedAt": "2022-10-20T17:44:35Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
+}
