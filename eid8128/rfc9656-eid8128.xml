@@ -1,0 +1,2698 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" version="3" ipr="trust200902" docName="draft-ietf-ccamp-mw-topo-yang-9656" number="9656" category="std" consensus="true" submissionType="IETF" updates="" obsoletes="" tocInclude="true" sortRefs="true" symRefs="true" xml:lang="en" prepTime="2024-09-30T16:29:37" indexInclude="true" scripts="Common,Latin" tocDepth="3">
+  <link href="https://datatracker.ietf.org/doc/draft-ietf-ccamp-mw-topo-yang-9656" rel="prev"/>
+  <link href="https://dx.doi.org/10.17487/rfc9656" rel="alternate"/>
+  <link href="urn:issn:2070-1721" rel="alternate"/>
+  <front>
+    <title abbrev="Microwave Topology YANG Model">A YANG Data Model for Microwave Topology</title>
+    <seriesInfo name="RFC" value="9656" stream="IETF"/>
+    <author fullname="Scott Mansfield" initials="S." surname="Mansfield" role="editor">
+      <organization showOnFrontPage="true">Ericsson Inc</organization>
+      <address>
+        <email>scott.mansfield@ericsson.com</email>
+      </address>
+    </author>
+    <author fullname="Jonas Ahlberg" initials="J." surname="Ahlberg">
+      <organization showOnFrontPage="true">Ericsson AB</organization>
+      <address>
+        <postal>
+          <street>Lindholmspiren 11</street>
+          <city>Goteborg</city>
+          <code>417 56</code>
+          <country>Sweden</country>
+        </postal>
+        <email>jonas.ahlberg@ericsson.com</email>
+      </address>
+    </author>
+    <author fullname="Min Ye" initials="M." surname="Ye">
+      <organization showOnFrontPage="true">Huawei Technologies</organization>
+      <address>
+        <postal>
+          <street>No.1899, Xiyuan Avenue</street>
+          <city>Chengdu</city>
+          <code>611731</code>
+          <country>China</country>
+        </postal>
+        <email>amy.yemin@huawei.com</email>
+      </address>
+    </author>
+    <author fullname="Xi Li" initials="X." surname="Li">
+      <organization showOnFrontPage="true">NEC Laboratories Europe</organization>
+      <address>
+        <postal>
+          <street>Kurfursten-Anlage 36</street>
+          <city>Heidelberg</city>
+          <code>69115</code>
+          <country>Germany</country>
+        </postal>
+        <email>Xi.Li@neclab.eu</email>
+      </address>
+    </author>
+    <author fullname="Daniela Spreafico" initials="D." surname="Spreafico">
+      <organization showOnFrontPage="true">Nokia - IT</organization>
+      <address>
+        <postal>
+          <street>Via Energy Park, 14</street>
+          <city>Vimercate (MI)</city>
+          <code>20871</code>
+          <country>Italy</country>
+        </postal>
+        <email>daniela.spreafico@nokia.com</email>
+      </address>
+    </author>
+    <date month="09" year="2024"/>
+    <area>RTG</area>
+    <workgroup>ccamp</workgroup>
+    <keyword>microwave</keyword>
+    <keyword>topology</keyword>
+    <abstract pn="section-abstract">
+      <t indent="0" pn="section-abstract-1">This document defines a YANG data model to describe microwave and millimeter-wave radio links in a network topology.</t>
+    </abstract>
+    <boilerplate>
+      <section anchor="status-of-memo" numbered="false" removeInRFC="false" toc="exclude" pn="section-boilerplate.1">
+        <name slugifiedName="name-status-of-this-memo">Status of This Memo</name>
+        <t indent="0" pn="section-boilerplate.1-1">
+            This is an Internet Standards Track document.
+        </t>
+        <t indent="0" pn="section-boilerplate.1-2">
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.
+        </t>
+        <t indent="0" pn="section-boilerplate.1-3">
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <eref target="https://www.rfc-editor.org/info/rfc9656" brackets="none"/>.
+        </t>
+      </section>
+      <section anchor="copyright" numbered="false" removeInRFC="false" toc="exclude" pn="section-boilerplate.2">
+        <name slugifiedName="name-copyright-notice">Copyright Notice</name>
+        <t indent="0" pn="section-boilerplate.2-1">
+            Copyright (c) 2024 IETF Trust and the persons identified as the
+            document authors. All rights reserved.
+        </t>
+        <t indent="0" pn="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<eref target="https://trustee.ietf.org/license-info" brackets="none"/>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.
+        </t>
+      </section>
+    </boilerplate>
+    <toc>
+      <section anchor="toc" numbered="false" removeInRFC="false" toc="exclude" pn="section-toc.1">
+        <name slugifiedName="name-table-of-contents">Table of Contents</name>
+        <ul bare="true" empty="true" indent="2" spacing="compact" pn="section-toc.1-1">
+          <li pn="section-toc.1-1.1">
+            <t indent="0" pn="section-toc.1-1.1.1"><xref derivedContent="1" format="counter" sectionFormat="of" target="section-1"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-introduction">Introduction</xref></t>
+            <ul bare="true" empty="true" indent="2" spacing="compact" pn="section-toc.1-1.1.2">
+              <li pn="section-toc.1-1.1.2.1">
+                <t indent="0" keepWithNext="true" pn="section-toc.1-1.1.2.1.1"><xref derivedContent="1.1" format="counter" sectionFormat="of" target="section-1.1"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-abbreviations">Abbreviations</xref></t>
+              </li>
+              <li pn="section-toc.1-1.1.2.2">
+                <t indent="0" keepWithNext="true" pn="section-toc.1-1.1.2.2.1"><xref derivedContent="1.2" format="counter" sectionFormat="of" target="section-1.2"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-tree-structure">Tree Structure</xref></t>
+              </li>
+              <li pn="section-toc.1-1.1.2.3">
+                <t indent="0" keepWithNext="true" pn="section-toc.1-1.1.2.3.1"><xref derivedContent="1.3" format="counter" sectionFormat="of" target="section-1.3"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-prefixes-in-data-node-names">Prefixes in Data Node Names</xref></t>
+              </li>
+            </ul>
+          </li>
+          <li pn="section-toc.1-1.2">
+            <t indent="0" pn="section-toc.1-1.2.1"><xref derivedContent="2" format="counter" sectionFormat="of" target="section-2"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-microwave-topology-yang-dat">Microwave Topology YANG Data Model</xref></t>
+            <ul bare="true" empty="true" indent="2" spacing="compact" pn="section-toc.1-1.2.2">
+              <li pn="section-toc.1-1.2.2.1">
+                <t indent="0" pn="section-toc.1-1.2.2.1.1"><xref derivedContent="2.1" format="counter" sectionFormat="of" target="section-2.1"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-yang-tree">YANG Tree</xref></t>
+              </li>
+              <li pn="section-toc.1-1.2.2.2">
+                <t indent="0" pn="section-toc.1-1.2.2.2.1"><xref derivedContent="2.2" format="counter" sectionFormat="of" target="section-2.2"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-relationship-between-radio-">Relationship between Radio Links and Carriers</xref></t>
+              </li>
+              <li pn="section-toc.1-1.2.2.3">
+                <t indent="0" pn="section-toc.1-1.2.2.3.1"><xref derivedContent="2.3" format="counter" sectionFormat="of" target="section-2.3"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-relationship-with-client-to">Relationship with Client Topology Model</xref></t>
+              </li>
+              <li pn="section-toc.1-1.2.2.4">
+                <t indent="0" pn="section-toc.1-1.2.2.4.1"><xref derivedContent="2.4" format="counter" sectionFormat="of" target="section-2.4"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-applicability-of-the-data-m">Applicability of the Data Model for Traffic Engineering (TE) Topologies</xref></t>
+              </li>
+              <li pn="section-toc.1-1.2.2.5">
+                <t indent="0" pn="section-toc.1-1.2.2.5.1"><xref derivedContent="2.5" format="counter" sectionFormat="of" target="section-2.5"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-microwave-topology-yang-mod">Microwave Topology YANG Module</xref></t>
+              </li>
+            </ul>
+          </li>
+          <li pn="section-toc.1-1.3">
+            <t indent="0" pn="section-toc.1-1.3.1"><xref derivedContent="3" format="counter" sectionFormat="of" target="section-3"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-security-considerations">Security Considerations</xref></t>
+          </li>
+          <li pn="section-toc.1-1.4">
+            <t indent="0" pn="section-toc.1-1.4.1"><xref derivedContent="4" format="counter" sectionFormat="of" target="section-4"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-iana-considerations">IANA Considerations</xref></t>
+          </li>
+          <li pn="section-toc.1-1.5">
+            <t indent="0" pn="section-toc.1-1.5.1"><xref derivedContent="5" format="counter" sectionFormat="of" target="section-5"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-references">References</xref></t>
+            <ul bare="true" empty="true" indent="2" spacing="compact" pn="section-toc.1-1.5.2">
+              <li pn="section-toc.1-1.5.2.1">
+                <t indent="0" pn="section-toc.1-1.5.2.1.1"><xref derivedContent="5.1" format="counter" sectionFormat="of" target="section-5.1"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-normative-references">Normative References</xref></t>
+              </li>
+              <li pn="section-toc.1-1.5.2.2">
+                <t indent="0" pn="section-toc.1-1.5.2.2.1"><xref derivedContent="5.2" format="counter" sectionFormat="of" target="section-5.2"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-informative-references">Informative References</xref></t>
+              </li>
+            </ul>
+          </li>
+          <li pn="section-toc.1-1.6">
+            <t indent="0" pn="section-toc.1-1.6.1"><xref derivedContent="Appendix A" format="default" sectionFormat="of" target="section-appendix.a"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-microwave-topology-model-wi">Microwave Topology Model with Base Topology Models</xref></t>
+            <ul bare="true" empty="true" indent="2" spacing="compact" pn="section-toc.1-1.6.2">
+              <li pn="section-toc.1-1.6.2.1">
+                <t indent="0" pn="section-toc.1-1.6.2.1.1"><xref derivedContent="A.1" format="counter" sectionFormat="of" target="section-appendix.a.1"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-instance-data-for-20-mode-f">Instance Data for 2+0 Mode for a Bonded Configuration</xref></t>
+              </li>
+              <li pn="section-toc.1-1.6.2.2">
+                <t indent="0" pn="section-toc.1-1.6.2.2.1"><xref derivedContent="A.2" format="counter" sectionFormat="of" target="section-appendix.a.2"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-instance-data-for-11-mode-f">Instance Data for 1+1 Mode for a Protected Configuration</xref></t>
+              </li>
+            </ul>
+          </li>
+          <li pn="section-toc.1-1.7">
+            <t indent="0" pn="section-toc.1-1.7.1"><xref derivedContent="Appendix B" format="default" sectionFormat="of" target="section-appendix.b"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-microwave-topology-model-wit">Microwave Topology Model with Example Extensions</xref></t>
+            <ul bare="true" empty="true" indent="2" spacing="compact" pn="section-toc.1-1.7.2">
+              <li pn="section-toc.1-1.7.2.1">
+                <t indent="0" pn="section-toc.1-1.7.2.1.1"><xref derivedContent="B.1" format="counter" sectionFormat="of" target="section-appendix.b.1"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-instance-data-for-20-mode">Instance Data for 2+0 Mode</xref></t>
+              </li>
+              <li pn="section-toc.1-1.7.2.2">
+                <t indent="0" pn="section-toc.1-1.7.2.2.1"><xref derivedContent="B.2" format="counter" sectionFormat="of" target="section-appendix.b.2"/>.  <xref derivedContent="" format="title" sectionFormat="of" target="name-instance-data-for-geolocati">Instance Data for Geolocation Information</xref></t>
+              </li>
+            </ul>
+          </li>
+          <li pn="section-toc.1-1.8">
+            <t indent="0" pn="section-toc.1-1.8.1"><xref derivedContent="" format="none" sectionFormat="of" target="section-appendix.c"/><xref derivedContent="" format="title" sectionFormat="of" target="name-acknowledgments">Acknowledgments</xref></t>
+          </li>
+          <li pn="section-toc.1-1.9">
+            <t indent="0" pn="section-toc.1-1.9.1"><xref derivedContent="" format="none" sectionFormat="of" target="section-appendix.d"/><xref derivedContent="" format="title" sectionFormat="of" target="name-contributors">Contributors</xref></t>
+          </li>
+          <li pn="section-toc.1-1.10">
+            <t indent="0" pn="section-toc.1-1.10.1"><xref derivedContent="" format="none" sectionFormat="of" target="section-appendix.e"/><xref derivedContent="" format="title" sectionFormat="of" target="name-authors-addresses">Authors' Addresses</xref></t>
+          </li>
+        </ul>
+      </section>
+    </toc>
+  </front>
+  <middle>
+    <section anchor="introduction" numbered="true" removeInRFC="false" toc="include" pn="section-1">
+      <name slugifiedName="name-introduction">Introduction</name>
+      <t indent="0" pn="section-1-1">This document defines a YANG data model to describe microwave and millimeter-wave radio links in a network topology (hereafter, "microwave" is used to simplify the text).  The YANG data model describes radio links, supporting carrier(s), and the associated carrier termination points <xref target="RFC8561" format="default" sectionFormat="of" derivedContent="RFC8561"/>. A carrier is a single link providing transport capacity over the air.  It is typically defined by its transmitting and receiving frequencies.  A radio link provides the transport capacity of the supporting carriers in aggregated and/or protected configurations, which can be used to carry traffic on higher topology layers such as Ethernet and Time-Division Multiplexing (TDM).  The model augments  the <xref target="RFC8795" format="title" sectionFormat="of" derivedContent="YANG Data Model for Traffic Engineering (TE) Topologies"/> defined in <xref target="RFC8795" format="default" sectionFormat="of" derivedContent="RFC8795"/>, which is based on <xref target="RFC8345" format="title" sectionFormat="of" derivedContent="A YANG Data Model for Network Topologies"/> defined in <xref target="RFC8345" format="default" sectionFormat="of" derivedContent="RFC8345"/>.</t>
+      <t indent="0" pn="section-1-2">The microwave point-to-point radio technology provides connectivity on Layer 0 or Layer 1 (L0/L1) over a radio link between two termination points using one or several supporting carriers in aggregated or protected configurations.  That application of microwave technology cannot be used to perform cross-connection or switching of the traffic to create network connectivity across multiple microwave radio links. Instead, a payload of traffic on higher topology layers, normally Layer 2 (L2) Ethernet, is carried over the microwave radio link. When the microwave radio link is terminated at the endpoints, cross-connection and switching can be performed on that higher layer creating connectivity across multiple supporting microwave radio links.</t>
+      <t indent="0" pn="section-1-3">The microwave topology model is expected to be used between a Provisioning Network Controller (PNC) and a Multi-Domain Service Coordinator (MDSC) <xref target="RFC8453" format="default" sectionFormat="of" derivedContent="RFC8453"/>. Examples of use cases that can be supported are:</t>
+      <ol spacing="normal" type="1" indent="adaptive" start="1" pn="section-1-4"><li pn="section-1-4.1" derivedCounter="1.">
+          <t indent="0" pn="section-1-4.1.1">Correlation between microwave radio links and the supported links on higher topology layers (e.g., an L2 Ethernet topology).  This information can be used to understand how changes in the performance/status of a microwave radio link affect traffic on higher layers.</t>
+        </li>
+        <li pn="section-1-4.2" derivedCounter="2.">
+          <t indent="0" pn="section-1-4.2.1">Propagation of relevant characteristics of a microwave radio link, such as bandwidth, to higher topology layers, where it could be used as a criterion when configuring and optimizing a path for a connection or service through the network end to end.</t>
+        </li>
+        <li pn="section-1-4.3" derivedCounter="3.">
+          <t indent="0" pn="section-1-4.3.1">Optimization of the microwave radio link configurations on a network level, with the purpose to minimize overall interference and/or maximize the overall capacity provided by the links.</t>
+        </li>
+      </ol>
+      <section anchor="abbreviations" numbered="true" removeInRFC="false" toc="include" pn="section-1.1">
+        <name slugifiedName="name-abbreviations">Abbreviations</name>
+        <t indent="0" pn="section-1.1-1">The following abbreviations are used in this document:</t>
+        <dl newline="false" spacing="normal" indent="3" pn="section-1.1-2">
+          <dt pn="section-1.1-2.1">CTP:</dt>
+          <dd pn="section-1.1-2.2">Carrier Termination Point</dd>
+          <dt pn="section-1.1-2.3">RLT:</dt>
+          <dd pn="section-1.1-2.4">Radio Link Terminal</dd>
+          <dt pn="section-1.1-2.5">RLTP:</dt>
+          <dd pn="section-1.1-2.6">Radio Link Termination Point</dd>
+        </dl>
+      </section>
+      <section anchor="tree-structure" numbered="true" removeInRFC="false" toc="include" pn="section-1.2">
+        <name slugifiedName="name-tree-structure">Tree Structure</name>
+        <t indent="0" pn="section-1.2-1">A simplified graphical representation of the data model is used in <xref target="microwave-topology-yang-data-model" format="default" sectionFormat="of" derivedContent="Section 2"/>  of this document.  The meaning of the symbols in these diagrams is defined in <xref target="RFC8340" format="default" sectionFormat="of" derivedContent="RFC8340"/>.</t>
+      </section>
+      <section anchor="prefixes-in-data-node-names" numbered="true" removeInRFC="false" toc="include" pn="section-1.3">
+        <name slugifiedName="name-prefixes-in-data-node-names">Prefixes in Data Node Names</name>
+        <t indent="0" pn="section-1.3-1">In this document, names of data nodes and other data model objects are prefixed using the standard prefix associated with the corresponding YANG imported modules, as shown in <xref target="tab-prefix" format="default" sectionFormat="of" derivedContent="Table 1"/>.</t>
+        <table anchor="tab-prefix" align="center" pn="table-1">
+          <name slugifiedName="name-prefixes-for-imported-yang-">Prefixes for Imported YANG Modules</name>
+          <thead>
+            <tr>
+              <th align="left" colspan="1" rowspan="1">Prefix</th>
+              <th align="left" colspan="1" rowspan="1">YANG Module</th>
+              <th align="left" colspan="1" rowspan="1">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left" colspan="1" rowspan="1">nw</td>
+              <td align="left" colspan="1" rowspan="1">ietf-network</td>
+              <td align="left" colspan="1" rowspan="1">
+                <xref target="RFC8345" format="default" sectionFormat="of" derivedContent="RFC8345"/></td>
+            </tr>
+            <tr>
+              <td align="left" colspan="1" rowspan="1">nt</td>
+              <td align="left" colspan="1" rowspan="1">ietf-network-topology</td>
+              <td align="left" colspan="1" rowspan="1">
+                <xref target="RFC8345" format="default" sectionFormat="of" derivedContent="RFC8345"/></td>
+            </tr>
+            <tr>
+              <td align="left" colspan="1" rowspan="1">mw-types</td>
+              <td align="left" colspan="1" rowspan="1">ietf-microwave-types</td>
+              <td align="left" colspan="1" rowspan="1">
+                <xref target="RFC8561" format="default" sectionFormat="of" derivedContent="RFC8561"/></td>
+            </tr>
+            <tr>
+              <td align="left" colspan="1" rowspan="1">tet</td>
+              <td align="left" colspan="1" rowspan="1">ietf-te-topology</td>
+              <td align="left" colspan="1" rowspan="1">
+                <xref target="RFC8795" format="default" sectionFormat="of" derivedContent="RFC8795"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+    <section anchor="microwave-topology-yang-data-model" numbered="true" removeInRFC="false" toc="include" pn="section-2">
+      <name slugifiedName="name-microwave-topology-yang-dat">Microwave Topology YANG Data Model</name>
+      <section anchor="yang-tree" numbered="true" removeInRFC="false" toc="include" pn="section-2.1">
+        <name slugifiedName="name-yang-tree">YANG Tree</name>
+        <figure anchor="fig-mw-tree" align="left" suppress-title="false" pn="figure-1">
+          <name slugifiedName="name-microwave-topology-tree">Microwave Topology Tree</name>
+          <sourcecode type="yangtree" markers="false" pn="section-2.1-1.1">
+  module: ietf-microwave-topology
+
+    augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
+      +--rw mw-topology!
+    augment /nw:networks/nw:network/nw:node/tet:te
+              /tet:te-node-attributes:
+      +--rw mw-node!
+    augment /nw:networks/nw:network/nw:node/nt:termination-point
+              /tet:te:
+      +--rw mw-tp!
+         +--rw (mw-tp-option)?
+            +--:(microwave-rltp)
+            |  +--rw microwave-rltp!
+            +--:(microwave-ctp)
+               +--rw microwave-ctp!
+    augment /nw:networks/nw:network/nt:link/tet:te
+              /tet:te-link-attributes:
+      +--rw mw-link!
+         +--rw (mw-link-option)
+            +--:(microwave-radio-link)
+            |  +--rw microwave-radio-link!
+            |     +--rw rlt-mode
+            |        +--rw num-bonded-carriers        uint32
+            |        +--rw num-protecting-carriers    uint32
+            +--:(microwave-carrier)
+               +--rw microwave-carrier!
+                  +--rw tx-frequency?               uint32
+                  +--ro actual-rx-frequency?        uint32
+                  +--rw channel-separation?         uint32
+                  +--ro actual-tx-cm?               identityref
+                  +--ro actual-snir?                decimal64
+                  +--ro actual-transmitted-level?   decimal64
+    augment /nw:networks/nw:network/nt:link/tet:te
+              /tet:te-link-attributes/tet:max-link-bandwidth
+              /tet:te-bandwidth:
+      +--ro mw-bandwidth?   uint64
+</sourcecode>
+        </figure>
+      </section>
+      <section anchor="relationship-between-radio-links-and-carriers" numbered="true" removeInRFC="false" toc="include" pn="section-2.2">
+        <name slugifiedName="name-relationship-between-radio-">Relationship between Radio Links and Carriers</name>
+        <t indent="0" pn="section-2.2-1">A microwave radio link is always an aggregate of one or multiple carriers in various configurations or modes.  The supporting carriers are identified by their termination points and are listed in the container-bundled links as part of the te-link-config in the <xref target="RFC8795" format="title" sectionFormat="of" derivedContent="YANG Data Model for Traffic Engineering (TE) Topologies"/> <xref target="RFC8795" format="default" sectionFormat="of" derivedContent="RFC8795"/> for a radio-link.  The exact configuration of the included carriers is further specified in the rlt-mode container (1+0, 2+0, 1+1, etc.) for the radio-link.  <xref target="examples-mw-only" format="default" sectionFormat="of" derivedContent="Appendix A"/> includes JSON examples of how such a relationship can be modeled.</t>
+      </section>
+      <section anchor="relationship-with-client-topology-model" numbered="true" removeInRFC="false" toc="include" pn="section-2.3">
+        <name slugifiedName="name-relationship-with-client-to">Relationship with Client Topology Model</name>
+        <t indent="0" pn="section-2.3-1">A microwave radio link carries a payload of traffic on higher topology layers, normally L2 Ethernet.  The leafs supporting-network, supporting-node, supporting-link, and supporting-termination-point in the generic YANG module for Network Topologies <xref target="RFC8345" format="default" sectionFormat="of" derivedContent="RFC8345"/> are expected to be used to model a relationship or dependency from higher topology layers to a supporting microwave radio link topology layer.  <xref target="examples-mw-only" format="default" sectionFormat="of" derivedContent="Appendix A"/> includes JSON examples of an L2 Ethernet link transported over one supporting microwave link.</t>
+      </section>
+      <section anchor="applicability-of-the-data-model-for-traffic-engineering-te-topologies" numbered="true" removeInRFC="false" toc="include" pn="section-2.4">
+        <name slugifiedName="name-applicability-of-the-data-m">Applicability of the Data Model for Traffic Engineering (TE) Topologies</name>
+        <t indent="0" pn="section-2.4-1">Since microwave is a point-to-point radio technology, a majority of the leafs in the Data Model for Traffic Engineering (TE) Topologies <xref target="RFC8795" format="default" sectionFormat="of" derivedContent="RFC8795"/> augmented by the microwave topology model are not applicable.  Examples of which leafs are considered applicable can be found in Appendices <xref target="examples-mw-only" format="counter" sectionFormat="of" derivedContent="A"/> and <xref target="examples-mw-imports" format="counter" sectionFormat="of" derivedContent="B"/> in this document.</t>
+        <t indent="0" pn="section-2.4-2">In the more specific context of the microwave-specific augmentations of te-topology, the admin-status, and oper-status leafs (from te-topology) are only applicable to microwave carriers (in the mw-link tree); they are not applicable to microwave radio links. Radio links are instead enabled or disabled in the constituent carriers. Furthermore, the status leafs related to mw-tp can be used with inter-domain links and when the status of only one side of the link is known. However, since microwave is a point-to-point technology where both ends normally belong to the same domain, it is not expected to be applicable in normal cases.</t>
+      </section>
+      <section anchor="microwave-topology-yang-module" numbered="true" removeInRFC="false" toc="include" pn="section-2.5">
+        <name slugifiedName="name-microwave-topology-yang-mod">Microwave Topology YANG Module</name>
+        <t indent="0" pn="section-2.5-1">This module imports typedefs and modules from <xref target="RFC8345" format="default" sectionFormat="of" derivedContent="RFC8345"/>, <xref target="RFC8561" format="default" sectionFormat="of" derivedContent="RFC8561"/>, and <xref target="RFC8795" format="default" sectionFormat="of" derivedContent="RFC8795"/>. It references <xref target="EN301129" format="default" sectionFormat="of" derivedContent="EN301129"/> and <xref target="EN302217-1" format="default" sectionFormat="of" derivedContent="EN302217-1"/>.</t>
+        <sourcecode type="yang" markers="true" name="ietf-microwave-topology@2024-09-30.yang" pn="section-2.5-2">
+module ietf-microwave-topology {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-microwave-topology";
+  prefix mwt;
+
+  import ietf-network {
+    prefix nw;
+    reference
+      "RFC 8345: A YANG Data Model for Network Topologies";
+  }
+  import ietf-network-topology {
+    prefix nt;
+    reference
+      "RFC 8345: A YANG Data Model for Network Topologies";
+  }
+  import ietf-te-topology {
+    prefix tet;
+    reference
+      "RFC 8795: YANG Data Model for Traffic Engineering
+       (TE) Topologies";
+  }
+  import ietf-microwave-types {
+    prefix mw-types;
+    reference
+      "RFC 8561: A YANG Data Model for Microwave Radio Link";
+  }
+
+  organization
+    "Internet Engineering Task Force (IETF) CCAMP WG";
+  contact
+    "WG Web: &lt;https://datatracker.ietf.org/wg/ccamp/&gt;
+     WG List: &lt;ccamp@ietf.org&gt;
+
+      Editor: Jonas Ahlberg
+              &lt;jonas.ahlberg@ericsson.com&gt;
+      Editor: Scott Mansfield
+              &lt;scott.mansfield@ericsson.com&gt;
+      Editor: Min Ye
+              &lt;amy.yemin@huawei.com&gt;
+      Editor: Italo Busi
+              &lt;Italo.Busi@huawei.com&gt;
+      Editor: Xi Li
+              &lt;Xi.Li@neclab.eu&gt;
+      Editor: Daniela Spreafico
+              &lt;daniela.spreafico@nokia.com&gt;
+    ";
+  description
+    "This is a module for microwave topology.
+
+     Copyright (c) 2024 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 9656; see
+     the RFC itself for full legal notices.";
+
+  revision 2024-09-30 {
+    description
+      "Initial revision.";
+    reference
+      "RFC 9656: A YANG Data Model for Microwave Topology";
+  }
+
+  grouping rlt-mode {
+    description
+      "This grouping provides a flexible definition of the number
+       of bonded carriers and protecting carriers of a radio
+       link.";
+    leaf num-bonded-carriers {
+      type uint32;
+      mandatory true;
+      description
+        "Number of bonded carriers.";
+    }
+    leaf num-protecting-carriers {
+      type uint32;
+      mandatory true;
+      description
+        "Number of protecting carriers.";
+    }
+  }
+
+  grouping microwave-radio-link-attributes {
+    description
+      "Grouping used for attributes describing a microwave
+       radio link.";
+    container rlt-mode {
+      description
+        "This grouping provides a flexible definition of the number
+         of bonded carriers and protecting carriers of a radio
+         link.";
+      uses rlt-mode;
+    }
+  }
+
+  grouping microwave-carrier-attributes {
+    description
+      "Grouping used for attributes describing a microwave
+       carrier.";
+    leaf tx-frequency {
+      type uint32;
+      units "kHz";
+      description
+        "Selected transmitter frequency.
+         Related to the data node tx-frequency in RFC 8561.";
+      reference
+        "RFC 8561: A YANG Data Model for Microwave Radio Link";
+    }
+    leaf actual-rx-frequency {
+      type uint32;
+      units "kHz";
+      config false;
+      description
+        "Computed receiver frequency.
+         Related to the data node actual-rx-frequency in RFC 8561.";
+      reference
+        "RFC 8561: A YANG Data Model for Microwave Radio Link";
+    }
+    leaf channel-separation {
+      type uint32;
+      units "kHz";
+      description
+        "The amount of bandwidth allocated to a carrier.  The
+         distance between adjacent channels in a radio
+         frequency channel arrangement.
+         Related to the data node channel-separation in RFC 8561.";
+      reference
+        "ETSI EN 302 217-1 and
+         RFC 8561: A YANG Data Model for Microwave Radio Link";
+    }
+    leaf actual-tx-cm {
+      type identityref {
+        base mw-types:coding-modulation;
+      }
+      config false;
+      description
+        "Actual coding/modulation in transmitting direction.
+         Related to the data node actual-tx-cm in RFC 8561.";
+      reference
+        "RFC 8561: A YANG Data Model for Microwave Radio Link";
+    }
+    leaf actual-snir {
+      type decimal64 {
+        fraction-digits 1;
+      }
+      units "dB";
+      config false;
+      description
+        "Actual signal-to-noise plus the interference ratio
+         (0.1 dB resolution).
+         Related to the data node actual-snir in RFC 8561.";
+      reference
+        "RFC 8561: A YANG Data Model for Microwave Radio Link";
+    }
+    leaf actual-transmitted-level {
+      type decimal64 {
+        fraction-digits 1;
+      }
+      units "dBm";
+      config false;
+      description
+        "Actual transmitted power level (0.1 dBm resolution).
+         Related to the data node actual-transmitted-level
+         in RFC 8561.";
+      reference
+        "ETSI EN 301 129 and
+         RFC 8561: A YANG Data Model for Microwave Radio Link";
+    }
+  }
+
+  grouping microwave-bandwidth {
+    description
+      "Grouping used for microwave bandwidth.";
+    leaf mw-bandwidth {
+      type uint64;
+      units "bits/seconds";
+      config false;
+      description
+        "Nominal microwave radio link and carrier bandwidth.";
+    }
+  }
+
+  augment "/nw:networks/nw:network/nw:network-types/"
+        + "tet:te-topology" {
+    description
+      "Augment network types to define a microwave network
+       topology type.";
+    container mw-topology {
+      presence "Indicates a topology type of microwave.";
+      description
+        "Microwave topology type";
+    }
+  }
+
+  augment "/nw:networks/nw:network/nw:node/tet:te"
+        + "/tet:te-node-attributes" {
+    when '../../../nw:network-types'
+       + '/tet:te-topology/mwt:mw-topology' {
+      description
+        "Augmentation parameters apply only to networks with a
+         microwave network topology type.";
+    }
+    description
+      "Augment network node to indicate a microwave node.";
+    container mw-node {
+      presence "Indicates a microwave node.";
+      description
+        "Microwave node";
+    }
+  }
+
+  augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
+        + "tet:te" {
+    when '../../../nw:network-types/tet:te-topology/'
+       + 'mwt:mw-topology' {
+      description
+        "Augmentation parameters apply only for networks with a
+         microwave network topology type.";
+    }
+    description
+      "Augmentation to add microwave-technology-specific
+       characteristics to a termination point.";
+    container mw-tp {
+      presence "Denotes a microwave termination point.";
+      description
+        "Specification of type of termination point.";
+      choice mw-tp-option {
+        description
+          "Selection of type of termination point.";
+        case microwave-rltp {
+          container microwave-rltp {
+            presence
+              "Denotes a microwave radio link termination point.
+               It corresponds to a microwave RLT interface as
+               defined in RFC 8561.";
+            description
+              "Denotes and describes a microwave radio link
+               termination point.";
+            reference
+              "RFC 8561: A YANG Data Model for Microwave Radio Link";
+          }
+        }
+        case microwave-ctp {
+          container microwave-ctp {
+            presence "Denotes a microwave carrier termination point.
+                      It corresponds to a microwave CT interface as
+                      defined in RFC 8561.";
+            description
+              "Denotes and describes a microwave carrier
+               termination point.";
+            reference
+              "RFC 8561: A YANG Data Model for Microwave Radio Link";
+          }
+        }
+      }
+    }
+  }
+
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes" {
+    when '../../../nw:network-types/tet:te-topology/'
+       + 'mwt:mw-topology' {
+      description
+        "Augmentation parameters apply only for networks with a
+         microwave network topology type.";
+    }
+    description
+      "Augmentation to add microwave-technology-specific
+       characteristics to a link.";
+    container mw-link {
+      presence "This indicates a microwave link";
+      description
+        "Specification of type of link.";
+      choice mw-link-option {
+        mandatory true;
+        description
+          "Selection of type of link.";
+        case microwave-radio-link {
+          container microwave-radio-link {
+            presence "Denotes a microwave radio link";
+            description
+              "Denotes and describes a microwave radio link.";
+            uses microwave-radio-link-attributes;
+          }
+        }
+        case microwave-carrier {
+          container microwave-carrier {
+            presence "Denotes a microwave carrier";
+            description
+              "Denotes and describes a microwave carrier.";
+            uses microwave-carrier-attributes;
+          }
+        }
+      }
+    }
+  }
+
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:max-link-bandwidth/"
+        + "tet:te-bandwidth" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'mwt:mw-topology' {
+      description
+        "Augmentation parameters apply only for networks with a
+         microwave network topology type.";
+    }
+    description
+      "Augmentation for TE bandwidth.";
+    uses microwave-bandwidth;
+  }
+}
+</sourcecode>
+      </section>
+    </section>
+    <section anchor="security-considerations" numbered="true" removeInRFC="false" toc="include" pn="section-3">
+      <name slugifiedName="name-security-considerations">Security Considerations</name>
+      <t indent="0" pn="section-3-1">The YANG module specified in this document defines schemas for data
+   that is designed to be accessed via network management protocols such
+   as NETCONF <xref target="RFC6241" format="default" sectionFormat="of" derivedContent="RFC6241"/> or RESTCONF <xref target="RFC8040" format="default" sectionFormat="of" derivedContent="RFC8040"/>.  The lowest NETCONF layer
+   is the secure transport layer, and the mandatory-to-implement secure
+   transport is Secure Shell (SSH) <xref target="RFC6242" format="default" sectionFormat="of" derivedContent="RFC6242"/>.  The lowest RESTCONF layer
+   is HTTPS, and the mandatory-to-implement secure transport is TLS
+   <xref target="RFC8446" format="default" sectionFormat="of" derivedContent="RFC8446"/>.</t>
+      <t indent="0" pn="section-3-2">The NETCONF access control model <xref target="RFC8341" format="default" sectionFormat="of" derivedContent="RFC8341"/> provides the means to
+   restrict access for particular NETCONF or RESTCONF users to a
+   preconfigured subset of all available NETCONF or RESTCONF protocol
+   operations and content.</t>
+      <t indent="0" pn="section-3-3">The YANG module specified in this document imports and augments the
+   ietf-network and ietf-network-topology models defined in <xref target="RFC8345" format="default" sectionFormat="of" derivedContent="RFC8345"/>.
+   The security considerations from <xref target="RFC8345" format="default" sectionFormat="of" derivedContent="RFC8345"/> are applicable to the
+   module in this document.</t>
+      <t indent="0" pn="section-3-4">There are a number of data nodes defined in this YANG module that are
+   writable/creatable/deletable (i.e., config true, which is the
+   default).  These data nodes can be considered sensitive or vulnerable
+   in some network environments.  Write operations (e.g., edit-config)
+   to these data nodes without proper protection can have a negative
+   effect on network operations.  These are the subtrees and data nodes
+   and their sensitivity/vulnerability:</t>
+      <ul spacing="normal" bare="false" empty="false" indent="3" pn="section-3-5">
+        <li pn="section-3-5.1">
+          <t indent="0" pn="section-3-5.1.1">rlt-mode: A malicious client could attempt to modify the mode in
+ which the radio link is configured and, thereby, change the
+ intended behavior of the link.</t>
+        </li>
+        <li pn="section-3-5.2">
+          <t indent="0" pn="section-3-5.2.1">tx-frequency and channel-separation: A malicious
+ client could attempt to modify the frequency configuration of
+ a carrier, which could modify the intended behavior or make
+ the configuration invalid and, thereby, stop the operation of it.</t>
+        </li>
+      </ul>
+    </section>
+    <section anchor="iana-considerations" numbered="true" removeInRFC="false" toc="include" pn="section-4">
+      <name slugifiedName="name-iana-considerations">IANA Considerations</name>
+      <t indent="0" pn="section-4-1">IANA has assigned a new URI from the "IETF XML Registry" <xref target="RFC3688" format="default" sectionFormat="of" derivedContent="RFC3688"/> as follows:</t>
+      <dl newline="false" spacing="compact" indent="3" pn="section-4-2">
+        <dt pn="section-4-2.1">URI:</dt>
+        <dd pn="section-4-2.2">urn:ietf:params:xml:ns:yang:ietf-microwave-topology</dd>
+        <dt pn="section-4-2.3">Registrant Contact:</dt>
+        <dd pn="section-4-2.4">The IESG</dd>
+        <dt pn="section-4-2.5">XML:</dt>
+        <dd pn="section-4-2.6">N/A; the requested URI is an XML namespace.</dd>
+      </dl>
+      <t indent="0" pn="section-4-3">IANA has recorded the YANG module names in the "YANG
+   Module Names" registry <xref target="RFC6020" format="default" sectionFormat="of" derivedContent="RFC6020"/> as follows:</t>
+      <dl newline="false" spacing="compact" indent="3" pn="section-4-4">
+        <dt pn="section-4-4.1">Name:</dt>
+        <dd pn="section-4-4.2">ietf-microwave-topology</dd>
+        <dt pn="section-4-4.3">Maintained by IANA?:</dt>
+        <dd pn="section-4-4.4">N</dd>
+        <dt pn="section-4-4.5">Namespace:</dt>
+        <dd pn="section-4-4.6">urn:ietf:params:xml:ns:yang:ietf-microwave-topology</dd>
+        <dt pn="section-4-4.7">Prefix:</dt>
+        <dd pn="section-4-4.8">mwt</dd>
+        <dt pn="section-4-4.9">Reference:</dt>
+        <dd pn="section-4-4.10">RFC 9656</dd>
+      </dl>
+    </section>
+  </middle>
+  <back>
+    <displayreference target="I-D.ietf-ccamp-if-ref-topo-yang" to="YANG-IF-REF-TOPO"/>
+    <displayreference target="I-D.ietf-ccamp-bwa-topo-yang" to="YANG-BWA-TOPO"/>
+    <references pn="section-5">
+      <name slugifiedName="name-references">References</name>
+      <references pn="section-5.1">
+        <name slugifiedName="name-normative-references">Normative References</name>
+        <reference anchor="RFC3688" target="https://www.rfc-editor.org/info/rfc3688" quoteTitle="true" derivedAnchor="RFC3688">
+          <front>
+            <title>The IETF XML Registry</title>
+            <author fullname="M. Mealling" initials="M." surname="Mealling"/>
+            <date month="January" year="2004"/>
+            <abstract>
+              <t indent="0">This document describes an IANA maintained registry for IETF standards which use Extensible Markup Language (XML) related items such as Namespaces, Document Type Declarations (DTDs), Schemas, and Resource Description Framework (RDF) Schemas.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="BCP" value="81"/>
+          <seriesInfo name="RFC" value="3688"/>
+          <seriesInfo name="DOI" value="10.17487/RFC3688"/>
+        </reference>
+        <reference anchor="RFC6020" target="https://www.rfc-editor.org/info/rfc6020" quoteTitle="true" derivedAnchor="RFC6020">
+          <front>
+            <title>YANG - A Data Modeling Language for the Network Configuration Protocol (NETCONF)</title>
+            <author fullname="M. Bjorklund" initials="M." role="editor" surname="Bjorklund"/>
+            <date month="October" year="2010"/>
+            <abstract>
+              <t indent="0">YANG is a data modeling language used to model configuration and state data manipulated by the Network Configuration Protocol (NETCONF), NETCONF remote procedure calls, and NETCONF notifications. [STANDARDS-TRACK]</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="6020"/>
+          <seriesInfo name="DOI" value="10.17487/RFC6020"/>
+        </reference>
+        <reference anchor="RFC6241" target="https://www.rfc-editor.org/info/rfc6241" quoteTitle="true" derivedAnchor="RFC6241">
+          <front>
+            <title>Network Configuration Protocol (NETCONF)</title>
+            <author fullname="R. Enns" initials="R." role="editor" surname="Enns"/>
+            <author fullname="M. Bjorklund" initials="M." role="editor" surname="Bjorklund"/>
+            <author fullname="J. Schoenwaelder" initials="J." role="editor" surname="Schoenwaelder"/>
+            <author fullname="A. Bierman" initials="A." role="editor" surname="Bierman"/>
+            <date month="June" year="2011"/>
+            <abstract>
+              <t indent="0">The Network Configuration Protocol (NETCONF) defined in this document provides mechanisms to install, manipulate, and delete the configuration of network devices. It uses an Extensible Markup Language (XML)-based data encoding for the configuration data as well as the protocol messages. The NETCONF protocol operations are realized as remote procedure calls (RPCs). This document obsoletes RFC 4741. [STANDARDS-TRACK]</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="6241"/>
+          <seriesInfo name="DOI" value="10.17487/RFC6241"/>
+        </reference>
+        <reference anchor="RFC6242" target="https://www.rfc-editor.org/info/rfc6242" quoteTitle="true" derivedAnchor="RFC6242">
+          <front>
+            <title>Using the NETCONF Protocol over Secure Shell (SSH)</title>
+            <author fullname="M. Wasserman" initials="M." surname="Wasserman"/>
+            <date month="June" year="2011"/>
+            <abstract>
+              <t indent="0">This document describes a method for invoking and running the Network Configuration Protocol (NETCONF) within a Secure Shell (SSH) session as an SSH subsystem. This document obsoletes RFC 4742. [STANDARDS-TRACK]</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="6242"/>
+          <seriesInfo name="DOI" value="10.17487/RFC6242"/>
+        </reference>
+        <reference anchor="RFC8040" target="https://www.rfc-editor.org/info/rfc8040" quoteTitle="true" derivedAnchor="RFC8040">
+          <front>
+            <title>RESTCONF Protocol</title>
+            <author fullname="A. Bierman" initials="A." surname="Bierman"/>
+            <author fullname="M. Bjorklund" initials="M." surname="Bjorklund"/>
+            <author fullname="K. Watsen" initials="K." surname="Watsen"/>
+            <date month="January" year="2017"/>
+            <abstract>
+              <t indent="0">This document describes an HTTP-based protocol that provides a programmatic interface for accessing data defined in YANG, using the datastore concepts defined in the Network Configuration Protocol (NETCONF).</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="8040"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8040"/>
+        </reference>
+        <reference anchor="RFC8341" target="https://www.rfc-editor.org/info/rfc8341" quoteTitle="true" derivedAnchor="RFC8341">
+          <front>
+            <title>Network Configuration Access Control Model</title>
+            <author fullname="A. Bierman" initials="A." surname="Bierman"/>
+            <author fullname="M. Bjorklund" initials="M." surname="Bjorklund"/>
+            <date month="March" year="2018"/>
+            <abstract>
+              <t indent="0">The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability. There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content. This document defines such an access control model.</t>
+              <t indent="0">This document obsoletes RFC 6536.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="STD" value="91"/>
+          <seriesInfo name="RFC" value="8341"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8341"/>
+        </reference>
+        <reference anchor="RFC8345" target="https://www.rfc-editor.org/info/rfc8345" quoteTitle="true" derivedAnchor="RFC8345">
+          <front>
+            <title>A YANG Data Model for Network Topologies</title>
+            <author fullname="A. Clemm" initials="A." surname="Clemm"/>
+            <author fullname="J. Medved" initials="J." surname="Medved"/>
+            <author fullname="R. Varga" initials="R." surname="Varga"/>
+            <author fullname="N. Bahadur" initials="N." surname="Bahadur"/>
+            <author fullname="H. Ananthakrishnan" initials="H." surname="Ananthakrishnan"/>
+            <author fullname="X. Liu" initials="X." surname="Liu"/>
+            <date month="March" year="2018"/>
+            <abstract>
+              <t indent="0">This document defines an abstract (generic, or base) YANG data model for network/service topologies and inventories. The data model serves as a base model that is augmented with technology-specific details in other, more specific topology and inventory data models.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="8345"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8345"/>
+        </reference>
+        <reference anchor="RFC8446" target="https://www.rfc-editor.org/info/rfc8446" quoteTitle="true" derivedAnchor="RFC8446">
+          <front>
+            <title>The Transport Layer Security (TLS) Protocol Version 1.3</title>
+            <author fullname="E. Rescorla" initials="E." surname="Rescorla"/>
+            <date month="August" year="2018"/>
+            <abstract>
+              <t indent="0">This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery.</t>
+              <t indent="0">This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="8446"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8446"/>
+        </reference>
+        <reference anchor="RFC8561" target="https://www.rfc-editor.org/info/rfc8561" quoteTitle="true" derivedAnchor="RFC8561">
+          <front>
+            <title>A YANG Data Model for Microwave Radio Link</title>
+            <author fullname="J. Ahlberg" initials="J." surname="Ahlberg"/>
+            <author fullname="M. Ye" initials="M." surname="Ye"/>
+            <author fullname="X. Li" initials="X." surname="Li"/>
+            <author fullname="D. Spreafico" initials="D." surname="Spreafico"/>
+            <author fullname="M. Vaupotic" initials="M." surname="Vaupotic"/>
+            <date month="June" year="2019"/>
+            <abstract>
+              <t indent="0">This document defines a YANG data model for control and management of radio link interfaces and their connectivity to packet (typically Ethernet) interfaces in a microwave/millimeter wave node. The data nodes for management of the interface protection functionality is broken out into a separate and generic YANG data model in order to make it available for other interface types as well.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="8561"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8561"/>
+        </reference>
+        <reference anchor="RFC8795" target="https://www.rfc-editor.org/info/rfc8795" quoteTitle="true" derivedAnchor="RFC8795">
+          <front>
+            <title>YANG Data Model for Traffic Engineering (TE) Topologies</title>
+            <author fullname="X. Liu" initials="X." surname="Liu"/>
+            <author fullname="I. Bryskin" initials="I." surname="Bryskin"/>
+            <author fullname="V. Beeram" initials="V." surname="Beeram"/>
+            <author fullname="T. Saad" initials="T." surname="Saad"/>
+            <author fullname="H. Shah" initials="H." surname="Shah"/>
+            <author fullname="O. Gonzalez de Dios" initials="O." surname="Gonzalez de Dios"/>
+            <date month="August" year="2020"/>
+            <abstract>
+              <t indent="0">This document defines a YANG data model for representing, retrieving, and manipulating Traffic Engineering (TE) Topologies. The model serves as a base model that other technology-specific TE topology models can augment.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="8795"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8795"/>
+        </reference>
+      </references>
+      <references pn="section-5.2">
+        <name slugifiedName="name-informative-references">Informative References</name>
+        <reference anchor="EN301129" target="https://www.etsi.org/deliver/etsi_en/301100_301199/301129/01.01.02_60/en_301129v010102p.pdf" quoteTitle="true" derivedAnchor="EN301129">
+          <front>
+            <title>Transmission and Multiplexing (TM); Digital Radio Relay Systems (DRRS); Synchronous Digital Hierarchy (SDH); System performance monitoring parameters of SDH DRRS</title>
+            <author>
+              <organization showOnFrontPage="true">ETSI</organization>
+            </author>
+            <date year="1999" month="May"/>
+          </front>
+          <refcontent>EN 301 129 V1.1.2</refcontent>
+        </reference>
+        <reference anchor="EN302217-1" target="https://www.etsi.org/deliver/etsi_en/302200_302299/30221701/03.01.01_60/en_30221701v030101p.pdf" quoteTitle="true" derivedAnchor="EN302217-1">
+          <front>
+            <title>Fixed Radio Systems; Characteristics and requirements for point-to-point equipment and antennas; Part 1: Overview, common characteristics and system-dependent requirements</title>
+            <author>
+              <organization showOnFrontPage="true">ETSI</organization>
+            </author>
+            <date year="2017" month="May"/>
+          </front>
+          <refcontent>EN 302 217-1 V3.1.1</refcontent>
+        </reference>
+        <reference anchor="RFC8340" target="https://www.rfc-editor.org/info/rfc8340" quoteTitle="true" derivedAnchor="RFC8340">
+          <front>
+            <title>YANG Tree Diagrams</title>
+            <author fullname="M. Bjorklund" initials="M." surname="Bjorklund"/>
+            <author fullname="L. Berger" initials="L." role="editor" surname="Berger"/>
+            <date month="March" year="2018"/>
+            <abstract>
+              <t indent="0">This document captures the current syntax used in YANG module tree diagrams. The purpose of this document is to provide a single location for this definition. This syntax may be updated from time to time based on the evolution of the YANG language.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="BCP" value="215"/>
+          <seriesInfo name="RFC" value="8340"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8340"/>
+        </reference>
+        <reference anchor="RFC8453" target="https://www.rfc-editor.org/info/rfc8453" quoteTitle="true" derivedAnchor="RFC8453">
+          <front>
+            <title>Framework for Abstraction and Control of TE Networks (ACTN)</title>
+            <author fullname="D. Ceccarelli" initials="D." role="editor" surname="Ceccarelli"/>
+            <author fullname="Y. Lee" initials="Y." role="editor" surname="Lee"/>
+            <date month="August" year="2018"/>
+            <abstract>
+              <t indent="0">Traffic Engineered (TE) networks have a variety of mechanisms to facilitate the separation of the data plane and control plane. They also have a range of management and provisioning protocols to configure and activate network resources. These mechanisms represent key technologies for enabling flexible and dynamic networking. The term "Traffic Engineered network" refers to a network that uses any connection-oriented technology under the control of a distributed or centralized control plane to support dynamic provisioning of end-to- end connectivity.</t>
+              <t indent="0">Abstraction of network resources is a technique that can be applied to a single network domain or across multiple domains to create a single virtualized network that is under the control of a network operator or the customer of the operator that actually owns the network resources.</t>
+              <t indent="0">This document provides a framework for Abstraction and Control of TE Networks (ACTN) to support virtual network services and connectivity services.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="8453"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8453"/>
+        </reference>
+        <reference anchor="RFC8792" target="https://www.rfc-editor.org/info/rfc8792" quoteTitle="true" derivedAnchor="RFC8792">
+          <front>
+            <title>Handling Long Lines in Content of Internet-Drafts and RFCs</title>
+            <author fullname="K. Watsen" initials="K." surname="Watsen"/>
+            <author fullname="E. Auerswald" initials="E." surname="Auerswald"/>
+            <author fullname="A. Farrel" initials="A." surname="Farrel"/>
+            <author fullname="Q. Wu" initials="Q." surname="Wu"/>
+            <date month="June" year="2020"/>
+            <abstract>
+              <t indent="0">This document defines two strategies for handling long lines in width-bounded text content. One strategy, called the "single backslash" strategy, is based on the historical use of a single backslash ('\') character to indicate where line-folding has occurred, with the continuation occurring with the first character that is not a space character (' ') on the next line. The second strategy, called the "double backslash" strategy, extends the first strategy by adding a second backslash character to identify where the continuation begins and is thereby able to handle cases not supported by the first strategy. Both strategies use a self-describing header enabling automated reconstitution of the original content.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="8792"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8792"/>
+        </reference>
+        <reference anchor="RFC8944" target="https://www.rfc-editor.org/info/rfc8944" quoteTitle="true" derivedAnchor="RFC8944">
+          <front>
+            <title>A YANG Data Model for Layer 2 Network Topologies</title>
+            <author fullname="J. Dong" initials="J." surname="Dong"/>
+            <author fullname="X. Wei" initials="X." surname="Wei"/>
+            <author fullname="Q. Wu" initials="Q." surname="Wu"/>
+            <author fullname="M. Boucadair" initials="M." surname="Boucadair"/>
+            <author fullname="A. Liu" initials="A." surname="Liu"/>
+            <date month="November" year="2020"/>
+            <abstract>
+              <t indent="0">This document defines a YANG data model for Layer 2 network topologies. In particular, this data model augments the generic network and network topology data models with topology attributes that are specific to Layer 2.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="RFC" value="8944"/>
+          <seriesInfo name="DOI" value="10.17487/RFC8944"/>
+        </reference>
+        <reference anchor="I-D.ietf-ccamp-bwa-topo-yang" target="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-bwa-topo-yang-01" quoteTitle="true" derivedAnchor="YANG-BWA-TOPO">
+          <front>
+            <title>A YANG Data Model for Bandwidth Availability Topology</title>
+            <author initials="J." surname="Ahlberg" fullname="Jonas Ahlberg">
+              <organization showOnFrontPage="true">Ericsson AB</organization>
+            </author>
+            <author initials="S." surname="Mansfield" fullname="Scott Mansfield">
+              <organization showOnFrontPage="true">Ericsson Inc</organization>
+            </author>
+            <author initials="M." surname="Ye" fullname="Min Ye">
+              <organization showOnFrontPage="true">Huawei Technologies</organization>
+            </author>
+            <author initials="I." surname="Busi" fullname="Italo Busi">
+              <organization showOnFrontPage="true">Huawei Technologies</organization>
+            </author>
+            <author initials="X." surname="Li" fullname="Xi Li">
+              <organization showOnFrontPage="true">NEC Laboratories Europe</organization>
+            </author>
+            <author initials="D." surname="Spreafico" fullname="Daniela Spreafico">
+              <organization showOnFrontPage="true">Nokia - IT</organization>
+            </author>
+            <date month="October" day="18" year="2023"/>
+            <abstract>
+              <t indent="0">   This document defines a YANG data model to describe bandwidth
+   availability for a link in a network topology.
+
+              </t>
+            </abstract>
+          </front>
+          <seriesInfo name="Internet-Draft" value="draft-ietf-ccamp-bwa-topo-yang-01"/>
+          <refcontent>Work in Progress</refcontent>
+        </reference>
+        <reference anchor="I-D.ietf-ccamp-if-ref-topo-yang" target="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-if-ref-topo-yang-01" quoteTitle="true" derivedAnchor="YANG-IF-REF-TOPO">
+          <front>
+            <title>A YANG Data Model for Interface Reference Topology</title>
+            <author initials="J." surname="Ahlberg" fullname="Jonas Ahlberg">
+              <organization showOnFrontPage="true">Ericsson AB</organization>
+            </author>
+            <author initials="S." surname="Mansfield" fullname="Scott Mansfield">
+              <organization showOnFrontPage="true">Ericsson Inc</organization>
+            </author>
+            <author initials="M." surname="Ye" fullname="Min Ye">
+              <organization showOnFrontPage="true">Huawei Technologies</organization>
+            </author>
+            <author initials="I." surname="Busi" fullname="Italo Busi">
+              <organization showOnFrontPage="true">Huawei Technologies</organization>
+            </author>
+            <author initials="X." surname="Li" fullname="Xi Li">
+              <organization showOnFrontPage="true">NEC Laboratories Europe</organization>
+            </author>
+            <author initials="D." surname="Spreafico" fullname="Daniela Spreafico">
+              <organization showOnFrontPage="true">Nokia - IT</organization>
+            </author>
+            <date month="October" day="18" year="2023"/>
+            <abstract>
+              <t indent="0">   This document defines a YANG data model to provide a reference from a
+   termination point in a topology model to interface management
+   information.
+
+              </t>
+            </abstract>
+          </front>
+          <seriesInfo name="Internet-Draft" value="draft-ietf-ccamp-if-ref-topo-yang-01"/>
+          <refcontent>Work in Progress</refcontent>
+        </reference>
+      </references>
+    </references>
+    <section anchor="examples-mw-only" numbered="true" removeInRFC="false" toc="include" pn="section-appendix.a">
+      <name slugifiedName="name-microwave-topology-model-wi">Microwave Topology Model with Base Topology Models</name>
+      <t indent="0" pn="section-appendix.a-1">The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including the augmented Network Topology Model defined in <xref target="RFC8345" format="default" sectionFormat="of" derivedContent="RFC8345"/> and the Traffic Engineering (TE) Topologies model defined in <xref target="RFC8795" format="default" sectionFormat="of" derivedContent="RFC8795"/>.  There are also JSON-based instantiations of the Microwave Topology Model for a couple of small network examples.</t>
+      <figure anchor="fig-mw-only-tree" align="left" suppress-title="false" pn="figure-2">
+        <name slugifiedName="name-microwave-topology-with-aug">Microwave Topology with Augmentations Tree</name>
+        <sourcecode type="yangtree" markers="false" pn="section-appendix.a-2.1">
+module: ietf-network
+  +--rw networks
+     +--rw network* [network-id]
+     |  +--rw network-id                    network-id
+     |  +--rw network-types
+     |  |  +--rw tet:te-topology!
+     |  |     +--rw mwt:mw-topology!
+     |  +--rw supporting-network* [network-ref]
+     |  |  +--rw network-ref    -&gt; /networks/network/network-id
+     |  +--rw node* [node-id]
+     |  |  +--rw node-id                 node-id
+     |  |  +--rw supporting-node* [network-ref node-ref]
+     |  |  |  +--rw network-ref
+     |  |  |  |       -&gt; ../../../supporting-network/network-ref
+     |  |  |  +--rw node-ref       -&gt; /networks/network/node/node-id
+     |  |  +--rw nt:termination-point* [tp-id]
+     |  |  |  +--rw nt:tp-id                           tp-id
+     |  |  |  +--rw nt:supporting-termination-point*
+     |  |  |  |       [network-ref node-ref tp-ref]
+     |  |  |  |  +--rw nt:network-ref
+     |  |  |  |  |       -&gt; ../../../nw:supporting-node/network-ref
+     |  |  |  |  +--rw nt:node-ref
+     |  |  |  |  |       -&gt; ../../../nw:supporting-node/node-ref
+     |  |  |  |  +--rw nt:tp-ref         leafref
+     |  |  |  +--rw tet:te-tp-id?
+     |  |  |  |       te-types:te-tp-id
+     |  |  |  +--rw tet:te!
+     |  |  |     +--rw tet:name?                             string
+     |  |  |     +--ro tet:geolocation
+     |  |  |     |  +--ro tet:altitude?    int64
+     |  |  |     |  +--ro tet:latitude?
+     |  |  |     |  |       geographic-coordinate-degree
+     |  |  |     |  +--ro tet:longitude?
+     |  |  |     |          geographic-coordinate-degree
+     |  |  |     +--rw mwt:mw-tp!
+     |  |  |        +--rw (mwt:mw-tp-option)?
+     |  |  |           +--:(mwt:microwave-rltp)
+     |  |  |           |  +--rw mwt:microwave-rltp!
+     |  |  |           +--:(mwt:microwave-ctp)
+     |  |  |              +--rw mwt:microwave-ctp!
+     |  |  +--rw tet:te-node-id?         te-types:te-node-id
+     |  +--rw nt:link* [link-id]
+     |  |  +--rw nt:link-id            link-id
+     |  |  +--rw nt:source
+     |  |  |  +--rw nt:source-node?   -&gt; ../../../nw:node/node-id
+     |  |  |  +--rw nt:source-tp?     leafref
+     |  |  +--rw nt:destination
+     |  |  |  +--rw nt:dest-node?   -&gt; ../../../nw:node/node-id
+     |  |  |  +--rw nt:dest-tp?     leafref
+     |  |  +--rw nt:supporting-link* [network-ref link-ref]
+     |  |  |  +--rw nt:network-ref
+     |  |  |  |       -&gt; ../../../nw:supporting-network/network-ref
+     |  |  |  +--rw nt:link-ref       leafref
+     |  |  +--rw tet:te!
+     |  |     +--rw (tet:bundle-stack-level)?
+     |  |     |  +--:(tet:bundle)
+     |  |     |  |  +--rw tet:bundled-links
+     |  |     |  |     +--rw tet:bundled-link* [sequence]
+     |  |     |  |        +--rw tet:sequence      uint32
+     |  |     |  |        +--rw tet:src-tp-ref?   leafref
+     |  |     |  |        +--rw tet:des-tp-ref?   leafref
+     |  |     +--rw tet:te-link-attributes
+     |  |     |  +--rw tet:name?                             string
+     |  |     |  +--rw tet:max-link-bandwidth
+     |  |     |  |  +--rw tet:te-bandwidth
+     |  |     |  |     +--ro mwt:mw-bandwidth?    uint64
+     |  |     |  +--rw mwt:mw-link!
+     |  |     |     +--rw (mwt:mw-link-option)
+     |  |     |        +--:(mwt:microwave-radio-link)
+     |  |     |        |  +--rw mwt:microwave-radio-link!
+     |  |     |        |     +--rw mwt:rlt-mode
+     |  |     |        |        +--rw mwt:num-bonded-carriers
+     |  |     |        |        |       uint32
+     |  |     |        |        +--rw mwt:num-protecting-carriers
+     |  |     |        |                uint32
+     |  |     |        +--:(mwt:microwave-carrier)
+     |  |     |           +--rw mwt:microwave-carrier!
+     |  |     |              +--rw mwt:tx-frequency?
+     |  |     |              |       uint32
+     |  |     |              +--ro mwt:actual-rx-frequency?
+     |  |     |              |       uint32
+     |  |     |              +--rw mwt:channel-separation?
+     |  |     |              |       uint32
+     |  |     |              +--ro mwt:actual-tx-cm?
+     |  |     |              |       identityref
+     |  |     |              +--ro mwt:actual-snir?
+     |  |     |              |       decimal64
+     |  |     |              +--ro mwt:actual-transmitted-level?
+     |  |     |                      decimal64
+</sourcecode>
+      </figure>
+      <t indent="0" pn="section-appendix.a-3">The Microwave Topology Model augments the TE Topology Model.</t>
+      <figure anchor="fig-mw-model" align="left" suppress-title="false" pn="figure-3">
+        <name slugifiedName="name-example-for-l2-over-microwa">Example for L2 over Microwave</name>
+        <artset pn="section-appendix.a-4.1">
+          <artwork type="svg" align="left" pn="section-appendix.a-4.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 640 400" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,384" fill="none" stroke="black"/>
+              <path d="M 24,48 L 24,96" fill="none" stroke="black"/>
+              <path d="M 24,144 L 24,192" fill="none" stroke="black"/>
+              <path d="M 24,240 L 24,288" fill="none" stroke="black"/>
+              <path d="M 24,320 L 24,368" fill="none" stroke="black"/>
+              <path d="M 112,48 L 112,96" fill="none" stroke="black"/>
+              <path d="M 112,144 L 112,192" fill="none" stroke="black"/>
+              <path d="M 112,240 L 112,288" fill="none" stroke="black"/>
+              <path d="M 112,320 L 112,368" fill="none" stroke="black"/>
+              <path d="M 128,32 L 128,72" fill="none" stroke="black"/>
+              <path d="M 128,88 L 128,168" fill="none" stroke="black"/>
+              <path d="M 128,184 L 128,248" fill="none" stroke="black"/>
+              <path d="M 128,280 L 128,328" fill="none" stroke="black"/>
+              <path d="M 128,360 L 128,384" fill="none" stroke="black"/>
+              <path d="M 144,256 L 144,336" fill="none" stroke="black"/>
+              <path d="M 272,256 L 272,336" fill="none" stroke="black"/>
+              <path d="M 288,32 L 288,72" fill="none" stroke="black"/>
+              <path d="M 288,88 L 288,168" fill="none" stroke="black"/>
+              <path d="M 288,184 L 288,248" fill="none" stroke="black"/>
+              <path d="M 288,280 L 288,328" fill="none" stroke="black"/>
+              <path d="M 288,360 L 288,384" fill="none" stroke="black"/>
+              <path d="M 304,48 L 304,96" fill="none" stroke="black"/>
+              <path d="M 304,144 L 304,192" fill="none" stroke="black"/>
+              <path d="M 304,240 L 304,288" fill="none" stroke="black"/>
+              <path d="M 304,320 L 304,368" fill="none" stroke="black"/>
+              <path d="M 392,48 L 392,96" fill="none" stroke="black"/>
+              <path d="M 392,144 L 392,192" fill="none" stroke="black"/>
+              <path d="M 392,240 L 392,288" fill="none" stroke="black"/>
+              <path d="M 392,320 L 392,368" fill="none" stroke="black"/>
+              <path d="M 408,32 L 408,384" fill="none" stroke="black"/>
+              <path d="M 8,32 L 128,32" fill="none" stroke="black"/>
+              <path d="M 288,32 L 408,32" fill="none" stroke="black"/>
+              <path d="M 24,48 L 112,48" fill="none" stroke="black"/>
+              <path d="M 304,48 L 392,48" fill="none" stroke="black"/>
+              <path d="M 120,80 L 296,80" fill="none" stroke="black"/>
+              <path d="M 24,96 L 112,96" fill="none" stroke="black"/>
+              <path d="M 304,96 L 392,96" fill="none" stroke="black"/>
+              <path d="M 24,144 L 112,144" fill="none" stroke="black"/>
+              <path d="M 304,144 L 392,144" fill="none" stroke="black"/>
+              <path d="M 120,176 L 200,176" fill="none" stroke="black"/>
+              <path d="M 216,176 L 296,176" fill="none" stroke="black"/>
+              <path d="M 24,192 L 112,192" fill="none" stroke="black"/>
+              <path d="M 304,192 L 392,192" fill="none" stroke="black"/>
+              <path d="M 24,240 L 80,240" fill="none" stroke="black"/>
+              <path d="M 96,240 L 112,240" fill="none" stroke="black"/>
+              <path d="M 304,240 L 320,240" fill="none" stroke="black"/>
+              <path d="M 336,240 L 392,240" fill="none" stroke="black"/>
+              <path d="M 120,256 L 168,256" fill="none" stroke="black"/>
+              <path d="M 248,256 L 296,256" fill="none" stroke="black"/>
+              <path d="M 120,272 L 136,272" fill="none" stroke="black"/>
+              <path d="M 152,272 L 264,272" fill="none" stroke="black"/>
+              <path d="M 280,272 L 296,272" fill="none" stroke="black"/>
+              <path d="M 24,288 L 80,288" fill="none" stroke="black"/>
+              <path d="M 96,288 L 112,288" fill="none" stroke="black"/>
+              <path d="M 304,288 L 320,288" fill="none" stroke="black"/>
+              <path d="M 336,288 L 392,288" fill="none" stroke="black"/>
+              <path d="M 24,320 L 112,320" fill="none" stroke="black"/>
+              <path d="M 304,320 L 392,320" fill="none" stroke="black"/>
+              <path d="M 120,336 L 144,336" fill="none" stroke="black"/>
+              <path d="M 272,336 L 296,336" fill="none" stroke="black"/>
+              <path d="M 120,352 L 296,352" fill="none" stroke="black"/>
+              <path d="M 24,368 L 112,368" fill="none" stroke="black"/>
+              <path d="M 304,368 L 392,368" fill="none" stroke="black"/>
+              <path d="M 8,384 L 128,384" fill="none" stroke="black"/>
+              <path d="M 288,384 L 408,384" fill="none" stroke="black"/>
+              <path d="M 204,168 L 248,256" fill="none" stroke="black"/>
+              <path d="M 168,256 L 208,176" fill="none" stroke="black"/>
+              <polygon class="arrowhead" points="300,352 288,346.4 288,357.6" fill="black" transform="rotate(0,292,352)"/>
+              <polygon class="arrowhead" points="300,272 288,266.4 288,277.6" fill="black" transform="rotate(0,292,272)"/>
+              <polygon class="arrowhead" points="300,176 288,170.4 288,181.6" fill="black" transform="rotate(0,292,176)"/>
+              <polygon class="arrowhead" points="300,80 288,74.4 288,85.6" fill="black" transform="rotate(0,292,80)"/>
+              <polygon class="arrowhead" points="132,352 120,346.4 120,357.6" fill="black" transform="rotate(180,124,352)"/>
+              <polygon class="arrowhead" points="132,272 120,266.4 120,277.6" fill="black" transform="rotate(180,124,272)"/>
+              <polygon class="arrowhead" points="132,176 120,170.4 120,181.6" fill="black" transform="rotate(180,124,176)"/>
+              <polygon class="arrowhead" points="132,80 120,74.4 120,85.6" fill="black" transform="rotate(180,124,80)"/>
+              <circle cx="112" cy="80" r="6" class="opendot" fill="white" stroke="black"/>
+              <circle cx="112" cy="176" r="6" class="opendot" fill="white" stroke="black"/>
+              <circle cx="112" cy="256" r="6" class="closeddot" fill="black"/>
+              <circle cx="112" cy="272" r="6" class="opendot" fill="white" stroke="black"/>
+              <circle cx="112" cy="336" r="6" class="closeddot" fill="black"/>
+              <circle cx="112" cy="352" r="6" class="opendot" fill="white" stroke="black"/>
+              <circle cx="208" cy="176" r="6" class="closeddot" fill="black"/>
+              <circle cx="304" cy="80" r="6" class="opendot" fill="white" stroke="black"/>
+              <circle cx="304" cy="176" r="6" class="opendot" fill="white" stroke="black"/>
+              <circle cx="304" cy="256" r="6" class="closeddot" fill="black"/>
+              <circle cx="304" cy="272" r="6" class="opendot" fill="white" stroke="black"/>
+              <circle cx="304" cy="336" r="6" class="closeddot" fill="black"/>
+              <circle cx="304" cy="352" r="6" class="opendot" fill="white" stroke="black"/>
+              <circle cx="424" cy="256" r="6" class="closeddot" fill="black"/>
+              <g class="text">
+                <text x="72" y="20">Node N1</text>
+                <text x="352" y="20">Node N2</text>
+                <text x="460" y="52">L2-network</text>
+                <text x="64" y="68">L2-N1-TP1</text>
+                <text x="204" y="68">L2-N1-N2</text>
+                <text x="344" y="68">L2-N2-TP2</text>
+                <text x="468" y="68">-L2 topology</text>
+                <text x="208" y="100">'</text>
+                <text x="460" y="100">Supporting</text>
+                <text x="96" y="116">:</text>
+                <text x="208" y="116">'</text>
+                <text x="320" y="116">:</text>
+                <text x="456" y="116">' mw link</text>
+                <text x="96" y="132">:</text>
+                <text x="208" y="132">'</text>
+                <text x="320" y="132">:</text>
+                <text x="440" y="132">: TPs</text>
+                <text x="208" y="148">'</text>
+                <text x="52" y="164">mw-N1-</text>
+                <text x="204" y="164">mwrl-N1-N2</text>
+                <text x="340" y="164">mw-N2-</text>
+                <text x="460" y="164">MW-network</text>
+                <text x="48" y="180">RLTP1</text>
+                <text x="336" y="180">RLTP2</text>
+                <text x="468" y="180">-MW topology</text>
+                <text x="96" y="212">: :</text>
+                <text x="320" y="212">: :</text>
+                <text x="92" y="228">::</text>
+                <text x="324" y="228">::</text>
+                <text x="460" y="228">Supporting</text>
+                <text x="88" y="244">:</text>
+                <text x="328" y="244">:</text>
+                <text x="440" y="244">: TPs</text>
+                <text x="60" y="260">mw-N1- :</text>
+                <text x="356" y="260">: mw-N2-</text>
+                <text x="468" y="260">carriers</text>
+                <text x="44" y="276">CTP1</text>
+                <text x="88" y="276">:</text>
+                <text x="348" y="276">: CTP2</text>
+                <text x="476" y="276">as bundled</text>
+                <text x="88" y="292">:</text>
+                <text x="208" y="292">mwc-N1-N2-A</text>
+                <text x="328" y="292">:</text>
+                <text x="456" y="292">links</text>
+                <text x="104" y="308">:</text>
+                <text x="312" y="308">:</text>
+                <text x="68" y="340">mw-N1-CTP3</text>
+                <text x="348" y="340">mw-N2-CTP4</text>
+                <text x="208" y="372">mwc-N1-N2-B</text>
+              </g>
+            </svg>
+          </artwork>
+          <artwork type="ascii-art" name="mw-only-art.txt" align="left" pn="section-appendix.a-4.1.2">
+     Node N1                            Node N2
++--------------+                   +--------------+
+| +----------+ |                   | +----------+ | L2-network
+| |L2-N1-TP1 | |     L2-N1-N2      | |L2-N2-TP2 | | -L2 topology
+| |          o&lt;---------------------&gt;o          | |
+| +----------+ |         '         | +----------+ | Supporting
+|          :   |         '         |   :          | ' mw link
+|          :   |         '         |   :          | : TPs
+| +----------+ |         '         | +----------+ |
+| |mw-N1-    | |    mwrl-N1-N2     | | mw-N2-   | | MW-network
+| |RLTP1     o&lt;----------*----------&gt;o RLTP2    | | -MW topology
+| +----------+ |        / \        | +----------+ |
+|         : :  |       /   \       |  : :         |
+|         ::   |      /     \      |   ::         | Supporting
+| +-------:--+ |     /       \     | +--:-------+ | : TPs
+| |mw-N1- :  *---+--'         '--+---*  : mw-N2-| | * carriers
+| |CTP1   :  o&lt;--|---------------|--&gt;o  : CTP2  | |   as bundled
+| +-------:--+ | |  mwc-N1-N2-A  | | +--:-------+ |   links
+|           :  | |               | |  :           |
+| +----------+ | |               | | +----------+ |
+| |mw-N1-CTP3*---'               '---*mw-N2-CTP4| |
+| |          o&lt;---------------------&gt;o          | |
+| +----------+ |    mwc-N1-N2-B    | +----------+ |
++--------------+                   +--------------+
+</artwork>
+        </artset>
+      </figure>
+      <section anchor="instance-data-for-20-mode-for-a-bonded-configuration" numbered="true" removeInRFC="false" toc="include" pn="section-appendix.a.1">
+        <name slugifiedName="name-instance-data-for-20-mode-f">Instance Data for 2+0 Mode for a Bonded Configuration</name>
+        <t indent="0" pn="section-appendix.a.1-1">An L2 network with a supporting microwave network, showing a 2+0 microwave configuration is provided below. The num-bonded-carriers = 2, and the num-protecting-carriers = 0. This means both carriers are active, so there is no redundancy and there is more capacity.  The JSON encoding of the 2+0 example data follows:</t>
+        <sourcecode type="json" name="example2plus0-mw-only.json" markers="false" pn="section-appendix.a.1-2">
+
+{
+  "ietf-network:networks": {
+    "network": [
+      {
+        "network-id": "example:L2-network",
+        "network-types": {
+          "ietf-te-topology:te-topology": {}
+        },
+        "supporting-network": [
+          {
+            "network-ref": "example:mw-network"
+          }
+        ],
+        "node": [
+          {
+            "node-id": "example:L2-N1",
+            "supporting-node": [
+              {
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N1"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "example:L2-N1-TP1",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-RLTP1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node-id": "example:L2-N2",
+            "supporting-node": [
+              {
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N2"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "example:L2-N2-TP2",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-RLTP2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "example:L2-N1-N2",
+            "source": {
+              "source-node": "example:L2-N1",
+              "source-tp": "example:L2-N1-TP1"
+            },
+            "destination": {
+              "dest-node": "example:L2-N2",
+              "dest-tp": "example:L2-N2-TP2"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example:mw-network",
+                "link-ref": "example:mwrl-N1-N2"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "network-id": "example:mw-network",
+        "network-types": {
+          "ietf-te-topology:te-topology": {
+            "ietf-microwave-topology:mw-topology": {}
+          }
+        },
+        "supporting-network": [
+          {
+            "network-ref": "example:mw-network"
+          }
+        ],
+        "node": [
+          {
+            "node-id": "example:mw-N1",
+            "supporting-node": [
+              {
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N1"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "example:mw-N1-RLTP1",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-CTP1"
+                  },
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-CTP3"
+                  }
+                ],
+                "ietf-te-topology:te-tp-id": "192.0.2.3",
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-rltp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "example:mw-N1-CTP1",
+                "ietf-te-topology:te-tp-id": 1,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-ctp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "example:mw-N1-CTP3",
+                "ietf-te-topology:te-tp-id": 2,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-ctp": {}
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "node-id": "example:mw-N2",
+            "supporting-node": [
+              {
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N2"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "example:mw-N2-RLTP2",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-CTP2"
+                  },
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-CTP4"
+                  }
+                ],
+                "ietf-te-topology:te-tp-id": "192.0.2.4",
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-rltp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "example:mw-N2-CTP2",
+                "ietf-te-topology:te-tp-id": 1,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-ctp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "example:mw-N2-CTP4",
+                "ietf-te-topology:te-tp-id": 2,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-ctp": {}
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "example:mwrl-N1-N2",
+            "source": {
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-RLTP1"
+            },
+            "destination": {
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-RLTP2"
+            },
+            "ietf-te-topology:te": {
+              "bundled-links": {
+                "bundled-link": [
+                  {
+                    "sequence": 1,
+                    "src-tp-ref": "example:mw-N1-CTP1",
+                    "des-tp-ref": "example:mw-N2-CTP2"
+                  },
+                  {
+                    "sequence": 2,
+                    "src-tp-ref": "example:mw-N1-CTP3",
+                    "des-tp-ref": "example:mw-N2-CTP4"
+                  }
+                ]
+              },
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link": {
+                  "microwave-radio-link": {
+                    "rlt-mode": {
+                      "num-bonded-carriers": 2,
+                      "num-protecting-carriers": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "link-id": "example:mwc-N1-N2-A",
+            "source": {
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-CTP1"
+            },
+            "destination": {
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-CTP2"
+            },
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link": {
+                  "microwave-carrier": {
+                    "tx-frequency": 10728000,
+                    "channel-separation": 28000
+                  }
+                }
+              }
+            }
+          },
+          {
+            "link-id": "example:mwc-N1-N2-B",
+            "source": {
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-CTP3"
+            },
+            "destination": {
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-CTP4"
+            },
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link": {
+                  "microwave-carrier": {
+                    "tx-frequency": 10528000,
+                    "channel-separation": 28000
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+</sourcecode>
+      </section>
+      <section anchor="instance-data-for-11-mode-for-a-protected-configuration" numbered="true" removeInRFC="false" toc="include" pn="section-appendix.a.2">
+        <name slugifiedName="name-instance-data-for-11-mode-f">Instance Data for 1+1 Mode for a Protected Configuration</name>
+        <t indent="0" pn="section-appendix.a.2-1">An L2 network with a supporting microwave network, showing a 1+1 microwave configuration is provided below. The num-bonded-carriers = 1, and the num-protecting-carriers = 1. This means there is a standby carrier protecting the active carrier. The JSON encoding of the 1+1 example data follows:</t>
+        <sourcecode type="json" name="example1plus1-mw-only.json" markers="false" pn="section-appendix.a.2-2">
+
+{
+  "ietf-network:networks": {
+    "network": [
+      {
+        "network-id": "example:L2-network",
+        "network-types": {
+          "ietf-te-topology:te-topology": {}
+        },
+        "supporting-network": [
+          {
+            "network-ref": "example:mw-network"
+          }
+        ],
+        "node": [
+          {
+            "node-id": "example:L2-N1",
+            "supporting-node": [
+              {
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N1"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "example:L2-N1-TP1",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-RLTP1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node-id": "example:L2-N2",
+            "supporting-node": [
+              {
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N2"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "example:L2-N2-TP2",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-RLTP2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "example:L2-N1-N2",
+            "source": {
+              "source-node": "L2-N1",
+              "source-tp": "L2-N1-TP1"
+            },
+            "destination": {
+              "dest-node": "L2-N2",
+              "dest-tp": "L2-N2-TP2"
+            },
+            "supporting-link": [
+              {
+                "network-ref": "example:mw-network",
+                "link-ref": "example:mwrl-N1-N2"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "network-id": "example:mw-network",
+        "network-types": {
+          "ietf-te-topology:te-topology": {
+            "ietf-microwave-topology:mw-topology": {}
+          }
+        },
+        "supporting-network": [
+          {
+            "network-ref": "example:mw-network"
+          }
+        ],
+        "node": [
+          {
+            "node-id": "example:mw-N1",
+            "supporting-node": [
+              {
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N1"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "example:mw-N1-RLTP1",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-CTP1"
+                  },
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-CTP3"
+                  }
+                ],
+                "ietf-te-topology:te-tp-id": "192.0.2.3",
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-rltp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "example:mw-N1-CTP1",
+                "ietf-te-topology:te-tp-id": 1,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-ctp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "example:mw-N1-CTP3",
+                "ietf-te-topology:te-tp-id": 2,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-ctp": {}
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "node-id": "example:mw-N2",
+            "supporting-node": [
+              {
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N2"
+              }
+            ],
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "example:mw-N2-RLTP2",
+                "supporting-termination-point": [
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-CTP2"
+                  },
+                  {
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-CTP4"
+                  }
+                ],
+                "ietf-te-topology:te-tp-id": "192.0.2.4",
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-rltp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "example:mw-N2-CTP2",
+                "ietf-te-topology:te-tp-id": 1,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-ctp": {}
+                  }
+                }
+              },
+              {
+                "tp-id": "example:mw-N2-CTP4",
+                "ietf-te-topology:te-tp-id": 2,
+                "ietf-te-topology:te": {
+                  "ietf-microwave-topology:mw-tp": {
+                    "microwave-ctp": {}
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "example:mwrl-N1-N2",
+            "source": {
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-RLTP1"
+            },
+            "destination": {
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-RLTP2"
+            },
+            "ietf-te-topology:te": {
+              "bundled-links": {
+                "bundled-link": [
+                  {
+                    "sequence": 1,
+                    "src-tp-ref": "example:mw-N1-CTP1",
+                    "des-tp-ref": "example:mw-N2-CTP2"
+                  },
+                  {
+                    "sequence": 2,
+                    "src-tp-ref": "example:mw-N1-CTP3",
+                    "des-tp-ref": "example:mw-N2-CTP4"
+                  }
+                ]
+              },
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link": {
+                  "microwave-radio-link": {
+                    "rlt-mode": {
+                      "num-bonded-carriers": 1,
+                      "num-protecting-carriers": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "link-id": "example:mwc-N1-N2-A",
+            "source": {
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-CTP1"
+            },
+            "destination": {
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-CTP2"
+            },
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link": {
+                  "microwave-carrier": {
+                    "tx-frequency": 10728000,
+                    "channel-separation": 28000
+                  }
+                }
+              }
+            }
+          },
+          {
+            "link-id": "example:mwc-N1-N2-B",
+            "source": {
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-CTP3"
+            },
+            "destination": {
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-CTP4"
+            },
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "ietf-microwave-topology:mw-link": {
+                  "microwave-carrier": {
+                    "tx-frequency": 10728000,
+                    "channel-separation": 28000
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+</sourcecode>
+      </section>
+    </section>
+    <section anchor="examples-mw-imports" numbered="true" removeInRFC="false" toc="include" pn="section-appendix.b">
+      <name slugifiedName="name-microwave-topology-model-wit">Microwave Topology Model with Example Extensions</name>
+      <t indent="0" pn="section-appendix.b-1">This non-normative appendix provides examples of how the Microwave Topology Model can be used with the interface reference topology (ifref) <xref target="I-D.ietf-ccamp-if-ref-topo-yang" format="default" sectionFormat="of" derivedContent="YANG-IF-REF-TOPO"/> and the bandwidth-availability-topology (bwa) <xref target="I-D.ietf-ccamp-bwa-topo-yang" format="default" sectionFormat="of" derivedContent="YANG-BWA-TOPO"/> models. There is also a snippet of JSON to show geolocation information instance data.  When the JSON files have long lines, the long lines are wrapped as described in <xref target="RFC8792" format="default" sectionFormat="of" derivedContent="RFC8792"/>.</t>
+      <t indent="0" pn="section-appendix.b-2">The tree below shows an example of the relevant leafs for a complete Microwave Topology Model including interface reference topology (ifref) <xref target="I-D.ietf-ccamp-if-ref-topo-yang" format="default" sectionFormat="of" derivedContent="YANG-IF-REF-TOPO"/> and bandwidth-availability-topology (bwa) <xref target="I-D.ietf-ccamp-bwa-topo-yang" format="default" sectionFormat="of" derivedContent="YANG-BWA-TOPO"/> models.</t>
+      <figure anchor="fig-mw-extensions-tree" align="left" suppress-title="false" pn="figure-4">
+        <name slugifiedName="name-microwave-topology-with-ext">Microwave Topology with Extensions Tree</name>
+        <sourcecode type="yangtree" markers="false" pn="section-appendix.b-3.1">
+module: ietf-network
+  +--rw networks
+     +--rw network* [network-id]
+     |  +--rw network-id                    network-id
+     |  +--rw network-types
+     |  |  +--rw tet:te-topology!
+     |  |     +--rw mwt:mw-topology!
+     |  +--rw supporting-network* [network-ref]
+     |  |  +--rw network-ref    -&gt; /networks/network/network-id
+     |  +--rw node* [node-id]
+     |  |  +--rw node-id                 node-id
+     |  |  +--rw supporting-node* [network-ref node-ref]
+     |  |  |  +--rw network-ref
+     |  |  |  |       -&gt; ../../../supporting-network/network-ref
+     |  |  |  +--rw node-ref       -&gt; /networks/network/node/node-id
+     |  |  +--rw nt:termination-point* [tp-id]
+     |  |  |  +--rw nt:tp-id                           tp-id
+     |  |  |  +--rw nt:supporting-termination-point*
+     |  |  |  |       [network-ref node-ref tp-ref]
+     |  |  |  |  +--rw nt:network-ref
+     |  |  |  |  |       -&gt; ../../../nw:supporting-node/network-ref
+     |  |  |  |  +--rw nt:node-ref
+     |  |  |  |  |       -&gt; ../../../nw:supporting-node/node-ref
+     |  |  |  |  +--rw nt:tp-ref         leafref
+     |  |  |  +--rw tet:te-tp-id?
+     |  |  |  |       te-types:te-tp-id
+     |  |  |  +--rw tet:te!
+     |  |  |     +--rw tet:name?                             string
+     |  |  |     +--ro tet:geolocation
+     |  |  |     |  +--ro tet:altitude?    int64
+     |  |  |     |  +--ro tet:latitude?
+     |  |  |     |  |       geographic-coordinate-degree
+     |  |  |     |  +--ro tet:longitude?
+     |  |  |     |          geographic-coordinate-degree
+     |  |  |     +--rw mwt:mw-tp!
+     |  |  |     |  +--rw (mwt:mw-tp-option)?
+     |  |  |     |     +--:(mwt:microwave-rltp)
+     |  |  |     |     |  +--rw mwt:microwave-rltp!
+     |  |  |     |     +--:(mwt:microwave-ctp)
+     |  |  |     |        +--rw mwt:microwave-ctp!
+     |  |  |     +--rw ifref:tp-to-interface-path?
+     |  |  |             -&gt; /if:interfaces/interface/name
+     |  |  +--rw tet:te-node-id?         te-types:te-node-id
+     |  +--rw nt:link* [link-id]
+     |  |  +--rw nt:link-id            link-id
+     |  |  +--rw nt:source
+     |  |  |  +--rw nt:source-node?   -&gt; ../../../nw:node/node-id
+     |  |  |  +--rw nt:source-tp?     leafref
+     |  |  +--rw nt:destination
+     |  |  |  +--rw nt:dest-node?   -&gt; ../../../nw:node/node-id
+     |  |  |  +--rw nt:dest-tp?     leafref
+     |  |  +--rw nt:supporting-link* [network-ref link-ref]
+     |  |  |  +--rw nt:network-ref
+     |  |  |  |       -&gt; ../../../nw:supporting-network/network-ref
+     |  |  |  +--rw nt:link-ref       leafref
+     |  |  +--rw tet:te!
+     |  |     +--rw (tet:bundle-stack-level)?
+     |  |     |  +--:(tet:bundle)
+     |  |     |  |  +--rw tet:bundled-links
+     |  |     |  |     +--rw tet:bundled-link* [sequence]
+     |  |     |  |        +--rw tet:sequence      uint32
+     |  |     |  |        +--rw tet:src-tp-ref?   leafref
+     |  |     |  |        +--rw tet:des-tp-ref?   leafref
+     |  |     +--rw tet:te-link-attributes
+     |  |     |  +--rw tet:name?                             string
+     |  |     |  +--rw tet:max-link-bandwidth
+     |  |     |  |  +--rw tet:te-bandwidth
+     |  |     |  |     +--ro mwt:mw-bandwidth?    uint64
+     |  |     |  +--rw mwt:mw-link!
+     |  |     |  |  +--rw (mwt:mw-link-option)
+     |  |     |  |     +--:(mwt:microwave-radio-link)
+     |  |     |  |     |  +--rw mwt:microwave-radio-link!
+     |  |     |  |     |     +--rw mwt:rlt-mode
+     |  |     |  |     |        +--rw mwt:num-bonded-carriers
+     |  |     |  |     |        |       uint32
+     |  |     |  |     |        +--rw mwt:num-protecting-carriers
+     |  |     |  |     |                uint32
+     |  |     |  |     +--:(mwt:microwave-carrier)
+     |  |     |  |        +--rw mwt:microwave-carrier!
+     |  |     |  |           +--rw mwt:tx-frequency?
+     |  |     |  |           |       uint32
+     |  |     |  |           +--ro mwt:actual-rx-frequency?
+     |  |     |  |           |       uint32
+     |  |     |  |           +--rw mwt:channel-separation?
+     |  |     |  |           |       uint32
+     |  |     |  |           +--ro mwt:actual-tx-cm?
+     |  |     |  |           |       identityref
+     |  |     |  |           +--ro mwt:actual-snir?
+     |  |     |  |           |       decimal64
+     |  |     |  |           +--ro mwt:actual-transmitted-level?
+     |  |     |  |                   decimal64
+     |  |     |  +--rw bwatopo:link-availability* [availability]
+     |  |     |  |  +--rw bwatopo:availability      decimal64
+     |  |     |  |  +--rw bwatopo:link-bandwidth?   uint64
+     |  |     |  +--ro bwatopo:actual-bandwidth?
+     |  |     |          yang:gauge64
+</sourcecode>
+      </figure>
+      <t indent="0" pn="section-appendix.b-4">Microwave is a transport technology that can be used to transport client services, such as L2 Ethernet links.  When an L2 link is transported over a single supporting microwave radio link, the topologies could be as shown below.  Note that the figure just shows an example: there might be other possibilities to demonstrate such a topology.  The example of the instantiation encoded in JSON is using only a selected subset of the leafs from the L2 topology model <xref target="RFC8944" format="default" sectionFormat="of" derivedContent="RFC8944"/>. The example below uses <xref target="fig-mw-model" format="default" sectionFormat="of" derivedContent="Figure 3"/> and adds the interface-related information.</t>
+      <figure anchor="fig-mw-extensions" align="left" suppress-title="false" pn="figure-5">
+        <name slugifiedName="name-interface-extension-example">Interface Extension Example for L2 over Microwave</name>
+        <artset pn="section-appendix.b-5.1">
+          <artwork type="svg" align="left" pn="section-appendix.b-5.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 640 640" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,288" fill="none" stroke="black"/>
+              <path d="M 8,368 L 8,624" fill="none" stroke="black"/>
+              <path d="M 24,48 L 24,80" fill="none" stroke="black"/>
+              <path d="M 24,112 L 24,144" fill="none" stroke="black"/>
+              <path d="M 24,176 L 24,208" fill="none" stroke="black"/>
+              <path d="M 24,240 L 24,272" fill="none" stroke="black"/>
+              <path d="M 24,384 L 24,416" fill="none" stroke="black"/>
+              <path d="M 24,448 L 24,480" fill="none" stroke="black"/>
+              <path d="M 24,512 L 24,544" fill="none" stroke="black"/>
+              <path d="M 24,576 L 24,608" fill="none" stroke="black"/>
+              <path d="M 120,48 L 120,80" fill="none" stroke="black"/>
+              <path d="M 120,112 L 120,144" fill="none" stroke="black"/>
+              <path d="M 120,176 L 120,208" fill="none" stroke="black"/>
+              <path d="M 120,240 L 120,272" fill="none" stroke="black"/>
+              <path d="M 120,384 L 120,416" fill="none" stroke="black"/>
+              <path d="M 120,448 L 120,480" fill="none" stroke="black"/>
+              <path d="M 120,512 L 120,544" fill="none" stroke="black"/>
+              <path d="M 120,576 L 120,608" fill="none" stroke="black"/>
+              <path d="M 136,32 L 136,56" fill="none" stroke="black"/>
+              <path d="M 136,72 L 136,120" fill="none" stroke="black"/>
+              <path d="M 136,136 L 136,184" fill="none" stroke="black"/>
+              <path d="M 136,200 L 136,248" fill="none" stroke="black"/>
+              <path d="M 136,264 L 136,288" fill="none" stroke="black"/>
+              <path d="M 136,368 L 136,392" fill="none" stroke="black"/>
+              <path d="M 136,408 L 136,456" fill="none" stroke="black"/>
+              <path d="M 136,472 L 136,520" fill="none" stroke="black"/>
+              <path d="M 136,536 L 136,584" fill="none" stroke="black"/>
+              <path d="M 136,600 L 136,624" fill="none" stroke="black"/>
+              <path d="M 304,32 L 304,56" fill="none" stroke="black"/>
+              <path d="M 304,72 L 304,120" fill="none" stroke="black"/>
+              <path d="M 304,136 L 304,184" fill="none" stroke="black"/>
+              <path d="M 304,200 L 304,248" fill="none" stroke="black"/>
+              <path d="M 304,264 L 304,288" fill="none" stroke="black"/>
+              <path d="M 304,368 L 304,392" fill="none" stroke="black"/>
+              <path d="M 304,408 L 304,456" fill="none" stroke="black"/>
+              <path d="M 304,472 L 304,520" fill="none" stroke="black"/>
+              <path d="M 304,536 L 304,584" fill="none" stroke="black"/>
+              <path d="M 304,600 L 304,624" fill="none" stroke="black"/>
+              <path d="M 320,48 L 320,80" fill="none" stroke="black"/>
+              <path d="M 320,112 L 320,144" fill="none" stroke="black"/>
+              <path d="M 320,176 L 320,208" fill="none" stroke="black"/>
+              <path d="M 320,240 L 320,272" fill="none" stroke="black"/>
+              <path d="M 320,384 L 320,416" fill="none" stroke="black"/>
+              <path d="M 320,448 L 320,480" fill="none" stroke="black"/>
+              <path d="M 320,512 L 320,544" fill="none" stroke="black"/>
+              <path d="M 320,576 L 320,608" fill="none" stroke="black"/>
+              <path d="M 424,48 L 424,80" fill="none" stroke="black"/>
+              <path d="M 424,112 L 424,144" fill="none" stroke="black"/>
+              <path d="M 424,176 L 424,208" fill="none" stroke="black"/>
+              <path d="M 424,240 L 424,272" fill="none" stroke="black"/>
+              <path d="M 424,384 L 424,416" fill="none" stroke="black"/>
+              <path d="M 424,448 L 424,480" fill="none" stroke="black"/>
+              <path d="M 424,512 L 424,544" fill="none" stroke="black"/>
+              <path d="M 424,576 L 424,608" fill="none" stroke="black"/>
+              <path d="M 440,32 L 440,288" fill="none" stroke="black"/>
+              <path d="M 440,368 L 440,624" fill="none" stroke="black"/>
+              <path d="M 8,32 L 136,32" fill="none" stroke="black"/>
+              <path d="M 304,32 L 440,32" fill="none" stroke="black"/>
+              <path d="M 24,48 L 120,48" fill="none" stroke="black"/>
+              <path d="M 320,48 L 424,48" fill="none" stroke="black"/>
+              <path d="M 128,64 L 312,64" fill="none" stroke="black"/>
+              <path d="M 24,80 L 120,80" fill="none" stroke="black"/>
+              <path d="M 320,80 L 424,80" fill="none" stroke="black"/>
+              <path d="M 24,112 L 120,112" fill="none" stroke="black"/>
+              <path d="M 320,112 L 424,112" fill="none" stroke="black"/>
+              <path d="M 128,128 L 312,128" fill="none" stroke="black"/>
+              <path d="M 24,144 L 120,144" fill="none" stroke="black"/>
+              <path d="M 320,144 L 424,144" fill="none" stroke="black"/>
+              <path d="M 24,176 L 120,176" fill="none" stroke="black"/>
+              <path d="M 320,176 L 424,176" fill="none" stroke="black"/>
+              <path d="M 128,192 L 312,192" fill="none" stroke="black"/>
+              <path d="M 24,208 L 120,208" fill="none" stroke="black"/>
+              <path d="M 320,208 L 424,208" fill="none" stroke="black"/>
+              <path d="M 24,240 L 120,240" fill="none" stroke="black"/>
+              <path d="M 320,240 L 424,240" fill="none" stroke="black"/>
+              <path d="M 128,256 L 312,256" fill="none" stroke="black"/>
+              <path d="M 24,272 L 120,272" fill="none" stroke="black"/>
+              <path d="M 320,272 L 424,272" fill="none" stroke="black"/>
+              <path d="M 8,288 L 136,288" fill="none" stroke="black"/>
+              <path d="M 304,288 L 440,288" fill="none" stroke="black"/>
+              <path d="M 8,320 L 440,320" fill="none" stroke="black"/>
+              <path d="M 8,368 L 136,368" fill="none" stroke="black"/>
+              <path d="M 304,368 L 440,368" fill="none" stroke="black"/>
+              <path d="M 24,384 L 120,384" fill="none" stroke="black"/>
+              <path d="M 320,384 L 424,384" fill="none" stroke="black"/>
+              <path d="M 128,400 L 312,400" fill="none" stroke="black"/>
+              <path d="M 24,416 L 120,416" fill="none" stroke="black"/>
+              <path d="M 320,416 L 424,416" fill="none" stroke="black"/>
+              <path d="M 24,448 L 120,448" fill="none" stroke="black"/>
+              <path d="M 320,448 L 424,448" fill="none" stroke="black"/>
+              <path d="M 128,464 L 312,464" fill="none" stroke="black"/>
+              <path d="M 24,480 L 120,480" fill="none" stroke="black"/>
+              <path d="M 320,480 L 424,480" fill="none" stroke="black"/>
+              <path d="M 24,512 L 120,512" fill="none" stroke="black"/>
+              <path d="M 320,512 L 424,512" fill="none" stroke="black"/>
+              <path d="M 128,528 L 312,528" fill="none" stroke="black"/>
+              <path d="M 24,544 L 120,544" fill="none" stroke="black"/>
+              <path d="M 320,544 L 424,544" fill="none" stroke="black"/>
+              <path d="M 24,576 L 120,576" fill="none" stroke="black"/>
+              <path d="M 320,576 L 424,576" fill="none" stroke="black"/>
+              <path d="M 128,592 L 312,592" fill="none" stroke="black"/>
+              <path d="M 24,608 L 120,608" fill="none" stroke="black"/>
+              <path d="M 320,608 L 424,608" fill="none" stroke="black"/>
+              <path d="M 8,624 L 136,624" fill="none" stroke="black"/>
+              <path d="M 304,624 L 440,624" fill="none" stroke="black"/>
+              <polygon class="arrowhead" points="320,592 308,586.4 308,597.6" fill="black" transform="rotate(0,312,592)"/>
+              <polygon class="arrowhead" points="320,528 308,522.4 308,533.6" fill="black" transform="rotate(0,312,528)"/>
+              <polygon class="arrowhead" points="320,464 308,458.4 308,469.6" fill="black" transform="rotate(0,312,464)"/>
+              <polygon class="arrowhead" points="320,400 308,394.4 308,405.6" fill="black" transform="rotate(0,312,400)"/>
+              <polygon class="arrowhead" points="320,256 308,250.4 308,261.6" fill="black" transform="rotate(0,312,256)"/>
+              <polygon class="arrowhead" points="320,192 308,186.4 308,197.6" fill="black" transform="rotate(0,312,192)"/>
+              <polygon class="arrowhead" points="320,128 308,122.4 308,133.6" fill="black" transform="rotate(0,312,128)"/>
+              <polygon class="arrowhead" points="320,64 308,58.4 308,69.6" fill="black" transform="rotate(0,312,64)"/>
+              <polygon class="arrowhead" points="136,592 124,586.4 124,597.6" fill="black" transform="rotate(180,128,592)"/>
+              <polygon class="arrowhead" points="136,528 124,522.4 124,533.6" fill="black" transform="rotate(180,128,528)"/>
+              <polygon class="arrowhead" points="136,464 124,458.4 124,469.6" fill="black" transform="rotate(180,128,464)"/>
+              <polygon class="arrowhead" points="136,400 124,394.4 124,405.6" fill="black" transform="rotate(180,128,400)"/>
+              <polygon class="arrowhead" points="136,256 124,250.4 124,261.6" fill="black" transform="rotate(180,128,256)"/>
+              <polygon class="arrowhead" points="136,192 124,186.4 124,197.6" fill="black" transform="rotate(180,128,192)"/>
+              <polygon class="arrowhead" points="136,128 124,122.4 124,133.6" fill="black" transform="rotate(180,128,128)"/>
+              <polygon class="arrowhead" points="136,64 124,58.4 124,69.6" fill="black" transform="rotate(180,128,64)"/>
+              <g class="text">
+                <text x="72" y="20">Node N1</text>
+                <text x="364" y="20">Interfaces</text>
+                <text x="220" y="52">tp-to-interface-path</text>
+                <text x="72" y="68">L2-N1-TP1</text>
+                <text x="372" y="68">L2Interface1</text>
+                <text x="220" y="116">tp-to-interface-path</text>
+                <text x="72" y="132">mw-N1-RLTP1</text>
+                <text x="368" y="132">RLT-1</text>
+                <text x="220" y="180">tp-to-interface-path</text>
+                <text x="68" y="196">mw-N1-CTP1</text>
+                <text x="372" y="196">CT-1</text>
+                <text x="220" y="244">tp-to-interface-path</text>
+                <text x="68" y="260">mw-N1-CTP3</text>
+                <text x="372" y="260">CT-3</text>
+                <text x="72" y="356">Node N2</text>
+                <text x="364" y="356">Interfaces</text>
+                <text x="220" y="388">tp-to-interface-path</text>
+                <text x="72" y="404">L2-N2-TP2</text>
+                <text x="372" y="404">L2Interface2</text>
+                <text x="220" y="452">tp-to-interface-path</text>
+                <text x="72" y="468">mw-N2-RLTP2</text>
+                <text x="368" y="468">RLT-2</text>
+                <text x="220" y="516">tp-to-interface-path</text>
+                <text x="68" y="532">mw-N2-CTP2</text>
+                <text x="372" y="532">CT-2</text>
+                <text x="220" y="580">tp-to-interface-path</text>
+                <text x="68" y="596">mw-N2-CTP4</text>
+                <text x="372" y="596">CT-4</text>
+              </g>
+            </svg>
+          </artwork>
+          <artwork type="ascii-art" name="mw-extensions-art.txt" align="left" pn="section-appendix.b-5.1.2">
+     Node N1                            Interfaces
++---------------+                    +----------------+
+| +-----------+ |tp-to-interface-path| +------------+ |
+| | L2-N1-TP1 |&lt;----------------------&gt;|L2Interface1| |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N1-RLTP1|&lt;----------------------&gt;|   RLT-1    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N1-CTP1 |&lt;----------------------&gt;|    CT-1    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N1-CTP3 |&lt;----------------------&gt;|    CT-3    | |
+| +-----------+ |                    | +------------+ |
++---------------+                    +----------------+
+
+-------------------------------------------------------
+
+     Node N2                            Interfaces
++---------------+                    +----------------+
+| +-----------+ |tp-to-interface-path| +------------+ |
+| | L2-N2-TP2 |&lt;----------------------&gt;|L2Interface2| |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-RLTP2|&lt;----------------------&gt;|   RLT-2    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-CTP2 |&lt;----------------------&gt;|    CT-2    | |
+| +-----------+ |                    | +------------+ |
+|               |                    |                |
+| +-----------+ |tp-to-interface-path| +------------+ |
+| |mw-N2-CTP4 |&lt;----------------------&gt;|    CT-4    | |
+| +-----------+ |                    | +------------+ |
++---------------+                    +----------------+
+</artwork>
+        </artset>
+      </figure>
+      <section anchor="instance-data-for-20-mode" numbered="true" removeInRFC="false" toc="include" pn="section-appendix.b.1">
+        <name slugifiedName="name-instance-data-for-20-mode">Instance Data for 2+0 Mode</name>
+        <t indent="0" pn="section-appendix.b.1-1">An L2 network with a supporting microwave network, including microwave-topology (mw) and bandwidth-availability-topology (bwa) models as well as the reference to the associated interface management information, is encoded in JSON as follows:</t>
+        <sourcecode type="json" name="example2plus0.json" markers="false" pn="section-appendix.b.1-2">
+
+{
+ "ietf-interfaces:interfaces": {
+  "interface": [
+   {
+    "name": "L2Interface1",
+    "description": "'Ethernet Interface 1'",
+    "type": "iana-if-type:ethernetCsmacd"
+   },
+   {
+    "name": "L2Interface2",
+    "description": "'Ethernet Interface 2'",
+    "type": "iana-if-type:ethernetCsmacd"
+   },
+   {
+    "name": "RLT-1",
+    "description": "'Radio Link Terminal 1'",
+    "type": "iana-if-type:microwaveRadioLinkTerminal",
+    "ietf-microwave-radio-link:mode":
+      "ietf-microwave-types:two-plus-zero",
+    "ietf-microwave-radio-link:carrier-terminations": [
+     "CT-1",
+     "CT-3"
+    ]
+   },
+   {
+    "name": "RLT-2",
+    "description": "'Radio Link Terminal 2'",
+    "type": "iana-if-type:microwaveRadioLinkTerminal",
+    "ietf-microwave-radio-link:mode":
+       "ietf-microwave-types:two-plus-zero",
+    "ietf-microwave-radio-link:carrier-terminations": [
+     "CT-2",
+     "CT-4"
+    ]
+   },
+   {
+    "name": "CT-1",
+    "description": "'Carrier Termination 1'",
+    "type": "iana-if-type:microwaveCarrierTermination",
+    "ietf-microwave-radio-link:tx-frequency": 10728000,
+    "ietf-microwave-radio-link:duplex-distance": 113000,
+    "ietf-microwave-radio-link:channel-separation": 28000,
+    "ietf-microwave-radio-link:rtpc": {
+     "maximum-nominal-power": "20.0"
+    },
+    "ietf-microwave-radio-link:single": {
+     "selected-cm": "ietf-microwave-types:qam-512"
+    }
+   },
+   {
+    "name": "CT-3",
+    "description": "'Carrier Termination 3'",
+    "type": "iana-if-type:microwaveCarrierTermination",
+    "ietf-microwave-radio-link:tx-frequency": 10528000,
+    "ietf-microwave-radio-link:duplex-distance": 113000,
+    "ietf-microwave-radio-link:channel-separation": 28000,
+    "ietf-microwave-radio-link:rtpc": {
+     "maximum-nominal-power": "20.0"
+    },
+    "ietf-microwave-radio-link:single": {
+     "selected-cm": "ietf-microwave-types:qam-512"
+    }
+   },
+   {
+    "name": "CT-2",
+    "description": "'Carrier Termination 2'",
+    "type": "iana-if-type:microwaveCarrierTermination",
+    "ietf-microwave-radio-link:tx-frequency": 10615000,
+    "ietf-microwave-radio-link:duplex-distance": 113000,
+    "ietf-microwave-radio-link:channel-separation": 28000,
+    "ietf-microwave-radio-link:rtpc": {
+     "maximum-nominal-power": "20.0"
+    },
+    "ietf-microwave-radio-link:single": {
+     "selected-cm": "ietf-microwave-types:qam-512"
+    }
+   },
+   {
+    "name": "CT-4",
+    "description": "'Carrier Termination 4'",
+    "type": "iana-if-type:microwaveCarrierTermination",
+    "ietf-microwave-radio-link:tx-frequency": 10415000,
+    "ietf-microwave-radio-link:duplex-distance": 113000,
+    "ietf-microwave-radio-link:channel-separation": 28000,
+    "ietf-microwave-radio-link:rtpc": {
+     "maximum-nominal-power": "20.0"
+    },
+    "ietf-microwave-radio-link:single": {
+     "selected-cm": "ietf-microwave-types:qam-512"
+    }
+   }
+  ]
+ },
+ "ietf-network:networks": {
+  "network": [
+   {
+    "network-id": "example:L2-network",
+    "network-types": {
+     "ietf-te-topology:te-topology": {
+      "ietf-eth-te-topology:eth-tran-topology": {}
+     }
+    },
+    "supporting-network": [
+     {
+      "network-ref": "example:mw-network"
+     }
+    ],
+    "node": [
+     {
+      "node-id": "example:L2-N1",
+      "supporting-node": [
+       {
+        "network-ref": "example:mw-network",
+        "node-ref": "example:mw-N1"
+       }
+      ],
+      "ietf-network-topology:termination-point": [
+       {
+        "tp-id": "example:L2-N1-TP1",
+        "supporting-termination-point": [
+         {
+          "network-ref": "example:mw-network",
+          "node-ref": "example:mw-N1",
+          "tp-ref": "example:mw-N1-RLTP1"
+         }
+        ]
+       }
+      ],
+      "ietf-te-topology:te-node-id": "192.0.2.1",
+      "ietf-te-topology:te": {
+       "te-node-attributes": {
+        "ietf-eth-te-topology:eth-node": {}
+       }
+      }
+     },
+     {
+      "node-id": "example:L2-N2",
+      "supporting-node": [
+       {
+        "network-ref": "example:mw-network",
+        "node-ref": "example:mw-N2"
+       }
+      ],
+      "ietf-network-topology:termination-point": [
+       {
+        "tp-id": "example:L2-N2-TP2",
+        "supporting-termination-point": [
+         {
+          "network-ref": "example:mw-network",
+          "node-ref": "example:mw-N2",
+          "tp-ref": "example:mw-N2-RLTP2"
+         }
+        ]
+       }
+      ],
+      "ietf-te-topology:te-node-id": "192.0.2.2",
+      "ietf-te-topology:te": {
+       "te-node-attributes": {
+        "ietf-eth-te-topology:eth-node": {}
+       }
+      }
+     }
+    ],
+    "ietf-network-topology:link": [
+     {
+      "link-id": "example:L2-N1-N2",
+      "source": {
+       "source-node": "example:L2-N1",
+       "source-tp": "example:L2-N1-TP1"
+      },
+      "destination": {
+       "dest-node": "example:L2-N2",
+       "dest-tp": "example:L2-N2-TP2"
+      },
+      "supporting-link": [
+       {
+        "network-ref": "example:mw-network",
+        "link-ref": "example:mwrl-N1-N2"
+       }
+      ],
+      "ietf-te-topology:te": {
+       "te-link-attributes": {
+        "interface-switching-capability": [
+         {
+          "switching-capability": "ietf-te-types:switching-l2sc",
+          "encoding": "ietf-te-types:lsp-encoding-ethernet"
+         }
+        ]
+       }
+      }
+     }
+    ]
+   },
+   {
+    "network-id": "example:mw-network",
+    "network-types": {
+     "ietf-te-topology:te-topology": {
+      "ietf-microwave-topology:mw-topology": {}
+     }
+    },
+    "supporting-network": [
+     {
+      "network-ref": "example:mw-network"
+     }
+    ],
+    "node": [
+     {
+      "node-id": "example:mw-N1",
+      "supporting-node": [
+       {
+        "network-ref": "example:mw-network",
+        "node-ref": "example:mw-N1"
+       }
+      ],
+      "ietf-network-topology:termination-point": [
+       {
+        "tp-id": "example:mw-N1-RLTP1",
+        "supporting-termination-point": [
+         {
+          "network-ref": "example:mw-network",
+          "node-ref": "example:mw-N1",
+          "tp-ref": "example:mw-N1-CTP1"
+         },
+         {
+          "network-ref": "example:mw-network",
+          "node-ref": "example:mw-N1",
+          "tp-ref": "example:mw-N1-CTP3"
+         }
+        ],
+        "ietf-te-topology:te-tp-id": "192.0.2.3",
+        "ietf-te-topology:te": {
+         "ietf-microwave-topology:mw-tp": {
+          "microwave-rltp": {}
+         },
+         "ietf-tp-interface-reference-topology:tp-to-interface-path":
+	 "RLT-1"
+        }
+       },
+       {
+        "tp-id": "example:mw-N1-CTP1",
+        "ietf-te-topology:te-tp-id": 1,
+        "ietf-te-topology:te": {
+         "ietf-microwave-topology:mw-tp": {
+          "microwave-ctp": {}
+         },
+         "ietf-tp-interface-reference-topology:tp-to-interface-path":
+	 "CT-1"
+        }
+       },
+       {
+        "tp-id": "example:mw-N1-CTP3",
+        "ietf-te-topology:te-tp-id": 2,
+        "ietf-te-topology:te": {
+         "ietf-microwave-topology:mw-tp": {
+          "microwave-ctp": {}
+         },
+         "ietf-tp-interface-reference-topology:tp-to-interface-path":
+	 "CT-3"
+        }
+       }
+      ],
+      "ietf-te-topology:te-node-id": "192.0.2.1",
+      "ietf-te-topology:te": {
+       "te-node-attributes": {
+        "ietf-microwave-topology:mw-node": {}
+       }
+      }
+     },
+     {
+      "node-id": "example:mw-N2",
+      "supporting-node": [
+       {
+        "network-ref": "example:mw-network",
+        "node-ref": "example:mw-N2"
+       }
+      ],
+      "ietf-network-topology:termination-point": [
+       {
+        "tp-id": "example:mw-N2-RLTP2",
+        "supporting-termination-point": [
+         {
+          "network-ref": "example:mw-network",
+          "node-ref": "example:mw-N2",
+          "tp-ref": "example:mw-N2-CTP2"
+         },
+         {
+          "network-ref": "example:mw-network",
+          "node-ref": "example:mw-N2",
+          "tp-ref": "example:mw-N2-CTP4"
+         }
+        ],
+        "ietf-te-topology:te-tp-id": "192.0.2.4",
+        "ietf-te-topology:te": {
+         "ietf-microwave-topology:mw-tp": {
+          "microwave-rltp": {}
+         },
+         "ietf-tp-interface-reference-topology:tp-to-interface-path":
+	 "RLT-2"
+        }
+       },
+       {
+        "tp-id": "example:mw-N2-CTP2",
+        "ietf-te-topology:te-tp-id": 1,
+        "ietf-te-topology:te": {
+         "ietf-microwave-topology:mw-tp": {
+          "microwave-ctp": {}
+         },
+         "ietf-tp-interface-reference-topology:tp-to-interface-path":
+	 "CT-2"
+        }
+       },
+       {
+        "tp-id": "example:mw-N2-CTP4",
+        "ietf-te-topology:te-tp-id": 2,
+        "ietf-te-topology:te": {
+         "ietf-microwave-topology:mw-tp": {
+          "microwave-ctp": {}
+         },
+         "ietf-tp-interface-reference-topology:tp-to-interface-path":
+	 "CT-4"
+        }
+       }
+      ],
+      "ietf-te-topology:te-node-id": "192.0.2.1",
+      "ietf-te-topology:te": {
+       "te-node-attributes": {
+        "ietf-microwave-topology:mw-node": {}
+       }
+      }
+     }
+    ],
+    "ietf-network-topology:link": [
+     {
+      "link-id": "example:mwrl-N1-N2",
+      "source": {
+       "source-node": "example:mw-N1",
+       "source-tp": "example:mw-N1-RLTP1"
+      },
+      "destination": {
+       "dest-node": "example:mw-N2",
+       "dest-tp": "example:mw-N2-RLTP2"
+      },
+      "ietf-te-topology:te": {
+       "bundled-links": {
+        "bundled-link": [
+         {
+          "sequence": 1,
+          "src-tp-ref": "example:mw-N1-CTP1",
+          "des-tp-ref": "example:mw-N2-CTP2"
+         },
+         {
+          "sequence": 2,
+          "src-tp-ref": "example:mw-N1-CTP3",
+          "des-tp-ref": "example:mw-N2-CTP4"
+         }
+        ]
+       },
+       "te-link-attributes": {
+        "ietf-microwave-topology:mw-link": {
+         "microwave-radio-link": {
+          "rlt-mode": {
+           "num-bonded-carriers": 2,
+           "num-protecting-carriers": 0
+          }
+         }
+        }
+       }
+      }
+     },
+     {
+      "link-id": "example:mwc-N1-N2-A",
+      "source": {
+       "source-node": "example:mw-N1",
+       "source-tp": "example:mw-N1-CTP1"
+      },
+      "destination": {
+       "dest-node": "example:mw-N2",
+       "dest-tp": "example:mw-N2-CTP2"
+      },
+      "ietf-te-topology:te": {
+       "te-link-attributes": {
+        "ietf-bandwidth-availability-topology:link-availability": [
+         {
+          "availability": "0.99",
+          "link-bandwidth": "998423"
+         },
+         {
+          "availability": "0.95",
+          "link-bandwidth": "1048576"
+         }
+        ],
+        "ietf-microwave-topology:mw-link": {
+         "microwave-carrier": {
+          "tx-frequency": 10728000,
+          "channel-separation": 28000
+         }
+        }
+       }
+      }
+     },
+     {
+      "link-id": "example:mwc-N1-N2-B",
+      "source": {
+       "source-node": "example:mw-N1",
+       "source-tp": "example:mw-N1-CTP3"
+      },
+      "destination": {
+       "dest-node": "example:mw-N2",
+       "dest-tp": "example:mw-N2-CTP4"
+      },
+      "ietf-te-topology:te": {
+       "te-link-attributes": {
+        "ietf-microwave-topology:mw-link": {
+         "microwave-carrier": {
+          "tx-frequency": 10528000,
+          "channel-separation": 28000
+         }
+        }
+       }
+      }
+     }
+    ]
+   }
+  ]
+ }
+}
+</sourcecode>
+      </section>
+      <section anchor="instance-data-for-geolocation-information" numbered="true" removeInRFC="false" toc="include" pn="section-appendix.b.2">
+        <name slugifiedName="name-instance-data-for-geolocati">Instance Data for Geolocation Information</name>
+        <t indent="0" pn="section-appendix.b.2-1">This example provides a JSON snippet that shows geolocation information.</t>
+        <sourcecode type="json" name="geo-example.json" markers="false" pn="section-appendix.b.2-2">
+   "node": [
+      {
+         "node-id": "example:mw-N1",
+
+         ...
+
+         "ietf-te-topology:te" : {
+            "ietf-te-topology:geolocation": {
+               "altitude": "200000",
+               "latitude": "45",
+               "longitude": "90"
+               }
+         },
+         "ietf-network-topology:termination-point": [
+
+         ...
+</sourcecode>
+      </section>
+    </section>
+    <section numbered="false" anchor="acknowledgments" removeInRFC="false" toc="include" pn="section-appendix.c">
+      <name slugifiedName="name-acknowledgments">Acknowledgments</name>
+      <t indent="0" pn="section-appendix.c-1">This document was initially prepared using the kramdown RFC tool written and maintained by <contact fullname="Carsten Bormann"/>. Thanks to <contact fullname="Martin Thomson"/> for the GitHub integration of the kramdown RFC tool and for the aasvg tool, which is used for the ascii-to-SVG conversion.</t>
+      <t indent="0" pn="section-appendix.c-2">The authors would like to thank <contact fullname="Tom Petch"/>, <contact fullname="Éric Vyncke"/>, and <contact fullname="Rob Wilton"/> for their reviews.</t>
+    </section>
+    <section anchor="contributors" numbered="false" toc="include" removeInRFC="false" pn="section-appendix.d">
+      <name slugifiedName="name-contributors">Contributors</name>
+      <contact fullname="Italo Busi">
+        <organization showOnFrontPage="true">Huawei Technologies</organization>
+        <address>
+          <email>italo.busi@huawei.com</email>
+        </address>
+      </contact>
+    </section>
+    <section anchor="authors-addresses" numbered="false" removeInRFC="false" toc="include" pn="section-appendix.e">
+      <name slugifiedName="name-authors-addresses">Authors' Addresses</name>
+      <author fullname="Scott Mansfield" initials="S." surname="Mansfield" role="editor">
+        <organization showOnFrontPage="true">Ericsson Inc</organization>
+        <address>
+          <email>scott.mansfield@ericsson.com</email>
+        </address>
+      </author>
+      <author fullname="Jonas Ahlberg" initials="J." surname="Ahlberg">
+        <organization showOnFrontPage="true">Ericsson AB</organization>
+        <address>
+          <postal>
+            <street>Lindholmspiren 11</street>
+            <city>Goteborg</city>
+            <code>417 56</code>
+            <country>Sweden</country>
+          </postal>
+          <email>jonas.ahlberg@ericsson.com</email>
+        </address>
+      </author>
+      <author fullname="Min Ye" initials="M." surname="Ye">
+        <organization showOnFrontPage="true">Huawei Technologies</organization>
+        <address>
+          <postal>
+            <street>No.1899, Xiyuan Avenue</street>
+            <city>Chengdu</city>
+            <code>611731</code>
+            <country>China</country>
+          </postal>
+          <email>amy.yemin@huawei.com</email>
+        </address>
+      </author>
+      <author fullname="Xi Li" initials="X." surname="Li">
+        <organization showOnFrontPage="true">NEC Laboratories Europe</organization>
+        <address>
+          <postal>
+            <street>Kurfursten-Anlage 36</street>
+            <city>Heidelberg</city>
+            <code>69115</code>
+            <country>Germany</country>
+          </postal>
+          <email>Xi.Li@neclab.eu</email>
+        </address>
+      </author>
+      <author fullname="Daniela Spreafico" initials="D." surname="Spreafico">
+        <organization showOnFrontPage="true">Nokia - IT</organization>
+        <address>
+          <postal>
+            <street>Via Energy Park, 14</street>
+            <city>Vimercate (MI)</city>
+            <code>20871</code>
+            <country>Italy</country>
+          </postal>
+          <email>daniela.spreafico@nokia.com</email>
+        </address>
+      </author>
+    </section>
+  </back>
+</rfc>
