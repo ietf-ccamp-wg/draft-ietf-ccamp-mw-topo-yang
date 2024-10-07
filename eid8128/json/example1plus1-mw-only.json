@@ -59,12 +59,12 @@
           {
             "link-id": "example:L2-N1-N2",
             "source": {
-              "source-node": "L2-N1",
-              "source-tp": "L2-N1-TP1"
+              "source-node": "example:L2-N1",
+              "source-tp": "example:L2-N1-TP1"
             },
             "destination": {
-              "dest-node": "L2-N2",
-              "dest-tp": "L2-N2-TP2"
+              "dest-node": "example:L2-N2",
+              "dest-tp": "example:L2-N2-TP2"
             },
             "supporting-link": [
               {
